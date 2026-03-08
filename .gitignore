@@ -1,0 +1,42 @@
+# ── Python ──────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+
+# ── Environment ────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── IDE ─────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── macOS ───────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ── Docker ──────────────────────────────────────────────
+pgdata/
+
+# ── Testing / Coverage ─────────────────────────────────
+.coverage
+htmlcov/
+.pytest_cache/
+
+# ── Misc ────────────────────────────────────────────────
+*.log

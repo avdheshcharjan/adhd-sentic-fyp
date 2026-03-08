@@ -1,0 +1,149 @@
+---
+title: ADHD Second Brain — System Architecture (Component Diagram)
+---
+
+graph TB
+    subgraph UserLayer["🖥️ USER INTERFACE LAYER"]
+        direction LR
+        SwiftApp["🍎 Swift Menu Bar App<br/><i>~25MB RAM</i><br/>─────────────<br/>• ScreenMonitor<br/>• BrowserMonitor<br/>• IdleMonitor<br/>• InterventionPopup<br/>• FocusSessionView"]
+        OpenClaw["🦞 OpenClaw Gateway<br/><i>Optional Interface</i><br/>─────────────<br/>• Telegram / WhatsApp<br/>• Venting Chat Skill<br/>• Morning Briefing Skill<br/>• Weekly Review Skill"]
+        Dashboard["📊 React Dashboard<br/><i>Optional Web UI</i><br/>─────────────<br/>• FocusTimeline<br/>• EmotionRadar<br/>• WhoopCard<br/>• InterventionLog"]
+    end
+
+    subgraph BackendLayer["⚙️ PYTHON FASTAPI BACKEND (localhost:8420)"]
+        direction TB
+        
+        subgraph APIRoutes["REST API Routes"]
+            ScreenAPI["POST /screen/activity<br/><i>Target: &lt;100ms</i>"]
+            ChatAPI["POST /chat/message<br/><i>Target: &lt;3s</i>"]
+            WhoopAPI["GET /whoop/morning-briefing<br/>GET /whoop/auth + callback"]
+            InsightsAPI["GET /insights/current<br/>GET /insights/daily<br/>GET /insights/weekly"]
+            InterventionAPI["POST /interventions/respond"]
+        end
+
+        subgraph CoreServices["Core Processing Services"]
+            ActivityClassifier["🏷️ Activity Classifier<br/>─────────────<br/>L1: App name rules<br/>L2: URL domain lookup<br/>L3: Title keywords<br/>L4: MLX 1B fallback"]
+            
+            MetricsEngine["📈 ADHD Metrics Engine<br/>─────────────<br/>• Context switch rate<br/>• Focus score<br/>• Distraction ratio<br/>• Hyperfocus detection<br/>• Behavioral state"]
+            
+            JITAIEngine["🎯 JITAI Decision Engine<br/>─────────────<br/>Barkley's 5 EF Domains:<br/>1. Self-mgmt to time<br/>2. Self-organization<br/>3. Self-restraint<br/>4. Self-motivation<br/>5. Self-regulation emotion"]
+            
+            XAIExplainer["🔍 XAI Explanation Engine<br/>─────────────<br/>• Concept Bottleneck<br/>• KG Traversal (why)<br/>• Counterfactual (how)<br/>• SHAP validation"]
+        end
+
+        subgraph SenticPipeline["🧠 SenticNet Pipeline"]
+            SenticClient["SenticNet HTTP Client<br/><i>sentic.net/api/en/KEY.py</i>"]
+            
+            subgraph SafetyTier["Tier 1: Safety (runs first)"]
+                Depression["Depression<br/>Categorization"]
+                Toxicity["Toxicity<br/>Spotting"]
+                Intensity["Intensity<br/>Ranking"]
+            end
+
+            subgraph EmotionTier["Tier 2: Core Emotional"]
+                Emotion["Emotion<br/>Recognition<br/><i>(Hourglass)</i>"]
+                Polarity["Polarity<br/>Classification"]
+                Subjectivity["Subjectivity<br/>Detection"]
+                Sarcasm["Sarcasm<br/>Identification"]
+            end
+
+            subgraph ADHDTier["Tier 3: ADHD Signals"]
+                Engagement["Engagement<br/>Measurement"]
+                Wellbeing["Well-being<br/>Assessment"]
+                Concepts["Concept<br/>Parsing"]
+                Aspects["Aspect<br/>Extraction"]
+            end
+
+            subgraph DeepTier["Tier 4: Deep Analysis"]
+                Personality["Personality<br/>Prediction"]
+                Ensemble["Ensemble<br/><i>(Meta-fusion)</i>"]
+            end
+        end
+
+        subgraph IntegrationServices["Integration Services"]
+            WhoopService["💚 Whoop Service<br/>─────────────<br/>• OAuth 2.0 flow<br/>• Recovery data<br/>• Sleep stages<br/>• Morning briefing gen"]
+            
+            MLXInference["🤖 MLX Inference<br/>─────────────<br/>• Llama 3.2 3B (4-bit)<br/>• Activity classification<br/>• Chat response gen<br/>• SenticNet context injection"]
+            
+            ChatProcessor["💬 Chat Processor<br/>─────────────<br/>• Full SenticNet pipeline<br/>• Safety check first<br/>• LLM response gen<br/>• Memory storage"]
+            
+            MemoryService["🧩 Memory Service<br/>─────────────<br/>• Mem0 (conversational)<br/>• Pattern storage<br/>• Context retrieval<br/>• Intervention history"]
+        end
+    end
+
+    subgraph DataLayer["💾 DATA LAYER"]
+        direction LR
+        PostgreSQL[("PostgreSQL + pgvector<br/>─────────────<br/>• activities<br/>• senticnet_analyses<br/>• interventions<br/>• whoop_data<br/>• conversations<br/>• messages<br/>• vector embeddings")]
+        SQLite[("SQLite Cache<br/>─────────────<br/>• Offline activity buffer<br/>• App category cache<br/>• Recent metrics")]
+    end
+
+    subgraph ExternalAPIs["☁️ EXTERNAL APIs"]
+        SenticNetCloud["SenticNet Cloud<br/>sentic.net/api/"]
+        WhoopCloud["Whoop API v2<br/>api.prod.whoop.com"]
+        ClaudeAPI["Claude Sonnet<br/><i>Complex coaching</i>"]
+        GPT4oMini["GPT-4o-mini<br/><i>Frequent tasks</i>"]
+    end
+
+    %% Connections - User to Backend
+    SwiftApp -->|"POST /screen/activity<br/>every 2s"| ScreenAPI
+    SwiftApp -->|"GET /interventions/current"| InterventionAPI
+    OpenClaw -->|"POST /chat/message"| ChatAPI
+    OpenClaw -->|"GET /whoop/morning-briefing"| WhoopAPI
+    Dashboard -->|"GET /insights/*"| InsightsAPI
+
+    %% Internal Backend Flow
+    ScreenAPI --> ActivityClassifier
+    ActivityClassifier --> MetricsEngine
+    MetricsEngine --> JITAIEngine
+    JITAIEngine --> XAIExplainer
+
+    ChatAPI --> ChatProcessor
+    ChatProcessor --> SenticClient
+    ChatProcessor --> MLXInference
+    ChatProcessor --> MemoryService
+
+    SenticClient --> SafetyTier
+    SenticClient --> EmotionTier
+    SenticClient --> ADHDTier
+    SenticClient --> DeepTier
+
+    WhoopAPI --> WhoopService
+
+    JITAIEngine -.->|"If requires_senticnet"| SenticClient
+    ActivityClassifier -.->|"Layer 4 fallback"| MLXInference
+
+    %% Data connections
+    MetricsEngine --> PostgreSQL
+    SenticClient --> PostgreSQL
+    JITAIEngine --> PostgreSQL
+    WhoopService --> PostgreSQL
+    MemoryService --> PostgreSQL
+    ActivityClassifier --> SQLite
+
+    %% External API connections
+    SenticClient -->|"HTTP GET"| SenticNetCloud
+    WhoopService -->|"REST + OAuth"| WhoopCloud
+    ChatProcessor -.->|"Complex queries"| ClaudeAPI
+    MemoryService -.->|"Embeddings"| GPT4oMini
+    MLXInference -.->|"Fallback only"| ClaudeAPI
+
+    %% Styling
+    classDef swift fill:#007AFF,stroke:#005EC4,color:white,stroke-width:2px
+    classDef openclaw fill:#E85D3A,stroke:#C44A2E,color:white,stroke-width:2px
+    classDef dashboard fill:#34C759,stroke:#28A745,color:white,stroke-width:2px
+    classDef api fill:#5856D6,stroke:#4240B0,color:white,stroke-width:1px
+    classDef service fill:#FF9500,stroke:#CC7600,color:white,stroke-width:1px
+    classDef sentic fill:#AF52DE,stroke:#8B42B2,color:white,stroke-width:1px
+    classDef safety fill:#FF3B30,stroke:#CC2F26,color:white,stroke-width:2px
+    classDef db fill:#636366,stroke:#48484A,color:white,stroke-width:2px
+    classDef external fill:#8E8E93,stroke:#636366,color:white,stroke-width:1px
+
+    class SwiftApp swift
+    class OpenClaw openclaw
+    class Dashboard dashboard
+    class ScreenAPI,ChatAPI,WhoopAPI,InsightsAPI,InterventionAPI api
+    class ActivityClassifier,MetricsEngine,JITAIEngine,XAIExplainer,WhoopService,MLXInference,ChatProcessor,MemoryService service
+    class SenticClient,Emotion,Polarity,Subjectivity,Sarcasm,Engagement,Wellbeing,Concepts,Aspects,Personality,Ensemble sentic
+    class Depression,Toxicity,Intensity safety
+    class PostgreSQL,SQLite db
+    class SenticNetCloud,WhoopCloud,ClaudeAPI,GPT4oMini external
