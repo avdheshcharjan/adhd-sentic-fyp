@@ -12,8 +12,6 @@ import time
 from datetime import datetime
 from typing import Optional
 
-from mlx_lm import load, generate
-
 from config import get_settings
 
 settings = get_settings()
@@ -56,6 +54,7 @@ class MLXInference:
         if settings.MLX_ADAPTER_PATH:
             kwargs["adapter_path"] = settings.MLX_ADAPTER_PATH
 
+        from mlx_lm import load
         self.model, self.tokenizer = load(**kwargs)
         load_time = time.time() - start
 
@@ -152,6 +151,7 @@ class MLXInference:
             messages, tokenize=False, add_generation_prompt=True
         )
 
+        from mlx_lm import generate
         response = generate(
             self.model,
             self.tokenizer,

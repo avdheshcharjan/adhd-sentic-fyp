@@ -9,7 +9,6 @@ import logging
 from typing import Optional
 
 from services.senticnet_pipeline import SenticNetPipeline
-from services.mlx_inference import mlx_inference
 from services.memory_service import memory_service
 from services.constants import (
     ADHD_COACHING_SYSTEM_PROMPT,
@@ -25,8 +24,15 @@ class ChatProcessor:
 
     def __init__(self):
         self.pipeline = SenticNetPipeline()
-        self._mlx = mlx_inference
+        self._mlx = None
         self._memory = memory_service
+
+    def _get_mlx(self):
+        """Lazy-load MLX inference to avoid import-time dependency on mlx_lm."""
+        if self._mlx is None:
+            from services.mlx_inference import mlx_inference
+            self._mlx = mlx_inference
+        return self._mlx
 
     async def process_vent_message(
         self,
@@ -68,7 +74,7 @@ class ChatProcessor:
         )
 
         # Step 5: Generate response via MLX
-        response = self._mlx.generate_coaching_response(
+        response = self._get_mlx().generate_coaching_response(
             system_prompt=ADHD_COACHING_SYSTEM_PROMPT,
             user_message=text,
             senticnet_context=senticnet_context,
