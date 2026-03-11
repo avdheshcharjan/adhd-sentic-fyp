@@ -1,0 +1,34 @@
+name: ADHDSecondBrain
+options:
+  bundleIdPrefix: com.adhdsecondrain
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "15.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    SWIFT_VERSION: "5.9"
+
+targets:
+  ADHDSecondBrain:
+    type: application
+    platform: macOS
+    sources:
+      - path: ADHDSecondBrain
+        excludes:
+          - Info.plist
+    info:
+      path: ADHDSecondBrain/Info.plist
+    settings:
+      base:
+        INFOPLIST_FILE: ADHDSecondBrain/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.adhdsecondrain.app
+        PRODUCT_NAME: "ADHD Second Brain"
+        CODE_SIGN_ENTITLEMENTS: ""
+        ENABLE_APP_SANDBOX: NO
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGNING_REQUIRED: NO
+    dependencies: []
+    postCompileScripts: []

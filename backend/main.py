@@ -21,6 +21,9 @@ from api.whoop import router as whoop_router
 from api.insights import router as insights_router
 from api.interventions import router as interventions_router
 
+from sqlalchemy import text
+from db.database import engine, Base
+from services.memory_service import memory_service
 
 settings = get_settings()
 
@@ -40,8 +43,16 @@ async def lifespan(app: FastAPI):
     logger.info("🧠 ADHD Second Brain starting up...")
     logger.info(f"   Version : {settings.APP_VERSION}")
     logger.info(f"   Port    : {settings.APP_PORT}")
-    # TODO: init database connection pool (Phase 2+)
-    # TODO: init memory service (Phase 6)
+    
+    # Init database schema (Phase 1 & 6)
+    logger.info("🔄 Initializing PostgreSQL schema...")
+    async with engine.begin() as conn:
+        # Check if pgvector extension is created
+        await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+        await conn.run_sync(Base.metadata.create_all)
+        
+    logger.info(f"✅ Database tables created/verified.")
+    
     yield
     logger.info("🧠 ADHD Second Brain shutting down...")
 

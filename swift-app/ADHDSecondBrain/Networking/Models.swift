@@ -77,6 +77,7 @@ struct Intervention: Codable {
     let suggestion: String
     let actions: [InterventionAction]
     let requiresSenticnet: Bool
+    let notificationTier: Int?
 
     enum CodingKeys: String, CodingKey {
         case type
@@ -85,6 +86,7 @@ struct Intervention: Codable {
         case suggestion
         case actions
         case requiresSenticnet = "requires_senticnet"
+        case notificationTier = "notification_tier"
     }
 }
 

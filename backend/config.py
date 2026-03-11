@@ -11,11 +11,22 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
     # ── Database ────────────────────────────────────────
-    DATABASE_URL: str = "postgresql+asyncpg://adhd:adhd@localhost:5432/adhd_brain"
+    DATABASE_URL: str = "postgresql+asyncpg://adhd:adhd@localhost:5433/adhd_brain"
 
-    # ── SenticNet Cloud API ─────────────────────────────
-    SENTICNET_API_KEY: str = ""
-    SENTICNET_BASE_URL: str = "https://api.sentic.net"
+    # ── SenticNet APIs (13 keys) ─────────────────────────
+    SENTIC_CONCEPT_PARSING: str = ""
+    SENTIC_SUBJECTIVITY: str = ""
+    SENTIC_POLARITY: str = ""
+    SENTIC_INTENSITY: str = ""
+    SENTIC_EMOTION: str = ""
+    SENTIC_ASPECT: str = ""
+    SENTIC_PERSONALITY: str = ""
+    SENTIC_SARCASM: str = ""
+    SENTIC_DEPRESSION: str = ""
+    SENTIC_TOXICITY: str = ""
+    SENTIC_ENGAGEMENT: str = ""
+    SENTIC_WELLBEING: str = ""
+    SENTIC_ENSEMBLE: str = ""
 
     # ── Whoop API (OAuth 2.0) ───────────────────────────
     WHOOP_CLIENT_ID: str = ""

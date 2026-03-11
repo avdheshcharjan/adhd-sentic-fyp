@@ -1,0 +1,77 @@
+{
+  "name": "ADHD Evidence-Based Intervention Library",
+  "version": "1.0",
+  "note": "All messages use upward framing (what WILL help, never what went WRONG). Max 3 actions per intervention (anti-pattern #8).",
+  "interventions": {
+    "distraction_spiral": {
+      "ef_domain": "self_restraint",
+      "trigger": "context_switch_rate > 12 AND distraction_ratio > 0.5",
+      "acknowledgment": "Looks like things are scattered right now — that's okay.",
+      "suggestion": "A 2-minute reset could help you refocus. What feels right?",
+      "actions": [
+        {"id": "breathe", "emoji": "🫁", "label": "Breathing exercise"},
+        {"id": "task_pick", "emoji": "🎯", "label": "Pick one task"},
+        {"id": "break", "emoji": "☕", "label": "Take a break"}
+      ],
+      "requires_senticnet": false,
+      "default_tier": 3,
+      "evidence": "Iqbal & Bailey (CHI 2008): delivering at task breakpoints reduces frustration."
+    },
+    "sustained_disengagement": {
+      "ef_domain": "self_motivation",
+      "trigger": "behavioral_state == distracted AND streak_minutes > 20 AND distraction_ratio > 0.7",
+      "acknowledgment": "It's been a while since your last focused stretch.",
+      "suggestion": "Sometimes the hardest part is just starting. What's the smallest step you could take?",
+      "actions": [
+        {"id": "tiny_task", "emoji": "🪜", "label": "5-min micro-task"},
+        {"id": "body_double", "emoji": "👥", "label": "Find a body double"},
+        {"id": "reward_first", "emoji": "🎁", "label": "Set a reward"}
+      ],
+      "requires_senticnet": false,
+      "default_tier": 2,
+      "evidence": "Steel (2007): task decomposition reduces procrastination in ADHD."
+    },
+    "hyperfocus_check": {
+      "ef_domain": "self_management_time",
+      "trigger": "hyperfocus_detected (3+ hrs on single task)",
+      "acknowledgment": "You've been deeply focused for 3+ hours — that's impressive focus!",
+      "suggestion": "Quick check: is this the most important thing right now?",
+      "actions": [
+        {"id": "yes_continue", "emoji": "✅", "label": "Yes, keep going"},
+        {"id": "switch_task", "emoji": "🔄", "label": "Switch to priority"},
+        {"id": "time_box", "emoji": "⏰", "label": "Set 30min timer"}
+      ],
+      "requires_senticnet": false,
+      "default_tier": 3,
+      "evidence": "Barkley (2012): time-blindness is a core ADHD deficit."
+    },
+    "emotional_escalation": {
+      "ef_domain": "self_regulation_emotion",
+      "trigger": "SenticNet emotional_dysregulation flag",
+      "acknowledgment": "Things seem intense right now. That's a valid feeling.",
+      "suggestion": "Would any of these help you process what you're feeling?",
+      "actions": [
+        {"id": "vent", "emoji": "💬", "label": "Vent to me"},
+        {"id": "ground", "emoji": "🌿", "label": "Grounding exercise"},
+        {"id": "walk", "emoji": "🚶", "label": "Take a walk"}
+      ],
+      "requires_senticnet": true,
+      "default_tier": 3,
+      "evidence": "Shaw et al. (2014): emotion dysregulation is distinct from ADHD symptoms but highly co-occurring."
+    },
+    "hyperfocus_wellbeing": {
+      "ef_domain": "self_management_time",
+      "trigger": "productive hyperfocus > 4 hours",
+      "acknowledgment": "You've been in the zone for over 4 hours — incredible focus!",
+      "suggestion": "Your body might appreciate a quick check-in.",
+      "actions": [
+        {"id": "water", "emoji": "💧", "label": "Hydrate"},
+        {"id": "stretch", "emoji": "🧘", "label": "Quick stretch"},
+        {"id": "continue", "emoji": "▶️", "label": "I'm good"}
+      ],
+      "requires_senticnet": false,
+      "default_tier": 3,
+      "evidence": "Prolonged sitting + dehydration compound ADHD cognitive deficits."
+    }
+  }
+}

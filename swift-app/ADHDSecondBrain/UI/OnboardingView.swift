@@ -1,16 +1,14 @@
 import SwiftUI
 
 /// Step-by-step permission setup wizard.
-/// Guides the user through granting Screen Recording, Accessibility, and Automation permissions.
+/// Guides the user through granting Accessibility and Automation permissions.
+///
+/// Supplement Section 2: Screen Recording removed. Only Accessibility + Automation needed.
+/// Anti-pattern #6: NEVER use Screen Recording for core monitoring.
 struct OnboardingView: View {
 
-    @State private var hasScreenRecording = Permissions.hasScreenRecording
     @State private var hasAccessibility = Permissions.hasAccessibility
     @State private var refreshTimer: Timer?
-
-    var allGranted: Bool {
-        hasScreenRecording && hasAccessibility
-    }
 
     var body: some View {
         VStack(spacing: 24) {
@@ -18,10 +16,10 @@ struct OnboardingView: View {
             VStack(spacing: 8) {
                 Image(systemName: "brain.head.profile")
                     .font(.system(size: 48))
-                    .foregroundStyle(.purple)
+                    .foregroundStyle(.orange)
                 Text("ADHD Second Brain")
                     .font(.title.bold())
-                Text("Grant these permissions to enable focus monitoring")
+                Text("One permission needed to enable focus monitoring")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
@@ -31,17 +29,8 @@ struct OnboardingView: View {
             // Permission List
             VStack(spacing: 16) {
                 PermissionRow(
-                    title: "Screen Recording",
-                    description: "Read window titles to classify your activity",
-                    systemImage: "rectangle.on.rectangle",
-                    isGranted: hasScreenRecording
-                ) {
-                    Permissions.requestScreenRecording()
-                }
-
-                PermissionRow(
                     title: "Accessibility",
-                    description: "Observe app switches and window focus",
+                    description: "Read window titles and observe app switches (one-time grant)",
                     systemImage: "hand.raised",
                     isGranted: hasAccessibility
                 ) {
@@ -58,12 +47,12 @@ struct OnboardingView: View {
 
             Divider()
 
-            if allGranted {
+            if hasAccessibility {
                 Label("All permissions granted — monitoring is active!", systemImage: "checkmark.circle.fill")
                     .foregroundColor(.green)
                     .font(.callout.bold())
             } else {
-                Text("After granting permissions, you may need to restart the app.")
+                Text("After granting Accessibility, the app will start monitoring automatically.")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -71,9 +60,7 @@ struct OnboardingView: View {
         .padding(32)
         .frame(width: 480)
         .onAppear {
-            // Poll permission status every 2 seconds
             refreshTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
-                hasScreenRecording = Permissions.hasScreenRecording
                 hasAccessibility = Permissions.hasAccessibility
             }
         }

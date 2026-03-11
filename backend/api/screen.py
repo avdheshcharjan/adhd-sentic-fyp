@@ -2,6 +2,8 @@
 Screen activity endpoint — the hottest path in the system.
 Called every ~2 seconds by the Swift menu bar app.
 Target latency: <100ms.
+
+Phase 4: Now wires JITAI engine for real-time intervention evaluation.
 """
 
 from fastapi import APIRouter
@@ -9,12 +11,16 @@ from fastapi import APIRouter
 from models.screen_activity import ScreenActivityInput, ScreenActivityResponse
 from services.activity_classifier import ActivityClassifier
 from services.adhd_metrics import ADHDMetricsEngine
+from services.jitai_engine import JITAIEngine
+from services.xai_explainer import ConceptBottleneckExplainer
 
 router = APIRouter(prefix="/screen", tags=["screen"])
 
 # ── Singleton instances (created once, shared across requests) ──────
 _classifier = ActivityClassifier()
 _metrics_engine = ADHDMetricsEngine()
+_jitai_engine = JITAIEngine()
+_xai_explainer = ConceptBottleneckExplainer()
 
 
 @router.post("/activity", response_model=ScreenActivityResponse)
@@ -25,7 +31,9 @@ async def report_activity(activity: ScreenActivityInput):
     Pipeline:
       1. Classify activity (rule-based, <5ms)
       2. Update rolling metrics (in-memory, <1ms)
-      3. Return category + metrics + intervention (if any)
+      3. Evaluate JITAI intervention need (<2ms)
+      4. Generate XAI explanation if intervention triggered
+      5. Return category + metrics + intervention (if any)
     """
     # Step 1: Classify
     category, layer = _classifier.classify(
@@ -42,10 +50,24 @@ async def report_activity(activity: ScreenActivityInput):
         timestamp=activity.timestamp,
     )
 
-    # Step 3: Build response (intervention = None for Phase 1,
-    # JITAI engine added in Phase 4)
+    # Enrich metrics with context fields for JITAI gates
+    metrics.current_app = activity.app_name
+    metrics.current_category = category
+
+    # Step 3: Evaluate JITAI intervention need
+    intervention = _jitai_engine.evaluate(metrics)
+
+    # Step 4: Attach XAI explanation if intervention triggered
+    if intervention:
+        explanation = _xai_explainer.explain_intervention(
+            intervention_type=intervention.type,
+            metrics=metrics.model_dump(),
+        )
+        intervention.explanation = explanation.model_dump()
+
+    # Step 5: Build response
     return ScreenActivityResponse(
         category=category,
         metrics=metrics.model_dump(),
-        intervention=None,
+        intervention=intervention,
     )

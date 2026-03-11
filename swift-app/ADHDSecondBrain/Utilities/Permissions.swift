@@ -3,34 +3,25 @@ import ApplicationServices
 
 /// TCC permission checks and request helpers for macOS.
 ///
-/// Required permissions:
-/// 1. Screen Recording — for CGWindowListCopyWindowInfo (window titles)
-/// 2. Accessibility — for AXUIElement (window observation)
-/// 3. Automation — for AppleScript browser URL extraction (auto-prompted)
+/// Required permissions (supplement Section 2 — reduced from blueprint):
+/// 1. Accessibility — for AXUIElement window title reading + observer (one-time grant, no re-auth)
+/// 2. Automation — for AppleScript browser URL extraction (auto-prompted per browser)
+///
+/// Screen Recording is NOT required. Window titles are read via AXUIElement
+/// instead of CGWindowListCopyWindowInfo.
+/// Anti-pattern #6: NEVER use Screen Recording for core monitoring.
 struct Permissions {
-
-    // MARK: - Screen Recording
-
-    /// Check if Screen Recording permission is granted.
-    static var hasScreenRecording: Bool {
-        return CGPreflightScreenCaptureAccess()
-    }
-
-    /// Request Screen Recording permission.
-    /// Opens System Settings → Privacy & Security → Screen Recording.
-    static func requestScreenRecording() {
-        CGRequestScreenCaptureAccess()
-    }
 
     // MARK: - Accessibility
 
     /// Check if Accessibility permission is granted.
+    /// Required for AXUIElement window title reading and AXObserver.
     static var hasAccessibility: Bool {
         return AXIsProcessTrusted()
     }
 
     /// Request Accessibility permission.
-    /// Opens System Settings → Privacy & Security → Accessibility.
+    /// Opens System Settings -> Privacy & Security -> Accessibility.
     static func requestAccessibility() {
         let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeRetainedValue(): true]
         AXIsProcessTrustedWithOptions(options)
@@ -38,7 +29,7 @@ struct Permissions {
 
     // MARK: - Open System Settings
 
-    /// Opens the Security & Privacy pane in System Settings.
+    /// Opens the Privacy & Security pane in System Settings.
     static func openPrivacySettings() {
         if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy") {
             NSWorkspace.shared.open(url)

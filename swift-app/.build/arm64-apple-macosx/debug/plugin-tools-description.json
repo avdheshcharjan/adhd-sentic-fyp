@@ -1,0 +1,569 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.ADHDSecondBrain-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/sources",
+      "importPath" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/App.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/AppDelegate.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/BrowserMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/IdleMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/MonitorCoordinator.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/ScreenMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/TransitionDetector.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Networking/BackendClient.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Networking/Models.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Notifications/TierManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/AmbientMenuBar.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/CalmOverlayPanel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/InterventionPopup.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/MenuBarView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/OnboardingView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Utilities/Logger.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Utilities/Permissions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "ADHDSecondBrain",
+      "moduleOutputPath" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/Modules/ADHDSecondBrain.swiftmodule",
+      "objects" : [
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/App.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/AppDelegate.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/BrowserMonitor.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/IdleMonitor.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/MonitorCoordinator.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/ScreenMonitor.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/TransitionDetector.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/BackendClient.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/Models.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/TierManager.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/AmbientMenuBar.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/CalmOverlayPanel.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/InterventionPopup.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/MenuBarView.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/OnboardingView.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/Logger.swift.o",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/Permissions.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "ADHDSecondBrain_main",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "swift_app"
+      ],
+      "outputFileMapPath" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/App.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/AppDelegate.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/BrowserMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/IdleMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/MonitorCoordinator.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/ScreenMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/TransitionDetector.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/BackendClient.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/Models.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/TierManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/AmbientMenuBar.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/CalmOverlayPanel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/InterventionPopup.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/MenuBarView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/OnboardingView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/Logger.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/Permissions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/Modules/ADHDSecondBrain.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/App.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/AppDelegate.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/BrowserMonitor.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/IdleMonitor.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/MonitorCoordinator.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/ScreenMonitor.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/TransitionDetector.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Networking/BackendClient.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Networking/Models.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Notifications/TierManager.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/AmbientMenuBar.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/CalmOverlayPanel.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/InterventionPopup.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/MenuBarView.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/OnboardingView.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Utilities/Logger.swift",
+        "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Utilities/Permissions.swift"
+      ],
+      "tempsPath" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "ADHDSecondBrain" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ADHDSecondBrain",
+      "-package-name",
+      "swift_app",
+      "-c",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/App.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/AppDelegate.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/BrowserMonitor.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/IdleMonitor.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/MonitorCoordinator.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/ScreenMonitor.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/TransitionDetector.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Networking/BackendClient.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Networking/Models.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Notifications/TierManager.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/AmbientMenuBar.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/CalmOverlayPanel.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/InterventionPopup.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/MenuBarView.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/OnboardingView.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Utilities/Logger.swift",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Utilities/Permissions.swift",
+      "-I",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "ADHDSecondBrain_main",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "swift_app",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "ADHDSecondBrain" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain-entitlement.plist" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<entitlement-plist>"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<com.apple.security.get-task-allow>"
+        }
+      ],
+      "outputFilePath" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain-entitlement.plist"
+    },
+    "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/App.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/AppDelegate.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/BrowserMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/IdleMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/MonitorCoordinator.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/ScreenMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/TransitionDetector.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Networking/BackendClient.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Networking/Models.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Notifications/TierManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/AmbientMenuBar.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/CalmOverlayPanel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/InterventionPopup.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/MenuBarView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/OnboardingView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Utilities/Logger.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Utilities/Permissions.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/sources"
+    },
+    "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/AmbientMenuBar.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/App.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/AppDelegate.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/BackendClient.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/BrowserMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/CalmOverlayPanel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/IdleMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/InterventionPopup.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/Logger.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/MenuBarView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/Models.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/MonitorCoordinator.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/OnboardingView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/Permissions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/ScreenMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/TierManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.build/TransitionDetector.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/ADHDSecondBrain.product/Objects.LinkFileList"
+    },
+    "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

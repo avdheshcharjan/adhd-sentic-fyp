@@ -1,0 +1,398 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0863DD7A81050F904B4EA5C7 /* InterventionPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B37A8EDD8D28EF26BD0BA8B /* InterventionPopup.swift */; };
+		17E45B0BC867147993C35D6D /* TierManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7497343A9F3AAF1E9365FB0D /* TierManager.swift */; };
+		2210A2A2E69C7219DF311477 /* AmbientMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84EC67AEC1B697FCA11CBA /* AmbientMenuBar.swift */; };
+		319AC0CB48A8A92CB63AD00B /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374E7BBF52ADB307AB636D9E /* MenuBarView.swift */; };
+		46CF1857F84DC3450A60E127 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E797AB1F9E3AE35E9BC252DC /* Models.swift */; };
+		4A14830C70B8812494C868ED /* CalmOverlayPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F0E490E24736830744DE8 /* CalmOverlayPanel.swift */; };
+		5EB618BB73EAC3FE1BFA4231 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4547915BE317E9E77749C3 /* Logger.swift */; };
+		7242FF6C58DE601BCFAF347F /* BrowserMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9444D3D57E73643AA586BAD5 /* BrowserMonitor.swift */; };
+		86772C12C581A469DD2D6BA3 /* BackendClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF8C11ED2155E455D61A9DD /* BackendClient.swift */; };
+		92F121C9B778D1AABFEB8981 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8563F825B9E7FE3BF41F39 /* AppDelegate.swift */; };
+		9530206B6CABB8AB5D1C62CA /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8503DD2F15282845164E2B5 /* Permissions.swift */; };
+		967AAFDA2CCC763C28538FFD /* ScreenMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A3773F57A14CDF4A19FF6A /* ScreenMonitor.swift */; };
+		A3463B65FB0711DBB793CA92 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DDBFC61099A1F167E805D5 /* OnboardingView.swift */; };
+		AA5F3F3A898F20CAC0D43C2E /* MonitorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2C004795A17A8BE1333C5E /* MonitorCoordinator.swift */; };
+		B041D70FE9CA7A767B7CFD5C /* TransitionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448CFDBDA242FA9B58EA2DD /* TransitionDetector.swift */; };
+		D0F2A843B396E482AD674B08 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B52DE671FB320016135B805 /* App.swift */; };
+		ED40B6D1797A43451DAF1465 /* IdleMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B0B8A18878719D34BC83D1 /* IdleMonitor.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1EF8C11ED2155E455D61A9DD /* BackendClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendClient.swift; sourceTree = "<group>"; };
+		27C90DE7B261C0034E99A23C /* ADHD Second Brain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ADHD Second Brain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		374E7BBF52ADB307AB636D9E /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		42DDBFC61099A1F167E805D5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		4D8563F825B9E7FE3BF41F39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6B52DE671FB320016135B805 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		7497343A9F3AAF1E9365FB0D /* TierManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TierManager.swift; sourceTree = "<group>"; };
+		76A3773F57A14CDF4A19FF6A /* ScreenMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenMonitor.swift; sourceTree = "<group>"; };
+		7B37A8EDD8D28EF26BD0BA8B /* InterventionPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterventionPopup.swift; sourceTree = "<group>"; };
+		9444D3D57E73643AA586BAD5 /* BrowserMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserMonitor.swift; sourceTree = "<group>"; };
+		95B0B8A18878719D34BC83D1 /* IdleMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleMonitor.swift; sourceTree = "<group>"; };
+		976F0E490E24736830744DE8 /* CalmOverlayPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalmOverlayPanel.swift; sourceTree = "<group>"; };
+		B448CFDBDA242FA9B58EA2DD /* TransitionDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDetector.swift; sourceTree = "<group>"; };
+		B8503DD2F15282845164E2B5 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+		CE4547915BE317E9E77749C3 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		E797AB1F9E3AE35E9BC252DC /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		FC84EC67AEC1B697FCA11CBA /* AmbientMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientMenuBar.swift; sourceTree = "<group>"; };
+		FF2C004795A17A8BE1333C5E /* MonitorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorCoordinator.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		015C0305D1C44E2B7780FDD0 = {
+			isa = PBXGroup;
+			children = (
+				614E6C11B25A258887EA4990 /* ADHDSecondBrain */,
+				5384525E03A3B0568DDEBDA0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3EE1F3FEB2B743ECC687F37B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CE4547915BE317E9E77749C3 /* Logger.swift */,
+				B8503DD2F15282845164E2B5 /* Permissions.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		5384525E03A3B0568DDEBDA0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27C90DE7B261C0034E99A23C /* ADHD Second Brain.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		614E6C11B25A258887EA4990 /* ADHDSecondBrain */ = {
+			isa = PBXGroup;
+			children = (
+				6B52DE671FB320016135B805 /* App.swift */,
+				4D8563F825B9E7FE3BF41F39 /* AppDelegate.swift */,
+				A4E9A00A7BC3EDD73FA9AE29 /* Monitors */,
+				D030481FFFA0F3A54FAAC942 /* Networking */,
+				EDAF53D3582FE5006BA5F534 /* Notifications */,
+				9CBDD1F82D2E3C6BF41D9BE7 /* UI */,
+				3EE1F3FEB2B743ECC687F37B /* Utilities */,
+			);
+			path = ADHDSecondBrain;
+			sourceTree = "<group>";
+		};
+		9CBDD1F82D2E3C6BF41D9BE7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				FC84EC67AEC1B697FCA11CBA /* AmbientMenuBar.swift */,
+				976F0E490E24736830744DE8 /* CalmOverlayPanel.swift */,
+				7B37A8EDD8D28EF26BD0BA8B /* InterventionPopup.swift */,
+				374E7BBF52ADB307AB636D9E /* MenuBarView.swift */,
+				42DDBFC61099A1F167E805D5 /* OnboardingView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		A4E9A00A7BC3EDD73FA9AE29 /* Monitors */ = {
+			isa = PBXGroup;
+			children = (
+				9444D3D57E73643AA586BAD5 /* BrowserMonitor.swift */,
+				95B0B8A18878719D34BC83D1 /* IdleMonitor.swift */,
+				FF2C004795A17A8BE1333C5E /* MonitorCoordinator.swift */,
+				76A3773F57A14CDF4A19FF6A /* ScreenMonitor.swift */,
+				B448CFDBDA242FA9B58EA2DD /* TransitionDetector.swift */,
+			);
+			path = Monitors;
+			sourceTree = "<group>";
+		};
+		D030481FFFA0F3A54FAAC942 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				1EF8C11ED2155E455D61A9DD /* BackendClient.swift */,
+				E797AB1F9E3AE35E9BC252DC /* Models.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		EDAF53D3582FE5006BA5F534 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				7497343A9F3AAF1E9365FB0D /* TierManager.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2FB9501C85587D134712C07A /* ADHDSecondBrain */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56A83FDD5F44CF4F2121CE7D /* Build configuration list for PBXNativeTarget "ADHDSecondBrain" */;
+			buildPhases = (
+				A534588339B21BB0DF5D0E6F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ADHDSecondBrain;
+			packageProductDependencies = (
+			);
+			productName = ADHDSecondBrain;
+			productReference = 27C90DE7B261C0034E99A23C /* ADHD Second Brain.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C86B556D291DD23AF1411EAA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = ED598C0AF5F7EDFC5D6EC9E0 /* Build configuration list for PBXProject "ADHDSecondBrain" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 015C0305D1C44E2B7780FDD0;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5384525E03A3B0568DDEBDA0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2FB9501C85587D134712C07A /* ADHDSecondBrain */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A534588339B21BB0DF5D0E6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2210A2A2E69C7219DF311477 /* AmbientMenuBar.swift in Sources */,
+				D0F2A843B396E482AD674B08 /* App.swift in Sources */,
+				92F121C9B778D1AABFEB8981 /* AppDelegate.swift in Sources */,
+				86772C12C581A469DD2D6BA3 /* BackendClient.swift in Sources */,
+				7242FF6C58DE601BCFAF347F /* BrowserMonitor.swift in Sources */,
+				4A14830C70B8812494C868ED /* CalmOverlayPanel.swift in Sources */,
+				ED40B6D1797A43451DAF1465 /* IdleMonitor.swift in Sources */,
+				0863DD7A81050F904B4EA5C7 /* InterventionPopup.swift in Sources */,
+				5EB618BB73EAC3FE1BFA4231 /* Logger.swift in Sources */,
+				319AC0CB48A8A92CB63AD00B /* MenuBarView.swift in Sources */,
+				46CF1857F84DC3450A60E127 /* Models.swift in Sources */,
+				AA5F3F3A898F20CAC0D43C2E /* MonitorCoordinator.swift in Sources */,
+				A3463B65FB0711DBB793CA92 /* OnboardingView.swift in Sources */,
+				9530206B6CABB8AB5D1C62CA /* Permissions.swift in Sources */,
+				967AAFDA2CCC763C28538FFD /* ScreenMonitor.swift in Sources */,
+				17E45B0BC867147993C35D6D /* TierManager.swift in Sources */,
+				B041D70FE9CA7A767B7CFD5C /* TransitionDetector.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0FDC80770AB0DE9FCC37AF77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 8WQ5X9649M;
+				ENABLE_APP_SANDBOX = NO;
+				INFOPLIST_FILE = ADHDSecondBrain/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adhdsecondrain.app;
+				PRODUCT_NAME = "ADHD Second Brain";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3B3464B18D0A50C5FDCCDF1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 8WQ5X9649M;
+				ENABLE_APP_SANDBOX = NO;
+				INFOPLIST_FILE = ADHDSecondBrain/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adhdsecondrain.app;
+				PRODUCT_NAME = "ADHD Second Brain";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		40E8484D1BB77581993D1873 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		4B651CDCC464DB5E4433EC0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		56A83FDD5F44CF4F2121CE7D /* Build configuration list for PBXNativeTarget "ADHDSecondBrain" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B3464B18D0A50C5FDCCDF1D /* Debug */,
+				0FDC80770AB0DE9FCC37AF77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		ED598C0AF5F7EDFC5D6EC9E0 /* Build configuration list for PBXProject "ADHDSecondBrain" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40E8484D1BB77581993D1873 /* Debug */,
+				4B651CDCC464DB5E4433EC0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C86B556D291DD23AF1411EAA /* Project object */;
+}

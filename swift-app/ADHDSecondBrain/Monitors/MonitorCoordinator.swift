@@ -1,8 +1,11 @@
 import Foundation
 import Combine
 
-/// Combines ScreenMonitor, BrowserMonitor, and IdleMonitor into a unified
-/// 2-second data stream that reports to the Python backend.
+/// Combines ScreenMonitor, BrowserMonitor, IdleMonitor, and TransitionDetector
+/// into a unified event-driven data stream that reports to the Python backend.
+///
+/// Key change from blueprint: Uses TransitionDetector + TierManager for
+/// breakpoint-aware intervention delivery (supplement Sections 4 & 5).
 class MonitorCoordinator: ObservableObject {
 
     // MARK: - Published State
@@ -15,8 +18,10 @@ class MonitorCoordinator: ObservableObject {
     // MARK: - Private Properties
 
     private let screenMonitor = ScreenMonitor()
+    private let transitionDetector = TransitionDetector()
     private let backendClient = BackendClient()
     private var cancellables = Set<AnyCancellable>()
+    private var wasIdle = false
 
     // MARK: - Public API
 
@@ -24,13 +29,22 @@ class MonitorCoordinator: ObservableObject {
         guard !isMonitoring else { return }
         isMonitoring = true
 
+        // Wire up app switch notifications from ScreenMonitor to TransitionDetector
+        screenMonitor.onAppSwitch = { [weak self] from, to in
+            self?.transitionDetector.recordAppSwitch(from: from, to: to)
+
+            // If there's a queued intervention, check if this breakpoint allows delivery
+            if self?.transitionDetector.checkBreakpoint() == true {
+                TierManager.shared.deliverIfQueued()
+            }
+        }
+
         screenMonitor.start()
 
         // React to every screen state change from the ScreenMonitor
         screenMonitor.$currentState
             .compactMap { $0 }
             .removeDuplicates { prev, next in
-                // Deduplicate: only send if something actually changed
                 prev.appName == next.appName && prev.windowTitle == next.windowTitle
             }
             .sink { [weak self] state in
@@ -56,10 +70,32 @@ class MonitorCoordinator: ObservableObject {
     // MARK: - Private Methods
 
     private func reportActivity(state: ScreenMonitor.ScreenState) {
+        // Track idle transitions for the TransitionDetector
+        let currentlyIdle = IdleMonitor.isIdle
+        if currentlyIdle && !wasIdle {
+            transitionDetector.recordIdleStart()
+        } else if !currentlyIdle && wasIdle {
+            transitionDetector.recordIdleResume()
+            // Idle resume is a breakpoint — try to deliver queued interventions
+            if transitionDetector.checkBreakpoint() {
+                TierManager.shared.deliverIfQueued()
+            }
+        }
+        wasIdle = currentlyIdle
+
         // Extract browser URL if the active app is a browser
         let url: String?
         if BrowserMonitor.isBrowser(bundleIdentifier: state.bundleIdentifier) {
             url = BrowserMonitor.getActiveTabURL(bundleIdentifier: state.bundleIdentifier)
+
+            // Record tab switch for burst detection
+            if let url = url {
+                transitionDetector.recordTabSwitch(urlOrTitle: url)
+                // Check for tab burst breakpoint
+                if transitionDetector.checkBreakpoint() {
+                    TierManager.shared.deliverIfQueued()
+                }
+            }
         } else {
             url = nil
         }
@@ -68,7 +104,7 @@ class MonitorCoordinator: ObservableObject {
             appName: state.appName,
             windowTitle: state.windowTitle,
             url: url,
-            isIdle: IdleMonitor.isIdle,
+            isIdle: currentlyIdle,
             timestamp: ISO8601DateFormatter().string(from: Date())
         )
 
@@ -82,22 +118,39 @@ class MonitorCoordinator: ObservableObject {
                     self.latestIntervention = response.intervention
                 }
 
-                // Show intervention popup if one was returned
+                // Handle intervention via TierManager + TransitionDetector
                 if let intervention = response.intervention {
                     await MainActor.run {
-                        InterventionPopup.show(intervention: intervention) { actionId in
-                            self.respondToIntervention(
-                                interventionType: intervention.type,
-                                actionId: actionId
-                            )
-                        }
+                        self.handleIntervention(intervention)
                     }
                 }
             } catch {
-                // Backend unreachable — silently skip, continue monitoring
-                // In production: buffer to SQLite and retry
-                print("⚠ Backend unreachable: \(error.localizedDescription)")
+                print("Backend unreachable: \(error.localizedDescription)")
             }
+        }
+    }
+
+    /// Route intervention through TransitionDetector + TierManager.
+    /// Anti-pattern #4: NEVER interrupt productive hyperfocus.
+    private func handleIntervention(_ intervention: Intervention) {
+        // Hard block: never interrupt deep focus
+        if transitionDetector.shouldSuppressIntervention() {
+            return
+        }
+
+        let actionHandler: (String) -> Void = { [weak self] actionId in
+            self?.respondToIntervention(interventionType: intervention.type, actionId: actionId)
+        }
+        let dismissHandler: () -> Void = { [weak self] in
+            self?.respondToIntervention(interventionType: intervention.type, actionId: nil)
+        }
+
+        // If we're at a breakpoint, deliver immediately
+        if transitionDetector.checkBreakpoint() {
+            TierManager.shared.deliver(intervention, onAction: actionHandler, onDismiss: dismissHandler)
+        } else {
+            // Queue for next breakpoint (shows Tier 1 ambient indicator immediately)
+            TierManager.shared.queue(intervention, onAction: actionHandler, onDismiss: dismissHandler)
         }
     }
 

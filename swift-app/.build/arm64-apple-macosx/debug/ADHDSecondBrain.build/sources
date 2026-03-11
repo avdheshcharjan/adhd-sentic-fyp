@@ -1,0 +1,17 @@
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/App.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/AppDelegate.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/BrowserMonitor.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/IdleMonitor.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/MonitorCoordinator.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/ScreenMonitor.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Monitors/TransitionDetector.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Networking/BackendClient.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Networking/Models.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Notifications/TierManager.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/AmbientMenuBar.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/CalmOverlayPanel.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/InterventionPopup.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/MenuBarView.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/UI/OnboardingView.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Utilities/Logger.swift
+/Users/avuthegreat/Downloads/FYP-Antigravity-OpenClaw/swift-app/ADHDSecondBrain/Utilities/Permissions.swift

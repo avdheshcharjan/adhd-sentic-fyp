@@ -1,3 +1,4 @@
+import Foundation
 import IOKit
 
 /// Detects keyboard/mouse idle time using IOKit's HIDSystem.

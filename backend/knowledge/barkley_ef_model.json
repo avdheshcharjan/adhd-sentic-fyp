@@ -1,0 +1,61 @@
+{
+  "name": "Barkley's 5 Executive Function Deficit Domains",
+  "citation": "Barkley RA. Executive Functions: What They Are, How They Work, and Why They Evolved. Guilford Press, 2012.",
+  "domains": {
+    "self_management_time": {
+      "label": "Self-Management to Time",
+      "description": "Ability to organise behaviour across time, estimate durations, meet deadlines, and manage schedules.",
+      "adhd_manifestation": "Time-blindness, chronic lateness, underestimating task duration, missing deadlines.",
+      "intervention_strategies": [
+        "Time-boxing current work",
+        "Setting explicit timers",
+        "Calendar/deadline reminders",
+        "Breaking work into timed chunks"
+      ]
+    },
+    "self_organization": {
+      "label": "Self-Organisation & Problem Solving",
+      "description": "Ability to plan, organise materials and actions, and solve problems sequentially.",
+      "adhd_manifestation": "Cluttered workspace, forgotten steps, difficulty starting multi-step tasks.",
+      "intervention_strategies": [
+        "Task decomposition (micro-tasks)",
+        "Checklists and written plans",
+        "Body doubling",
+        "External scaffolding"
+      ]
+    },
+    "self_restraint": {
+      "label": "Self-Restraint (Inhibition)",
+      "description": "Ability to inhibit prepotent responses, resist distractions, and delay gratification.",
+      "adhd_manifestation": "Impulsive app switching, distraction spirals, difficulty resisting social media.",
+      "intervention_strategies": [
+        "Breathing reset (2 min)",
+        "Pick-one-task challenge",
+        "Environmental modification",
+        "Distraction blocking"
+      ]
+    },
+    "self_motivation": {
+      "label": "Self-Motivation",
+      "description": "Ability to sustain effort and motivation without external reinforcement.",
+      "adhd_manifestation": "Task avoidance, procrastination, difficulty starting boring but necessary work.",
+      "intervention_strategies": [
+        "5-minute micro-task start",
+        "Reward setting before task",
+        "Body doubling",
+        "Interest-based task framing (PINCH model)"
+      ]
+    },
+    "self_regulation_emotion": {
+      "label": "Self-Regulation of Emotion",
+      "description": "Ability to modulate emotional responses, especially frustration, anger, and excitement.",
+      "adhd_manifestation": "Emotional flooding, frustration spirals, rejection sensitive dysphoria (RSD), difficulty calming down.",
+      "intervention_strategies": [
+        "Venting/expression outlet",
+        "Grounding exercise",
+        "Physical movement break",
+        "Emotion labelling"
+      ]
+    }
+  }
+}

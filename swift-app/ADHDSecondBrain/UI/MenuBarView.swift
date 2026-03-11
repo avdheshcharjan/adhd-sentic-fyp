@@ -4,6 +4,7 @@ import SwiftUI
 struct MenuBarView: View {
     @ObservedObject var coordinator: MonitorCoordinator
 
+    @Environment(\.openSettings) private var openSettings
     @State private var backendHealthy = false
 
     var body: some View {
@@ -62,9 +63,7 @@ struct MenuBarView: View {
                 )
             }
 
-            Button {
-                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
-            } label: {
+            SettingsLink {
                 Label("Settings & Permissions", systemImage: "gear")
             }
 
@@ -81,6 +80,9 @@ struct MenuBarView: View {
         .frame(width: 280)
         .task {
             backendHealthy = await BackendClient().healthCheck()
+            if !Permissions.hasAccessibility {
+                openSettings()
+            }
         }
     }
 }
