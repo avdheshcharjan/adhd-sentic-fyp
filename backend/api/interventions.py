@@ -7,16 +7,9 @@ Phase 4: fully implemented — feeds back to JITAI engine and adaptive bandit.
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-from services.jitai_engine import JITAIEngine
-from services.xai_explainer import ConceptBottleneckExplainer
+from services.shared_state import jitai_engine, xai_explainer
 
 router = APIRouter(prefix="/interventions", tags=["interventions"])
-
-# Share the JITAI engine singleton with screen.py via import
-# In production this would use dependency injection; for now we create
-# a module-level instance that screen.py can also reference.
-_jitai_engine = JITAIEngine()
-_xai_explainer = ConceptBottleneckExplainer()
 
 
 class InterventionResponse(BaseModel):
@@ -48,7 +41,7 @@ async def respond_to_intervention(
       - JITAI engine (adaptive cooldown)
       - Thompson Sampling bandit (learn when to intervene)
     """
-    _jitai_engine.record_response(
+    jitai_engine.record_response(
         intervention_id=intervention_id,
         action_taken=response.action_taken,
         dismissed=response.dismissed,
@@ -56,7 +49,7 @@ async def respond_to_intervention(
     return {
         "status": "recorded",
         "intervention_id": intervention_id,
-        "cooldown_seconds": _jitai_engine._cooldown_seconds,
+        "cooldown_seconds": jitai_engine._cooldown_seconds,
     }
 
 
@@ -68,7 +61,7 @@ async def correct_concept(correction: ConceptCorrectionRequest):
     (e.g. "I'm not frustrated, I'm excited"). This feeds back into
     the Concept Bottleneck Model for recalibration.
     """
-    result = _xai_explainer.apply_user_correction(
+    result = xai_explainer.apply_user_correction(
         concept_id=correction.concept_id,
         user_value=correction.user_value,
         system_prediction=correction.system_prediction,
