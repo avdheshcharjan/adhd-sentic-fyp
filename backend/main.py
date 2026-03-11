@@ -5,6 +5,7 @@ Central brain of the system. All interfaces (Swift app, OpenClaw, Dashboard)
 are thin clients that call this backend via REST on port 8420.
 """
 
+import asyncio
 import logging
 from contextlib import asynccontextmanager
 
@@ -25,6 +26,11 @@ from sqlalchemy import text
 from db.database import engine, Base
 from services.memory_service import memory_service
 
+try:
+    from services.mlx_inference import mlx_inference
+except ImportError:
+    mlx_inference = None
+
 settings = get_settings()
 
 # ── Logging ─────────────────────────────────────────────────────────
@@ -36,25 +42,45 @@ logging.basicConfig(
 logger = logging.getLogger("adhd-brain")
 
 
+# ── Background Tasks ───────────────────────────────────────────────
+async def _model_cleanup_loop():
+    """Periodically check if LLM should be unloaded to free memory."""
+    while True:
+        try:
+            if mlx_inference:
+                mlx_inference.maybe_unload_if_idle()
+        except Exception as e:
+            logger.warning(f"Model cleanup error: {e}")
+        await asyncio.sleep(30)
+
+
 # ── Lifespan ────────────────────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Startup / shutdown lifecycle handler."""
-    logger.info("🧠 ADHD Second Brain starting up...")
+    logger.info("ADHD Second Brain starting up...")
     logger.info(f"   Version : {settings.APP_VERSION}")
     logger.info(f"   Port    : {settings.APP_PORT}")
-    
+
     # Init database schema (Phase 1 & 6)
-    logger.info("🔄 Initializing PostgreSQL schema...")
+    logger.info("Initializing PostgreSQL schema...")
     async with engine.begin() as conn:
         # Check if pgvector extension is created
         await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
         await conn.run_sync(Base.metadata.create_all)
-        
-    logger.info(f"✅ Database tables created/verified.")
-    
+
+    logger.info("Database tables created/verified.")
+
+    # Start background model cleanup
+    cleanup_task = asyncio.create_task(_model_cleanup_loop())
+    logger.info("Background model cleanup task started (30s interval)")
+
     yield
-    logger.info("🧠 ADHD Second Brain shutting down...")
+
+    cleanup_task.cancel()
+    if mlx_inference:
+        mlx_inference._unload()
+    logger.info("ADHD Second Brain shutting down...")
 
 
 # ── FastAPI Application ─────────────────────────────────────────────
