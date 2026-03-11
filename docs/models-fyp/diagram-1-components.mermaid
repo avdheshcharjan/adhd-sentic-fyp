@@ -1,0 +1,220 @@
+---
+title: ADHD Second Brain — Complete UML Diagrams (FINAL)
+---
+%% This file contains 5 diagrams. Render each ```mermaid block separately.
+%% Replaces architecture-diagram.mermaid (which is now outdated).
+%%
+%% DIAGRAM INDEX:
+%% 1. Master Component Diagram — every subsystem and connection
+%% 2. Screen Monitor → Intervention Sequence — the core real-time loop
+%% 3. Venting Chat Sequence — emotion detection → coaching response
+%% 4. Notification Tier State Machine — how interventions escalate
+%% 5. Onboarding & Calibration Flow — first-time user experience
+
+
+%% ═══════════════════════════════════════════════════════════════
+%% DIAGRAM 1: MASTER COMPONENT DIAGRAM
+%% Shows every subsystem from all 4 documents with correct models
+%% ═══════════════════════════════════════════════════════════════
+
+graph TB
+    subgraph UserLayer["🖥️ USER INTERFACE LAYER"]
+        direction LR
+        SwiftApp["🍎 Swift Menu Bar App<br/><i>~25MB RAM, Accessibility API only</i><br/>─────────────<br/>• ScreenMonitor (AXUIElement)<br/>• BrowserMonitor (AppleScript)<br/>• IdleMonitor (IOHIDSystem)<br/>• TransitionDetector<br/>• PhenotypeCollector<br/>─────────────<br/>• AmbientMenuBar (Tier 1-2)<br/>• CalmOverlayPanel (Tier 3)<br/>• EMAPromptView<br/>• OnboardingFlow<br/>• PrivacyDashboard"]
+        OpenClaw["🦞 OpenClaw Gateway<br/><i>Optional Interface</i><br/>─────────────<br/>• Telegram / WhatsApp<br/>• adhd-vent skill<br/>• morning-briefing skill<br/>• weekly-review skill"]
+        Dashboard["📊 React Dashboard<br/><i>Optional Web UI</i><br/>─────────────<br/>• FocusTimeline<br/>• EmotionRadar (Hourglass)<br/>• WhoopCard<br/>• InterventionLog<br/>• ProgressView (XP)"]
+    end
+
+    subgraph BackendLayer["⚙️ PYTHON FASTAPI BACKEND (localhost:8420)"]
+        direction TB
+
+        subgraph APIRoutes["REST API Routes"]
+            ScreenAPI["POST /screen/activity<br/><i>&lt;100ms</i>"]
+            ChatAPI["POST /chat/message<br/><i>&lt;3s</i>"]
+            WhoopAPI["GET /whoop/morning-briefing"]
+            InsightsAPI["GET /insights/*"]
+            OnboardingAPI["POST /onboarding/asrs<br/>POST /onboarding/profile"]
+            EMAAPI["GET /ema/prompt<br/>POST /ema/response"]
+            GamificationAPI["GET /gamification/daily"]
+            CorrectAPI["POST /screen/correct-category"]
+            PrivacyAPI["GET /privacy/export<br/>DELETE /privacy/all-data"]
+        end
+
+        subgraph MonitoringPipeline["📡 MONITORING PIPELINE (always-on, <100ms)"]
+            ActivityClassifier["🏷️ Activity Classifier<br/>─────────────<br/>L1: App name rules (0.01ms)<br/>L2: URL domain lookup (0.01ms)<br/>L3: Title keywords (0.1ms)<br/>L4: all-MiniLM-L6-v2 (25ms)<br/>L0: User corrections (instant)"]
+
+            MetricsEngine["📈 ADHD Metrics Engine<br/>─────────────<br/>• Context switch rate/5min<br/>• Focus score (0-100)<br/>• Distraction ratio (0-1)<br/>• Current streak minutes<br/>• Behavioral state"]
+
+            TransitionDetector["🚦 Transition Detector<br/>─────────────<br/>• App switch events<br/>• Tab burst detection<br/>• Idle resume detection<br/>• Breakpoint freshness (10s)<br/>• Focus suppression gate"]
+
+            HyperfocusClassifier["🔬 Hyperfocus Classifier<br/>─────────────<br/>• Productive (PROTECT)<br/>• Unproductive (gentle redirect)<br/>• Ambiguous (check-in at 60min)<br/>• 4hr wellbeing check"]
+        end
+
+        subgraph DecisionPipeline["🎯 DECISION PIPELINE"]
+            JITAIEngine["🎯 JITAI Engine<br/>─────────────<br/>Gate 0: Transition required<br/>Gate 1: Hyperfocus protection<br/>Gate 2: Per-block cap (3/90min)<br/>Gate 3: Adaptive bandit<br/>─────────────<br/>Rules: distraction spiral,<br/>sustained disengagement,<br/>hyperfocus check,<br/>emotional escalation"]
+
+            AdaptiveBandit["🎰 Thompson Sampling<br/>─────────────<br/>Context: hour, recovery,<br/>  recency, app category<br/>Learns WHEN to intervene<br/>~50-100 decisions to personalize"]
+
+            NotificationTier["📢 Tier Selector<br/>─────────────<br/>T1: Ambient color shift<br/>T2: Gentle pulse<br/>T3: Non-activating overlay<br/>T4: Toast notification<br/>T5: Full (safety only)"]
+
+            XAIExplainer["🔍 XAI Explainer<br/>─────────────<br/>• Concept Bottleneck<br/>• Progressive disclosure<br/>  (traffic light → sentence<br/>   → full detail)<br/>• User concept corrections"]
+        end
+
+        subgraph SenticPipeline["🧠 SenticNet Pipeline (emotion engine)"]
+            SenticClient["SenticNet Client<br/><i>sentic.net/api/ + pip senticnet</i>"]
+
+            subgraph SafetyTier["Tier 1: Safety FIRST"]
+                Depression["Depression"]
+                Toxicity["Toxicity"]
+                Intensity["Intensity"]
+            end
+
+            subgraph EmotionTier["Tier 2: Emotional"]
+                Emotion["Emotion<br/>(Hourglass)"]
+                Polarity["Polarity"]
+                Subjectivity["Subjectivity"]
+                Sarcasm["Sarcasm"]
+            end
+
+            subgraph ADHDTier["Tier 3: ADHD Signals"]
+                Engagement["Engagement"]
+                Wellbeing["Well-being"]
+                ConceptParsing["Concepts"]
+                Aspects["Aspects"]
+            end
+
+            HourglassMapper["🔄 Hourglass → ADHD State<br/>─────────────<br/>• boredom_disengagement<br/>• frustration_spiral<br/>• shame_rsd<br/>• productive_flow<br/>• emotional_dysregulation<br/>• anxiety_comorbid"]
+        end
+
+        subgraph CoachingPipeline["💬 COACHING PIPELINE (on-demand)"]
+            ChatProcessor["💬 Chat Processor<br/>─────────────<br/>1. SenticNet analysis<br/>2. Safety check<br/>3. Build context<br/>4. /think or /no_think<br/>5. Generate response<br/>6. Store in memory"]
+
+            MLXInference["🤖 MLX Inference<br/>─────────────<br/>Qwen3-4B 4-bit (~2.3GB)<br/>Load on demand (~2s)<br/>Unload after 2min idle<br/>30-40 tok/s on M4<br/>+ LoRA adapter (optional)"]
+        end
+
+        subgraph SupportSystems["🔧 SUPPORT SYSTEMS"]
+            OnboardingService["📋 Onboarding<br/>─────────────<br/>• ASRS-v1.1 screener<br/>• ADHD profile creation<br/>• Subtype calibration<br/>• BRIEF-A upload (optional)<br/>• Medication tracking"]
+
+            EMAService["📊 EMA Service<br/>─────────────<br/>• 2x daily check-ins<br/>• 3-5 slider items<br/>• Calibrates passive models<br/>• Ground truth for CBM"]
+
+            GamificationService["🏆 Gamification<br/>─────────────<br/>• XP for focus/breaks<br/>• Variable rewards (PINCH)<br/>• Forgiveness streaks<br/>• NEVER punishment<br/>• 2-week reward rotation"]
+
+            PhenotypeCollector["📱 Digital Phenotyping<br/>─────────────<br/>• 15-min behavior summaries<br/>• Switch variability (CV)<br/>• Typing speed/errors<br/>• Session bimodality<br/>• Medicated vs unmedicated"]
+
+            WhoopService["💚 Whoop Service<br/>─────────────<br/>• OAuth 2.0 flow<br/>• Recovery / HRV / Sleep<br/>• Morning briefing gen<br/>• Separate med baselines"]
+
+            MemoryService["🧩 Memory (Mem0)<br/>─────────────<br/>• Conversation history<br/>• Pattern storage<br/>• Intervention effectiveness<br/>• Context retrieval"]
+
+            PrivacyService["🔒 Privacy (PDPA)<br/>─────────────<br/>• Zero-cloud default<br/>• 30-day auto-delete<br/>• Granular consent<br/>• Export / full delete"]
+        end
+    end
+
+    subgraph DataLayer["💾 DATA LAYER"]
+        direction LR
+        PostgreSQL[("PostgreSQL + pgvector<br/>─────────────<br/>• activities<br/>• senticnet_analyses<br/>• interventions<br/>• whoop_data<br/>• messages<br/>• adhd_profiles<br/>• ema_responses<br/>• phenotype_summaries<br/>• gamification_events<br/>• concept_corrections<br/>• bandit_state<br/>• vector embeddings")]
+        SQLite[("SQLite Cache<br/>─────────────<br/>• Offline activity buffer<br/>• User corrections<br/>• App category cache<br/>• Recent metrics")]
+    end
+
+    subgraph ExternalAPIs["☁️ EXTERNAL APIs"]
+        SenticNetCloud["SenticNet Cloud<br/>sentic.net/api/"]
+        WhoopCloud["Whoop API v2"]
+        ClaudeAPI["Claude API<br/><i>Cloud fallback only</i>"]
+    end
+
+    subgraph OnDeviceModels["🧠 ON-DEVICE MODELS (Apple MLX)"]
+        SentenceTransformer["all-MiniLM-L6-v2<br/>22M params, ~80MB<br/><i>Always resident</i>"]
+        Qwen3["Qwen3-4B 4-bit<br/>4B params, ~2.3GB<br/><i>Load on demand</i>"]
+        SenticNetLocal["SenticNet Python<br/>400K concepts, ~50MB<br/><i>Always resident</i>"]
+    end
+
+    %% === USER → BACKEND connections ===
+    SwiftApp -->|"POST /screen/activity<br/>event-driven"| ScreenAPI
+    SwiftApp -->|"POST /screen/correct-category"| CorrectAPI
+    OpenClaw -->|"POST /chat/message"| ChatAPI
+    OpenClaw -->|"GET /whoop/morning-briefing"| WhoopAPI
+    Dashboard -->|"GET /insights/*"| InsightsAPI
+
+    %% === MONITORING FLOW ===
+    ScreenAPI --> ActivityClassifier
+    ActivityClassifier --> MetricsEngine
+    MetricsEngine --> TransitionDetector
+    MetricsEngine --> HyperfocusClassifier
+    TransitionDetector --> JITAIEngine
+    HyperfocusClassifier --> JITAIEngine
+
+    %% === DECISION FLOW ===
+    JITAIEngine --> AdaptiveBandit
+    AdaptiveBandit --> NotificationTier
+    NotificationTier --> XAIExplainer
+    XAIExplainer -->|"Queued intervention"| SwiftApp
+
+    %% === COACHING FLOW ===
+    ChatAPI --> ChatProcessor
+    ChatProcessor --> SenticClient
+    SenticClient --> SafetyTier
+    SenticClient --> EmotionTier
+    SenticClient --> ADHDTier
+    EmotionTier --> HourglassMapper
+    ChatProcessor --> MLXInference
+    ChatProcessor --> MemoryService
+
+    %% === MODEL connections ===
+    ActivityClassifier -->|"Layer 4 fallback"| SentenceTransformer
+    MLXInference --> Qwen3
+    SenticClient --> SenticNetLocal
+    SenticClient -->|"REST API (12 endpoints)"| SenticNetCloud
+
+    %% === SUPPORT SYSTEM connections ===
+    OnboardingAPI --> OnboardingService
+    EMAAPI --> EMAService
+    GamificationAPI --> GamificationService
+    WhoopAPI --> WhoopService
+    PrivacyAPI --> PrivacyService
+
+    JITAIEngine -->|"Profile thresholds"| OnboardingService
+    EMAService -->|"Calibration signals"| MetricsEngine
+    GamificationService -->|"XP on focus/breaks"| MetricsEngine
+
+    %% === DATA connections ===
+    MetricsEngine --> PostgreSQL
+    JITAIEngine --> PostgreSQL
+    WhoopService --> PostgreSQL
+    MemoryService --> PostgreSQL
+    EMAService --> PostgreSQL
+    GamificationService --> PostgreSQL
+    PhenotypeCollector --> PostgreSQL
+    OnboardingService --> PostgreSQL
+    ActivityClassifier --> SQLite
+
+    %% === EXTERNAL API connections ===
+    WhoopService -->|"REST + OAuth"| WhoopCloud
+    MLXInference -.->|"Fallback only"| ClaudeAPI
+
+    %% === STYLING ===
+    classDef swift fill:#007AFF,stroke:#005EC4,color:white,stroke-width:2px
+    classDef openclaw fill:#E85D3A,stroke:#C44A2E,color:white,stroke-width:2px
+    classDef dashboard fill:#34C759,stroke:#28A745,color:white,stroke-width:2px
+    classDef api fill:#5856D6,stroke:#4240B0,color:white,stroke-width:1px
+    classDef monitor fill:#FF9500,stroke:#CC7600,color:white,stroke-width:1px
+    classDef decision fill:#FF2D55,stroke:#CC2444,color:white,stroke-width:1px
+    classDef sentic fill:#AF52DE,stroke:#8B42B2,color:white,stroke-width:1px
+    classDef safety fill:#FF3B30,stroke:#CC2F26,color:white,stroke-width:2px
+    classDef coaching fill:#5AC8FA,stroke:#48A0C8,color:white,stroke-width:1px
+    classDef support fill:#FFCC00,stroke:#CC9900,color:black,stroke-width:1px
+    classDef db fill:#636366,stroke:#48484A,color:white,stroke-width:2px
+    classDef external fill:#8E8E93,stroke:#636366,color:white,stroke-width:1px
+    classDef model fill:#30D158,stroke:#28A745,color:white,stroke-width:2px
+
+    class SwiftApp swift
+    class OpenClaw openclaw
+    class Dashboard dashboard
+    class ScreenAPI,ChatAPI,WhoopAPI,InsightsAPI,OnboardingAPI,EMAAPI,GamificationAPI,CorrectAPI,PrivacyAPI api
+    class ActivityClassifier,MetricsEngine,TransitionDetector,HyperfocusClassifier monitor
+    class JITAIEngine,AdaptiveBandit,NotificationTier,XAIExplainer decision
+    class SenticClient,Emotion,Polarity,Subjectivity,Sarcasm,Engagement,Wellbeing,ConceptParsing,Aspects,HourglassMapper sentic
+    class Depression,Toxicity,Intensity safety
+    class ChatProcessor,MLXInference coaching
+    class OnboardingService,EMAService,GamificationService,PhenotypeCollector,WhoopService,MemoryService,PrivacyService support
+    class PostgreSQL,SQLite db
+    class SenticNetCloud,WhoopCloud,ClaudeAPI external
+    class SentenceTransformer,Qwen3,SenticNetLocal model

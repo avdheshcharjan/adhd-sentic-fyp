@@ -1,0 +1,83 @@
+---
+title: "ADHD Second Brain — Venting Chat → Coaching Response Sequence"
+---
+%% Shows the full pipeline when a user sends a message through the venting chat
+%% (via OpenClaw on Telegram/WhatsApp or direct Swift UI)
+
+sequenceDiagram
+    autonumber
+    participant User as 👤 User (Telegram)
+    participant OC as 🦞 OpenClaw
+    participant API as ⚙️ POST /chat/message
+    participant Sentic as 🧠 SenticNet Pipeline
+    participant Safety as 🚨 Safety Check
+    participant Hourglass as 🔄 Hourglass Mapper
+    participant Memory as 🧩 Mem0 Memory
+    participant MLX as 🤖 Qwen3-4B (MLX)
+    participant DB as 💾 PostgreSQL
+
+    User->>OC: "I can't focus on anything today<br/>and I feel like a complete failure"
+    OC->>API: POST /chat/message<br/>{text: "...", source: "openclaw", conversation_id: "..."}
+
+    Note over API,Sentic: Step 1: SenticNet does the HARD part (emotion detection)
+
+    API->>Sentic: full_analysis(text)
+
+    par Safety tier (runs FIRST, non-negotiable)
+        Sentic->>Safety: depression API → score: 45
+        Sentic->>Safety: toxicity API → score: 55 (self-directed: "failure")
+        Sentic->>Safety: intensity API → score: -72
+        Safety-->>Sentic: level: "yellow" (concerning but not critical)
+    and Emotion tier
+        Sentic->>Sentic: emotion API → introspection: -0.6, temper: -0.3
+        Sentic->>Sentic: polarity API → NEGATIVE (-0.78)
+        Sentic->>Sentic: subjectivity → SUBJECTIVE
+        Sentic->>Sentic: sarcasm → 12 (not sarcastic)
+    and ADHD signals tier
+        Sentic->>Sentic: engagement → -45
+        Sentic->>Sentic: wellbeing → -38
+        Sentic->>Sentic: concepts → ["failure", "focus", "inability"]
+    end
+
+    Sentic->>Hourglass: map_hourglass_to_adhd_state()
+    Note over Hourglass: introspection: -0.6 (sadness)<br/>temper: -0.3 (mild anger)<br/>→ frustration_spiral detected<br/>→ EF domain: self_regulation_emotion
+    Hourglass-->>Sentic: primary_adhd_state: "frustration_spiral"
+
+    Sentic-->>API: SenticNetFullResult
+
+    Note over API: Step 2: Safety check — is this a crisis?
+
+    alt Safety level = CRITICAL (depression > 70 AND toxicity > 60)
+        API-->>User: "I hear you. If things feel really heavy,<br/>these people can help: [crisis resources]"
+        Note over API: STOP. No LLM. No coaching. Only compassion + resources.
+    else Safety level = YELLOW or GREEN (this case)
+        Note over API: Continue to Step 3
+    end
+
+    Note over API,MLX: Step 3: LLM does the EASY part (generate natural language)
+
+    API->>Memory: search_relevant_context("frustration focus failure")
+    Memory-->>API: Previous patterns: "User experiences focus crashes<br/>most often in afternoons. Breathing exercises<br/>helped 3 out of 4 times."
+
+    API->>API: Determine thinking mode
+    Note over API: intensity = 72 (> 60 threshold)<br/>→ use /think mode for deeper reasoning
+
+    API->>MLX: generate_coaching_response()
+    Note over MLX: Model loads if not already resident (~2s first time)
+
+    Note over MLX: System prompt: ADHD coaching persona<br/>+ SenticNet context injected:<br/>"Emotion: frustration_spiral<br/>Intensity: -72/100<br/>Engagement: -45/100<br/>Concepts: failure, focus, inability<br/>ADHD state: frustration_spiral<br/>Safety: yellow"<br/>+ Memory context:<br/>"Breathing exercises helped 3/4 times"<br/>+ User message: "I can't focus on anything..."<br/>+ Mode: /think
+
+    MLX->>MLX: Qwen3-4B generates response<br/>(~4-6 seconds with /think on M4)
+
+    MLX-->>API: "That sounds really tough — not being able to<br/>focus when you want to is one of the most<br/>frustrating parts of ADHD. You're not a failure<br/>for having a hard focus day. A 2-minute breathing<br/>reset has helped you before — want to try that,<br/>or would talking it through help more?"
+
+    Note over API,DB: Step 4: Store everything for pattern tracking
+
+    API->>Memory: add_conversation_memory([user_msg, assistant_msg])
+    API->>DB: INSERT INTO senticnet_analyses (emotion_profile, safety_flags, ...)
+    API->>DB: INSERT INTO messages (role, content, senticnet_analysis, ...)
+
+    API-->>OC: {response: "That sounds really tough...",<br/>senticnet: {emotion: "frustration_spiral", ...},<br/>thinking_mode: "think"}
+    OC-->>User: "That sounds really tough — not being able<br/>to focus when you want to is one of the most<br/>frustrating parts of ADHD. ..."
+
+    Note over MLX: After 2 minutes idle → auto-unload to free 2.3 GB RAM

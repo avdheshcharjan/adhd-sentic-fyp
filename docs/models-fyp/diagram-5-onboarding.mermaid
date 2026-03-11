@@ -1,0 +1,83 @@
+---
+title: "ADHD Second Brain — Onboarding & Calibration Flow"
+---
+%% Shows the first-time user experience: ASRS screener → profile setup →
+%% permissions → calibration period. Each screen is designed for ADHD
+%% attention spans (under 60 seconds per screen).
+
+flowchart TD
+    Start([🚀 User installs app]) --> Welcome
+
+    subgraph Screen1["Screen 1: Welcome + ASRS Screener (~2 min)"]
+        Welcome["Welcome! Let's set up your<br/>ADHD Second Brain 🧠"]
+        Welcome --> ASRS["ASRS-v1.1 Screener<br/>6 questions, 5-point scale<br/><i>Freely available WHO instrument</i>"]
+        ASRS --> Score["Compute scores:<br/>• Total (0-24)<br/>• Dark-zone count (0-6)<br/>• Inattention sub (0-12)<br/>• Hyperactivity sub (0-12)"]
+        Score --> Severity{Severity band?}
+        Severity -->|0-9| LowNeg["Low negative<br/>sensitivity: 0.5<br/>fewer interventions"]
+        Severity -->|10-13| HighNeg["High negative<br/>sensitivity: 0.75"]
+        Severity -->|14-17| LowPos["Low positive<br/>sensitivity: 1.0<br/>standard"]
+        Severity -->|18-24| HighPos["High positive<br/>sensitivity: 1.5<br/>more check-ins"]
+    end
+
+    LowNeg --> Screen2
+    HighNeg --> Screen2
+    LowPos --> Screen2
+    HighPos --> Screen2
+
+    subgraph Screen2["Screen 2: ADHD Profile (~1 min)"]
+        direction TB
+        ProfileQ1["What's your ADHD subtype?<br/>[Inattentive] [Hyperactive] [Combined] [Not sure]"]
+        ProfileQ2["Are you currently on medication?<br/>[No] [Methylphenidate] [Amphetamine] [Other]"]
+        ProfileQ3["What time do you take it? ___:___<br/><i>Used for separate HRV baselines</i>"]
+        ProfileQ4["Optional: Upload BRIEF-A T-scores?<br/>[Skip] [Enter scores]<br/><i>BRI, MI, GEC scores from clinician</i>"]
+        ProfileQ1 --> ProfileQ2 --> ProfileQ3 --> ProfileQ4
+    end
+
+    ProfileQ4 --> ComputeProfile["Compute derived parameters:<br/>• intervention_sensitivity<br/>• max_interventions_per_90min<br/>• focus_block_default_minutes<br/>• Subtype-specific intervention profile"]
+
+    ComputeProfile --> Screen3
+
+    subgraph Screen3["Screen 3: macOS Permissions (~30 sec)"]
+        direction TB
+        Perm1["1️⃣ Accessibility Permission<br/><i>Needed for window titles (AXUIElement)</i><br/><i>One-time grant, NO monthly re-auth</i>"]
+        Perm2["2️⃣ Automation Permission<br/><i>Needed for browser URLs (AppleScript)</i><br/><i>Granted per-app on first use</i>"]
+        PermNote["ℹ️ No Screen Recording needed!<br/>Unlike Rize and other trackers,<br/>we use the Accessibility API only."]
+        Perm1 --> Perm2 --> PermNote
+    end
+
+    PermNote --> Screen4
+
+    subgraph Screen4["Screen 4: Optional Integrations (~30 sec)"]
+        direction TB
+        Whoop["Connect Whoop? (optional)<br/>[Connect via OAuth] [Skip]<br/><i>Enables morning briefings,<br/>recovery-aware interventions</i>"]
+        OpenClawSetup["Connect Telegram/WhatsApp? (optional)<br/>[Setup OpenClaw] [Skip]<br/><i>Enables venting chat +<br/>morning briefings via messaging</i>"]
+        Whoop --> OpenClawSetup
+    end
+
+    OpenClawSetup --> CalibrationStart
+
+    subgraph CalibrationPeriod["14-Day Silent Calibration Period"]
+        direction TB
+        CalibrationStart["✅ Setup complete!<br/>'I'll learn your patterns over the next 2 weeks.<br/>You'll see me in your menu bar — that's it for now.'"]
+        CalibrationStart --> Day1["Days 1-3: Collect baseline data<br/>• App usage patterns<br/>• Context switch frequency<br/>• Session duration distribution<br/>• Time-of-day patterns"]
+        Day1 --> Day4["Days 4-7: Compute personal baselines<br/>• EWMA for each metric<br/>• Separate medicated/unmedicated<br/>• Separate weekday/weekend"]
+        Day4 --> Day8["Days 8-14: Test intervention thresholds<br/>• Set thresholds at 1.5 SD from personal mean<br/>• First EMA prompts begin (2x daily)<br/>• Ambient indicators start (Tier 1-2 only)"]
+        Day8 --> CalibrationComplete["Calibration complete ✅<br/>Full system activated:<br/>• All notification tiers enabled<br/>• Adaptive bandit starts learning<br/>• Gamification XP begins"]
+    end
+
+    subgraph SubtypeProfiles["ADHD Subtype → System Behavior"]
+        direction TB
+        PI["ADHD-PI (Inattentive)<br/>─────────────<br/>• 20-min focus blocks<br/>• Max 3 interventions/90min<br/>• Task initiation scaffolding<br/>• Time management prompts<br/>• Written list suggestions<br/>• Gentler notification cadence"]
+        HI["ADHD-HI (Hyperactive)<br/>─────────────<br/>• 15-min focus blocks<br/>• Max 4 interventions/90min<br/>• Movement break prompts<br/>• Impulse-control nudges<br/>• Fidget suggestions<br/>• More frequent check-ins"]
+        Combined["ADHD-C (Combined)<br/>─────────────<br/>• 15-min focus blocks<br/>• Max 4 interventions/90min<br/>• Both initiation + impulse support<br/>• Emotional regulation priority<br/>• Shortest text in interventions"]
+    end
+
+    ComputeProfile -.->|"Subtype determines"| SubtypeProfiles
+
+    %% Styling
+    style Screen1 fill:#E8F5E9,stroke:#4CAF50,stroke-width:2px
+    style Screen2 fill:#E3F2FD,stroke:#2196F3,stroke-width:2px
+    style Screen3 fill:#FFF3E0,stroke:#FF9800,stroke-width:2px
+    style Screen4 fill:#F3E5F5,stroke:#9C27B0,stroke-width:2px
+    style CalibrationPeriod fill:#ECEFF1,stroke:#607D8B,stroke-width:2px
+    style SubtypeProfiles fill:#FFF8E1,stroke:#FFC107,stroke-width:2px

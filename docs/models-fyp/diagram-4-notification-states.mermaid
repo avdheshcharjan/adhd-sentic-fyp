@@ -1,0 +1,112 @@
+---
+title: "ADHD Second Brain — Notification Tier State Machine"
+---
+%% Shows how an intervention escalates (or doesn't) through the 5-tier
+%% calm notification architecture. The key insight: interventions are
+%% QUEUED at trigger time and DELIVERED at next breakpoint.
+
+stateDiagram-v2
+    [*] --> Monitoring: App starts
+
+    state Monitoring {
+        [*] --> Scanning
+        Scanning --> FocusDetected: behavioral_state = "focused"
+        Scanning --> DriftDetected: distraction signals rising
+        FocusDetected --> Scanning: focus ends (app switch)
+        DriftDetected --> InterventionTriggered: JITAI rules + bandit approve
+
+        state FocusDetected {
+            [*] --> ProtectedFocus
+            ProtectedFocus --> ProtectedFocus: ALL interventions suppressed
+            ProtectedFocus --> WellbeingCheck: 4+ hours continuous
+            note right of ProtectedFocus
+                NEVER interrupt productive focus.
+                This is the #1 design rule.
+            end note
+        }
+    }
+
+    InterventionTriggered --> CheckBreakpoint: Intervention queued
+
+    state CheckBreakpoint {
+        [*] --> WaitingForBreakpoint
+        WaitingForBreakpoint --> BreakpointFound: App switch / tab burst / idle resume
+        WaitingForBreakpoint --> Timeout: 5 minutes, no breakpoint
+        BreakpointFound --> DeliverAtTier
+        Timeout --> DowngradeToAmbient: Moment passed, go gentle
+    }
+
+    state DeliverAtTier {
+        [*] --> SelectTier
+
+        SelectTier --> Tier1_Ambient: Low urgency OR low recovery day
+        SelectTier --> Tier2_Pulse: Moderate, first intervention of session
+        SelectTier --> Tier3_Overlay: User actively distracted
+        SelectTier --> Tier4_Toast: Sustained disengagement (5+ min)
+        SelectTier --> Tier5_Full: SAFETY CRITICAL ONLY
+
+        state Tier1_Ambient {
+            [*] --> ColorShift
+            note right of ColorShift
+                Menu bar icon shifts
+                green → amber.
+                User may not notice.
+                That's okay.
+            end note
+        }
+
+        state Tier2_Pulse {
+            [*] --> PulseAnimation
+            note right of PulseAnimation
+                Menu bar icon gently
+                pulses. Peripheral
+                awareness only.
+            end note
+        }
+
+        state Tier3_Overlay {
+            [*] --> ShowPanel
+            ShowPanel --> WaitForResponse: NSPanel appears (non-activating)
+            WaitForResponse --> ActionTaken: User clicks action button
+            WaitForResponse --> Dismissed: User clicks "Not now"
+            WaitForResponse --> AutoDismiss: 15 seconds timeout
+            note right of ShowPanel
+                CalmOverlayPanel:
+                - Does NOT steal keyboard focus
+                - Slides in from top-right
+                - Max 2-3 sentences
+                - Max 3 action choices
+                - Auto-dismisses in 15s
+            end note
+        }
+
+        state Tier4_Toast {
+            [*] --> SystemNotification
+            note right of SystemNotification
+                macOS toast notification.
+                Brief sound (optional).
+                Used rarely.
+            end note
+        }
+
+        state Tier5_Full {
+            [*] --> CrisisPanel
+            note right of CrisisPanel
+                ONLY for safety-critical:
+                depression > 70 AND toxicity > 60.
+                Shows crisis resources.
+                Pauses all other interventions.
+            end note
+        }
+    }
+
+    ActionTaken --> RecordSuccess: Bandit learns "good timing"
+    Dismissed --> RecordDismissal: Bandit learns "bad timing"
+    AutoDismiss --> Cooldown: No signal recorded
+
+    RecordSuccess --> Cooldown
+    RecordDismissal --> IncreaseCooldown: 3+ dismissals → longer cooldown
+
+    Cooldown --> Monitoring: Default 5 min cooldown
+    IncreaseCooldown --> Monitoring: Adaptive cooldown (up to 30 min)
+    DowngradeToAmbient --> Monitoring: Show ambient indicator only

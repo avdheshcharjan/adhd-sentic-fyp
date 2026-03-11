@@ -1,0 +1,108 @@
+---
+title: "ADHD Second Brain — Screen Monitor → Intervention Sequence"
+---
+%% This shows the CORE REAL-TIME LOOP: what happens every time the user switches apps
+%% or a window title changes. This is the most performance-critical path in the system.
+
+sequenceDiagram
+    autonumber
+    participant User as 👤 User's Screen
+    participant Swift as 🍎 Swift Menu Bar App
+    participant API as ⚙️ FastAPI Backend
+    participant Classify as 🏷️ Activity Classifier
+    participant Metrics as 📈 Metrics Engine
+    participant Transition as 🚦 Transition Detector
+    participant Hyperfocus as 🔬 Hyperfocus Classifier
+    participant JITAI as 🎯 JITAI Engine
+    participant Bandit as 🎰 Adaptive Bandit
+    participant Tier as 📢 Tier Selector
+    participant XAI as 🔍 XAI Explainer
+    participant TierMgr as 🔔 Tier Manager (Swift)
+
+    Note over User,TierMgr: === USER SWITCHES FROM VS CODE TO TWITTER ===
+
+    User->>Swift: NSWorkspace.didActivateApplicationNotification
+    Note right of Swift: Event-driven (not polling)<br/>Zero CPU cost when idle
+
+    Swift->>Swift: AXUIElement → get window title
+    Swift->>Swift: AppleScript → get browser URL (if browser)
+    Swift->>Swift: TransitionDetector.recordAppSwitch()
+
+    Swift->>API: POST /screen/activity<br/>{app: "Safari", title: "Twitter / X", url: "x.com"}
+
+    Note over API,Classify: Layer 1-4 classification (<25ms total)
+
+    API->>Classify: classify("Safari", "Twitter / X", "x.com")
+    Classify-->>Classify: L0: Check user corrections → miss
+    Classify-->>Classify: L1: App name "safari" → "browser" (need URL)
+    Classify-->>Classify: L2: URL "x.com" → "social_media" ✓
+    Classify-->>API: ("social_media", 0.95)
+
+    API->>Metrics: update(app="Safari", category="social_media")
+    Metrics-->>Metrics: Record app switch event
+    Metrics-->>Metrics: Increment context_switch_rate_5min
+    Metrics-->>Metrics: Update distraction_ratio
+    Metrics-->>Metrics: Compute behavioral_state = "distracted"
+    Metrics-->>API: ADHDMetrics snapshot
+
+    API->>Transition: detect_breakpoint_type()
+    Transition-->>API: APP_SWITCH (fresh breakpoint available)
+
+    API->>Hyperfocus: classify(session_minutes=2, ...)
+    Hyperfocus-->>API: None (not in hyperfocus, session too short)
+
+    API->>JITAI: evaluate(metrics, emotion_context=None)
+
+    Note over JITAI: Gate 0: Transition available? ✅ (app switch)
+    Note over JITAI: Gate 1: Hyperfocus protection? ✅ (not hyperfocusing)
+    Note over JITAI: Gate 2: Per-block cap? ✅ (0/3 used this block)
+
+    JITAI->>Bandit: should_deliver(context={hour: 14, recovery: "green", recency: "not_recent"})
+    Bandit-->>JITAI: True (sampled reward > 0.5)
+
+    Note over JITAI: Gate 3: Bandit approves ✅
+    Note over JITAI: Rule match: context_switch_rate=8, distraction_ratio=0.3<br/>Below threshold — NO intervention yet
+
+    JITAI-->>API: None (thresholds not met)
+    API-->>Swift: {category: "social_media", metrics: {...}, intervention: null}
+
+    Note over User,TierMgr: === 5 MINUTES LATER: USER STILL ON SOCIAL MEDIA ===
+
+    Swift->>API: POST /screen/activity (periodic title change detected)
+    API->>Classify: classify(...)
+    API->>Metrics: update(...)
+    Metrics-->>Metrics: distraction_ratio = 0.65, switch_rate = 14
+    Metrics-->>Metrics: behavioral_state = "distracted"
+
+    API->>JITAI: evaluate(metrics)
+    Note over JITAI: All gates pass ✅
+    Note over JITAI: Rule: switch_rate > 12 AND distraction_ratio > 0.5<br/>→ "distraction_spiral" intervention triggered
+
+    JITAI->>Tier: select_tier(type="distraction_spiral", state="distracted", ...)
+    Tier-->>JITAI: Tier 3 (Non-activating overlay)
+
+    JITAI->>XAI: generate_explanation(type="distraction_spiral", metrics)
+    XAI-->>JITAI: {tier_1: {color: "amber"}, tier_2: "Your attention has been jumping around...", ...}
+
+    JITAI-->>API: Intervention object with tier=3 + explanation
+
+    API-->>Swift: {category: "social_media", metrics: {...}, intervention: {...}}
+
+    Swift->>TierMgr: deliver(intervention)
+    Note over TierMgr: Transition detector confirms breakpoint is fresh
+
+    TierMgr->>User: CalmOverlayPanel slides in (top-right)<br/>Does NOT steal keyboard focus<br/>"Looks like things are scattered — that's okay.<br/>A 2-minute reset could help. What feels right?"<br/>[🫁 Breathe] [🎯 Pick one task] [☕ Break]
+
+    alt User clicks "Pick one task"
+        User->>Swift: action = "task_pick"
+        Swift->>API: POST /interventions/respond {action: "task_pick", dismissed: false}
+        API->>Bandit: update(context, success=true)
+        API->>JITAI: record_response → reset cooldown
+    else User clicks "Not now"
+        User->>Swift: dismissed = true
+        Swift->>API: POST /interventions/respond {dismissed: true}
+        API->>Bandit: update(context, success=false)
+        API->>JITAI: record_response → increase cooldown
+    else Panel auto-dismisses (15 seconds)
+        TierMgr->>TierMgr: Auto-dismiss, no response recorded
+    end
