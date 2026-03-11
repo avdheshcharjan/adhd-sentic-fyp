@@ -18,3 +18,5 @@ class ChatResponse(BaseModel):
     emotion_profile: dict | None = None
     safety_flags: dict | None = None
     suggested_actions: list[dict] | None = None
+    used_llm: bool = False
+    thinking_mode: str | None = None
