@@ -1,0 +1,35 @@
+{
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing"
+    },
+    "whatsapp": {
+      "enabled": true,
+      "dmPolicy": "pairing"
+    }
+  },
+  "skills": {
+    "load": {
+      "extraDirs": ["./openclaw-skills"],
+      "watch": true
+    }
+  },
+  "heartbeat": {
+    "every": "30m",
+    "activeHours": {
+      "start": "09:00",
+      "end": "22:00"
+    }
+  },
+  "cron": {
+    "morning-briefing": {
+      "schedule": "30 7 * * *",
+      "skill": "morning-briefing"
+    },
+    "weekly-review": {
+      "schedule": "0 20 * * 0",
+      "skill": "weekly-review"
+    }
+  }
+}
