@@ -157,7 +157,7 @@ class MLXInference:
             self.tokenizer,
             prompt=prompt,
             max_tokens=max_tokens,
-            temp=temperature,
+            temperature=temperature,
         )
 
         return response
