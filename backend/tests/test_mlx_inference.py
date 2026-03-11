@@ -11,7 +11,11 @@ from unittest.mock import MagicMock, patch
 
 # ── Pre-mock mlx_lm so services.mlx_inference can be imported ──────────
 _mock_mlx_lm = MagicMock()
+_mock_sample_utils = MagicMock()
+_mock_sample_utils.make_sampler.return_value = lambda x: x
+
 sys.modules.setdefault("mlx_lm", _mock_mlx_lm)
+sys.modules.setdefault("mlx_lm.sample_utils", _mock_sample_utils)
 
 from services.mlx_inference import MLXInference  # noqa: E402
 
@@ -35,7 +39,7 @@ class TestMLXInferenceLifecycle:
         inference.maybe_unload_if_idle()
         assert inference.model is None
 
-    @patch("services.mlx_inference.load")
+    @patch("mlx_lm.load")
     def test_load_model_sets_state(self, mock_load):
         mock_model = MagicMock()
         mock_tokenizer = MagicMock()
@@ -49,7 +53,7 @@ class TestMLXInferenceLifecycle:
         assert inference.current_model_key == "primary"
         assert inference.last_used is not None
 
-    @patch("services.mlx_inference.load")
+    @patch("mlx_lm.load")
     def test_load_same_model_twice_is_noop(self, mock_load):
         mock_load.return_value = (MagicMock(), MagicMock())
 
@@ -59,7 +63,7 @@ class TestMLXInferenceLifecycle:
 
         mock_load.assert_called_once()
 
-    @patch("services.mlx_inference.load")
+    @patch("mlx_lm.load")
     def test_unload_frees_model(self, mock_load):
         mock_load.return_value = (MagicMock(), MagicMock())
 
@@ -71,7 +75,7 @@ class TestMLXInferenceLifecycle:
         assert inference.tokenizer is None
         assert inference.current_model_key is None
 
-    @patch("services.mlx_inference.load")
+    @patch("mlx_lm.load")
     def test_maybe_unload_respects_ttl(self, mock_load):
         mock_load.return_value = (MagicMock(), MagicMock())
 
@@ -82,9 +86,10 @@ class TestMLXInferenceLifecycle:
         inference.maybe_unload_if_idle()
         assert inference.model is not None
 
-    @patch("services.mlx_inference.generate", return_value="I hear you.")
-    @patch("services.mlx_inference.load")
-    def test_generate_loads_model_on_demand(self, mock_load, mock_generate):
+    @patch("mlx_lm.sample_utils.make_sampler", return_value=lambda x: x)
+    @patch("mlx_lm.generate", return_value="I hear you.")
+    @patch("mlx_lm.load")
+    def test_generate_loads_model_on_demand(self, mock_load, mock_generate, mock_sampler):
         mock_model = MagicMock()
         mock_tokenizer = MagicMock()
         mock_tokenizer.apply_chat_template.return_value = "formatted prompt"
