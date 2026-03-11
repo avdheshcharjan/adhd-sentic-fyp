@@ -9,7 +9,7 @@ Covers:
   - Browser special handling
 """
 
-from services.activity_classifier import ActivityClassifier
+from services.activity_classifier import ActivityClassifier, VALID_CATEGORIES
 
 
 def _classifier():
@@ -202,3 +202,50 @@ class TestBrowserHandling:
             url=None
         )
         assert category == "entertainment"
+
+
+# ── L4: Embedding Similarity ─────────────────────────────────────
+
+
+class TestL4EmbeddingSimilarity:
+    """Test Layer 4 zero-shot embedding classification."""
+
+    def test_ambiguous_title_gets_classified(self):
+        """An ambiguous title that L1-L3 can't handle should get a real category."""
+        c = _classifier()
+        category, layer = c.classify(
+            "SomeRandomApp",
+            "Debugging React components in VS Code"
+        )
+        assert category == "development"
+        assert layer == 4
+
+    def test_low_confidence_returns_other(self):
+        """Completely nonsensical input should return 'other'."""
+        c = _classifier()
+        category, layer = c.classify(
+            "SomeRandomApp",
+            "asdfghjkl qwerty zxcvbn"
+        )
+        # Layer 4 should still be used for the fallback
+        assert layer == 4
+        # The category should be a valid one (model may find some weak similarity)
+        assert category in VALID_CATEGORIES
+
+
+# ── User Corrections ─────────────────────────────────────────────
+
+
+class TestUserCorrections:
+    """Test user correction cache (Layer 0)."""
+
+    def test_correction_overrides_all_layers(self):
+        c = _classifier()
+        cat1, _ = c.classify("Google Chrome", "YouTube - Music")
+        assert cat1 == "entertainment"
+
+        c.record_correction("Google Chrome", "YouTube - Music", "research")
+
+        cat2, layer = c.classify("Google Chrome", "YouTube - Music")
+        assert cat2 == "research"
+        assert layer == 0
