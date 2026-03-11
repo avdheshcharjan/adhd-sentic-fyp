@@ -37,6 +37,13 @@ class Settings(BaseSettings):
     CLAUDE_API_KEY: str = ""
     OPENAI_API_KEY: str = ""
 
+    # ── MLX On-Device LLM ─────────────────────────────────
+    MLX_PRIMARY_MODEL: str = "mlx-community/Qwen3-4B-4bit"
+    MLX_LIGHT_MODEL: str = "mlx-community/Qwen3-1.7B-4bit"
+    MLX_ADAPTER_PATH: str | None = None
+    MLX_KEEP_ALIVE_SECONDS: int = 120
+    EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
+
     # ── Application Settings ────────────────────────────
     APP_PORT: int = 8420
     APP_VERSION: str = "0.1.0"
