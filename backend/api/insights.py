@@ -4,12 +4,18 @@ from typing import Optional
 
 from fastapi import APIRouter, Query
 
-from models.insights import CurrentInsights, DailyInsights, WeeklyInsights
+from models.insights import CurrentInsights, DailyInsights, DashboardData, WeeklyInsights
 from services.insights_service import InsightsService
 
 router = APIRouter(prefix="/insights", tags=["insights"])
 
 _service = InsightsService()
+
+
+@router.get("/dashboard", response_model=DashboardData)
+async def get_dashboard():
+    """Unified dashboard data — single call for the frontend."""
+    return await _service.get_dashboard()
 
 
 @router.get("/current", response_model=CurrentInsights)

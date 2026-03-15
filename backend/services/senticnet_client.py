@@ -25,7 +25,7 @@ logger = logging.getLogger("adhd-brain")
 
 # ── Constants ───────────────────────────────────────────────────────
 MAX_TEXT_LENGTH = 8000
-ILLEGAL_CHARS = str.maketrans("", "", "&#;{}")
+ILLEGAL_CHARS_SET = set(["&", "#", ";", "{", "}"])
 
 USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) "
@@ -100,7 +100,18 @@ class SenticNetClient:
         - Cap at 8000 characters
         - Strip whitespace
         """
-        clean = text.translate(ILLEGAL_CHARS).strip()
+        if not text:
+            return ""
+
+        # Replace illegal characters with ':' to preserve token boundaries
+        out = []
+        for ch in text:
+            if ch in ILLEGAL_CHARS_SET:
+                out.append(":")
+            else:
+                out.append(ch)
+
+        clean = ("".join(out)).strip()
         return clean[:MAX_TEXT_LENGTH]
 
     # ── Core API Call ────────────────────────────────────────────────
@@ -118,6 +129,11 @@ class SenticNetClient:
         api_key = getattr(settings, config_key, None)
         if not api_key:
             logger.warning(f"No API key configured for {api_name} ({config_key})")
+            return None
+
+        # Respect whether SenticNet calls are allowed (user consent / config)
+        if not getattr(settings, "SENTICNET_ENABLED", True):
+            logger.info("SenticNet calls are disabled by configuration; skipping API call")
             return None
 
         sanitized = self.sanitize(text)

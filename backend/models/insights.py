@@ -52,3 +52,14 @@ class WeeklyInsights(BaseModel):
     worst_focus_day: str | None = None
     top_apps_weekly: list[AppUsageSummary] = []
     trend: str = "stable"  # "improving" | "declining" | "stable"
+
+
+class DashboardData(BaseModel):
+    """Unified dashboard payload — single call for the frontend."""
+
+    current: CurrentInsights
+    daily: DailyInsights
+    weekly: WeeklyInsights
+    whoop: dict | None = None  # morning briefing data (may be unavailable)
+    emotions: list[dict] = []  # recent SenticNet analyses
+    timeline: list[dict] = []  # today's activities for FocusTimeline

@@ -49,6 +49,9 @@ class Settings(BaseSettings):
     APP_VERSION: str = "0.1.0"
     INTERVENTION_COOLDOWN_SECONDS: int = 300
     LOG_LEVEL: str = "INFO"
+    # Toggle external SenticNet API usage (requires user consent). If False,
+    # the backend will skip calling SenticNet and use local fallbacks.
+    SENTICNET_ENABLED: bool = True
 
     model_config = {
         "env_file": ".env",

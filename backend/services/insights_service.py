@@ -17,8 +17,10 @@ from models.insights import (
     AppUsageSummary,
     CurrentInsights,
     DailyInsights,
+    DashboardData,
     WeeklyInsights,
 )
+from db.models import SenticAnalysis
 from services.shared_state import metrics_engine
 
 logger = logging.getLogger("adhd-brain.insights")
@@ -96,6 +98,108 @@ class InsightsService:
             daily_summaries.append(summary)
 
         return self._aggregate_weekly(daily_summaries, start_d, end_d)
+
+    async def get_dashboard(self) -> DashboardData:
+        """Combine all data sources into a single dashboard payload."""
+        current = self.get_current()
+        daily = await self.get_daily()
+        weekly = await self.get_weekly()
+
+        # Whoop morning briefing (best-effort)
+        whoop_data = None
+        try:
+            from services.whoop_service import WhoopService
+            whoop = WhoopService()
+            briefing = await whoop.generate_morning_briefing()
+            whoop_data = briefing.model_dump()
+        except Exception:
+            pass
+
+        # Recent emotion analyses (last 24h)
+        emotions = await self._get_recent_emotions()
+
+        # Today's activity timeline
+        timeline = await self._get_timeline()
+
+        return DashboardData(
+            current=current,
+            daily=daily,
+            weekly=weekly,
+            whoop=whoop_data,
+            emotions=emotions,
+            timeline=timeline,
+        )
+
+    async def _get_recent_emotions(self) -> list[dict]:
+        """Fetch last 24h of SenticNet emotion analyses."""
+        cutoff = datetime.now(timezone.utc) - timedelta(hours=24)
+        async with AsyncSessionLocal() as session:
+            result = await session.execute(
+                select(SenticAnalysis)
+                .where(SenticAnalysis.timestamp >= cutoff)
+                .order_by(SenticAnalysis.timestamp.desc())
+                .limit(50)
+            )
+            rows = result.scalars().all()
+        return [
+            {
+                "timestamp": r.timestamp.isoformat(),
+                "source": r.source,
+                "emotion_profile": r.emotion_profile,
+            }
+            for r in rows
+        ]
+
+    async def _get_timeline(self) -> list[dict]:
+        """Build today's activity timeline for the FocusTimeline component."""
+        today = date.today()
+        start = datetime.combine(today, datetime.min.time(), tzinfo=timezone.utc)
+        end = start + timedelta(days=1)
+
+        async with AsyncSessionLocal() as session:
+            result = await session.execute(
+                select(ActivityLog)
+                .where(
+                    and_(
+                        ActivityLog.timestamp >= start,
+                        ActivityLog.timestamp < end,
+                    )
+                )
+                .order_by(ActivityLog.timestamp)
+            )
+            activities = result.scalars().all()
+
+        if not activities:
+            return []
+
+        # Group consecutive same-category activities into blocks
+        blocks: list[dict] = []
+        current_block = None
+        for a in activities:
+            cat = a.category
+            if a.is_idle:
+                state = "idle"
+            elif cat in PRODUCTIVE_CATEGORIES:
+                state = "focused"
+            elif cat in DISTRACTING_CATEGORIES:
+                state = "distracted"
+            else:
+                state = "neutral"
+
+            if current_block and current_block["state"] == state and current_block["app"] == a.app_name:
+                current_block["end"] = a.timestamp.isoformat()
+                current_block["duration_sec"] += SECONDS_PER_ENTRY
+            else:
+                current_block = {
+                    "start": a.timestamp.isoformat(),
+                    "end": a.timestamp.isoformat(),
+                    "app": a.app_name,
+                    "category": cat,
+                    "state": state,
+                    "duration_sec": SECONDS_PER_ENTRY,
+                }
+                blocks.append(current_block)
+        return blocks
 
     # ── Private helpers ─────────────────────────────────────────────
 
