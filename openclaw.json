@@ -2,11 +2,14 @@
   "channels": {
     "telegram": {
       "enabled": true,
-      "dmPolicy": "pairing"
+      "botToken": "8736773688:AAHpIpjRTpRToAWTTudKjPvYc_M6wlqo7O8",
+      "dmPolicy": "pairing",
+      "groups": { "*": { "requireMention": true, "groupPolicy": "open" } }
     },
     "whatsapp": {
       "enabled": true,
-      "dmPolicy": "pairing"
+      "dmPolicy": "allowlist",
+      "allowFrom": ["+919082060451"]
     }
   },
   "skills": {

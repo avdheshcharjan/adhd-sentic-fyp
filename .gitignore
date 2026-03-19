@@ -39,5 +39,8 @@ pgdata/
 htmlcov/
 .pytest_cache/
 
+# ── Evaluation Data ────────────────────────────────────
+backend/data/evaluation_logs/
+
 # ── Misc ────────────────────────────────────────────────
 *.log

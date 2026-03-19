@@ -13,7 +13,7 @@ The original blueprint specified a single `Llama-3.2-3B-Instruct-4bit` model for
 
 1. **Using a 3B generative LLM to classify window titles is like hiring a surgeon to take a temperature.** A 22M-parameter sentence transformer does it 10× faster at 1/40th the memory.
 
-2. **Llama 3.2 3B has been surpassed.** Qwen3-4B matches Qwen2.5-7B quality in the same memory envelope, with dual thinking modes specifically suited to ADHD coaching.
+2. **Llama 3.2 3B has been surpassed.** 3-4B matches QQwenwen2.5-7B quality in the same memory envelope, with dual thinking modes specifically suited to ADHD coaching.
 
 3. **16GB M4 can't keep an LLM resident permanently.** After macOS and user apps, only ~5-7GB remains. The LLM must load on-demand and unload when idle.
 

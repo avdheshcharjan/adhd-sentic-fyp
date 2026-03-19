@@ -1,0 +1,168 @@
+flowchart TD
+    %% ── Entry Points ────────────────────────────────────────────
+    START([User]) --> LAUNCH[Launch macOS Menu Bar App]
+    START --> DASH[Open Web Dashboard]
+    START --> TELE[Send Message via Telegram/WhatsApp]
+
+    %% ── Swift App Launch ────────────────────────────────────────
+    LAUNCH --> PERM{Accessibility\nPermission?}
+    PERM -->|Granted| MONITOR[Start Screen Monitoring]
+    PERM -->|Not Granted| ONBOARD[Show Onboarding View]
+    ONBOARD --> GRANT[User Grants Permission\nin System Preferences]
+    GRANT --> MONITOR
+
+    %% ── Continuous Monitoring ───────────────────────────────────
+    MONITOR --> CAPTURE[Capture Active App +\nWindow Title + URL\nevery 2 seconds]
+    CAPTURE --> POST[POST /screen/activity]
+    POST --> CLASSIFY[Classify Activity\ndevelopment · social_media · etc.]
+    CLASSIFY --> METRICS[Update ADHD Metrics\nfocus score · switches · streak]
+    METRICS --> JITAI{JITAI\nIntervention\nNeeded?}
+
+    %% ── JITAI Gating ───────────────────────────────────────────
+    JITAI -->|No| PERSIST[Persist to DB]
+    PERSIST --> CAPTURE
+
+    JITAI -->|Yes| GATES{Pass All Gates?}
+
+    subgraph GATING ["4-Layer Gating System"]
+        direction TB
+        G0[Gate 0: DND Mode Off?]
+        G1[Gate 1: Not in Productive Hyperfocus?]
+        G2[Gate 2: Under 3 per 90-min Cap?]
+        G3[Gate 3: Thompson Sampling Approves?]
+        G0 --> G1 --> G2 --> G3
+    end
+
+    GATES -->|Blocked| PERSIST
+    GATES -->|Passed| XAI[Generate XAI Explanation\n3-Tier Progressive Disclosure]
+    XAI --> BREAKPOINT{User at Natural\nBreakpoint?}
+
+    %% ── Breakpoint Detection ────────────────────────────────────
+    BREAKPOINT -->|No| QUEUE[Queue Intervention\nWait for Breakpoint]
+    QUEUE --> TIER1
+
+    BREAKPOINT -->|Yes| DELIVER[Deliver Intervention]
+
+    %% ── 5-Tier Calm Notification ────────────────────────────────
+    subgraph TIERS ["5-Tier Calm Notification System"]
+        direction TB
+        TIER1[Tier 1: Ambient Color Shift\nMenu bar changes color]
+        TIER2[Tier 2: Pulse Animation\nGentle icon pulse]
+        TIER3[Tier 3: Overlay Panel\nNon-focus-stealing popup\nAuto-dismiss 15s]
+        TIER4[Tier 4: macOS Toast\nSystem notification]
+        TIER5[Tier 5: Full Alert\nOverlay + Toast\nSafety-critical only]
+        TIER1 -->|"> 2 min"| TIER2
+        TIER2 -->|"Breakpoint"| TIER3
+        TIER3 -->|"Ignored"| TIER4
+        TIER4 -->|"Critical"| TIER5
+    end
+
+    DELIVER --> TIER3
+
+    %% ── Intervention Response ───────────────────────────────────
+    TIER3 --> RESPONSE{User Response}
+    TIER4 --> RESPONSE
+    TIER5 --> RESPONSE
+
+    RESPONSE -->|Accepts Action| RECORD[POST /interventions/respond\nRecord Acceptance]
+    RESPONSE -->|Dismisses| DISMISS[Record Dismissal\nIncrease Cooldown]
+    RESPONSE -->|Corrects Concept| CORRECT[POST /correct-concept\nUpdate CBM Model]
+    RESPONSE -->|Auto-Dismissed| IGNORE[No Response Recorded]
+
+    RECORD --> LEARN[Thompson Sampling\nLearns from Response]
+    DISMISS --> LEARN
+    LEARN --> CAPTURE
+
+    %% ── XAI Explanation Tiers ───────────────────────────────────
+    subgraph EXPLAIN ["XAI Explanation (Tap to Expand)"]
+        direction TB
+        E1["Tier 1: Traffic Light + Emoji\n🔴 Red — 8 switches in 5 min"]
+        E2["Tier 2: One-Sentence Why\n'You've switched apps 8 times\nin 5 min with 67% on non-work apps'"]
+        E3["Tier 3: Full Concept Breakdown\n+ Counterfactual + User Correction"]
+        E1 -->|Tap| E2 -->|Tap| E3
+    end
+
+    %% ── Chat / Venting Flow ─────────────────────────────────────
+    TELE --> VENT[POST /chat/message]
+    VENT --> SENTIC[SenticNet Analysis\n4-Dimension Emotion Profile]
+
+    SENTIC --> SAFETY{Safety\nCritical?}
+    SAFETY -->|Yes — Depression/Toxicity| CRISIS[Return Crisis Resources\nNo LLM · Hardcoded Response\nSOS CareText · IMH Helpline]
+    SAFETY -->|No| LLM[Local LLM Inference\nQwen3-4B via Apple MLX\nEmotion-Informed Coaching]
+    LLM --> ACTIONS[Generate Suggested Actions\nMax 3 Quick-Reply Buttons]
+    ACTIONS --> MEMORY[Store in Mem0\nSemantic Memory]
+    MEMORY --> REPLY[Send Reply to User\nvia Telegram/WhatsApp]
+
+    %% ── Scheduled Skills ────────────────────────────────────────
+    subgraph SCHEDULED ["OpenClaw Scheduled Skills"]
+        direction TB
+        MORNING["☀️ Morning Briefing\n7:30 AM Daily"]
+        FOCUS["🎯 Focus Check\nEvery 30 min (9 AM–10 PM)\nConditional: only if distracted"]
+        WEEKLY["📊 Weekly Review\nSunday 8 PM"]
+    end
+
+    MORNING --> WHOOP_FETCH[GET /whoop/morning-briefing]
+    WHOOP_FETCH --> BRIEFING{Recovery\nTier?}
+    BRIEFING -->|"🟢 Green (67-100%)"| MSG_GREEN[Full focus blocks\nOptimistic message]
+    BRIEFING -->|"🟡 Yellow (34-66%)"| MSG_YELLOW[Shorter blocks\nPace yourself message]
+    BRIEFING -->|"🔴 Red (0-33%)"| MSG_RED[Easy tasks only\nSelf-compassion message]
+    MSG_GREEN --> SEND_MSG[Send to User via Telegram]
+    MSG_YELLOW --> SEND_MSG
+    MSG_RED --> SEND_MSG
+
+    FOCUS --> FOCUS_CHECK[GET /insights/current]
+    FOCUS_CHECK --> FOCUS_GATE{Distracted OR\nHyperfocused > 3h?}
+    FOCUS_GATE -->|Yes| FOCUS_MSG[Send Contextual Nudge]
+    FOCUS_GATE -->|No — All Good| SILENT[Stay Silent\nAvoid Notification Fatigue]
+
+    WEEKLY --> WEEKLY_DATA[GET /insights/weekly]
+    WEEKLY_DATA --> WEEKLY_MSG[Generate 3-4 Sentence\nWeekly Summary + 1 Insight]
+    WEEKLY_MSG --> SEND_MSG
+
+    %% ── Dashboard Flow ──────────────────────────────────────────
+    DASH --> API_CALL[GET /insights/dashboard\nPolling Every 5s]
+    API_CALL --> DASHBOARD_RENDER
+
+    subgraph DASHBOARD_RENDER ["Dashboard Components"]
+        direction TB
+        D1["📊 FocusTimeline\nColor-coded activity bar\n🟢 Focused · 🔴 Distracted · 🟡 Neutral · ⚪ Idle"]
+        D2["🧭 EmotionRadar\nHourglass of Emotions radar chart\n4 axes: Pleasantness · Attention · Sensitivity · Aptitude"]
+        D3["💚 WhoopCard\nRecovery score · HRV · Sleep\nRecommended focus block"]
+        D4["⚡ MetricsCard\nLive: switches · focus % · streak\nToday: focus time · active time"]
+        D5["🔔 InterventionLog\nTriggered · Accepted · Rate\nBehavioral state breakdown"]
+        D6["📈 WeeklyReport\nBar chart: Focus vs Distraction\nTrend · Top apps · Best/worst day"]
+    end
+
+    %% ── Whoop Setup ─────────────────────────────────────────────
+    START --> WHOOP_SETUP[Connect Whoop]
+    WHOOP_SETUP --> CLI[Run: whoopskill auth login]
+    CLI --> OAUTH[Browser OAuth Flow]
+    OAUTH --> CALLBACK[GET /whoop/callback]
+    CALLBACK --> TOKEN[Token Saved to\n~/.whoop-cli/tokens.json]
+    TOKEN --> WHOOP_READY[Whoop Data Available\nfor Dashboard + Morning Briefing]
+
+    %% ── Menu Bar Interaction ────────────────────────────────────
+    MONITOR --> MENUBAR[Menu Bar Display]
+    MENUBAR --> VIEW_METRICS[View: State Emoji · Focus % ·\nSwitches · Streak · Health Dot]
+    VIEW_METRICS --> PAUSE{User Action}
+    PAUSE -->|Pause| TOGGLE[Toggle Monitoring Off]
+    PAUSE -->|Resume| MONITOR
+    PAUSE -->|Settings| ONBOARD
+    PAUSE -->|Quit| QUIT([App Terminates])
+
+    %% ── Styling ─────────────────────────────────────────────────
+    classDef entry fill:#6366f1,stroke:#4f46e5,color:#fff,font-weight:bold
+    classDef decision fill:#1e1b4b,stroke:#6366f1,color:#e4e4e7
+    classDef action fill:#1a1d27,stroke:#2e3348,color:#e4e4e7
+    classDef safe fill:#166534,stroke:#22c55e,color:#fff
+    classDef danger fill:#7f1d1d,stroke:#ef4444,color:#fff
+    classDef warn fill:#713f12,stroke:#eab308,color:#fff
+    classDef tier fill:#0c4a6e,stroke:#3b82f6,color:#fff
+
+    class START,LAUNCH,DASH,TELE,WHOOP_SETUP entry
+    class PERM,JITAI,GATES,BREAKPOINT,RESPONSE,SAFETY,BRIEFING,FOCUS_GATE,PAUSE decision
+    class CRISIS danger
+    class MSG_GREEN safe
+    class MSG_YELLOW warn
+    class MSG_RED danger
+    class TIER1,TIER2,TIER3,TIER4,TIER5 tier

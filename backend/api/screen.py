@@ -6,6 +6,8 @@ Target latency: <100ms.
 Phase 4: Now wires JITAI engine for real-time intervention evaluation.
 """
 
+import logging
+
 from fastapi import APIRouter, BackgroundTasks, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from db.database import get_db
@@ -15,6 +17,8 @@ from services.senticnet_pipeline import SenticNetPipeline
 
 from models.screen_activity import ScreenActivityInput, ScreenActivityResponse
 from services.shared_state import classifier, metrics_engine, jitai_engine, xai_explainer
+
+logger = logging.getLogger("adhd-brain.screen")
 
 router = APIRouter(prefix="/screen", tags=["screen"])
 
@@ -89,9 +93,8 @@ async def persist_activity(db: AsyncSession, activity: ScreenActivityInput, cate
         )
         db.add(obj)
         await db.commit()
-    except Exception:
-        # Don't raise — background best-effort persistence
-        pass
+    except Exception as e:
+        logger.warning(f"Failed to persist activity: {e}")
 
 
 async def enrich_activity_with_senticnet(text: str, db: AsyncSession):
@@ -112,6 +115,5 @@ async def enrich_activity_with_senticnet(text: str, db: AsyncSession):
             )
             db.add(sa)
             await db.commit()
-    except Exception:
-        # Best-effort; errors should not affect user-facing latency
-        pass
+    except Exception as e:
+        logger.warning(f"Failed to enrich activity with SenticNet: {e}")

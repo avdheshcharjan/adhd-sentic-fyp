@@ -1,0 +1,62 @@
+[
+  {
+    "id": "persona_01",
+    "name": "Alex",
+    "age": 28,
+    "gender": "Male",
+    "occupation": "Software Engineer",
+    "adhd_subtype": "Combined",
+    "severity": "Moderate",
+    "context": "Frequently gets hyperfocused on coding side projects and misses deadlines for main work. Struggles with task-switching between meetings and deep work. Recently started medication.",
+    "emotional_tendency": "Gets frustrated quickly when interrupted, but enthusiastic about new projects",
+    "num_messages": 10
+  },
+  {
+    "id": "persona_02",
+    "name": "Priya",
+    "age": 34,
+    "gender": "Female",
+    "occupation": "Marketing Manager",
+    "adhd_subtype": "Predominantly Inattentive",
+    "severity": "Mild",
+    "context": "Diagnosed late at 32. Manages a team of 5 but struggles with email overload and loses track of follow-ups. Uses many productivity apps but abandons them after a few weeks.",
+    "emotional_tendency": "Anxious about forgetting things, self-critical when missing details",
+    "num_messages": 10
+  },
+  {
+    "id": "persona_03",
+    "name": "Jordan",
+    "age": 21,
+    "gender": "Non-binary",
+    "occupation": "University Student",
+    "adhd_subtype": "Predominantly Hyperactive-Impulsive",
+    "severity": "Severe",
+    "context": "Final year CS student. Cannot sit through lectures. Submits assignments at the last minute. Social media is the primary distraction trigger. Unmedicated by choice.",
+    "emotional_tendency": "Restless and impatient, mood swings between excitement and despair about grades",
+    "num_messages": 10
+  },
+  {
+    "id": "persona_04",
+    "name": "Mei Ling",
+    "age": 42,
+    "gender": "Female",
+    "occupation": "Freelance Graphic Designer",
+    "adhd_subtype": "Combined",
+    "severity": "Moderate",
+    "context": "Works from home with no external structure. Diagnosed 5 years ago. Struggles with time blindness and project estimation. Has two children, adding to executive function demands.",
+    "emotional_tendency": "Overwhelmed by competing priorities, guilt about productivity gaps",
+    "num_messages": 10
+  },
+  {
+    "id": "persona_05",
+    "name": "Daniel",
+    "age": 55,
+    "gender": "Male",
+    "occupation": "Financial Analyst",
+    "adhd_subtype": "Predominantly Inattentive",
+    "severity": "Mild",
+    "context": "Late diagnosis at 50. Has developed strong coping mechanisms over decades but still struggles with long reports and detail-oriented tasks. Prefers structured approaches.",
+    "emotional_tendency": "Calm exterior but internal frustration; values efficiency and dislikes 'touchy-feely' approaches",
+    "num_messages": 10
+  }
+]

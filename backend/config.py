@@ -53,6 +53,11 @@ class Settings(BaseSettings):
     # the backend will skip calling SenticNet and use local fallbacks.
     SENTICNET_ENABLED: bool = True
 
+    # ── Evaluation / Ablation Settings ─────────────────
+    ABLATION_MODE: bool = False               # When True, disables SenticNet in chat pipeline
+    EVALUATION_LOGGING: bool = False          # When True, logs all interactions for analysis
+    EVALUATION_LOG_PATH: str = "data/evaluation_logs/"
+
     model_config = {
         "env_file": ".env",
         "env_file_encoding": "utf-8",

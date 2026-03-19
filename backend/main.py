@@ -21,6 +21,8 @@ from api.chat import router as chat_router
 from api.whoop import router as whoop_router
 from api.insights import router as insights_router
 from api.interventions import router as interventions_router
+from api.evaluation import router as evaluation_router
+from api.notch import router as notch_router
 
 from sqlalchemy import text
 from db.database import engine, Base
@@ -108,6 +110,8 @@ app.include_router(chat_router)
 app.include_router(whoop_router)
 app.include_router(insights_router)
 app.include_router(interventions_router)
+app.include_router(evaluation_router)
+app.include_router(notch_router)
 
 
 @app.get("/", tags=["root"])
@@ -124,6 +128,9 @@ async def root():
             "GET  /whoop/*",
             "GET  /insights/*",
             "GET  /interventions/*",
+            "POST /eval/ablation",
+            "GET  /eval/ablation",
+            "POST /eval/logging",
         ],
     }
 

@@ -6,17 +6,23 @@ Safety check is non-negotiable and runs FIRST.
 """
 
 import logging
+import time
+from datetime import datetime, timezone
 from typing import Optional
 
+from config import get_settings
 from services.senticnet_pipeline import SenticNetPipeline
 from services.memory_service import memory_service
+from services.evaluation_logger import EvaluationLogger, EvaluationLogEntry
 from services.constants import (
     ADHD_COACHING_SYSTEM_PROMPT,
+    ADHD_COACHING_SYSTEM_PROMPT_VANILLA,
     CRISIS_RESOURCES_SG,
     CRISIS_RESPONSE_TEXT,
 )
 
 logger = logging.getLogger("adhd-brain.chat")
+settings = get_settings()
 
 
 class ChatProcessor:
@@ -26,6 +32,7 @@ class ChatProcessor:
         self.pipeline = SenticNetPipeline()
         self._mlx = None
         self._memory = memory_service
+        self._eval_logger = EvaluationLogger(settings.EVALUATION_LOG_PATH)
 
     def _get_mlx(self):
         """Lazy-load MLX inference to avoid import-time dependency on mlx_lm."""
@@ -43,50 +50,90 @@ class ChatProcessor:
         """
         Full pipeline for processing a user's venting/chat message.
 
-        1. SenticNet analysis (fast, deterministic)
-        2. Safety check (non-negotiable, runs FIRST)
+        1. SenticNet analysis (skip if ablation mode)
+        2. Safety check (non-negotiable, runs FIRST — skipped in ablation)
         3. Build structured context for LLM
         4. Determine /think vs /no_think mode
-        5. Generate response via MLX
-        6. Store in Mem0
+        5. Generate response via MLX (timed for evaluation)
+        6. Log for evaluation if enabled
+        7. Store in Mem0
         """
-        # Step 1: SenticNet analysis
-        result = await self.pipeline.analyze(text=text, mode="full")
+        start_time = time.monotonic()
+        ablation_mode = settings.ABLATION_MODE
 
-        # Step 2: Safety check — critical = no LLM, just compassion + resources
-        if result.safety.is_critical:
-            return {
-                "response": CRISIS_RESPONSE_TEXT,
-                "resources": CRISIS_RESOURCES_SG,
-                "senticnet": self._build_senticnet_context(result),
-                "used_llm": False,
-                "thinking_mode": None,
-            }
+        # Step 1: SenticNet analysis (skip if ablation mode)
+        result = None
+        senticnet_context = None
+        if not ablation_mode:
+            result = await self.pipeline.analyze(text=text, mode="full")
 
-        # Step 3: Build structured context
-        senticnet_context = self._build_senticnet_context(result)
+            # Step 2: Safety check — critical = no LLM, just compassion + resources
+            if result.safety.is_critical:
+                return {
+                    "response": CRISIS_RESPONSE_TEXT,
+                    "resources": CRISIS_RESOURCES_SG,
+                    "senticnet": self._build_senticnet_context(result),
+                    "used_llm": False,
+                    "thinking_mode": None,
+                    "ablation_mode": False,
+                    "latency_ms": 0.0,
+                    "token_count": 0,
+                }
+
+            # Step 3: Build structured context
+            senticnet_context = self._build_senticnet_context(result)
 
         # Step 4: Determine thinking mode
-        use_thinking = (
-            abs(result.adhd_signals.intensity_score) > 60
-            or "help" in text.lower()
-            or len(text) > 200
+        if result is not None:
+            use_thinking = (
+                abs(result.adhd_signals.intensity_score) > 60
+                or "help" in text.lower()
+                or len(text) > 200
+            )
+        else:
+            # Ablation mode: simple heuristic without SenticNet
+            use_thinking = "help" in text.lower() or len(text) > 200
+
+        # Step 5: Select system prompt based on ablation mode
+        system_prompt = (
+            ADHD_COACHING_SYSTEM_PROMPT_VANILLA if ablation_mode
+            else ADHD_COACHING_SYSTEM_PROMPT
         )
 
-        # Step 5: Generate response via MLX
+        # Step 6: Generate response via MLX (timed)
+        llm_start = time.monotonic()
         response = self._get_mlx().generate_coaching_response(
-            system_prompt=ADHD_COACHING_SYSTEM_PROMPT,
+            system_prompt=system_prompt,
             user_message=text,
-            senticnet_context=senticnet_context,
+            senticnet_context=senticnet_context,  # None when ablation mode
             use_thinking=use_thinking,
         )
+        llm_latency_ms = (time.monotonic() - llm_start) * 1000
 
-        # Step 6: Store in memory
+        # Estimate token count (rough: 4 chars per token)
+        token_count = len(response) // 4
+
+        total_latency_ms = (time.monotonic() - start_time) * 1000
+
+        # Step 7: Log for evaluation if enabled
+        if settings.EVALUATION_LOGGING:
+            await self._log_evaluation_data(
+                user_message=text,
+                senticnet_context=senticnet_context,
+                result=result,
+                response=response,
+                ablation_mode=ablation_mode,
+                conversation_id=conversation_id or "unknown",
+                llm_latency_ms=llm_latency_ms,
+                token_count=token_count,
+            )
+
+        # Step 8: Store in memory
         try:
             self._memory.add_conversation_memory(
                 user_id=user_id,
                 message=f"User: {text}\nAssistant: {response}",
-                context=str(senticnet_context),
+                context=str(senticnet_context) if senticnet_context else "",
             )
         except Exception as e:
             logger.warning(f"Failed to store conversation memory: {e}")
@@ -96,6 +143,9 @@ class ChatProcessor:
             "senticnet": senticnet_context,
             "used_llm": True,
             "thinking_mode": "think" if use_thinking else "no_think",
+            "ablation_mode": ablation_mode,
+            "latency_ms": total_latency_ms,
+            "token_count": token_count,
         }
 
     def _build_senticnet_context(self, result) -> dict:
@@ -106,9 +156,56 @@ class ChatProcessor:
             "temper": result.emotion.temper,
             "attitude": result.emotion.attitude,
             "sensitivity": result.emotion.sensitivity,
+            "polarity_score": result.emotion.polarity_score,
             "intensity_score": result.adhd_signals.intensity_score,
             "engagement_score": result.adhd_signals.engagement_score,
             "wellbeing_score": result.adhd_signals.wellbeing_score,
             "safety_level": result.safety.level,
             "concepts": result.adhd_signals.concepts[:5],
         }
+
+    async def _log_evaluation_data(
+        self,
+        user_message: str,
+        senticnet_context: dict | None,
+        result,
+        response: str,
+        ablation_mode: bool,
+        conversation_id: str,
+        llm_latency_ms: float,
+        token_count: int,
+    ) -> None:
+        """Log interaction data for evaluation analysis."""
+        entry = EvaluationLogEntry(
+            timestamp=datetime.now(timezone.utc).isoformat(),
+            conversation_id=conversation_id,
+            session_id=conversation_id.split("_")[0] if conversation_id else "default",
+            ablation_mode=ablation_mode,
+            user_message=user_message,
+            sentic_polarity=(
+                senticnet_context.get("polarity_score") if senticnet_context else None
+            ),
+            sentic_mood_tags=(
+                [senticnet_context.get("primary_emotion", "")]
+                if senticnet_context else None
+            ),
+            hourglass_pleasantness=(
+                senticnet_context.get("introspection") if senticnet_context else None
+            ),
+            hourglass_attention=(
+                senticnet_context.get("temper") if senticnet_context else None
+            ),
+            hourglass_sensitivity=(
+                senticnet_context.get("sensitivity") if senticnet_context else None
+            ),
+            hourglass_aptitude=(
+                senticnet_context.get("attitude") if senticnet_context else None
+            ),
+            llm_response=response,
+            llm_latency_ms=llm_latency_ms,
+            llm_token_count=token_count,
+        )
+        try:
+            await self._eval_logger.log(entry)
+        except Exception as e:
+            logger.warning(f"Failed to log evaluation data: {e}")

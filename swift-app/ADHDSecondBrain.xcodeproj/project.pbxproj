@@ -24,6 +24,38 @@
 		B041D70FE9CA7A767B7CFD5C /* TransitionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448CFDBDA242FA9B58EA2DD /* TransitionDetector.swift */; };
 		D0F2A843B396E482AD674B08 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B52DE671FB320016135B805 /* App.swift */; };
 		ED40B6D1797A43451DAF1465 /* IdleMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B0B8A18878719D34BC83D1 /* IdleMonitor.swift */; };
+		05B62DA962A7BF2F6B8C8E5E /* ADHDDesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF69F03F6BFE01AD7C9A46E2 /* ADHDDesignTokens.swift */; };
+		AD69A3AD87DA24759FD4707B /* ADHDAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E9FF67AE3926FD1776E714 /* ADHDAnimations.swift */; };
+		D0BA1A7772C87EB90C87C4A7 /* ADHDSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85F0DD102AD7D3067B01B87 /* ADHDSpacing.swift */; };
+		03FAD1CAB1F776D825B0A01D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC3340C45202B29152467289 /* Assets.xcassets */; };
+		D91FF912BE419266F5EC68F5 /* NotchPositionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775E76F3641BBA425038153C /* NotchPositionCalculator.swift */; };
+		2B025EBCC3798120B67888A3 /* NotchWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059E4C335699CB91638CD9EB /* NotchWindow.swift */; };
+		F726180AAB4AA9B975DD43C2 /* EmotionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3853E25AD47FF740E06854 /* EmotionState.swift */; };
+		9005EA96AEF690691A38B068 /* NotchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1747F9EAF8AFEB7FF4FD2 /* NotchModels.swift */; };
+		4C2AE8DFD8FE60AF16E0F8D6 /* NotchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A85CCD7147A04364BCB9EA /* NotchState.swift */; };
+		0EA7B95CF8D6B33F3A259368 /* NotchStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BABAC29AB924293B0241A9 /* NotchStateMachine.swift */; };
+		F10E4B219B27A5881C8C060E /* NotchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAF3DDBEDE7B2E6911B26D8 /* NotchViewModel.swift */; };
+		657659D6A172F77925F51877 /* NotchContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF3D51B0873C215610168C5 /* NotchContainerView.swift */; };
+		050BA8D41D41AA7505AF2014 /* DormantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2748DFF11C7C483FA31CC593 /* DormantView.swift */; };
+		46F05F0EFEE59774E5919584 /* AmbientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4AE68F4773A6AE39FFDB6D /* AmbientView.swift */; };
+		9761F71047039563410CA37E /* GlanceableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2216928B63F2A9E0F528C85F /* GlanceableView.swift */; };
+		638BD5578C7CA93C240A2623 /* ExpandedPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894D4A458714B347980F50CC /* ExpandedPanelView.swift */; };
+		0075C5FD057EEDFA16695FF0 /* AlertOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B272C56FE329B665833DA11 /* AlertOverlayView.swift */; };
+		72C8365647E02D549EC774C1 /* TimerRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E380AF59BBA6B61ADFFD6BFD /* TimerRingView.swift */; };
+		C71C31FD04AFE96E17601F01 /* TaskCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95E99C39495F9B54D3A4F6A /* TaskCardView.swift */; };
+		260A0938885250C023ED31F1 /* QuickCaptureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAF6447B39DF465E5460623 /* QuickCaptureField.swift */; };
+		D204AE0C548086665021CBF6 /* CalendarStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8CC5B25D604770768B27B2 /* CalendarStripView.swift */; };
+		B99952304257168CA9322F1B /* ModeSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5150F194AC42E8E803288F2 /* ModeSwitcherView.swift */; };
+		505037E208BC32AC227B519E /* InterventionBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B022113E704087FCB4BCAA00 /* InterventionBanner.swift */; };
+		5018940389BC7FEFBC10151F /* PulseModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682A7E43428AF2B4049A7CC1 /* PulseModifier.swift */; };
+		258DA7DB169879BF268C6CE5 /* BackendBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67859F8313CD64DF39B4D0DA /* BackendBridge.swift */; };
+		B962F5EFE3ABEDA3CC8A836F /* EmotionGlowBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01FCD7A5FFBBBFA2E78FE55 /* EmotionGlowBorder.swift */; };
+		32E4B21ACDFC5EDCC05008F9 /* NotchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45C40EC1DA93CF3416F2D8 /* NotchCoordinator.swift */; };
+		6FDD7510C7CFF85190DB8A07 /* KeyboardShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AEBD1C2848E6A0E87C7E7C /* KeyboardShortcutManager.swift */; };
+		76353BF0E57E34D0737FF761 /* HoverTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9F9EB22909A0C5A1631F94 /* HoverTracker.swift */; };
+		64F5CBF2F479ABB585B70D5F /* ReducedMotionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F0675426914D9AF70B655 /* ReducedMotionWrapper.swift */; };
+		CFC8F05829827A3589EC6218 /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D9734B90DFB6F038F8837E /* NotchShape.swift */; };
+		FAC8D371A1913E3D6137FA6A /* BlurTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E6E6BE9F8B05B4946E9D04 /* BlurTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +77,38 @@
 		E797AB1F9E3AE35E9BC252DC /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		FC84EC67AEC1B697FCA11CBA /* AmbientMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientMenuBar.swift; sourceTree = "<group>"; };
 		FF2C004795A17A8BE1333C5E /* MonitorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorCoordinator.swift; sourceTree = "<group>"; };
+		AF69F03F6BFE01AD7C9A46E2 /* ADHDDesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADHDDesignTokens.swift; sourceTree = "<group>"; };
+		F4E9FF67AE3926FD1776E714 /* ADHDAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADHDAnimations.swift; sourceTree = "<group>"; };
+		E85F0DD102AD7D3067B01B87 /* ADHDSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADHDSpacing.swift; sourceTree = "<group>"; };
+		CC3340C45202B29152467289 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		775E76F3641BBA425038153C /* NotchPositionCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchPositionCalculator.swift; sourceTree = "<group>"; };
+		059E4C335699CB91638CD9EB /* NotchWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchWindow.swift; sourceTree = "<group>"; };
+		AE3853E25AD47FF740E06854 /* EmotionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionState.swift; sourceTree = "<group>"; };
+		50B1747F9EAF8AFEB7FF4FD2 /* NotchModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchModels.swift; sourceTree = "<group>"; };
+		F5A85CCD7147A04364BCB9EA /* NotchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchState.swift; sourceTree = "<group>"; };
+		A2BABAC29AB924293B0241A9 /* NotchStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchStateMachine.swift; sourceTree = "<group>"; };
+		3AAF3DDBEDE7B2E6911B26D8 /* NotchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewModel.swift; sourceTree = "<group>"; };
+		FCF3D51B0873C215610168C5 /* NotchContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchContainerView.swift; sourceTree = "<group>"; };
+		2748DFF11C7C483FA31CC593 /* DormantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DormantView.swift; sourceTree = "<group>"; };
+		EC4AE68F4773A6AE39FFDB6D /* AmbientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientView.swift; sourceTree = "<group>"; };
+		2216928B63F2A9E0F528C85F /* GlanceableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceableView.swift; sourceTree = "<group>"; };
+		894D4A458714B347980F50CC /* ExpandedPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedPanelView.swift; sourceTree = "<group>"; };
+		8B272C56FE329B665833DA11 /* AlertOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOverlayView.swift; sourceTree = "<group>"; };
+		E380AF59BBA6B61ADFFD6BFD /* TimerRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRingView.swift; sourceTree = "<group>"; };
+		A95E99C39495F9B54D3A4F6A /* TaskCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCardView.swift; sourceTree = "<group>"; };
+		DEAF6447B39DF465E5460623 /* QuickCaptureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCaptureField.swift; sourceTree = "<group>"; };
+		9A8CC5B25D604770768B27B2 /* CalendarStripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarStripView.swift; sourceTree = "<group>"; };
+		A5150F194AC42E8E803288F2 /* ModeSwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSwitcherView.swift; sourceTree = "<group>"; };
+		B022113E704087FCB4BCAA00 /* InterventionBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterventionBanner.swift; sourceTree = "<group>"; };
+		682A7E43428AF2B4049A7CC1 /* PulseModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseModifier.swift; sourceTree = "<group>"; };
+		67859F8313CD64DF39B4D0DA /* BackendBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendBridge.swift; sourceTree = "<group>"; };
+		A01FCD7A5FFBBBFA2E78FE55 /* EmotionGlowBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionGlowBorder.swift; sourceTree = "<group>"; };
+		EE45C40EC1DA93CF3416F2D8 /* NotchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchCoordinator.swift; sourceTree = "<group>"; };
+		D3AEBD1C2848E6A0E87C7E7C /* KeyboardShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcutManager.swift; sourceTree = "<group>"; };
+		8A9F9EB22909A0C5A1631F94 /* HoverTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverTracker.swift; sourceTree = "<group>"; };
+		3D0F0675426914D9AF70B655 /* ReducedMotionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducedMotionWrapper.swift; sourceTree = "<group>"; };
+		62D9734B90DFB6F038F8837E /* NotchShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchShape.swift; sourceTree = "<group>"; };
+		E8E6E6BE9F8B05B4946E9D04 /* BlurTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -77,11 +141,16 @@
 			isa = PBXGroup;
 			children = (
 				6B52DE671FB320016135B805 /* App.swift */,
+				CC3340C45202B29152467289 /* Assets.xcassets */,
 				4D8563F825B9E7FE3BF41F39 /* AppDelegate.swift */,
 				A4E9A00A7BC3EDD73FA9AE29 /* Monitors */,
 				D030481FFFA0F3A54FAAC942 /* Networking */,
 				EDAF53D3582FE5006BA5F534 /* Notifications */,
 				9CBDD1F82D2E3C6BF41D9BE7 /* UI */,
+				75C76AD4A8285D8ACA888B61 /* DesignSystem */,
+				564EAF51B7DD4639ADD9B985 /* Services */,
+				09958297028075D9CF9DDE5F /* NotchIsland */,
+				9CF43B31E8845D861542A38E /* Models */,
 				3EE1F3FEB2B743ECC687F37B /* Utilities */,
 			);
 			path = ADHDSecondBrain;
@@ -128,6 +197,89 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		75C76AD4A8285D8ACA888B61 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				AF69F03F6BFE01AD7C9A46E2,
+				F4E9FF67AE3926FD1776E714,
+				E85F0DD102AD7D3067B01B87,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		564EAF51B7DD4639ADD9B985 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D3AEBD1C2848E6A0E87C7E7C /* KeyboardShortcutManager.swift */,
+				8A9F9EB22909A0C5A1631F94 /* HoverTracker.swift */,
+				EE45C40EC1DA93CF3416F2D8 /* NotchCoordinator.swift */,
+				67859F8313CD64DF39B4D0DA /* BackendBridge.swift */,
+				775E76F3641BBA425038153C,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		09958297028075D9CF9DDE5F /* NotchIsland */ = {
+			isa = PBXGroup;
+			children = (
+				90F0D74ECEF61D544697A8EE /* Animations */,
+				4724C3FAA6DC593B05F661BF /* Components */,
+				FDCCD2EBCD35873D095AEE8A /* States */,
+				F5A85CCD7147A04364BCB9EA /* NotchState.swift */,
+				A2BABAC29AB924293B0241A9 /* NotchStateMachine.swift */,
+				3AAF3DDBEDE7B2E6911B26D8 /* NotchViewModel.swift */,
+				FCF3D51B0873C215610168C5 /* NotchContainerView.swift */,
+				059E4C335699CB91638CD9EB,
+			);
+			path = NotchIsland;
+			sourceTree = "<group>";
+		};
+		9CF43B31E8845D861542A38E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AE3853E25AD47FF740E06854 /* EmotionState.swift */,
+				50B1747F9EAF8AFEB7FF4FD2 /* NotchModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FDCCD2EBCD35873D095AEE8A /* States */ = {
+			isa = PBXGroup;
+			children = (
+				2748DFF11C7C483FA31CC593 /* DormantView.swift */,
+				EC4AE68F4773A6AE39FFDB6D /* AmbientView.swift */,
+				2216928B63F2A9E0F528C85F /* GlanceableView.swift */,
+				894D4A458714B347980F50CC /* ExpandedPanelView.swift */,
+				8B272C56FE329B665833DA11 /* AlertOverlayView.swift */,
+			);
+			path = States;
+			sourceTree = "<group>";
+		};
+		4724C3FAA6DC593B05F661BF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				62D9734B90DFB6F038F8837E /* NotchShape.swift */,
+				A01FCD7A5FFBBBFA2E78FE55 /* EmotionGlowBorder.swift */,
+				B022113E704087FCB4BCAA00 /* InterventionBanner.swift */,
+				E380AF59BBA6B61ADFFD6BFD /* TimerRingView.swift */,
+				A95E99C39495F9B54D3A4F6A /* TaskCardView.swift */,
+				DEAF6447B39DF465E5460623 /* QuickCaptureField.swift */,
+				9A8CC5B25D604770768B27B2 /* CalendarStripView.swift */,
+				A5150F194AC42E8E803288F2 /* ModeSwitcherView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		90F0D74ECEF61D544697A8EE /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				E8E6E6BE9F8B05B4946E9D04 /* BlurTransition.swift */,
+				3D0F0675426914D9AF70B655 /* ReducedMotionWrapper.swift */,
+				682A7E43428AF2B4049A7CC1 /* PulseModifier.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +287,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56A83FDD5F44CF4F2121CE7D /* Build configuration list for PBXNativeTarget "ADHDSecondBrain" */;
 			buildPhases = (
+				B9C6EB6F79FC54535ACB3053 /* Resources */,
 				A534588339B21BB0DF5D0E6F /* Sources */,
 			);
 			buildRules = (
@@ -176,6 +329,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		B9C6EB6F79FC54535ACB3053 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03FAD1CAB1F776D825B0A01D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A534588339B21BB0DF5D0E6F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -198,6 +362,37 @@
 				967AAFDA2CCC763C28538FFD /* ScreenMonitor.swift in Sources */,
 				17E45B0BC867147993C35D6D /* TierManager.swift in Sources */,
 				B041D70FE9CA7A767B7CFD5C /* TransitionDetector.swift in Sources */,
+				CFC8F05829827A3589EC6218 /* NotchShape.swift in Sources */,
+				FAC8D371A1913E3D6137FA6A /* BlurTransition.swift in Sources */,
+				6FDD7510C7CFF85190DB8A07 /* KeyboardShortcutManager.swift in Sources */,
+				76353BF0E57E34D0737FF761 /* HoverTracker.swift in Sources */,
+				64F5CBF2F479ABB585B70D5F /* ReducedMotionWrapper.swift in Sources */,
+				B962F5EFE3ABEDA3CC8A836F /* EmotionGlowBorder.swift in Sources */,
+				32E4B21ACDFC5EDCC05008F9 /* NotchCoordinator.swift in Sources */,
+				258DA7DB169879BF268C6CE5 /* BackendBridge.swift in Sources */,
+				505037E208BC32AC227B519E /* InterventionBanner.swift in Sources */,
+				5018940389BC7FEFBC10151F /* PulseModifier.swift in Sources */,
+				72C8365647E02D549EC774C1 /* TimerRingView.swift in Sources */,
+				C71C31FD04AFE96E17601F01 /* TaskCardView.swift in Sources */,
+				260A0938885250C023ED31F1 /* QuickCaptureField.swift in Sources */,
+				D204AE0C548086665021CBF6 /* CalendarStripView.swift in Sources */,
+				B99952304257168CA9322F1B /* ModeSwitcherView.swift in Sources */,
+				F726180AAB4AA9B975DD43C2 /* EmotionState.swift in Sources */,
+				9005EA96AEF690691A38B068 /* NotchModels.swift in Sources */,
+				4C2AE8DFD8FE60AF16E0F8D6 /* NotchState.swift in Sources */,
+				0EA7B95CF8D6B33F3A259368 /* NotchStateMachine.swift in Sources */,
+				F10E4B219B27A5881C8C060E /* NotchViewModel.swift in Sources */,
+				657659D6A172F77925F51877 /* NotchContainerView.swift in Sources */,
+				050BA8D41D41AA7505AF2014 /* DormantView.swift in Sources */,
+				46F05F0EFEE59774E5919584 /* AmbientView.swift in Sources */,
+				9761F71047039563410CA37E /* GlanceableView.swift in Sources */,
+				638BD5578C7CA93C240A2623 /* ExpandedPanelView.swift in Sources */,
+				0075C5FD057EEDFA16695FF0 /* AlertOverlayView.swift in Sources */,
+				D91FF912BE419266F5EC68F5 /* NotchPositionCalculator.swift in Sources */,
+				2B025EBCC3798120B67888A3 /* NotchWindow.swift in Sources */,
+				05B62DA962A7BF2F6B8C8E5E /* ADHDDesignTokens.swift in Sources */,
+				AD69A3AD87DA24759FD4707B /* ADHDAnimations.swift in Sources */,
+				D0BA1A7772C87EB90C87C4A7 /* ADHDSpacing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
