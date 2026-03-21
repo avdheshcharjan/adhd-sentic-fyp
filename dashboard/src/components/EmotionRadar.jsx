@@ -9,39 +9,45 @@ import {
   Tooltip,
 } from "recharts";
 
-// Map SenticNet Hourglass dimensions to display labels
 const DIMENSIONS = [
-  { key: "introspection", label: "Pleasantness", positive: "Joy", negative: "Sadness" },
-  { key: "temper", label: "Attention", positive: "Interest", negative: "Disgust" },
-  { key: "sensitivity", label: "Sensitivity", positive: "Fear", negative: "Anger" },
-  { key: "attitude", label: "Aptitude", positive: "Trust", negative: "Surprise" },
+  { key: "introspection", label: "Pleasantness" },
+  { key: "temper", label: "Attention" },
+  { key: "sensitivity", label: "Sensitivity" },
+  { key: "attitude", label: "Aptitude" },
 ];
 
 export default function EmotionRadar({ emotions }) {
-  const chartData = useMemo(() => {
+  const { chartData, avg } = useMemo(() => {
     if (!emotions || emotions.length === 0) {
-      return DIMENSIONS.map((d) => ({ axis: d.label, value: 50 }));
+      const emptyAvg = {};
+      DIMENSIONS.forEach((d) => { emptyAvg[d.key] = 0; });
+      return {
+        chartData: DIMENSIONS.map((d) => ({ axis: d.label, value: 50 })),
+        avg: emptyAvg,
+      };
     }
 
-    // Average the most recent emotions (up to 10)
     const recent = emotions.slice(0, 10);
-    const avg = {};
+    const computed = {};
 
     for (const dim of DIMENSIONS) {
       const values = recent
         .map((e) => e.emotion_profile?.[dim.key])
         .filter((v) => v != null);
-      avg[dim.key] = values.length > 0
-        ? values.reduce((a, b) => a + b, 0) / values.length
-        : 0;
+      computed[dim.key] =
+        values.length > 0
+          ? values.reduce((a, b) => a + b, 0) / values.length
+          : 0;
     }
 
-    return DIMENSIONS.map((d) => ({
-      axis: d.label,
-      // Normalize from [-100, 100] to [0, 100] for the radar
-      value: Math.round((avg[d.key] + 100) / 2),
-      raw: Math.round(avg[d.key]),
-    }));
+    return {
+      chartData: DIMENSIONS.map((d) => ({
+        axis: d.label,
+        value: Math.round((computed[d.key] + 100) / 2),
+        raw: Math.round(computed[d.key]),
+      })),
+      avg: computed,
+    };
   }, [emotions]);
 
   const primaryEmotion = emotions?.[0]?.emotion_profile?.primary_emotion;
@@ -55,9 +61,9 @@ export default function EmotionRadar({ emotions }) {
         )}
       </div>
 
-      <ResponsiveContainer width="100%" height={260}>
+      <ResponsiveContainer width="100%" height={220}>
         <RadarChart data={chartData} outerRadius="70%">
-          <PolarGrid stroke="var(--border)" />
+          <PolarGrid stroke="var(--outline-variant)" />
           <PolarAngleAxis dataKey="axis" />
           <PolarRadiusAxis
             angle={90}
@@ -67,25 +73,42 @@ export default function EmotionRadar({ emotions }) {
           />
           <Radar
             dataKey="value"
-            stroke="var(--accent)"
-            fill="var(--accent)"
-            fillOpacity={0.25}
+            stroke="var(--primary)"
+            fill="var(--primary)"
+            fillOpacity={0.15}
             strokeWidth={2}
           />
           <Tooltip
             contentStyle={{
-              background: "var(--surface-2)",
-              border: "1px solid var(--border)",
-              borderRadius: 8,
-              fontSize: "0.8rem",
+              background: "var(--surface-container-high)",
+              border: "none",
+              borderRadius: 10,
+              fontSize: "0.75rem",
+              fontFamily: "Lexend, sans-serif",
             }}
-            formatter={(value, name, props) => [
+            formatter={(value, _name, props) => [
               `${props.payload.raw ?? value}`,
               props.payload.axis,
             ]}
           />
         </RadarChart>
       </ResponsiveContainer>
+
+      <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+        {DIMENSIONS.map((d) => (
+          <div className="stat-tile" key={d.key}>
+            <span
+              className="stat-tile-value"
+              style={{ color: "var(--primary)" }}
+            >
+              {Math.round((avg[d.key] + 100) / 2)}
+            </span>
+            <span className="stat-tile-label">
+              {d.label.length > 8 ? d.label.slice(0, 8) + "." : d.label}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error": "#ee7d77",
+              "surface-container-lowest": "#000000",
+              "outline": "#75757b",
+              "primary-dim": "#8bbfe2",
+              "on-surface-variant": "#abaab1",
+              "on-primary-container": "#a2d7fa",
+              "surface-dim": "#0e0e10",
+              "tertiary-fixed-dim": "#b5e8cd",
+              "on-error": "#490106",
+              "surface-container-low": "#131316",
+              "secondary-fixed-dim": "#b8d7ff",
+              "primary-container": "#0a4c69",
+              "primary": "#99cdf0",
+              "on-error-container": "#ff9993",
+              "on-primary": "#004562",
+              "surface-container": "#19191d",
+              "inverse-primary": "#2d6483",
+              "on-secondary-fixed": "#214162",
+              "secondary-container": "#1d3d5e",
+              "inverse-surface": "#fcf8fb",
+              "error-dim": "#bb5551",
+              "on-tertiary-container": "#31604b",
+              "surface-bright": "#2b2c32",
+              "tertiary": "#e8fff0",
+              "error-container": "#7f2927",
+              "tertiary-fixed": "#c3f7db",
+              "surface-tint": "#99cdf0",
+              "primary-fixed": "#c6e7ff",
+              "secondary-fixed": "#d1e4ff",
+              "on-tertiary-fixed-variant": "#3b6a55",
+              "on-primary-fixed": "#004460",
+              "outline-variant": "#47474d",
+              "on-secondary-container": "#a3c2e9",
+              "on-secondary": "#00213d",
+              "on-primary-fixed-variant": "#29617f",
+              "secondary-dim": "#82a0c6",
+              "secondary": "#82a0c6",
+              "on-tertiary": "#396853",
+              "tertiary-dim": "#b5e8cd",
+              "surface": "#0e0e10",
+              "on-surface": "#e6e4ec",
+              "surface-container-highest": "#25252b",
+              "tertiary-container": "#c3f7db",
+              "primary-fixed-dim": "#a7dbfe",
+              "on-tertiary-fixed": "#1d4d39",
+              "on-background": "#e6e4ec",
+              "on-secondary-fixed-variant": "#3f5e80",
+              "inverse-on-surface": "#555557",
+              "background": "#0e0e10",
+              "surface-variant": "#25252b",
+              "surface-container-high": "#1f1f24"
+            },
+            fontFamily: {
+              "headline": ["Lexend", "sans-serif"],
+              "body": ["Lexend", "sans-serif"],
+              "label": ["Lexend", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      
+      .circular-progress {
+        background: conic-gradient(#99cdf0 270deg, #1f1f24 0deg);
+        border-radius: 50%;
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar (Shared Component) -->
+<nav class="fixed top-0 w-full h-8 flex items-center px-4 justify-between bg-transparent text-slate-200 z-50 font-lexend tracking-tight text-sm antialiased ease-in-out cursor-default">
+<div class="font-lexend font-bold text-slate-100">Sanctuary</div>
+<div class="hidden md:flex gap-4">
+<span class="text-slate-400 font-normal hover:text-white transition-colors duration-200">File</span>
+<span class="text-slate-400 font-normal hover:text-white transition-colors duration-200">Edit</span>
+<span class="text-slate-400 font-normal hover:text-white transition-colors duration-200">View</span>
+<span class="text-slate-400 font-normal hover:text-white transition-colors duration-200">Window</span>
+<span class="text-slate-400 font-normal hover:text-white transition-colors duration-200">Help</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[16px]">wifi</span>
+<span class="material-symbols-outlined text-[16px]">battery_full</span>
+<span class="material-symbols-outlined text-[16px]">search</span>
+<span class="material-symbols-outlined text-[16px]">sleep</span>
+</div>
+</nav>
+<!-- Side Navigation Bar (Shared Component) -->
+<aside class="fixed left-4 top-12 bottom-4 w-20 rounded-full bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_40px_rgba(153,205,240,0.05)] flex flex-col items-center py-8 gap-6 z-40">
+<div class="flex flex-col items-center gap-6">
+<div class="bg-sky-500/20 text-sky-300 rounded-full p-3 spring-physics scale-95 cursor-pointer">
+<span class="material-symbols-outlined" data-icon="target">target</span>
+</div>
+<div class="text-slate-500 p-3 hover:bg-slate-800/50 rounded-full transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="air">air</span>
+</div>
+<div class="text-slate-500 p-3 hover:bg-slate-800/50 rounded-full transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+</div>
+<div class="text-slate-500 p-3 hover:bg-slate-800/50 rounded-full transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</div>
+</div>
+</aside>
+<!-- MAIN CANVAS -->
+<main class="min-h-screen pt-12 pl-28 pr-8 pb-8 flex flex-col gap-8">
+<!-- The Dynamic Island Expanded State -->
+<div class="fixed top-1 left-1/2 -translate-x-1/2 w-[380px] z-[100] transition-all duration-500 flex flex-col items-center pointer-events-auto">
+<!-- The Notch Top -->
+<div class="w-[180px] h-[32px] bg-black rounded-full flex items-center justify-center text-white font-lexend font-medium tracking-tighter shadow-lg">
+<span>Dynamic Island</span>
+<span class="material-symbols-outlined ml-1 text-sm">expand_more</span>
+</div>
+<!-- Expanded Panel -->
+<div class="w-full mt-2 bg-[#1C1C1E] rounded-b-[16px] rounded-t-[16px] shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden p-4 flex flex-col gap-2">
+<!-- ROW 1: Timer & Task -->
+<div class="flex gap-2 items-stretch">
+<!-- Timer Card -->
+<div class="bg-[#2C2C2E] rounded-[12px] p-3 flex flex-col items-center justify-center w-[100px] flex-shrink-0">
+<div class="relative w-[56px] h-[56px] flex items-center justify-center">
+<!-- Circular SVG for specific gradient ring -->
+<svg class="w-full h-full -rotate-90">
+<circle cx="28" cy="28" fill="transparent" r="25" stroke="#1f1f24" stroke-width="4"></circle>
+<circle cx="28" cy="28" fill="transparent" r="25" stroke="url(#timerGradient)" stroke-dasharray="157" stroke-dashoffset="39" stroke-linecap="round" stroke-width="4"></circle>
+<defs>
+<lineargradient id="timerGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#7FB3D5"></stop>
+<stop offset="100%" stop-color="#B8EBD0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute flex flex-col items-center justify-center">
+<span class="text-[14px] font-mono text-slate-100">23:41</span>
+</div>
+</div>
+<span class="text-[10px] text-[#636366] mt-1 uppercase tracking-wider font-bold">Focus</span>
+</div>
+<!-- Task Card -->
+<div class="bg-[#3A3A3C] rounded-[12px] p-4 flex-grow flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<h3 class="text-[16px] font-semibold text-white leading-tight">Write Chapter 3</h3>
+<span class="material-symbols-outlined text-[#8E8E93] text-sm">more_horiz</span>
+</div>
+<div class="mt-4">
+<div class="w-full h-1.5 bg-[#2C2C2E] rounded-full overflow-hidden">
+<div class="h-full w-[75%] rounded-full bg-gradient-to-r from-[#7FB3D5] to-[#B8EBD0]"></div>
+</div>
+<span class="text-[11px] text-[#8E8E93] mt-2 block">75% complete</span>
+</div>
+</div>
+</div>
+<!-- ROW 2: Input Field -->
+<div class="bg-[#2C2C2E] rounded-[8px] px-3 py-2.5 flex items-center gap-3">
+<span class="material-symbols-outlined text-[#636366] text-[18px]">psychology</span>
+<input class="bg-transparent border-none p-0 flex-grow text-[14px] text-white focus:ring-0 placeholder-[#636366]" placeholder="Quick thought..." type="text"/>
+<button class="flex items-center justify-center text-[#7FB3D5]">
+<span class="material-symbols-outlined">arrow_circle_up</span>
+</button>
+</div>
+<!-- ROW 3: Calendar Strip -->
+<div class="bg-[#3A3A3C] rounded-[12px] p-3 flex flex-col gap-2">
+<div class="flex justify-between items-center text-[13px]">
+<div class="flex items-center gap-2">
+<span class="text-[14px]">📅</span>
+<span class="text-[#E5E5E7] font-medium">Supervisor Meeting</span>
+</div>
+<span class="text-[#8E8E93]">2:00 PM</span>
+</div>
+<div class="h-[1px] bg-[#2C2C2E]"></div>
+<div class="flex justify-between items-center text-[13px]">
+<div class="flex items-center gap-2">
+<span class="text-[14px]">📅</span>
+<span class="text-[#E5E5E7] font-medium">FYP Demo Prep</span>
+</div>
+<span class="text-[#8E8E93]">4:30 PM</span>
+</div>
+</div>
+<!-- ROW 4: Mode Switcher -->
+<div class="flex gap-2 mt-1">
+<button class="flex-1 bg-[#2C2C2E] py-2 rounded-[8px] flex items-center justify-center gap-2 border border-orange-200/5">
+<span class="text-[11px] font-medium text-[#E5E5E7]">☀️ Calm</span>
+</button>
+<button class="flex-1 bg-[#7FB3D5]/20 py-2 rounded-[8px] flex items-center justify-center gap-2 ring-1 ring-[#7FB3D5]/30">
+<span class="text-[11px] font-medium text-[#E5E5E7]">⚡ Focus</span>
+</button>
+<button class="flex-1 bg-[#2C2C2E] py-2 rounded-[8px] flex items-center justify-center gap-2">
+<span class="text-[11px] font-medium text-[#E5E5E7]">🌙 Wind Down</span>
+</button>
+</div>
+</div>
+</div>
+<!-- BENTO DASHBOARD CONTENT (Placeholder Background) -->
+<section class="mt-20 grid grid-cols-12 gap-6 opacity-40 grayscale pointer-events-none select-none">
+<!-- Large Focus Card -->
+<div class="col-span-8 bg-surface-container rounded-lg p-8 h-[400px] flex flex-col justify-end">
+<h1 class="font-headline text-headline-lg text-on-surface mb-2">Afternoon Deep Work</h1>
+<p class="text-on-surface-variant max-w-md">Your cognitive sanctuary is active. Notifications are suppressed to preserve your flow state.</p>
+</div>
+<!-- Secondary Stats -->
+<div class="col-span-4 flex flex-col gap-6">
+<div class="bg-surface-container-high rounded-lg p-6 flex-grow">
+<div class="w-12 h-12 bg-primary-container rounded-full mb-4"></div>
+<div class="h-4 w-32 bg-outline-variant rounded mb-2"></div>
+<div class="h-2 w-full bg-outline-variant rounded"></div>
+</div>
+<div class="bg-surface-container-high rounded-lg p-6 flex-grow">
+<div class="h-4 w-24 bg-outline-variant rounded mb-2"></div>
+<div class="h-8 w-16 bg-outline-variant rounded"></div>
+</div>
+</div>
+<!-- Bento Bottom Row -->
+<div class="col-span-4 bg-surface-container-low rounded-lg p-6 h-[200px]"></div>
+<div class="col-span-4 bg-surface-container-low rounded-lg p-6 h-[200px]"></div>
+<div class="col-span-4 bg-surface-container-low rounded-lg p-6 h-[200px]"></div>
+</section>
+</main>
+<!-- Visual Polish: Background Sheen -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-20"></div>
+</div>
+</body></html>

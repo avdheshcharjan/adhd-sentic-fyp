@@ -44,3 +44,4 @@ backend/data/evaluation_logs/
 
 # ── Misc ────────────────────────────────────────────────
 *.log
+node_modules/

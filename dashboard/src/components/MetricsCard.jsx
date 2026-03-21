@@ -21,7 +21,12 @@ export default function MetricsCard({ current, daily }) {
 
       <div className="metric-row">
         <span className="metric-label">Focus score</span>
-        <span className="metric-value">{fmt(m.focus_score, "%")}</span>
+        <span
+          className="metric-value"
+          style={{ color: "var(--focused)" }}
+        >
+          {fmt(m.focus_score, "%")}
+        </span>
       </div>
 
       <div className="metric-row">
@@ -38,19 +43,14 @@ export default function MetricsCard({ current, daily }) {
 
       <div className="metric-row">
         <span className="metric-label">Active app</span>
-        <span className="metric-value" style={{ fontSize: "0.9rem" }}>
+        <span className="metric-value" style={{ fontSize: "0.875rem", fontWeight: 500 }}>
           {current?.current_app || "—"}
         </span>
       </div>
 
       {daily && (
-        <>
-          <div
-            className="card-subtitle"
-            style={{ marginTop: 12, marginBottom: 4 }}
-          >
-            Today
-          </div>
+        <div style={{ marginTop: 16 }}>
+          <div className="section-label">Today</div>
           <div className="metric-row">
             <span className="metric-label">Focus time</span>
             <span className="metric-value">
@@ -63,7 +63,7 @@ export default function MetricsCard({ current, daily }) {
               {fmt(daily.total_active_minutes, " min")}
             </span>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

@@ -1,10 +1,10 @@
 import React from "react";
 
 const STATE_COLORS = {
-  focused: "var(--green)",
-  distracted: "var(--red)",
-  neutral: "var(--yellow)",
-  idle: "#3f3f46",
+  focused: "var(--focused)",
+  distracted: "var(--distracted)",
+  neutral: "var(--neutral)",
+  idle: "var(--idle)",
 };
 
 export default function FocusTimeline({ timeline }) {

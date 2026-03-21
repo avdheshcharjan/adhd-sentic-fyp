@@ -1,6 +1,10 @@
 import React from "react";
 
-const TIER_EMOJI = { green: "🟢", yellow: "🟡", red: "🔴" };
+const TIER_COLOR = {
+  green: "var(--success)",
+  yellow: "var(--neutral)",
+  red: "var(--warm-amber)",
+};
 
 export default function WhoopCard({ whoop }) {
   if (!whoop) {
@@ -10,22 +14,40 @@ export default function WhoopCard({ whoop }) {
           <span className="card-title">Whoop Recovery</span>
         </div>
         <div className="empty-state">
-          Whoop data unavailable. Run{" "}
-          <code>whoopskill auth login</code> to connect.
+          Whoop data unavailable. Connect your Whoop band in Settings.
         </div>
       </div>
     );
   }
 
   const tier = whoop.recovery_tier ?? "yellow";
+  const tierColor = TIER_COLOR[tier] ?? TIER_COLOR.yellow;
 
   return (
     <div className="card">
       <div className="card-header">
         <span className="card-title">Whoop Recovery</span>
-        <span className={`tier-${tier}`} style={{ fontSize: "1.4rem", fontWeight: 700 }}>
-          {TIER_EMOJI[tier]} {whoop.recovery_score ?? "—"}%
-        </span>
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <span
+            style={{
+              width: 8,
+              height: 8,
+              borderRadius: "50%",
+              background: tierColor,
+              display: "inline-block",
+            }}
+          />
+          <span
+            style={{
+              fontSize: "1.25rem",
+              fontWeight: 700,
+              color: tierColor,
+              fontVariantNumeric: "tabular-nums",
+            }}
+          >
+            {whoop.recovery_score ?? "—"}%
+          </span>
+        </div>
       </div>
 
       <div className="metric-row">
@@ -53,26 +75,13 @@ export default function WhoopCard({ whoop }) {
 
       <div className="metric-row">
         <span className="metric-label">Recommended focus block</span>
-        <span className="metric-value">
+        <span
+          className="metric-value"
+          style={{ color: "var(--primary)" }}
+        >
           {whoop.recommended_focus_block_minutes ?? "—"} min
         </span>
       </div>
-
-      {whoop.sleep_notes && whoop.sleep_notes.length > 0 && (
-        <div style={{ marginTop: 12 }}>
-          <div className="card-subtitle" style={{ marginBottom: 4 }}>
-            Sleep notes
-          </div>
-          {whoop.sleep_notes.map((note, i) => (
-            <div
-              key={i}
-              style={{ fontSize: "0.8rem", color: "var(--text-dim)", padding: "2px 0" }}
-            >
-              {note}
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 }
