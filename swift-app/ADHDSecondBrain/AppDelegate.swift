@@ -1,7 +1,9 @@
 import Cocoa
 import SwiftUI
 import UserNotifications
+import KeyboardShortcuts
 
+@MainActor
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Public Properties
@@ -14,6 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var notchWindow: NotchWindow?
     private var notchCoordinator: NotchCoordinator?
     private var keyboardManager: KeyboardShortcutManager?
+    private var panelManager: FloatingPanelManager?
     // HoverTracker removed: hover is handled entirely by NotchContainerView's
     // .onHover with 0.3s dwell/collapse delays. The dual system caused conflicts.
 
@@ -38,8 +41,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
 
+        // Set up ambient menu bar indicator (Tier 1/2 notifications)
+        AmbientMenuBar.shared.setup()
+
         // Start the tier manager tick loop
         TierManager.shared.start()
+
+        // Set up floating panel manager and global hotkeys
+        setupFloatingPanels()
 
         // Launch the Notch Island widget
         setupNotchIsland()
@@ -49,7 +58,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         permissionTimer?.invalidate()
         coordinator.stopMonitoring()
         TierManager.shared.stop()
+        panelManager = nil
         teardownNotchIsland()
+    }
+
+    // MARK: - Floating Panel Setup
+
+    private func setupFloatingPanels() {
+        let manager = FloatingPanelManager()
+        self.panelManager = manager
+
+        KeyboardShortcuts.onKeyUp(for: .brainDump) { [weak manager] in
+            manager?.toggleBrainDump()
+        }
+
+        KeyboardShortcuts.onKeyUp(for: .ventModal) { [weak manager] in
+            manager?.toggleVentModal()
+        }
     }
 
     // MARK: - Notch Island Setup
@@ -71,6 +96,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let hostingView = NSHostingView(rootView: containerView)
 
         let window = NotchWindow(contentView: hostingView)
+        // Click-away: clicks on the transparent canvas around the notch close expanded panel
+        window.onClickAway = { [weak notchCoord] in
+            guard let sm = notchCoord?.stateMachine,
+                  sm.currentState == .expanded else { return }
+            sm.transition(to: .glanceable)
+        }
         window.showWithFade()
         self.notchWindow = window
 

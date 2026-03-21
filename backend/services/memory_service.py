@@ -93,6 +93,8 @@ class MemoryService:
 
         try:
             results = self.mem0.search(query, user_id=user_id, limit=limit)
+            if isinstance(results, dict) and "results" in results:
+                return results["results"]
             return results
         except Exception as e:
             logger.error(f"Error searching memory context: {e}")

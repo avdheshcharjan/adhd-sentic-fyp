@@ -46,3 +46,5 @@ backend/data/
 *.log
 node_modules/
 
+# ── Swift ───────────────────────────────────────────────
+swift-app/.build/

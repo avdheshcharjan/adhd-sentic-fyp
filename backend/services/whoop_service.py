@@ -204,6 +204,25 @@ class WhoopService:
                 "message": f"Error checking status: {e}",
             }
 
+    async def logout(self) -> None:
+        """Run `whoopskill auth logout` to clear stored tokens."""
+        if not self.is_installed():
+            raise WhoopNotInstalledError(
+                "whoopskill CLI not found. Install with: npm install -g whoopskill"
+            )
+
+        try:
+            process = await asyncio.create_subprocess_exec(
+                self.WHOOPSKILL_CMD, "auth", "logout",
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
+            await asyncio.wait_for(process.communicate(), timeout=10.0)
+            logger.info("Whoop logout completed")
+        except Exception as e:
+            logger.error(f"Whoop logout failed: {e}")
+            raise WhoopServiceError(f"Failed to logout: {e}")
+
     # ── Data fetchers ───────────────────────────────────────────────
 
     async def get_recovery(

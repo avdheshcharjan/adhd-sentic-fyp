@@ -3,7 +3,7 @@ import Combine
 
 /// Bridges BackendBridge data into NotchViewModel and manages
 /// state transitions based on backend events.
-@Observable
+@MainActor @Observable
 class NotchCoordinator {
     let bridge: BackendBridge
     let viewModel: NotchViewModel
@@ -23,9 +23,9 @@ class NotchCoordinator {
 
     func start() {
         bridge.startPolling()
-        syncTask = Task { [weak self] in
+        syncTask = Task { @MainActor [weak self] in
             while !Task.isCancelled {
-                await self?.sync()
+                self?.sync()
                 try? await Task.sleep(for: .seconds(1))
             }
         }
@@ -36,7 +36,6 @@ class NotchCoordinator {
         syncTask?.cancel()
     }
 
-    @MainActor
     private func sync() {
         viewModel.currentTask = bridge.currentTask
         viewModel.focusSession = bridge.focusSession
@@ -50,7 +49,6 @@ class NotchCoordinator {
         updateStateFromData()
     }
 
-    @MainActor
     private func updateStateFromData() {
         if let intervention = bridge.pendingIntervention {
             let tier = tierFromIntervention(intervention)

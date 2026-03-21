@@ -11,6 +11,11 @@ settings:
     MACOSX_DEPLOYMENT_TARGET: "14.0"
     SWIFT_VERSION: "5.9"
 
+packages:
+  KeyboardShortcuts:
+    url: https://github.com/sindresorhus/KeyboardShortcuts
+    from: "2.0.0"
+
 targets:
   ADHDSecondBrain:
     type: application
@@ -23,6 +28,8 @@ targets:
       path: ADHDSecondBrain/Info.plist
       properties:
         ATSApplicationFontsPath: .
+        NSAppleEventsUsageDescription: "ADHD Second Brain needs Automation access to read your active browser tab URL for focus tracking."
+        NSAccessibilityUsageDescription: "ADHD Second Brain needs Accessibility access to read window titles for focus monitoring."
     settings:
       base:
         INFOPLIST_FILE: ADHDSecondBrain/Info.plist
@@ -32,5 +39,6 @@ targets:
         ENABLE_APP_SANDBOX: NO
         CODE_SIGN_IDENTITY: "-"
         CODE_SIGNING_REQUIRED: NO
-    dependencies: []
+    dependencies:
+      - package: KeyboardShortcuts
     postCompileScripts: []

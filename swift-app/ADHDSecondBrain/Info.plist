@@ -20,5 +20,9 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>ADHD Second Brain needs Automation access to read your active browser tab URL for focus tracking.</string>
+	<key>NSAccessibilityUsageDescription</key>
+	<string>ADHD Second Brain needs Accessibility access to read window titles for focus monitoring.</string>
 </dict>
 </plist>

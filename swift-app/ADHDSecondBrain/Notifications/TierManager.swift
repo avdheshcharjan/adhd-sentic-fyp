@@ -10,6 +10,7 @@ import UserNotifications
 /// Tier 5: Full notification (reserved for safety + hard deadlines only)
 ///
 /// Anti-pattern #9: NEVER deliver more than 3 interventions per 90-minute block.
+@MainActor
 class TierManager {
     static let shared = TierManager()
 

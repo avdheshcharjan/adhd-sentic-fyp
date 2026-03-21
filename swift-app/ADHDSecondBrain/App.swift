@@ -12,6 +12,12 @@ struct ADHDSecondBrainApp: App {
         }
         .menuBarExtraStyle(.window)
 
+        Window("Dashboard", id: "dashboard") {
+            DashboardView(coordinator: appDelegate.coordinator)
+        }
+        .windowStyle(.hiddenTitleBar)
+        .defaultSize(width: 960, height: 800)
+
         Settings {
             SettingsView()
         }

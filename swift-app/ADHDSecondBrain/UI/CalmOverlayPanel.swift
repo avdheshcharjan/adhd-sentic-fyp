@@ -90,12 +90,14 @@ class CalmOverlayPanel {
         dismissTimer = nil
 
         guard let panel = panel else { return }
+        // Nil out immediately to prevent double-dismiss race
+        self.panel = nil
+
         NSAnimationContext.runAnimationGroup({ context in
             context.duration = 0.2
             panel.animator().alphaValue = 0
-        }, completionHandler: { [weak self] in
+        }, completionHandler: {
             panel.orderOut(nil)
-            self?.panel = nil
         })
     }
 }

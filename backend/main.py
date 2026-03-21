@@ -18,12 +18,14 @@ from config import get_settings
 from api.health import router as health_router
 from api.screen import router as screen_router
 from api.chat import router as chat_router
-from api.whoop import router as whoop_router
+from api.whoop import auth_router as whoop_auth_router, data_router as whoop_data_router
 from api.insights import router as insights_router
 from api.interventions import router as interventions_router
 from api.evaluation import router as evaluation_router
 from api.notch import router as notch_router
 from api.google_auth import router as google_auth_router
+from api.brain_dump import router as brain_dump_router
+from api.vent import router as vent_router
 
 from sqlalchemy import text
 from db.database import engine, Base
@@ -108,12 +110,15 @@ app.add_middleware(
 app.include_router(health_router)
 app.include_router(screen_router)
 app.include_router(chat_router)
-app.include_router(whoop_router)
+app.include_router(whoop_auth_router)
+app.include_router(whoop_data_router)
 app.include_router(insights_router)
 app.include_router(interventions_router)
 app.include_router(evaluation_router)
 app.include_router(notch_router)
 app.include_router(google_auth_router)
+app.include_router(brain_dump_router)
+app.include_router(vent_router)
 
 
 @app.get("/", tags=["root"])
@@ -127,6 +132,9 @@ async def root():
             "GET  /health",
             "POST /screen/activity",
             "POST /chat/message",
+            "GET  /api/auth/whoop",
+            "GET  /api/auth/whoop/status",
+            "POST /api/auth/whoop/disconnect",
             "GET  /whoop/*",
             "GET  /insights/*",
             "GET  /interventions/*",
@@ -136,6 +144,12 @@ async def root():
             "GET  /api/auth/google",
             "GET  /api/auth/google/callback",
             "GET  /api/auth/google/status",
+            "POST /api/v1/brain-dump/",
+            "GET  /api/v1/brain-dump/review/recent",
+            "GET  /api/v1/brain-dump/review/session/{session_id}",
+            "POST /api/v1/vent/chat/stream",
+            "POST /api/v1/vent/chat",
+            "POST /api/v1/vent/session/new",
         ],
     }
 

@@ -30,6 +30,22 @@ class NotchWindow: NSPanel {
         configurePanel()
         self.contentView = rootView
         positionAtNotch()
+
+        // Reposition when screen configuration changes (display added/removed/rearranged)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(screenDidChange),
+            name: NSApplication.didChangeScreenParametersNotification,
+            object: nil
+        )
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc private func screenDidChange(_ notification: Notification) {
+        positionAtNotch()
     }
 
     // MARK: - Focus behavior (DynamicNotchKit pattern)
@@ -39,6 +55,16 @@ class NotchWindow: NSPanel {
 
     override var canBecomeKey: Bool { true }
     override var canBecomeMain: Bool { false }
+
+    /// Called when user clicks on the NotchWindow canvas area outside SwiftUI content.
+    /// The global mouse monitor doesn't fire for our own panel, so this catches
+    /// clicks on the transparent canvas surrounding the notch shape.
+    var onClickAway: (() -> Void)?
+
+    override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
+        onClickAway?()
+    }
 
     // MARK: - Configuration
 
@@ -67,7 +93,9 @@ class NotchWindow: NSPanel {
     // MARK: - Positioning
 
     func positionAtNotch() {
-        guard let screen = NSScreen.main else { return }
+        // screens.first is the screen with the menu bar (and hardware notch).
+        // NSScreen.main is the screen with the key window, which may differ.
+        guard let screen = NSScreen.screens.first else { return }
         let screenFrame = screen.frame
         let x = screenFrame.midX - (Self.canvasSize.width / 2)
         let y = screenFrame.maxY - Self.canvasSize.height

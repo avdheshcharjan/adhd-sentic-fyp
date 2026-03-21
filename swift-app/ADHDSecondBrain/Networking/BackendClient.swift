@@ -13,8 +13,11 @@ class BackendClient {
     private let baseURL: URL
     private let session: URLSession
 
-    init(baseURL: String = "http://localhost:8420") {
-        self.baseURL = URL(string: baseURL)!
+    init(baseURL: String = UserDefaults.standard.string(forKey: "backendURL").map({ "http://\($0)" }) ?? "http://localhost:8420") {
+        guard let url = URL(string: baseURL) else {
+            fatalError("BackendClient: malformed base URL: \(baseURL)")
+        }
+        self.baseURL = url
 
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 5
@@ -80,6 +83,45 @@ class BackendClient {
               (200...299).contains(httpResponse.statusCode) else {
             throw BackendError.invalidResponse
         }
+    }
+
+    /// Fetch aggregated dashboard stats for today.
+    func fetchDashboardStats() async throws -> DashboardStats {
+        let url = baseURL.appendingPathComponent("api/v1/dashboard/stats")
+        let (data, response) = try await session.data(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200...299).contains(httpResponse.statusCode) else {
+            throw BackendError.invalidResponse
+        }
+
+        return try decoder.decode(DashboardStats.self, from: data)
+    }
+
+    /// Fetch weekly focus/distraction report.
+    func fetchWeeklyReport() async throws -> WeeklyReport {
+        let url = baseURL.appendingPathComponent("api/v1/dashboard/weekly")
+        let (data, response) = try await session.data(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200...299).contains(httpResponse.statusCode) else {
+            throw BackendError.invalidResponse
+        }
+
+        return try decoder.decode(WeeklyReport.self, from: data)
+    }
+
+    /// Fetch latest Whoop morning briefing (recovery + sleep + ADHD recommendations).
+    func fetchWhoopRecovery() async throws -> WhoopRecovery {
+        let url = baseURL.appendingPathComponent("whoop/morning-briefing")
+        let (data, response) = try await session.data(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200...299).contains(httpResponse.statusCode) else {
+            throw BackendError.invalidResponse
+        }
+
+        return try decoder.decode(WhoopRecovery.self, from: data)
     }
 
     /// Check backend health.

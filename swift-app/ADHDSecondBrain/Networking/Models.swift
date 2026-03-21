@@ -110,3 +110,93 @@ struct InterventionResponseRequest: Codable {
         case effectivenessRating = "effectiveness_rating"
     }
 }
+
+// MARK: - Dashboard Models
+
+struct DashboardStats: Codable {
+    let totalFocusMinutes: Int
+    let totalActiveMinutes: Int
+    let interventionsTriggered: Int
+    let interventionsAccepted: Int
+    let focusTimeline: [TimelineSegment]
+    let emotionScores: EmotionScores
+
+    enum CodingKeys: String, CodingKey {
+        case totalFocusMinutes = "total_focus_minutes"
+        case totalActiveMinutes = "total_active_minutes"
+        case interventionsTriggered = "interventions_triggered"
+        case interventionsAccepted = "interventions_accepted"
+        case focusTimeline = "focus_timeline"
+        case emotionScores = "emotion_scores"
+    }
+}
+
+struct TimelineSegment: Codable, Identifiable {
+    let id: String
+    let category: String   // "focused", "distracted", "neutral", "idle"
+    let duration: Double   // fraction 0-1
+}
+
+struct EmotionScores: Codable {
+    let pleasantness: Double
+    let attention: Double
+    let sensitivity: Double
+    let aptitude: Double
+}
+
+/// Matches Python MorningBriefing from /whoop/morning-briefing endpoint.
+struct WhoopRecovery: Codable {
+    let recoveryPercent: Double
+    let recoveryTier: String
+    let hrv: Double
+    let restingHR: Double
+    let sleepPerformance: Double?
+    let recommendedFocusBlock: Int
+
+    enum CodingKeys: String, CodingKey {
+        case recoveryPercent = "recovery_score"
+        case recoveryTier = "recovery_tier"
+        case hrv = "hrv_rmssd"
+        case restingHR = "resting_hr"
+        case sleepPerformance = "sleep_performance"
+        case recommendedFocusBlock = "recommended_focus_block_minutes"
+    }
+}
+
+struct WeeklyReport: Codable {
+    let days: [DayReport]
+    let avgFocus: Double
+    let avgDistraction: Double
+    let totalInterventions: Int
+    let acceptanceRate: Double
+    let bestDay: String
+    let worstDay: String
+    let trend: String   // "improving", "stable", "declining"
+
+    enum CodingKeys: String, CodingKey {
+        case days
+        case avgFocus = "avg_focus"
+        case avgDistraction = "avg_distraction"
+        case totalInterventions = "total_interventions"
+        case acceptanceRate = "acceptance_rate"
+        case bestDay = "best_day"
+        case worstDay = "worst_day"
+        case trend
+    }
+}
+
+struct DayReport: Codable, Identifiable {
+    let id: String
+    let day: String
+    let focusRatio: Double
+    let distractionRatio: Double
+    let isToday: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case day
+        case focusRatio = "focus_ratio"
+        case distractionRatio = "distraction_ratio"
+        case isToday = "is_today"
+    }
+}

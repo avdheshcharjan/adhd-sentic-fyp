@@ -6,6 +6,7 @@ struct MenuBarView: View {
     @ObservedObject var coordinator: MonitorCoordinator
 
     @Environment(\.openSettings) private var openSettings
+    @Environment(\.openWindow) private var openWindow
     @State private var backendHealthy = false
 
     var body: some View {
@@ -93,8 +94,8 @@ struct MenuBarView: View {
                 coordinator.toggleMonitoring()
             }
 
-            SettingsLink {
-                actionRow(label: "Open Dashboard", color: ADHDColors.Text.secondary)
+            actionButton(label: "Open Dashboard", color: ADHDColors.Text.secondary) {
+                openWindow(id: "dashboard")
             }
 
             SettingsLink {

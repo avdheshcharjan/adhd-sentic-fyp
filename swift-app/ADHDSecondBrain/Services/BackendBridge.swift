@@ -27,7 +27,11 @@ class BackendBridge {
 
     init(client: BackendClient = BackendClient()) {
         self.client = client
-        self.baseURL = URL(string: "http://localhost:8420")!
+        let urlString = UserDefaults.standard.string(forKey: "backendURL").map({ "http://\($0)" }) ?? "http://localhost:8420"
+        guard let url = URL(string: urlString) else {
+            fatalError("BackendBridge: malformed base URL: \(urlString)")
+        }
+        self.baseURL = url
 
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 5
@@ -91,7 +95,7 @@ class BackendBridge {
 
     @MainActor
     private func fetchUpcomingEvents() async {
-        guard let data = await get("api/v1/calendar/upcoming?limit=3") else {
+        guard let data = await get("api/v1/calendar/upcoming") else {
             return
         }
         if let events = try? decoder.decode([CalendarEvent].self, from: data) {
@@ -131,7 +135,7 @@ class BackendBridge {
     // MARK: - Actions
 
     func openGoogleAuth() {
-        guard let url = URL(string: "http://localhost:8420/api/auth/google") else { return }
+        let url = baseURL.appendingPathComponent("api/auth/google")
         NSWorkspace.shared.open(url)
     }
 
@@ -150,7 +154,7 @@ class BackendBridge {
     }
 
     func acknowledgeIntervention(_ id: String) async {
-        await post("api/v1/interventions/\(id)/acknowledge", body: [:] as [String: String])
+        await post("interventions/\(id)/respond", body: ["action_taken": "acknowledged", "dismissed": "false"])
     }
 
     func toggleFocusSession() async {

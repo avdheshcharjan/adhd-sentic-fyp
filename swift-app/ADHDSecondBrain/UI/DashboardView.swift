@@ -5,19 +5,31 @@ import SwiftUI
 /// whoop recovery, interventions, and weekly report cards.
 struct DashboardView: View {
     @ObservedObject var coordinator: MonitorCoordinator
+    @State private var viewModel: DashboardViewModel
+
+    init(coordinator: MonitorCoordinator) {
+        self.coordinator = coordinator
+        self._viewModel = State(initialValue: DashboardViewModel(coordinator: coordinator))
+    }
 
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
                 DashboardHeader(coordinator: coordinator)
-                FocusTimelineCard()
-                MetricsEmotionRow(coordinator: coordinator)
-                WhoopInterventionsRow(coordinator: coordinator)
-                WeeklyReportCard()
+                FocusTimelineCard(viewModel: viewModel)
+                MetricsEmotionRow(coordinator: coordinator, viewModel: viewModel)
+                WhoopInterventionsRow(viewModel: viewModel)
+                WeeklyReportCard(viewModel: viewModel)
             }
         }
         .background(ADHDColors.Background.primary)
         .frame(minWidth: 900, minHeight: 700)
+        .onAppear {
+            viewModel.startPolling()
+        }
+        .onDisappear {
+            viewModel.stopPolling()
+        }
     }
 }
 
@@ -95,6 +107,8 @@ private struct LiveBadge: View {
 // MARK: - Focus Timeline
 
 private struct FocusTimelineCard: View {
+    let viewModel: DashboardViewModel
+
     var body: some View {
         DashboardCard {
             VStack(spacing: 14) {
@@ -105,22 +119,32 @@ private struct FocusTimelineCard: View {
 
                     Spacer()
 
-                    Text("154 min tracked")
-                        .font(ADHDTypography.App.small)
-                        .foregroundStyle(ADHDColors.Text.secondary)
+                    if viewModel.totalTrackedMinutes > 0 {
+                        Text("\(viewModel.totalTrackedMinutes) min tracked")
+                            .font(ADHDTypography.App.small)
+                            .foregroundStyle(ADHDColors.Text.secondary)
+                    } else {
+                        Text("No data yet")
+                            .font(ADHDTypography.App.small)
+                            .foregroundStyle(ADHDColors.Text.tertiary)
+                    }
                 }
 
-                // Timeline bar
-                HStack(spacing: 0) {
-                    TimelineSegment(color: ADHDColors.Accent.successBright, width: 0.35)
-                    TimelineSegment(color: ADHDColors.Text.muted, width: 0.08)
-                    TimelineSegment(color: ADHDColors.Accent.successBright, width: 0.22)
-                    TimelineSegment(color: ADHDColors.Accent.warning, width: 0.05)
-                    TimelineSegment(color: ADHDColors.Accent.danger, width: 0.12)
-                    TimelineSegment(color: ADHDColors.Accent.successBright, width: 0.18)
+                if viewModel.focusTimeline.isEmpty {
+                    TimelinePlaceholder()
+                } else {
+                    // Timeline bar built from real segments
+                    HStack(spacing: 0) {
+                        ForEach(viewModel.focusTimeline) { segment in
+                            TimelineSegmentView(
+                                color: colorForCategory(segment.category),
+                                width: CGFloat(segment.duration)
+                            )
+                        }
+                    }
+                    .frame(height: 28)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
-                .frame(height: 28)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
 
                 // Legend
                 HStack(spacing: 20) {
@@ -133,9 +157,31 @@ private struct FocusTimelineCard: View {
         }
         .padding(.horizontal, 32)
     }
+
+    private func colorForCategory(_ category: String) -> Color {
+        switch category {
+        case "focused": return ADHDColors.Accent.successBright
+        case "distracted": return ADHDColors.Accent.danger
+        case "neutral": return ADHDColors.Accent.warning
+        default: return ADHDColors.Text.muted
+        }
+    }
 }
 
-private struct TimelineSegment: View {
+private struct TimelinePlaceholder: View {
+    var body: some View {
+        RoundedRectangle(cornerRadius: 8)
+            .fill(ADHDColors.Background.elevated)
+            .frame(height: 28)
+            .overlay(
+                Text("Activity will appear here once monitoring starts")
+                    .font(ADHDTypography.App.tiny)
+                    .foregroundStyle(ADHDColors.Text.tertiary)
+            )
+    }
+}
+
+private struct TimelineSegmentView: View {
     let color: Color
     let width: CGFloat
 
@@ -170,11 +216,12 @@ private struct LegendDot: View {
 
 private struct MetricsEmotionRow: View {
     @ObservedObject var coordinator: MonitorCoordinator
+    let viewModel: DashboardViewModel
 
     var body: some View {
         HStack(spacing: 16) {
-            LiveMetricsCard(coordinator: coordinator)
-            EmotionRadarCard()
+            LiveMetricsCard(coordinator: coordinator, viewModel: viewModel)
+            EmotionRadarCard(viewModel: viewModel)
         }
         .padding(.horizontal, 32)
         .padding(.top, 16)
@@ -183,6 +230,7 @@ private struct MetricsEmotionRow: View {
 
 private struct LiveMetricsCard: View {
     @ObservedObject var coordinator: MonitorCoordinator
+    let viewModel: DashboardViewModel
 
     var body: some View {
         DashboardCard {
@@ -196,11 +244,28 @@ private struct LiveMetricsCard: View {
                 }
 
                 VStack(spacing: 0) {
-                    MetricRow(label: "Context switches (5 min)", value: "\(Int(coordinator.latestMetrics.contextSwitchRate5min))")
-                    MetricRow(label: "Focus score", value: "\(Int(coordinator.latestMetrics.focusScore))%", valueColor: ADHDColors.Accent.successBright)
-                    MetricRow(label: "Distraction ratio", value: "\(Int(coordinator.latestMetrics.distractionRatio * 100))%")
-                    MetricRow(label: "Current streak", value: "\(Int(coordinator.latestMetrics.currentStreakMinutes)) min")
-                    MetricRow(label: "Active app", value: coordinator.latestCategory, isLast: true)
+                    MetricRow(
+                        label: "Context switches (5 min)",
+                        value: "\(viewModel.contextSwitchRate)"
+                    )
+                    MetricRow(
+                        label: "Focus score",
+                        value: "\(viewModel.focusScore)%",
+                        valueColor: ADHDColors.Accent.successBright
+                    )
+                    MetricRow(
+                        label: "Distraction ratio",
+                        value: "\(viewModel.distractionRatioPercent)%"
+                    )
+                    MetricRow(
+                        label: "Current streak",
+                        value: "\(viewModel.currentStreakMinutes) min"
+                    )
+                    MetricRow(
+                        label: "Active app",
+                        value: viewModel.activeApp,
+                        isLast: true
+                    )
                 }
 
                 VStack(spacing: 0) {
@@ -210,8 +275,19 @@ private struct LiveMetricsCard: View {
                         .foregroundStyle(ADHDColors.Text.tertiary)
                         .padding(.bottom, 8)
 
-                    MetricRow(label: "Focus time", value: "154 min")
-                    MetricRow(label: "Active time", value: "203 min", isLast: true)
+                    MetricRow(
+                        label: "Focus time",
+                        value: viewModel.totalFocusMinutes > 0
+                            ? "\(viewModel.totalFocusMinutes) min"
+                            : "--"
+                    )
+                    MetricRow(
+                        label: "Active time",
+                        value: viewModel.totalActiveMinutes > 0
+                            ? "\(viewModel.totalActiveMinutes) min"
+                            : "--",
+                        isLast: true
+                    )
                 }
             }
         }
@@ -257,6 +333,8 @@ private struct MetricRow: View {
 // MARK: - Emotion Radar
 
 private struct EmotionRadarCard: View {
+    let viewModel: DashboardViewModel
+
     var body: some View {
         DashboardCard {
             VStack(spacing: 16) {
@@ -265,21 +343,30 @@ private struct EmotionRadarCard: View {
                         .font(ADHDTypography.Dashboard.cardTitle)
                         .foregroundStyle(ADHDColors.Text.primary)
                     Spacer()
-                    Text("Current: Calm Focus")
+                    Text("Current: \(viewModel.emotionStateLabel)")
                         .font(ADHDTypography.App.small)
                         .foregroundStyle(ADHDColors.Text.secondary)
                 }
 
                 // Radar visualization
-                RadarChartView()
+                RadarChartView(scores: viewModel.emotionScores)
                     .frame(height: 200)
 
                 // Score pills
-                HStack(spacing: 16) {
-                    ScorePill(value: "72", label: "PLEASANT")
-                    ScorePill(value: "85", label: "ATTENTION")
-                    ScorePill(value: "38", label: "SENSITIV.")
-                    ScorePill(value: "64", label: "APTITUDE")
+                if let scores = viewModel.emotionScores {
+                    HStack(spacing: 16) {
+                        ScorePill(value: "\(Int(scores.pleasantness * 100))", label: "PLEASANT")
+                        ScorePill(value: "\(Int(scores.attention * 100))", label: "ATTENTION")
+                        ScorePill(value: "\(Int(scores.sensitivity * 100))", label: "SENSITIV.")
+                        ScorePill(value: "\(Int(scores.aptitude * 100))", label: "APTITUDE")
+                    }
+                } else {
+                    HStack(spacing: 16) {
+                        ScorePill(value: "--", label: "PLEASANT")
+                        ScorePill(value: "--", label: "ATTENTION")
+                        ScorePill(value: "--", label: "SENSITIV.")
+                        ScorePill(value: "--", label: "APTITUDE")
+                    }
                 }
             }
         }
@@ -287,6 +374,8 @@ private struct EmotionRadarCard: View {
 }
 
 private struct RadarChartView: View {
+    let scores: EmotionScores?
+
     var body: some View {
         ZStack {
             // Concentric circles
@@ -299,14 +388,34 @@ private struct RadarChartView: View {
                     .frame(width: CGFloat(size), height: CGFloat(size))
             }
 
-            // Data shape
-            RadarShape()
+            // Data shape — uses real scores when available
+            if let scores = scores {
+                RadarShape(
+                    top: scores.pleasantness,
+                    right: scores.attention,
+                    bottom: scores.sensitivity,
+                    left: scores.aptitude
+                )
                 .fill(ADHDColors.Accent.focusLight.opacity(0.15))
                 .overlay(
-                    RadarShape()
-                        .stroke(ADHDColors.Accent.focusLight.opacity(0.6), lineWidth: 2)
+                    RadarShape(
+                        top: scores.pleasantness,
+                        right: scores.attention,
+                        bottom: scores.sensitivity,
+                        left: scores.aptitude
+                    )
+                    .stroke(ADHDColors.Accent.focusLight.opacity(0.6), lineWidth: 2)
                 )
                 .frame(width: 140, height: 150)
+            } else {
+                RadarShape(top: 0.5, right: 0.5, bottom: 0.5, left: 0.5)
+                    .fill(ADHDColors.Text.muted.opacity(0.08))
+                    .overlay(
+                        RadarShape(top: 0.5, right: 0.5, bottom: 0.5, left: 0.5)
+                            .stroke(ADHDColors.Text.muted.opacity(0.2), lineWidth: 1)
+                    )
+                    .frame(width: 140, height: 150)
+            }
 
             // Axis labels
             VStack {
@@ -339,16 +448,21 @@ private struct RadarChartView: View {
 }
 
 private struct RadarShape: Shape {
+    let top: Double
+    let right: Double
+    let bottom: Double
+    let left: Double
+
     func path(in rect: CGRect) -> Path {
         let center = CGPoint(x: rect.midX, y: rect.midY)
         let maxRadius = min(rect.width, rect.height) / 2
 
         var path = Path()
         let points: [(angle: Double, radius: Double)] = [
-            (-.pi / 2, 0.8),     // Top - Pleasantness
-            (0, 0.9),            // Right - Attention
-            (.pi / 2, 0.4),      // Bottom - Sensitivity
-            (.pi, 0.65),         // Left - Aptitude
+            (-.pi / 2, top),    // Top — Pleasantness
+            (0,        right),  // Right — Attention
+            (.pi / 2,  bottom), // Bottom — Sensitivity
+            (.pi,      left),   // Left — Aptitude
         ]
 
         for (index, point) in points.enumerated() {
@@ -391,12 +505,12 @@ private struct ScorePill: View {
 // MARK: - Whoop + Interventions Row
 
 private struct WhoopInterventionsRow: View {
-    @ObservedObject var coordinator: MonitorCoordinator
+    let viewModel: DashboardViewModel
 
     var body: some View {
         HStack(spacing: 16) {
-            WhoopRecoveryCard()
-            InterventionsCard()
+            WhoopRecoveryCard(viewModel: viewModel)
+            InterventionsCard(viewModel: viewModel)
         }
         .padding(.horizontal, 32)
         .padding(.top, 16)
@@ -404,6 +518,8 @@ private struct WhoopInterventionsRow: View {
 }
 
 private struct WhoopRecoveryCard: View {
+    let viewModel: DashboardViewModel
+
     var body: some View {
         DashboardCard {
             VStack(alignment: .leading, spacing: 16) {
@@ -412,29 +528,60 @@ private struct WhoopRecoveryCard: View {
                         .font(ADHDTypography.Dashboard.cardTitle)
                         .foregroundStyle(ADHDColors.Text.primary)
                     Spacer()
-                    HStack(spacing: 6) {
-                        Circle()
-                            .fill(ADHDColors.Accent.successBright)
-                            .frame(width: 8, height: 8)
-                        Text("78%")
+                    if let recovery = viewModel.whoopRecovery {
+                        HStack(spacing: 6) {
+                            Circle()
+                                .fill(recoveryColor(recovery.recoveryPercent))
+                                .frame(width: 8, height: 8)
+                            Text("\(Int(recovery.recoveryPercent))%")
+                                .font(ADHDTypography.App.metricLarge)
+                                .monospacedDigit()
+                                .foregroundStyle(recoveryColor(recovery.recoveryPercent))
+                        }
+                    } else {
+                        Text("--")
                             .font(ADHDTypography.App.metricLarge)
                             .monospacedDigit()
-                            .foregroundStyle(ADHDColors.Accent.successBright)
+                            .foregroundStyle(ADHDColors.Text.tertiary)
                     }
                 }
 
                 VStack(spacing: 0) {
-                    MetricRow(label: "HRV (rMSSD)", value: "62.3 ms")
-                    MetricRow(label: "Resting HR", value: "54 bpm")
-                    MetricRow(label: "Sleep performance", value: "85%")
-                    MetricRow(label: "Recommended focus block", value: "45 min", valueColor: ADHDColors.Accent.focusLight, isLast: true)
+                    MetricRow(
+                        label: "HRV (rMSSD)",
+                        value: viewModel.whoopRecovery.map { String(format: "%.1f ms", $0.hrv) } ?? "--"
+                    )
+                    MetricRow(
+                        label: "Resting HR",
+                        value: viewModel.whoopRecovery.map { "\(Int($0.restingHR)) bpm" } ?? "--"
+                    )
+                    MetricRow(
+                        label: "Sleep performance",
+                        value: viewModel.whoopRecovery.flatMap { r in r.sleepPerformance.map { "\(Int($0))%" } } ?? "--"
+                    )
+                    MetricRow(
+                        label: "Recommended focus block",
+                        value: viewModel.whoopRecovery.map { "\($0.recommendedFocusBlock) min" } ?? "--",
+                        valueColor: ADHDColors.Accent.focusLight,
+                        isLast: true
+                    )
                 }
             }
+        }
+    }
+
+    private func recoveryColor(_ percent: Double) -> Color {
+        switch percent {
+        case 67...: return ADHDColors.Accent.successBright
+        case 34..<67: return ADHDColors.Accent.warning
+        default: return ADHDColors.Accent.danger
         }
     }
 }
 
 private struct InterventionsCard: View {
+    let viewModel: DashboardViewModel
+
     var body: some View {
         DashboardCard {
             VStack(alignment: .leading, spacing: 16) {
@@ -449,23 +596,60 @@ private struct InterventionsCard: View {
                 }
 
                 VStack(spacing: 0) {
-                    MetricRow(label: "Triggered", value: "5")
-                    MetricRow(label: "Accepted", value: "4")
-                    MetricRow(label: "Acceptance rate", value: "80%", valueColor: ADHDColors.Accent.successBright, isLast: true)
+                    MetricRow(
+                        label: "Triggered",
+                        value: viewModel.dashboardStats != nil
+                            ? "\(viewModel.interventionsTriggered)"
+                            : "--"
+                    )
+                    MetricRow(
+                        label: "Accepted",
+                        value: viewModel.dashboardStats != nil
+                            ? "\(viewModel.interventionsAccepted)"
+                            : "--"
+                    )
+                    MetricRow(
+                        label: "Acceptance rate",
+                        value: viewModel.dashboardStats != nil
+                            ? "\(viewModel.interventionAcceptancePercent)%"
+                            : "--",
+                        valueColor: ADHDColors.Accent.successBright,
+                        isLast: true
+                    )
                 }
 
-                VStack(spacing: 8) {
-                    Text("BEHAVIORAL STATES (MIN)")
-                        .font(ADHDTypography.App.sectionLabel)
-                        .tracking(0.7)
-                        .foregroundStyle(ADHDColors.Text.tertiary)
+                BehavioralStatesSection(viewModel: viewModel)
+            }
+        }
+    }
+}
 
-                    HStack(spacing: 8) {
-                        BehaviorPill(value: "98", label: "FOCUSED", color: ADHDColors.Accent.successBright)
-                        BehaviorPill(value: "56", label: "HYPERF.", color: ADHDColors.Accent.focusLight)
-                        BehaviorPill(value: "24", label: "DISTRACT.", color: ADHDColors.Accent.danger)
-                    }
-                }
+private struct BehavioralStatesSection: View {
+    let viewModel: DashboardViewModel
+
+    var body: some View {
+        VStack(spacing: 8) {
+            Text("BEHAVIORAL STATE")
+                .font(ADHDTypography.App.sectionLabel)
+                .tracking(0.7)
+                .foregroundStyle(ADHDColors.Text.tertiary)
+
+            HStack(spacing: 8) {
+                BehaviorPill(
+                    value: viewModel.behavioralState == "focused" ? "Active" : "--",
+                    label: "FOCUSED",
+                    color: ADHDColors.Accent.successBright
+                )
+                BehaviorPill(
+                    value: viewModel.behavioralState == "hyperfocused" ? "Active" : "--",
+                    label: "HYPERF.",
+                    color: ADHDColors.Accent.focusLight
+                )
+                BehaviorPill(
+                    value: viewModel.behavioralState == "distracted" ? "Active" : "--",
+                    label: "DISTRACT.",
+                    color: ADHDColors.Accent.danger
+                )
             }
         }
     }
@@ -498,15 +682,7 @@ private struct BehaviorPill: View {
 // MARK: - Weekly Report
 
 private struct WeeklyReportCard: View {
-    private let dayData: [(day: String, focus: CGFloat, distraction: CGFloat, isToday: Bool)] = [
-        ("Mon", 0.65, 0.25, false),
-        ("Tue", 0.72, 0.18, false),
-        ("Wed", 0.55, 0.35, false),
-        ("Thu", 0.80, 0.12, false),
-        ("Fri", 0.87, 0.10, true),
-        ("Sat", 0.40, 0.08, false),
-        ("Sun", 0.35, 0.05, false),
-    ]
+    let viewModel: DashboardViewModel
 
     var body: some View {
         VStack(spacing: 0) {
@@ -517,30 +693,26 @@ private struct WeeklyReportCard: View {
                             .font(ADHDTypography.Dashboard.cardTitle)
                             .foregroundStyle(ADHDColors.Text.primary)
                         Spacer()
-                        Text("IMPROVING")
-                            .font(ADHDTypography.Dashboard.badge)
-                            .tracking(0.5)
-                            .foregroundStyle(ADHDColors.Accent.successBright)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 4)
-                            .background(ADHDColors.Accent.successBright.opacity(0.12))
-                            .clipShape(Capsule())
+                        TrendBadge(trend: viewModel.weeklyTrend)
                     }
 
-                    // Bar chart
-                    HStack(alignment: .bottom, spacing: 12) {
-                        ForEach(dayData, id: \.day) { item in
-                            DayBar(
-                                day: item.day,
-                                focus: item.focus,
-                                distraction: item.distraction,
-                                isToday: item.isToday,
-                                isFuture: item.focus < 0.5 && !item.isToday
-                            )
+                    if viewModel.weeklyDays.isEmpty {
+                        WeeklyChartPlaceholder()
+                    } else {
+                        // Bar chart
+                        HStack(alignment: .bottom, spacing: 12) {
+                            ForEach(viewModel.weeklyDays) { day in
+                                DayBar(
+                                    day: day.day,
+                                    focus: CGFloat(day.focusRatio),
+                                    distraction: CGFloat(day.distractionRatio),
+                                    isToday: day.isToday
+                                )
+                            }
                         }
+                        .frame(height: 140)
+                        .padding(.horizontal, 8)
                     }
-                    .frame(height: 140)
-                    .padding(.horizontal, 8)
 
                     // Legend
                     HStack(spacing: 20) {
@@ -565,18 +737,18 @@ private struct WeeklyReportCard: View {
 
                     // Summary stats
                     HStack(spacing: 16) {
-                        WeeklyStat(label: "Avg focus", value: "71.2%")
-                        WeeklyStat(label: "Avg distraction", value: "15.4%")
-                        WeeklyStat(label: "Total interventions", value: "23")
-                        WeeklyStat(label: "Acceptance rate", value: "76.5%")
+                        WeeklyStat(label: "Avg focus", value: viewModel.weeklyAvgFocusPercent)
+                        WeeklyStat(label: "Avg distraction", value: viewModel.weeklyAvgDistractionPercent)
+                        WeeklyStat(label: "Total interventions", value: viewModel.weeklyTotalInterventions)
+                        WeeklyStat(label: "Acceptance rate", value: viewModel.weeklyAcceptanceRatePercent)
                     }
 
                     // Best/worst
                     HStack(spacing: 16) {
-                        Text("Best: Thursday")
+                        Text("Best: \(viewModel.weeklyBestDay)")
                             .font(ADHDTypography.App.small)
                             .foregroundStyle(ADHDColors.Text.tertiary)
-                        Text("Needs attention: Wednesday")
+                        Text("Needs attention: \(viewModel.weeklyWorstDay)")
                             .font(ADHDTypography.App.small)
                             .foregroundStyle(ADHDColors.Text.tertiary)
                     }
@@ -589,12 +761,48 @@ private struct WeeklyReportCard: View {
     }
 }
 
+private struct TrendBadge: View {
+    let trend: String
+
+    var body: some View {
+        Text(trend)
+            .font(ADHDTypography.Dashboard.badge)
+            .tracking(0.5)
+            .foregroundStyle(trendColor)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 4)
+            .background(trendColor.opacity(0.12))
+            .clipShape(Capsule())
+    }
+
+    private var trendColor: Color {
+        switch trend.lowercased() {
+        case "improving": return ADHDColors.Accent.successBright
+        case "declining": return ADHDColors.Accent.danger
+        default: return ADHDColors.Accent.focusLight
+        }
+    }
+}
+
+private struct WeeklyChartPlaceholder: View {
+    var body: some View {
+        RoundedRectangle(cornerRadius: 8)
+            .fill(ADHDColors.Background.elevated)
+            .frame(height: 140)
+            .overlay(
+                Text("Weekly data will appear after 24 hours of monitoring")
+                    .font(ADHDTypography.App.tiny)
+                    .foregroundStyle(ADHDColors.Text.tertiary)
+            )
+            .padding(.horizontal, 8)
+    }
+}
+
 private struct DayBar: View {
     let day: String
     let focus: CGFloat
     let distraction: CGFloat
     let isToday: Bool
-    let isFuture: Bool
 
     var body: some View {
         VStack(spacing: 4) {
@@ -602,10 +810,10 @@ private struct DayBar: View {
                 HStack(alignment: .bottom, spacing: 3) {
                     Spacer()
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(ADHDColors.Accent.successBright.opacity(isFuture ? 0.3 : 1))
+                        .fill(ADHDColors.Accent.successBright)
                         .frame(width: 16, height: proxy.size.height * focus)
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(ADHDColors.Accent.danger.opacity(isFuture ? 0.2 : 0.6))
+                        .fill(ADHDColors.Accent.danger.opacity(0.6))
                         .frame(width: 16, height: proxy.size.height * distraction)
                     Spacer()
                 }

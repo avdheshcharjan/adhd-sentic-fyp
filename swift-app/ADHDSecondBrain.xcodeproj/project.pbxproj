@@ -14,11 +14,13 @@
 		0EA0AE4F7B77F3EFFC854D73 /* BlurTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2D761E9053C6116633A887 /* BlurTransition.swift */; };
 		102E7D1211202491E7FCC383 /* QuickCaptureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC424A720DED80E376BD704 /* QuickCaptureField.swift */; };
 		158542EFFFBADA453EEEC7E2 /* PulseModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C51BB468A12EF9144E9267 /* PulseModifier.swift */; };
+		1608307EA973A73B55FC2FBE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49B58FCE8726179F2D2C60 /* DashboardViewModel.swift */; };
 		17E45B0BC867147993C35D6D /* TierManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7497343A9F3AAF1E9365FB0D /* TierManager.swift */; };
 		1D0B3F24A6A95212AB54A528 /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CBBF9697A85835FE6A9D21 /* NotchShape.swift */; };
 		21D8212A62E371E9585EC0A7 /* Lexend-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82EAA6030D73F66D1D28629A /* Lexend-Medium.ttf */; };
 		2210A2A2E69C7219DF311477 /* AmbientMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84EC67AEC1B697FCA11CBA /* AmbientMenuBar.swift */; };
 		319AC0CB48A8A92CB63AD00B /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374E7BBF52ADB307AB636D9E /* MenuBarView.swift */; };
+		3318CE475E90B526C4B2E98E /* VentMessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4298B6E54001FCD776255 /* VentMessageBubble.swift */; };
 		34F1AA123BE048402A6AEFFA /* Lexend-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32902AE4D0C77BD4E13E5ACD /* Lexend-Light.ttf */; };
 		3AF8AAC507F4A957A92D5D7D /* HoverTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E7BA0F0F48D7C989B8D4E /* HoverTracker.swift */; };
 		3D5D4E5D694675089FF316D0 /* ExpandedPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E3388D128C8EDA5D5031F /* ExpandedPanelView.swift */; };
@@ -30,11 +32,14 @@
 		4C679F85EB4E2CD48CB33140 /* NotchWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E772262AAB2096776061819 /* NotchWindow.swift */; };
 		504418312A850C23E268DA1B /* ReducedMotionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BA5D741D62A7C7CB34DECC /* ReducedMotionWrapper.swift */; };
 		5400510E0C51EEE85423AE2E /* NotchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4754C4889552337CFD6B5 /* NotchState.swift */; };
+		59785B3D590908F3501574F8 /* BrainDumpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3EC42F675C45B7F37A3FD8 /* BrainDumpViewModel.swift */; };
 		5CC7353DDCBF218D2637C612 /* Lexend-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C4CE71BC9502D1413F5EE1C /* Lexend-Bold.ttf */; };
 		5EB618BB73EAC3FE1BFA4231 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4547915BE317E9E77749C3 /* Logger.swift */; };
 		615FC359ACB7C32540B7278A /* AlertOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A8D0E56F7A715E7947369A /* AlertOverlayView.swift */; };
 		6326C458CEBB4FD4CEF5D1C7 /* Lexend-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49F9047DF4C596B914E3A176 /* Lexend-Regular.ttf */; };
+		6562E3C2F8DD9BAA4556DDFA /* FloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298A361DE4DBB2A7DE264D61 /* FloatingPanel.swift */; };
 		68F9ED4502D8DBBB96B2675A /* CalendarStripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061F111BE9C64FBA9E8AD3F8 /* CalendarStripView.swift */; };
+		6960DC3E25F9FDEDC49C8DB8 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = C1BC2159A0BC6E988B467A23 /* KeyboardShortcuts */; };
 		6CC7AB49456747A331E3B6EB /* NotchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C47E5D19CDD10A08158CDE /* NotchModels.swift */; };
 		7242FF6C58DE601BCFAF347F /* BrowserMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9444D3D57E73643AA586BAD5 /* BrowserMonitor.swift */; };
 		74D1AB16A543BFFC6AEF7A7D /* NotchStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99F5BF104ECA2A920CD04EE /* NotchStateMachine.swift */; };
@@ -43,25 +48,32 @@
 		8451A1077A5C15A9BBE2BF1D /* NotchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCC9795B130E17BC10774A6 /* NotchViewModel.swift */; };
 		856C61C35EE83B3EE3494199 /* NotchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C30223EC758A1AF613A198A /* NotchCoordinator.swift */; };
 		86772C12C581A469DD2D6BA3 /* BackendClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF8C11ED2155E455D61A9DD /* BackendClient.swift */; };
+		8ED336873CCE79FF4C785E59 /* ModalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC68929692E3F6E49CD18BA /* ModalSettingsView.swift */; };
 		92F121C9B778D1AABFEB8981 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8563F825B9E7FE3BF41F39 /* AppDelegate.swift */; };
 		9530206B6CABB8AB5D1C62CA /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8503DD2F15282845164E2B5 /* Permissions.swift */; };
 		967AAFDA2CCC763C28538FFD /* ScreenMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A3773F57A14CDF4A19FF6A /* ScreenMonitor.swift */; };
 		975A936DE48B7AD093B029FB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E96D3C83174866D45F03C3 /* SettingsView.swift */; };
 		9A0703274A87235B8B9436C5 /* NotchPositionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FB433585AEBDC11659CEEB /* NotchPositionCalculator.swift */; };
 		9B03E328A7460D7BD209C7EA /* NotchContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530AF2C65EB9D4EA623C11E6 /* NotchContainerView.swift */; };
+		A043A01E607FB79178A0733E /* HotkeyDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827C22B1EF4505B56A8CFBA6 /* HotkeyDefinitions.swift */; };
 		A3154B80F5D4B5258957C28A /* AmbientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0961AD7482FCEA0208B82135 /* AmbientView.swift */; };
 		A3463B65FB0711DBB793CA92 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DDBFC61099A1F167E805D5 /* OnboardingView.swift */; };
+		A53A23C86782D5E9D2971365 /* BrainDumpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A73CA5B989462959CB7A152 /* BrainDumpView.swift */; };
+		A85D84968313CB4C22671F41 /* FloatingPanelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A565A6A1BD0C707898BD5D /* FloatingPanelManager.swift */; };
 		AA5F3F3A898F20CAC0D43C2E /* MonitorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2C004795A17A8BE1333C5E /* MonitorCoordinator.swift */; };
 		AA766AA278D7DF5C52151521 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2AA3C012DFF1AFEF4D329A /* DashboardView.swift */; };
+		ADE15F7AE0F6058E771EB7A2 /* VisualEffectBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E124D2F833EF85679BF117 /* VisualEffectBackground.swift */; };
 		B041D70FE9CA7A767B7CFD5C /* TransitionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448CFDBDA242FA9B58EA2DD /* TransitionDetector.swift */; };
 		C44C75064A762779F6E0A1DF /* Lexend-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EC4DAB5A90B873F508F761A /* Lexend-SemiBold.ttf */; };
 		C457B9F92D70F6ABF178B3A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB2CD38EA285A0CFCC50D502 /* Assets.xcassets */; };
 		D0F2A843B396E482AD674B08 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B52DE671FB320016135B805 /* App.swift */; };
+		D263F37BBA618EE105BEED73 /* VentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EEFB81FD93A56C5CF57B39 /* VentView.swift */; };
 		D355690D6C3DF882400A21B9 /* InterventionBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68ECCF3389A372014EAA13A /* InterventionBanner.swift */; };
 		DAF8453025B9BD50116F4A4B /* ModeSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD94D615720CA02819935853 /* ModeSwitcherView.swift */; };
 		E1F4809A2794F58E47D33081 /* EmotionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5E4AC94CD1E94FD61971A4 /* EmotionState.swift */; };
 		EA89AEBB079E3C51D3260B06 /* ADHDSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79DF6B07EE8122271DF0656 /* ADHDSpacing.swift */; };
 		ED40B6D1797A43451DAF1465 /* IdleMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B0B8A18878719D34BC83D1 /* IdleMonitor.swift */; };
+		F368A482F73BF41ED3E54BD8 /* VentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D1F2A4850CE51B2575C20F /* VentViewModel.swift */; };
 		F419FA9E0569BBF9BEF796B8 /* ADHDAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CBD71AB0F33F2DA6558DF4 /* ADHDAnimations.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,7 +86,9 @@
 		1EF8C11ED2155E455D61A9DD /* BackendClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendClient.swift; sourceTree = "<group>"; };
 		26A8D0E56F7A715E7947369A /* AlertOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOverlayView.swift; sourceTree = "<group>"; };
 		27C90DE7B261C0034E99A23C /* ADHDSecondBrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ADHDSecondBrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		298A361DE4DBB2A7DE264D61 /* FloatingPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanel.swift; sourceTree = "<group>"; };
 		2DB8934BB14BC412749F75C5 /* TimerRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRingView.swift; sourceTree = "<group>"; };
+		2F49B58FCE8726179F2D2C60 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		32902AE4D0C77BD4E13E5ACD /* Lexend-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lexend-Light.ttf"; sourceTree = "<group>"; };
 		374E7BBF52ADB307AB636D9E /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		3A5E4AC94CD1E94FD61971A4 /* EmotionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionState.swift; sourceTree = "<group>"; };
@@ -82,11 +96,15 @@
 		3C30223EC758A1AF613A198A /* NotchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchCoordinator.swift; sourceTree = "<group>"; };
 		42DDBFC61099A1F167E805D5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		44C47E5D19CDD10A08158CDE /* NotchModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchModels.swift; sourceTree = "<group>"; };
+		47A565A6A1BD0C707898BD5D /* FloatingPanelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanelManager.swift; sourceTree = "<group>"; };
 		49F9047DF4C596B914E3A176 /* Lexend-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lexend-Regular.ttf"; sourceTree = "<group>"; };
 		4D8563F825B9E7FE3BF41F39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E772262AAB2096776061819 /* NotchWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchWindow.swift; sourceTree = "<group>"; };
 		530AF2C65EB9D4EA623C11E6 /* NotchContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchContainerView.swift; sourceTree = "<group>"; };
+		57D1F2A4850CE51B2575C20F /* VentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VentViewModel.swift; sourceTree = "<group>"; };
+		5A73CA5B989462959CB7A152 /* BrainDumpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainDumpView.swift; sourceTree = "<group>"; };
 		5ED936F498A9E6F74B142E30 /* ADHDDesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADHDDesignTokens.swift; sourceTree = "<group>"; };
+		66EEFB81FD93A56C5CF57B39 /* VentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VentView.swift; sourceTree = "<group>"; };
 		6B52DE671FB320016135B805 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		6BC424A720DED80E376BD704 /* QuickCaptureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCaptureField.swift; sourceTree = "<group>"; };
 		72CBD71AB0F33F2DA6558DF4 /* ADHDAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADHDAnimations.swift; sourceTree = "<group>"; };
@@ -94,8 +112,10 @@
 		7497343A9F3AAF1E9365FB0D /* TierManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TierManager.swift; sourceTree = "<group>"; };
 		76A3773F57A14CDF4A19FF6A /* ScreenMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenMonitor.swift; sourceTree = "<group>"; };
 		7B37A8EDD8D28EF26BD0BA8B /* InterventionPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterventionPopup.swift; sourceTree = "<group>"; };
+		7B3EC42F675C45B7F37A3FD8 /* BrainDumpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainDumpViewModel.swift; sourceTree = "<group>"; };
 		7EC4754C4889552337CFD6B5 /* NotchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchState.swift; sourceTree = "<group>"; };
 		80C51BB468A12EF9144E9267 /* PulseModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseModifier.swift; sourceTree = "<group>"; };
+		827C22B1EF4505B56A8CFBA6 /* HotkeyDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyDefinitions.swift; sourceTree = "<group>"; };
 		82EAA6030D73F66D1D28629A /* Lexend-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lexend-Medium.ttf"; sourceTree = "<group>"; };
 		8EC4DAB5A90B873F508F761A /* Lexend-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lexend-SemiBold.ttf"; sourceTree = "<group>"; };
 		9444D3D57E73643AA586BAD5 /* BrowserMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserMonitor.swift; sourceTree = "<group>"; };
@@ -112,18 +132,32 @@
 		CB2CD38EA285A0CFCC50D502 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC2D761E9053C6116633A887 /* BlurTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTransition.swift; sourceTree = "<group>"; };
 		CE4547915BE317E9E77749C3 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		CEC68929692E3F6E49CD18BA /* ModalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSettingsView.swift; sourceTree = "<group>"; };
 		D4FB433585AEBDC11659CEEB /* NotchPositionCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchPositionCalculator.swift; sourceTree = "<group>"; };
 		D68ECCF3389A372014EAA13A /* InterventionBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterventionBanner.swift; sourceTree = "<group>"; };
+		D8E124D2F833EF85679BF117 /* VisualEffectBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectBackground.swift; sourceTree = "<group>"; };
 		D99F5BF104ECA2A920CD04EE /* NotchStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchStateMachine.swift; sourceTree = "<group>"; };
 		DCCC9795B130E17BC10774A6 /* NotchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchViewModel.swift; sourceTree = "<group>"; };
 		E01E7BA0F0F48D7C989B8D4E /* HoverTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverTracker.swift; sourceTree = "<group>"; };
 		E6700F0FA9B455D0F3FE3FAC /* TaskCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCardView.swift; sourceTree = "<group>"; };
 		E797AB1F9E3AE35E9BC252DC /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		F4A4298B6E54001FCD776255 /* VentMessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VentMessageBubble.swift; sourceTree = "<group>"; };
 		FC2AA3C012DFF1AFEF4D329A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		FC84EC67AEC1B697FCA11CBA /* AmbientMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientMenuBar.swift; sourceTree = "<group>"; };
 		FD94D615720CA02819935853 /* ModeSwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSwitcherView.swift; sourceTree = "<group>"; };
 		FF2C004795A17A8BE1333C5E /* MonitorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6E9A0E581892E69EE01098C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6960DC3E25F9FDEDC49C8DB8 /* KeyboardShortcuts in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		015C0305D1C44E2B7780FDD0 = {
@@ -202,6 +236,7 @@
 				CB2CD38EA285A0CFCC50D502 /* Assets.xcassets */,
 				3904F7A4D5F57FFCDEF0416A /* DesignSystem */,
 				294B86165282DF18355D87C2 /* Fonts */,
+				6D22F9AE283E7D0EB11651CC /* Modals */,
 				3C60990C26B30878727EA4E7 /* Models */,
 				A4E9A00A7BC3EDD73FA9AE29 /* Monitors */,
 				D030481FFFA0F3A54FAAC942 /* Networking */,
@@ -212,6 +247,16 @@
 				3EE1F3FEB2B743ECC687F37B /* Utilities */,
 			);
 			path = ADHDSecondBrain;
+			sourceTree = "<group>";
+		};
+		616AD525FC9B963BE5827D2F /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				827C22B1EF4505B56A8CFBA6 /* HotkeyDefinitions.swift */,
+				CEC68929692E3F6E49CD18BA /* ModalSettingsView.swift */,
+				D8E124D2F833EF85679BF117 /* VisualEffectBackground.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		63838F844A6C15DCF602FDE4 /* Services */ = {
@@ -226,12 +271,25 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		6D22F9AE283E7D0EB11651CC /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				298A361DE4DBB2A7DE264D61 /* FloatingPanel.swift */,
+				47A565A6A1BD0C707898BD5D /* FloatingPanelManager.swift */,
+				CD36ED65B38EDEBEF7814394 /* BrainDump */,
+				616AD525FC9B963BE5827D2F /* Shared */,
+				B09312E2F7ED7B8D93CD6D2F /* Vent */,
+			);
+			path = Modals;
+			sourceTree = "<group>";
+		};
 		9CBDD1F82D2E3C6BF41D9BE7 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				FC84EC67AEC1B697FCA11CBA /* AmbientMenuBar.swift */,
 				976F0E490E24736830744DE8 /* CalmOverlayPanel.swift */,
 				FC2AA3C012DFF1AFEF4D329A /* DashboardView.swift */,
+				2F49B58FCE8726179F2D2C60 /* DashboardViewModel.swift */,
 				7B37A8EDD8D28EF26BD0BA8B /* InterventionPopup.swift */,
 				374E7BBF52ADB307AB636D9E /* MenuBarView.swift */,
 				42DDBFC61099A1F167E805D5 /* OnboardingView.swift */,
@@ -277,6 +335,25 @@
 			path = NotchIsland;
 			sourceTree = "<group>";
 		};
+		B09312E2F7ED7B8D93CD6D2F /* Vent */ = {
+			isa = PBXGroup;
+			children = (
+				F4A4298B6E54001FCD776255 /* VentMessageBubble.swift */,
+				66EEFB81FD93A56C5CF57B39 /* VentView.swift */,
+				57D1F2A4850CE51B2575C20F /* VentViewModel.swift */,
+			);
+			path = Vent;
+			sourceTree = "<group>";
+		};
+		CD36ED65B38EDEBEF7814394 /* BrainDump */ = {
+			isa = PBXGroup;
+			children = (
+				5A73CA5B989462959CB7A152 /* BrainDumpView.swift */,
+				7B3EC42F675C45B7F37A3FD8 /* BrainDumpViewModel.swift */,
+			);
+			path = BrainDump;
+			sourceTree = "<group>";
+		};
 		D030481FFFA0F3A54FAAC942 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +395,7 @@
 			buildPhases = (
 				A534588339B21BB0DF5D0E6F /* Sources */,
 				1B8944E17D9D98D61353AC40 /* Resources */,
+				6E9A0E581892E69EE01098C3 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -325,6 +403,7 @@
 			);
 			name = ADHDSecondBrain;
 			packageProductDependencies = (
+				C1BC2159A0BC6E988B467A23 /* KeyboardShortcuts */,
 			);
 			productName = ADHDSecondBrain;
 			productReference = 27C90DE7B261C0034E99A23C /* ADHDSecondBrain.app */;
@@ -350,6 +429,9 @@
 			);
 			mainGroup = 015C0305D1C44E2B7780FDD0;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F9E9353D0F1C80CACD43DAE8 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5384525E03A3B0568DDEBDA0 /* Products */;
 			projectDirPath = "";
@@ -392,15 +474,21 @@
 				49F7F3A605075F1653F285E4 /* BackendBridge.swift in Sources */,
 				86772C12C581A469DD2D6BA3 /* BackendClient.swift in Sources */,
 				0EA0AE4F7B77F3EFFC854D73 /* BlurTransition.swift in Sources */,
+				A53A23C86782D5E9D2971365 /* BrainDumpView.swift in Sources */,
+				59785B3D590908F3501574F8 /* BrainDumpViewModel.swift in Sources */,
 				7242FF6C58DE601BCFAF347F /* BrowserMonitor.swift in Sources */,
 				68F9ED4502D8DBBB96B2675A /* CalendarStripView.swift in Sources */,
 				4A14830C70B8812494C868ED /* CalmOverlayPanel.swift in Sources */,
 				AA766AA278D7DF5C52151521 /* DashboardView.swift in Sources */,
+				1608307EA973A73B55FC2FBE /* DashboardViewModel.swift in Sources */,
 				83E1E8769719F97A9BBBB807 /* DormantView.swift in Sources */,
 				79C11B19089942A270FB1806 /* EmotionGlowBorder.swift in Sources */,
 				E1F4809A2794F58E47D33081 /* EmotionState.swift in Sources */,
 				3D5D4E5D694675089FF316D0 /* ExpandedPanelView.swift in Sources */,
+				6562E3C2F8DD9BAA4556DDFA /* FloatingPanel.swift in Sources */,
+				A85D84968313CB4C22671F41 /* FloatingPanelManager.swift in Sources */,
 				0D5BA35631E5EB8B475B5893 /* GlanceableView.swift in Sources */,
+				A043A01E607FB79178A0733E /* HotkeyDefinitions.swift in Sources */,
 				3AF8AAC507F4A957A92D5D7D /* HoverTracker.swift in Sources */,
 				ED40B6D1797A43451DAF1465 /* IdleMonitor.swift in Sources */,
 				D355690D6C3DF882400A21B9 /* InterventionBanner.swift in Sources */,
@@ -408,6 +496,7 @@
 				04471D052CBDC1695AA7919E /* KeyboardShortcutManager.swift in Sources */,
 				5EB618BB73EAC3FE1BFA4231 /* Logger.swift in Sources */,
 				319AC0CB48A8A92CB63AD00B /* MenuBarView.swift in Sources */,
+				8ED336873CCE79FF4C785E59 /* ModalSettingsView.swift in Sources */,
 				DAF8453025B9BD50116F4A4B /* ModeSwitcherView.swift in Sources */,
 				46CF1857F84DC3450A60E127 /* Models.swift in Sources */,
 				AA5F3F3A898F20CAC0D43C2E /* MonitorCoordinator.swift in Sources */,
@@ -431,6 +520,10 @@
 				17E45B0BC867147993C35D6D /* TierManager.swift in Sources */,
 				00FD0BF89B668728C93131CC /* TimerRingView.swift in Sources */,
 				B041D70FE9CA7A767B7CFD5C /* TransitionDetector.swift in Sources */,
+				3318CE475E90B526C4B2E98E /* VentMessageBubble.swift in Sources */,
+				D263F37BBA618EE105BEED73 /* VentView.swift in Sources */,
+				F368A482F73BF41ED3E54BD8 /* VentViewModel.swift in Sources */,
+				ADE15F7AE0F6058E771EB7A2 /* VisualEffectBackground.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +711,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F9E9353D0F1C80CACD43DAE8 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C1BC2159A0BC6E988B467A23 /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9E9353D0F1C80CACD43DAE8 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C86B556D291DD23AF1411EAA /* Project object */;
 }

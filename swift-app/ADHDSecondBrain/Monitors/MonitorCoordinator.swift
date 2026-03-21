@@ -22,6 +22,7 @@ class MonitorCoordinator: ObservableObject {
     private let backendClient = BackendClient()
     private var cancellables = Set<AnyCancellable>()
     private var wasIdle = false
+    private static let iso8601Formatter = ISO8601DateFormatter()
 
     // MARK: - Public API
 
@@ -35,7 +36,9 @@ class MonitorCoordinator: ObservableObject {
 
             // If there's a queued intervention, check if this breakpoint allows delivery
             if self?.transitionDetector.checkBreakpoint() == true {
-                TierManager.shared.deliverIfQueued()
+                Task { @MainActor in
+                    TierManager.shared.deliverIfQueued()
+                }
             }
         }
 
@@ -78,7 +81,9 @@ class MonitorCoordinator: ObservableObject {
             transitionDetector.recordIdleResume()
             // Idle resume is a breakpoint — try to deliver queued interventions
             if transitionDetector.checkBreakpoint() {
-                TierManager.shared.deliverIfQueued()
+                Task { @MainActor in
+                    TierManager.shared.deliverIfQueued()
+                }
             }
         }
         wasIdle = currentlyIdle
@@ -93,7 +98,9 @@ class MonitorCoordinator: ObservableObject {
                 transitionDetector.recordTabSwitch(urlOrTitle: url)
                 // Check for tab burst breakpoint
                 if transitionDetector.checkBreakpoint() {
-                    TierManager.shared.deliverIfQueued()
+                    Task { @MainActor in
+                        TierManager.shared.deliverIfQueued()
+                    }
                 }
             }
         } else {
@@ -105,7 +112,7 @@ class MonitorCoordinator: ObservableObject {
             windowTitle: state.windowTitle,
             url: url,
             isIdle: currentlyIdle,
-            timestamp: ISO8601DateFormatter().string(from: Date())
+            timestamp: Self.iso8601Formatter.string(from: Date())
         )
 
         Task {
@@ -132,6 +139,7 @@ class MonitorCoordinator: ObservableObject {
 
     /// Route intervention through TransitionDetector + TierManager.
     /// Anti-pattern #4: NEVER interrupt productive hyperfocus.
+    @MainActor
     private func handleIntervention(_ intervention: Intervention) {
         // Hard block: never interrupt deep focus
         if transitionDetector.shouldSuppressIntervention() {

@@ -5,13 +5,14 @@ import SwiftUI
 struct ExpandedPanelView: View {
     let viewModel: NotchViewModel
     var onConnectCalendar: (() -> Void)?
+    var onCapture: ((String) -> Void)?
 
     var body: some View {
         VStack(spacing: ADHDSpacing.cardSpacing) {
             TopRow(viewModel: viewModel)
 
-            QuickCaptureField { _ in
-                // Wired via NotchCoordinator
+            QuickCaptureField { text in
+                onCapture?(text)
             }
 
             CalendarStripView(

@@ -18,8 +18,11 @@ class AmbientMenuBar {
     private var pulseTimer: Timer?
     private var currentColor: NSColor = .systemGreen
 
-    func setup(statusItem: NSStatusItem) {
-        self.statusItem = statusItem
+    /// Creates a small ambient indicator in the menu bar.
+    /// Call once from AppDelegate on launch.
+    func setup() {
+        let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        self.statusItem = item
         setIndicator(color: .systemGreen, pulse: false)
     }
 
