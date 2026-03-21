@@ -4,6 +4,7 @@ import SwiftUI
 /// Content uses `.fixedSize()` for known-dimension elements.
 struct ExpandedPanelView: View {
     let viewModel: NotchViewModel
+    var onConnectCalendar: (() -> Void)?
 
     var body: some View {
         VStack(spacing: ADHDSpacing.cardSpacing) {
@@ -13,7 +14,10 @@ struct ExpandedPanelView: View {
                 // Wired via NotchCoordinator
             }
 
-            CalendarStripView(events: viewModel.upcomingEvents)
+            CalendarStripView(
+                events: viewModel.upcomingEvents,
+                onConnectCalendar: onConnectCalendar
+            )
 
             ModeSwitcherRow(viewModel: viewModel)
         }

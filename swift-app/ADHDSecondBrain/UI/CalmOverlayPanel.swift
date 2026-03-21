@@ -27,7 +27,7 @@ class CalmOverlayPanel {
         dismiss()
 
         let panel = NSPanel(
-            contentRect: NSRect(x: 0, y: 0, width: 360, height: 200),
+            contentRect: NSRect(x: 0, y: 0, width: 380, height: 240),
             styleMask: [.nonactivatingPanel, .titled, .closable, .fullSizeContentView],
             backing: .buffered,
             defer: false
@@ -45,11 +45,12 @@ class CalmOverlayPanel {
         panel.isMovableByWindowBackground = true
 
         // Position: top-right corner, below menu bar
+        // Offset uses panel width (380) + 20px gutter on right, 20px gutter on top.
         if let screen = NSScreen.main {
             let screenFrame = screen.visibleFrame
             panel.setFrameOrigin(NSPoint(
-                x: screenFrame.maxX - 376,
-                y: screenFrame.maxY - 216
+                x: screenFrame.maxX - 380 - 20,
+                y: screenFrame.maxY - 240 - 20
             ))
         }
 

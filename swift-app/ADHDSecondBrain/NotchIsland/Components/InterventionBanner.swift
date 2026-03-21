@@ -1,5 +1,7 @@
 import SwiftUI
 
+/// Intervention banner matching Paper design: emoji + title + body + action button + dismiss.
+/// Used inside the notch alert overlay state.
 struct InterventionBanner: View {
     let message: InterventionMessage
     let onDismiss: () -> Void
@@ -51,11 +53,11 @@ private struct AcceptButton: View {
         Button(action: action) {
             Text(label)
                 .font(ADHDTypography.Notch.glanceCaption)
-                .foregroundStyle(ADHDColors.Text.inverse)
-                .padding(.horizontal, ADHDSpacing.sm)
+                .foregroundStyle(ADHDColors.Accent.focusLight)
+                .padding(.horizontal, ADHDSpacing.md)
                 .padding(.vertical, ADHDSpacing.xs)
-                .background(ADHDColors.Accent.focus.opacity(0.3))
-                .clipShape(RoundedRectangle(cornerRadius: ADHDSpacing.sm))
+                .background(ADHDColors.Accent.focusLight.opacity(0.1))
+                .clipShape(Capsule())
         }
         .buttonStyle(.plain)
         .accessibilityLabel(label)

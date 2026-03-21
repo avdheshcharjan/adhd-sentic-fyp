@@ -21,6 +21,8 @@ targets:
           - Info.plist
     info:
       path: ADHDSecondBrain/Info.plist
+      properties:
+        ATSApplicationFontsPath: .
     settings:
       base:
         INFOPLIST_FILE: ADHDSecondBrain/Info.plist

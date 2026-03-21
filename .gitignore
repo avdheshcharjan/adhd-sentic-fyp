@@ -40,8 +40,9 @@ htmlcov/
 .pytest_cache/
 
 # ── Evaluation Data ────────────────────────────────────
-backend/data/evaluation_logs/
+backend/data/
 
 # ── Misc ────────────────────────────────────────────────
 *.log
 node_modules/
+

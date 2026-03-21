@@ -3,9 +3,15 @@ Notch/Swift App endpoints (Phase 4 / Notch Island integration)
 Handles the /api/v1/ prefix routes requested by the Swift desktop widget.
 """
 
+import logging
+
 from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import List, Optional
+
+from services.google_calendar import google_calendar_service
+
+logger = logging.getLogger("adhd-brain.notch")
 
 router = APIRouter(prefix="/api/v1", tags=["notch"])
 
@@ -35,12 +41,17 @@ async def get_focus_session():
 
 @router.get("/calendar/upcoming")
 async def get_upcoming_events(limit: int = 3):
-    # Placeholder returning CalendarEvent format
-    events = [
-        {"id": "ev-1", "title": "Supervisor Meeting", "start_time": "2:00 PM", "emoji": "📅"},
-        {"id": "ev-2", "title": "FYP Demo Prep", "start_time": "4:30 PM", "emoji": "🚀"}
-    ]
-    return events[:limit]
+    """Fetch upcoming events from Google Calendar. Falls back to empty list if not authenticated."""
+    if not google_calendar_service.is_authenticated:
+        logger.warning("Google Calendar not authenticated — returning empty events")
+        return []
+
+    try:
+        events = await google_calendar_service.get_upcoming_events(max_results=limit)
+        return events
+    except Exception as e:
+        logger.error(f"Failed to fetch Google Calendar events: {e}")
+        return []
 
 @router.get("/emotion/current")
 async def get_current_emotion():

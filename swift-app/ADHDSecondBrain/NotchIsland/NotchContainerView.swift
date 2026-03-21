@@ -14,6 +14,7 @@ import SwiftUI
 struct NotchContainerView: View {
     var stateMachine: NotchStateMachine
     var viewModel: NotchViewModel
+    var onConnectCalendar: (() -> Void)?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     // Hover state (boring.notch pattern)
@@ -110,9 +111,12 @@ struct NotchContainerView: View {
             .transition(reduceMotion ? .opacity : .notchCompact)
             .zIndex(1)
         case .expanded:
-            ExpandedPanelView(viewModel: viewModel)
-                .transition(reduceMotion ? .opacity : .notchExpand)
-                .zIndex(1)
+            ExpandedPanelView(
+                viewModel: viewModel,
+                onConnectCalendar: onConnectCalendar
+            )
+            .transition(reduceMotion ? .opacity : .notchExpand)
+            .zIndex(1)
         case .alert(let tier):
             AlertOverlayView(
                 tier: tier,

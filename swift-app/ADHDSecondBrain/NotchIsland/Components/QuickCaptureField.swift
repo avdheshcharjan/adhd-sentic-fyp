@@ -1,5 +1,7 @@
 import SwiftUI
 
+/// Quick capture field matching Paper design: brain icon in #B8C9E0,
+/// placeholder in 14px at 40% opacity, dark background card.
 struct QuickCaptureField: View {
     @State private var captureText = ""
     @FocusState private var isFocused: Bool
@@ -17,6 +19,7 @@ struct QuickCaptureField: View {
 
     var body: some View {
         HStack(spacing: ADHDSpacing.sm) {
+            // Brain/search icon matching Paper SVG
             Image(systemName: "brain.head.profile")
                 .font(.system(size: 14))
                 .foregroundStyle(ADHDColors.Accent.calm)
@@ -30,6 +33,8 @@ struct QuickCaptureField: View {
                 .accessibilityLabel(
                     "Brain dump text field. Type a thought and press return to save."
                 )
+
+            Spacer()
 
             if !captureText.isEmpty {
                 SubmitButton(action: submitCapture)

@@ -13,7 +13,7 @@ struct ADHDSecondBrainApp: App {
         .menuBarExtraStyle(.window)
 
         Settings {
-            OnboardingView()
+            SettingsView()
         }
     }
 }

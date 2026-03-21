@@ -1,5 +1,7 @@
 import SwiftUI
 
+/// Mode switcher matching Paper design: pill buttons with emoji + label.
+/// Selected mode: #457B9D at 30% bg, white text. Unselected: 50% white text, no bg.
 struct ModeSwitcherView: View {
     @Binding var selectedMode: NotchDisplayMode
 

@@ -14,6 +14,9 @@ class InterventionPopup {
     private static var currentPanel: NSPanel?
     private static var dismissTimer: Timer?
 
+    private static let panelWidth: CGFloat = 380
+    private static let panelHeight: CGFloat = 240
+
     /// Show an intervention popup.
     /// - Parameters:
     ///   - intervention: The intervention data from the backend
@@ -23,7 +26,7 @@ class InterventionPopup {
         dismiss()
 
         let panel = NSPanel(
-            contentRect: NSRect(x: 0, y: 0, width: 360, height: 240),
+            contentRect: NSRect(x: 0, y: 0, width: panelWidth, height: panelHeight),
             styleMask: [.nonactivatingPanel, .titled, .closable, .fullSizeContentView],
             backing: .buffered,
             defer: false
@@ -40,8 +43,8 @@ class InterventionPopup {
         // Position: top-right corner with padding
         if let screen = NSScreen.main {
             let screenFrame = screen.visibleFrame
-            let panelX = screenFrame.maxX - 360 - 20
-            let panelY = screenFrame.maxY - 240 - 20
+            let panelX = screenFrame.maxX - panelWidth - 20
+            let panelY = screenFrame.maxY - panelHeight - 20
             panel.setFrameOrigin(NSPoint(x: panelX, y: panelY))
         }
 
@@ -93,62 +96,105 @@ class InterventionPopup {
 
 // MARK: - SwiftUI Card View
 
-/// The visual content of the intervention popup.
+/// The visual content of the intervention popup, matching the Paper canvas exactly.
 struct InterventionCardView: View {
     let intervention: Intervention
     let onAction: (String) -> Void
     let onDismiss: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            // Acknowledgment
-            Text(intervention.acknowledgment)
-                .font(.system(.body, design: .rounded))
-                .foregroundColor(.primary)
-                .lineLimit(3)
+        ZStack(alignment: .top) {
+            // Card background
+            RoundedRectangle(cornerRadius: 16)
+                .fill(ADHDColors.Background.secondary)
+                // Outer drop shadow
+                .shadow(color: Color.black.opacity(0.5), radius: 48, x: 0, y: 16)
+                // Inset border simulated via overlay — SwiftUI has no native inset shadow
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .strokeBorder(Color.white.opacity(0.06), lineWidth: 1)
+                )
 
-            // Suggestion
-            Text(intervention.suggestion)
-                .font(.system(.callout, design: .rounded))
-                .foregroundColor(.secondary)
-                .lineLimit(2)
+            // Card content
+            VStack(alignment: .leading, spacing: 16) {
+                // 1. Title + body group
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(intervention.acknowledgment)
+                        .font(Font.custom("Lexend-SemiBold", size: 17))
+                        .foregroundColor(ADHDColors.Text.primary)
+                        .lineSpacing(24 - 17) // line-height 24px → leading = 24 − 17 = 7
+                        .fixedSize(horizontal: false, vertical: true)
 
-            // Action Buttons
-            HStack(spacing: 10) {
-                ForEach(intervention.actions) { action in
-                    Button {
-                        onAction(action.id)
-                    } label: {
-                        HStack(spacing: 4) {
-                            Text(action.emoji)
+                    Text(intervention.suggestion)
+                        .font(Font.custom("Lexend-Regular", size: 13))
+                        .foregroundColor(ADHDColors.Text.secondary)
+                        .lineSpacing(20 - 13) // line-height 20px → leading = 20 − 13 = 7
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
+                // 2. Action buttons
+                HStack(spacing: 8) {
+                    ForEach(intervention.actions) { action in
+                        Button {
+                            onAction(action.id)
+                        } label: {
                             Text(action.label)
-                                .font(.caption.bold())
+                                .font(Font.custom("Lexend-Medium", size: 13))
+                                .foregroundColor(ADHDColors.Accent.focusLight)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 16)
+                                .background(
+                                    ADHDColors.Accent.focusLight.opacity(0.1),
+                                    in: Capsule()
+                                )
                         }
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 8)
-                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
+                        .buttonStyle(.plain)
                     }
+                }
+
+                // 3. "Not now" dismiss — right-aligned
+                HStack {
+                    Spacer()
+                    Button("Not now") {
+                        onDismiss()
+                    }
+                    .font(Font.custom("Lexend-Regular", size: 12))
+                    .foregroundColor(ADHDColors.Text.tertiary)
                     .buttonStyle(.plain)
                 }
             }
+            .padding(24)
 
-            // Dismiss
-            HStack {
-                Spacer()
-                Button("Not now") {
-                    onDismiss()
-                }
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .buttonStyle(.plain)
+            // Top accent bar: 3px warm amber gradient, absolute at top
+            GeometryReader { geometry in
+                LinearGradient(
+                    colors: [ADHDColors.Accent.warmth, ADHDColors.Accent.warmth.opacity(0)],
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
+                .frame(height: 3)
+                .clipShape(
+                    // Only round the top two corners to align with the card
+                    UnevenRoundedRectangle(
+                        topLeadingRadius: 16,
+                        bottomLeadingRadius: 0,
+                        bottomTrailingRadius: 0,
+                        topTrailingRadius: 16
+                    )
+                )
+                // Stretch to card width
+                .frame(width: geometry.size.width)
             }
+            .frame(height: 3)
         }
-        .padding(20)
-        .frame(width: 340)
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(.ultraThickMaterial)
-                .shadow(color: .black.opacity(0.2), radius: 20, y: 10)
-        )
+        .frame(width: 380)
     }
 }
+
+// MARK: - UnevenRoundedRectangle back-compat
+
+/// Availability shim: UnevenRoundedRectangle requires macOS 13+.
+/// The project targets macOS 13+ (Ventura) per the Notch Island feature set,
+/// so this is safe. Throw at compile time if that ever changes.
+@available(macOS 13.0, *)
+private typealias _UnevenRoundedRectangle = UnevenRoundedRectangle

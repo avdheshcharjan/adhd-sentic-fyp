@@ -23,6 +23,7 @@ from api.insights import router as insights_router
 from api.interventions import router as interventions_router
 from api.evaluation import router as evaluation_router
 from api.notch import router as notch_router
+from api.google_auth import router as google_auth_router
 
 from sqlalchemy import text
 from db.database import engine, Base
@@ -112,6 +113,7 @@ app.include_router(insights_router)
 app.include_router(interventions_router)
 app.include_router(evaluation_router)
 app.include_router(notch_router)
+app.include_router(google_auth_router)
 
 
 @app.get("/", tags=["root"])
@@ -131,6 +133,9 @@ async def root():
             "POST /eval/ablation",
             "GET  /eval/ablation",
             "POST /eval/logging",
+            "GET  /api/auth/google",
+            "GET  /api/auth/google/callback",
+            "GET  /api/auth/google/status",
         ],
     }
 

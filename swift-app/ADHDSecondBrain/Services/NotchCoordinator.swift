@@ -68,6 +68,10 @@ class NotchCoordinator {
         .gentle
     }
 
+    func openGoogleCalendarAuth() {
+        bridge.openGoogleAuth()
+    }
+
     func sendCapture(_ text: String) {
         Task { await bridge.sendQuickCapture(text) }
     }

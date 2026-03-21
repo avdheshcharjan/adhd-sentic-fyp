@@ -1,3 +1,4 @@
+import AppKit
 import Foundation
 
 /// Extends BackendClient with notch-specific endpoints and polling.
@@ -71,6 +72,7 @@ class BackendBridge {
         await fetchFocusSession()
         await fetchUpcomingEvents()
         await fetchDailyProgress()
+        await checkCalendarStatus()
     }
 
     // MARK: - Fetchers (silent failure)
@@ -123,7 +125,24 @@ class BackendBridge {
         }
     }
 
+    // Google Calendar auth status
+    var isCalendarConnected: Bool = false
+
     // MARK: - Actions
+
+    func openGoogleAuth() {
+        guard let url = URL(string: "http://localhost:8420/api/auth/google") else { return }
+        NSWorkspace.shared.open(url)
+    }
+
+    @MainActor
+    func checkCalendarStatus() async {
+        guard let data = await get("api/auth/google/status") else { return }
+        struct CalStatus: Decodable { let connected: Bool }
+        if let status = try? decoder.decode(CalStatus.self, from: data) {
+            isCalendarConnected = status.connected
+        }
+    }
 
     func sendQuickCapture(_ text: String) async {
         let body = ["text": text, "source": "notch_quick_capture"]

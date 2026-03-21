@@ -60,7 +60,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let containerView = NotchContainerView(
             stateMachine: notchCoord.stateMachine,
-            viewModel: notchCoord.viewModel
+            viewModel: notchCoord.viewModel,
+            onConnectCalendar: { [weak notchCoord] in
+                notchCoord?.openGoogleCalendarAuth()
+            }
         )
 
         // NSHostingView with no manual constraints (DynamicNotchKit pattern).

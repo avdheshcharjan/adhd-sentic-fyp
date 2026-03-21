@@ -1,5 +1,8 @@
 import SwiftUI
 
+/// Timer ring matching Paper design: 56x56 circle with 4px border.
+/// Blue (#457B9DCC) when <75%, green (#73C8A9) when >=75%.
+/// Center: timer digits (Lexend Light 16px) + label (Lexend Medium 9px).
 struct TimerRingView: View {
     let elapsed: TimeInterval
     let total: TimeInterval
@@ -20,7 +23,7 @@ struct TimerRingView: View {
 
     private var ringColor: Color {
         progress < 0.75
-            ? ADHDColors.Accent.focus
+            ? ADHDColors.Accent.focus.opacity(0.8)
             : ADHDColors.Accent.success
     }
 
@@ -46,11 +49,11 @@ struct TimerRingView: View {
 
             VStack(spacing: 0) {
                 Text(timeString)
-                    .font(ADHDTypography.Notch.timerSmall)
+                    .font(ADHDTypography.Notch.timerInRing)
                     .foregroundStyle(ADHDColors.Text.inverse)
 
                 Text(label)
-                    .font(ADHDTypography.Notch.glanceCaption)
+                    .font(ADHDTypography.Notch.timerLabel)
                     .foregroundStyle(ADHDColors.Text.inverse.opacity(0.6))
             }
         }

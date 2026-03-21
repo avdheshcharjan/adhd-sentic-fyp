@@ -33,6 +33,11 @@ class Settings(BaseSettings):
     WHOOP_CLIENT_SECRET: str = ""
     WHOOP_REDIRECT_URI: str = "http://localhost:8420/whoop/callback"
 
+    # ── Google Calendar API (OAuth 2.0) ───────────────
+    GOOGLE_CALENDAR_CLIENT_ID: str = ""
+    GOOGLE_CALENDAR_CLIENT_SECRET: str = ""
+    GOOGLE_CALENDAR_REDIRECT_URI: str = "http://localhost:8420/api/auth/google/callback"
+
     # ── LLM Keys ────────────────────────────────────────
     CLAUDE_API_KEY: str = ""
     OPENAI_API_KEY: str = ""
