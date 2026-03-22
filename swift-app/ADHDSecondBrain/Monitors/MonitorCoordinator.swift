@@ -1,6 +1,13 @@
 import Foundation
 import Combine
 
+// MARK: - Intervention Action Notifications
+
+extension Notification.Name {
+    static let openBrainDump = Notification.Name("openBrainDump")
+    static let openVentModal = Notification.Name("openVentModal")
+}
+
 /// Combines ScreenMonitor, BrowserMonitor, IdleMonitor, and TransitionDetector
 /// into a unified event-driven data stream that reports to the Python backend.
 ///
@@ -163,6 +170,18 @@ class MonitorCoordinator: ObservableObject {
     }
 
     private func respondToIntervention(interventionType: String, actionId: String?) {
+        // Handle action-specific side effects
+        if let actionId {
+            switch actionId {
+            case "brain_dump":
+                NotificationCenter.default.post(name: .openBrainDump, object: nil)
+            case "vent":
+                NotificationCenter.default.post(name: .openVentModal, object: nil)
+            default:
+                break
+            }
+        }
+
         Task {
             try? await backendClient.respondToIntervention(
                 interventionId: interventionType,

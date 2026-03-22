@@ -15,7 +15,7 @@ enum ADHDSpacing {
     static let notchPaddingV: CGFloat = 8
     static let notchCornerRadius: CGFloat = 16
     static let notchExpandedWidth: CGFloat = 380
-    static let notchExpandedHeight: CGFloat = 260
+    static let notchExpandedHeight: CGFloat = 280
     static let notchGlanceWidth: CGFloat = 280
     static let notchGlanceHeight: CGFloat = 36
 

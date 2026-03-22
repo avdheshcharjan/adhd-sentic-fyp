@@ -26,7 +26,13 @@ class ConceptCorrectionRequest(BaseModel):
 
 @router.get("/current")
 async def get_current_intervention():
-    """Get any pending intervention."""
+    """Get any pending intervention.
+
+    The JITAI engine evaluates interventions in the /screen/activity hot path.
+    This endpoint returns the last triggered intervention if it hasn't been
+    acknowledged yet. Currently returns None — interventions are delivered
+    inline via the /screen/activity response.
+    """
     return {"intervention": None}
 
 

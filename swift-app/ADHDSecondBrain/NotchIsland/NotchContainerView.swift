@@ -46,8 +46,13 @@ struct NotchContainerView: View {
                 .padding(-50)
 
             // Emotion glow border (behind content, inside mask)
-            if stateMachine.currentState != .dormant {
-                EmotionGlowBorder(emotion: viewModel.currentEmotion)
+            // Visible on all states except dormant and ambient.
+            if stateMachine.currentState != .dormant
+                && stateMachine.currentState != .ambient {
+                EmotionGlowBorder(
+                    emotion: viewModel.currentEmotion,
+                    notchState: stateMachine.currentState
+                )
             }
 
             // State-specific content
@@ -62,11 +67,18 @@ struct NotchContainerView: View {
                 .frame(height: 1)
                 .padding(.horizontal, currentNotchShape.topCornerRadius)
         }
-        // Shadow (controlled by SwiftUI, not NSPanel)
+        // Drop shadow — spec values per state (Paper design).
+        // SwiftUI stacks multiple .shadow() calls on the same composited layer.
         .shadow(
-            color: .black.opacity(isHovering ? 0.6 : 0.4),
-            radius: isHovering ? 16 : 10,
-            y: isHovering ? 8 : 5
+            color: .black.opacity(currentDropShadowOpacity),
+            radius: currentDropShadowRadius,
+            y: currentDropShadowY
+        )
+        // Accent glow shadow (state-dependent color, zero y-offset)
+        .shadow(
+            color: currentGlowColor.opacity(currentGlowOpacity),
+            radius: currentGlowRadius,
+            y: 0
         )
         // Gesture-driven scale (boring.notch pull-to-expand)
         .scaleEffect(
@@ -74,8 +86,9 @@ struct NotchContainerView: View {
             y: 1.0 + gestureProgress * 0.01,
             anchor: .top
         )
-        // Hover shadow animates independently of state transitions
+        // Shadow animates on hover and state transitions
         .animation(.smooth(duration: 0.3), value: isHovering)
+        .animation(.smooth(duration: 0.3), value: stateMachine.currentState)
         // Flatten rendering to prevent constraint cycles
         .compositingGroup()
         // Interactions
@@ -157,11 +170,69 @@ struct NotchContainerView: View {
 
     private var currentHeight: CGFloat {
         switch stateMachine.currentState {
-        case .dormant: 32
-        case .ambient: 32
+        case .dormant: 28
+        case .ambient: 28
         case .glanceable: ADHDSpacing.notchGlanceHeight
         case .expanded: ADHDSpacing.notchExpandedHeight
-        case .alert: ADHDSpacing.notchGlanceHeight + 60
+        case .alert: 80
+        }
+    }
+
+    // MARK: - Shadow per State (Paper design spec)
+
+    private var isAlertState: Bool {
+        if case .alert = stateMachine.currentState { return true }
+        return false
+    }
+
+    /// Primary drop shadow — black, y-offset, blur radius
+    private var currentDropShadowOpacity: Double {
+        switch stateMachine.currentState {
+        case .dormant, .ambient: 0.0
+        case .glanceable: 0.4
+        case .expanded: isHovering ? 0.7 : 0.6
+        case .alert: 0.5
+        }
+    }
+
+    private var currentDropShadowRadius: CGFloat {
+        switch stateMachine.currentState {
+        case .dormant, .ambient: 0
+        case .glanceable: 16
+        case .expanded: isHovering ? 36 : 32
+        case .alert: 20
+        }
+    }
+
+    private var currentDropShadowY: CGFloat {
+        switch stateMachine.currentState {
+        case .dormant, .ambient: 0
+        case .glanceable: 4
+        case .expanded: 8
+        case .alert: 4
+        }
+    }
+
+    /// Accent glow shadow color — steel blue for normal states, red for alert
+    private var currentGlowColor: Color {
+        isAlertState ? ADHDColors.Accent.alert : ADHDColors.Accent.focus
+    }
+
+    private var currentGlowOpacity: Double {
+        switch stateMachine.currentState {
+        case .dormant, .ambient: 0.0
+        case .glanceable: 0.20
+        case .expanded: 0.15
+        case .alert: 0.20
+        }
+    }
+
+    private var currentGlowRadius: CGFloat {
+        switch stateMachine.currentState {
+        case .dormant, .ambient: 0
+        case .glanceable: 12
+        case .expanded: 12
+        case .alert: 20
         }
     }
 

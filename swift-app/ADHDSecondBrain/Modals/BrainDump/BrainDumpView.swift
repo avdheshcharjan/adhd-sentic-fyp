@@ -8,7 +8,6 @@ struct BrainDumpView: View {
     let onSubmit: () -> Void
 
     @FocusState private var isTextFocused: Bool
-    @State private var showCheckmark: Bool = false
 
     private var timestampText: String {
         let formatter = DateFormatter()
@@ -22,7 +21,13 @@ struct BrainDumpView: View {
 
             VStack(spacing: 0) {
                 headerBar
-                textEditorArea
+
+                if viewModel.isCaptured {
+                    summaryArea
+                } else {
+                    textEditorArea
+                }
+
                 bottomBar
             }
         }
@@ -41,9 +46,9 @@ struct BrainDumpView: View {
 
     private var headerBar: some View {
         HStack {
-            Text("What's on your mind?")
+            Text(viewModel.isCaptured ? "Captured" : "What's on your mind?")
                 .font(Font.custom("Lexend-SemiBold", size: 16))
-                .foregroundColor(ADHDColors.Text.primary)
+                .foregroundColor(viewModel.isCaptured ? ADHDColors.Accent.success : ADHDColors.Text.primary)
 
             Spacer()
 
@@ -56,12 +61,12 @@ struct BrainDumpView: View {
 
     @ViewBuilder
     private var savedIndicator: some View {
-        if showCheckmark {
+        if viewModel.isCaptured {
             HStack(spacing: 4) {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: 13))
                     .foregroundColor(ADHDColors.Accent.success)
-                Text("Captured")
+                Text("Saved")
                     .font(Font.custom("Lexend-Regular", size: 12))
                     .foregroundColor(ADHDColors.Accent.success)
             }
@@ -71,7 +76,7 @@ struct BrainDumpView: View {
                 Image(systemName: "checkmark.circle.fill")
                     .font(.system(size: 13))
                     .foregroundColor(ADHDColors.Text.muted)
-                Text("Draft saved")
+                Text("saved")
                     .font(Font.custom("Lexend-Regular", size: 12))
                     .foregroundColor(ADHDColors.Text.muted)
             }
@@ -83,7 +88,7 @@ struct BrainDumpView: View {
 
     private var textEditorArea: some View {
         ZStack(alignment: .topLeading) {
-            if viewModel.noteText.isEmpty {
+            if viewModel.noteText.isEmpty && !viewModel.isSubmitting {
                 Text("Capture it before it flies away...")
                     .font(Font.custom("Lexend-Regular", size: 14))
                     .foregroundColor(ADHDColors.Text.muted)
@@ -103,6 +108,7 @@ struct BrainDumpView: View {
             .focused($isTextFocused)
             .padding(.horizontal, 14)
             .padding(.vertical, 4)
+            .disabled(viewModel.isSubmitting)
             .accessibilityLabel("Brain dump text field")
             .accessibilityHint("Type your thoughts and press Command Return to capture")
             .onKeyPress(.return, phases: .down) { press in
@@ -116,21 +122,88 @@ struct BrainDumpView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
+    // MARK: - Summary Area (post-capture)
+
+    private var summaryArea: some View {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 12) {
+                if viewModel.summaryText.isEmpty {
+                    HStack(spacing: 8) {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                            .scaleEffect(0.7)
+                        Text("Thinking...")
+                            .font(Font.custom("Lexend-Regular", size: 13))
+                            .foregroundColor(ADHDColors.Text.muted)
+                    }
+                    .padding(.top, 16)
+                } else {
+                    Text(viewModel.summaryText)
+                        .font(Font.custom("Lexend-Regular", size: 14))
+                        .foregroundColor(ADHDColors.Text.secondary)
+                        .lineSpacing(5)
+                        .animation(.easeIn(duration: 0.15), value: viewModel.summaryText)
+                }
+            }
+            .padding(.horizontal, 18)
+            .padding(.vertical, 12)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .transition(.opacity.combined(with: .move(edge: .bottom)))
+    }
+
     // MARK: - Bottom Bar
 
     private var bottomBar: some View {
         HStack(spacing: 8) {
-            Text(timestampText)
-                .font(Font.custom("Lexend-Regular", size: 11))
-                .foregroundColor(ADHDColors.Text.muted)
+            if viewModel.isCaptured {
+                Text(timestampText)
+                    .font(Font.custom("Lexend-Regular", size: 11))
+                    .foregroundColor(ADHDColors.Text.muted)
 
-            Spacer()
+                Spacer()
 
-            Text("⌘↩ to capture")
-                .font(Font.custom("Lexend-Regular", size: 11))
-                .foregroundColor(ADHDColors.Text.muted)
+                Button {
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        viewModel.resetForNewDump()
+                    }
+                } label: {
+                    Text("New Dump")
+                        .font(Font.custom("Lexend-Medium", size: 13))
+                        .foregroundColor(ADHDColors.Text.secondary)
+                        .padding(.vertical, 6)
+                        .padding(.horizontal, 14)
+                        .background(ADHDColors.Background.secondary.opacity(0.6))
+                        .cornerRadius(8)
+                }
+                .buttonStyle(.plain)
 
-            captureButton
+                Button {
+                    onSubmit()
+                    viewModel.resetForNewDump()
+                } label: {
+                    Text("Done")
+                        .font(Font.custom("Lexend-Medium", size: 13))
+                        .foregroundColor(.white)
+                        .padding(.vertical, 6)
+                        .padding(.horizontal, 14)
+                        .background(ADHDColors.Accent.focus)
+                        .cornerRadius(8)
+                }
+                .buttonStyle(.plain)
+            } else {
+                Text(timestampText)
+                    .font(Font.custom("Lexend-Regular", size: 11))
+                    .foregroundColor(ADHDColors.Text.muted)
+
+                Spacer()
+
+                Text("\u{2318}\u{21A9} to capture")
+                    .font(Font.custom("Lexend-Regular", size: 11))
+                    .foregroundColor(ADHDColors.Text.muted)
+
+                captureButton
+            }
         }
         .padding(.horizontal, 16)
         .padding(.bottom, 14)
@@ -167,20 +240,6 @@ struct BrainDumpView: View {
     // MARK: - Actions
 
     private func handleSubmit() async {
-        let success = await viewModel.submit()
-        if success {
-            await MainActor.run {
-                withAnimation(.easeInOut(duration: 0.2)) {
-                    showCheckmark = true
-                }
-            }
-            try? await Task.sleep(nanoseconds: 400_000_000)
-            await MainActor.run {
-                onSubmit()
-                withAnimation {
-                    showCheckmark = false
-                }
-            }
-        }
+        await viewModel.submit()
     }
 }

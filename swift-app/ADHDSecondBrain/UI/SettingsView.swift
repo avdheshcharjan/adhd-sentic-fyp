@@ -381,7 +381,7 @@ private struct FocusSessionsSettingsPage: View {
                 // Default focus block stepper row
                 SettingsStepperRow(
                     label: "Default focus block",
-                    description: "Duration of a single focus session",
+                    description: "Duration before a break is suggested",
                     value: $defaultFocusBlock,
                     step: 5,
                     range: 15...90,
@@ -390,13 +390,13 @@ private struct FocusSessionsSettingsPage: View {
 
                 SettingsToggleRow(
                     label: "Break reminders",
-                    description: "Suggest a break at the end of each focus block",
+                    description: "Gentle nudge when a focus block ends",
                     isOn: $breakReminders
                 )
 
                 SettingsToggleRow(
                     label: "Auto-detect sessions",
-                    description: "Start a session when sustained focus is detected",
+                    description: "Start focus blocks automatically from activity patterns",
                     isOn: $autoDetectSessions
                 )
 
@@ -408,7 +408,7 @@ private struct FocusSessionsSettingsPage: View {
 
                 SettingsValuePillRow(
                     label: "Max interventions per block",
-                    description: "Caps the number of nudges in one focus session",
+                    description: "Limit nudges within a 90-minute window",
                     valueText: "\(maxInterventionsPerBlock)"
                 )
             }
@@ -640,7 +640,7 @@ private struct WhoopConnectionCard: View {
 
             // Text
             VStack(alignment: .leading, spacing: 2) {
-                Text(isConnected ? "Whoop Connected" : "Not Connected")
+                Text(isConnected ? "Whoop 4.0 Connected" : "Not Connected")
                     .font(Font.custom("Lexend-Medium", size: 14))
                     .foregroundColor(ADHDColors.Text.primary)
                 Text(isConnected ? relativeTimeString : "Connect your Whoop device")

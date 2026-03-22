@@ -16,6 +16,8 @@ enum ADHDColors {
     enum Text {
         static let primary = Color(hex: 0xE5E5E7)
         static let secondary = Color(hex: 0xABAAB1)
+        /// Ambient/muted notch labels — Paper spec exact value #ABABAB
+        static let notchMuted = Color(hex: 0xABABAB)
         static let tertiary = Color(hex: 0x75757B)
         static let inverse = Color(hex: 0xE5E5E7)
         static let muted = Color(hex: 0x47474D)
@@ -68,6 +70,10 @@ enum ADHDTypography {
         static let glanceTitle = Font.custom("Lexend-SemiBold", size: 13)
         static let glanceBody = Font.custom("Lexend-Regular", size: 11)
         static let glanceCaption = Font.custom("Lexend-Medium", size: 10)
+        /// Ambient state: task name + countdown — Lexend Regular 12px, color #ABABAB
+        static let ambientLabel = Font.custom("Lexend-Regular", size: 12)
+        /// Alert banner title — Lexend SemiBold 14px (Paper spec)
+        static let alertTitle = Font.custom("Lexend-SemiBold", size: 14)
         static let expandedTitle = Font.custom("Lexend-SemiBold", size: 16)
         static let expandedBody = Font.custom("Lexend-Regular", size: 14)
         static let timer = Font.custom("Lexend-Light", size: 28).monospacedDigit()

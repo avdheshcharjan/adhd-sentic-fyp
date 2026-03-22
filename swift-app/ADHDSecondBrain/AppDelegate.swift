@@ -75,6 +75,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         KeyboardShortcuts.onKeyUp(for: .ventModal) { [weak manager] in
             manager?.toggleVentModal()
         }
+
+        // Intervention action observers — open modals from JITAI intervention buttons
+        NotificationCenter.default.addObserver(forName: .openBrainDump, object: nil, queue: .main) { [weak manager] _ in
+            manager?.toggleBrainDump()
+        }
+        NotificationCenter.default.addObserver(forName: .openVentModal, object: nil, queue: .main) { [weak manager] _ in
+            manager?.toggleVentModal()
+        }
     }
 
     // MARK: - Notch Island Setup

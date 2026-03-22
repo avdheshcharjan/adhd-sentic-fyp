@@ -16,6 +16,7 @@ struct DashboardView: View {
         ScrollView {
             VStack(spacing: 0) {
                 DashboardHeader(coordinator: coordinator)
+                    .padding(.bottom, 4)
                 FocusTimelineCard(viewModel: viewModel)
                 MetricsEmotionRow(coordinator: coordinator, viewModel: viewModel)
                 WhoopInterventionsRow(viewModel: viewModel)
@@ -23,7 +24,7 @@ struct DashboardView: View {
             }
         }
         .background(ADHDColors.Background.primary)
-        .frame(minWidth: 900, minHeight: 700)
+        .frame(minWidth: 960, minHeight: 800)
         .onAppear {
             viewModel.startPolling()
         }
@@ -629,24 +630,24 @@ private struct BehavioralStatesSection: View {
 
     var body: some View {
         VStack(spacing: 8) {
-            Text("BEHAVIORAL STATE")
+            Text("BEHAVIORAL STATES (MIN)")
                 .font(ADHDTypography.App.sectionLabel)
                 .tracking(0.7)
                 .foregroundStyle(ADHDColors.Text.tertiary)
 
             HStack(spacing: 8) {
                 BehaviorPill(
-                    value: viewModel.behavioralState == "focused" ? "Active" : "--",
+                    value: viewModel.dashboardStats != nil ? "\(viewModel.focusedMinutes)" : "--",
                     label: "FOCUSED",
                     color: ADHDColors.Accent.successBright
                 )
                 BehaviorPill(
-                    value: viewModel.behavioralState == "hyperfocused" ? "Active" : "--",
+                    value: viewModel.dashboardStats != nil ? "\(viewModel.hyperfocusedMinutes)" : "--",
                     label: "HYPERF.",
                     color: ADHDColors.Accent.focusLight
                 )
                 BehaviorPill(
-                    value: viewModel.behavioralState == "distracted" ? "Active" : "--",
+                    value: viewModel.dashboardStats != nil ? "\(viewModel.distractedMinutes)" : "--",
                     label: "DISTRACT.",
                     color: ADHDColors.Accent.danger
                 )

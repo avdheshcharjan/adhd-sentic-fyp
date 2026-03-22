@@ -22,7 +22,10 @@ Anti-patterns enforced:
   #9: Max 3 interventions per 90-min block
 """
 
+from __future__ import annotations
+
 from datetime import datetime, timedelta
+from typing import TYPE_CHECKING
 
 from models.adhd_state import ADHDMetrics
 from models.intervention import Intervention, InterventionAction
@@ -30,6 +33,9 @@ from services.transition_detector import TransitionDetector
 from services.hyperfocus_classifier import HyperfocusClassifier
 from services.adaptive_frequency import ThompsonSamplingBandit
 from services.notification_tier import select_tier, urgency_color_for_tier
+
+if TYPE_CHECKING:
+    from services.brain_dump_reminder import BrainDumpReminderQueue
 
 
 class JITAIEngine:
@@ -41,10 +47,11 @@ class JITAIEngine:
     DEFAULT_MAX_PER_BLOCK: int = 3
     BLOCK_DURATION_MINUTES: float = 90.0
 
-    def __init__(self) -> None:
+    def __init__(self, brain_dump_reminders: BrainDumpReminderQueue | None = None) -> None:
         self.transition_detector = TransitionDetector()
         self.hyperfocus_classifier = HyperfocusClassifier()
         self.adaptive_bandit = ThompsonSamplingBandit()
+        self._brain_dump_reminders = brain_dump_reminders
 
         self._last_intervention_time: datetime | None = None
         self._cooldown_seconds: int = self.DEFAULT_COOLDOWN_SECONDS
@@ -185,6 +192,33 @@ class JITAIEngine:
         emotion_context: dict | None,
     ) -> Intervention | None:
         """Apply ordered intervention rules."""
+
+        # Rule 0: Brain dump reminder — only when idle/unfocused and not in a task
+        if (
+            self._brain_dump_reminders
+            and self._brain_dump_reminders.has_pending()
+            and self._brain_dump_reminders.time_since_oldest() >= 5.0
+            and metrics.behavioral_state in ("idle", "distracted", "multitasking")
+            and metrics.focus_score < 30
+        ):
+            reminder = self._brain_dump_reminders.pop_next()
+            if reminder:
+                minutes_ago = (datetime.now() - reminder.captured_at.replace(tzinfo=None)).total_seconds() / 60
+                time_label = f"{int(minutes_ago)}m ago" if minutes_ago < 60 else f"{int(minutes_ago / 60)}h ago"
+                return Intervention(
+                    type="brain_dump_reminder",
+                    ef_domain="self_motivation",
+                    acknowledgment=f"Remember this? \"{reminder.content_preview}\"",
+                    suggestion=f"Captured {time_label}. Your mind seems free — want to come back to this?",
+                    actions=[
+                        InterventionAction(id="brain_dump", emoji="🧠", label="Open Brain Dump"),
+                        InterventionAction(id="later", emoji="⏰", label="Remind me later"),
+                        InterventionAction(id="dismiss", emoji="✕", label="Not now"),
+                    ],
+                    requires_senticnet=False,
+                    notification_tier=2,
+                    urgency_color="green",
+                )
 
         # Rule 1: Distraction spiral (Self-restraint deficit)
         if (

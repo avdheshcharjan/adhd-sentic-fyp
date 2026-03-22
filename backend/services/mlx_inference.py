@@ -8,6 +8,7 @@ Fallback: Qwen3-1.7B 4-bit (~1.1 GB) — lighter option if memory pressure detec
 
 import gc
 import logging
+import re
 import time
 from datetime import datetime
 from typing import Optional
@@ -163,7 +164,9 @@ class MLXInference:
             sampler=sampler,
         )
 
-        return response
+        # Strip Qwen3 thinking tags — model emits them even with /no_think prefix
+        response = re.sub(r"<think>.*?</think>\s*", "", response, flags=re.DOTALL)
+        return response.strip()
 
     def generate_morning_briefing(
         self,

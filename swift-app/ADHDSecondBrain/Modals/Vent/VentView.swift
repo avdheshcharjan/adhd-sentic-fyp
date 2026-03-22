@@ -185,7 +185,7 @@ struct VentView: View {
                 .frame(width: 28, height: 28)
                 .background(
                     Circle()
-                        .fill(viewModel.isGenerating ? ADHDColors.Background.secondary : Color.blue)
+                        .fill(viewModel.isGenerating ? ADHDColors.Background.secondary : ADHDColors.Accent.focus)
                 )
         }
         .buttonStyle(.plain)

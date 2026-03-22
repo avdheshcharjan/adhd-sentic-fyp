@@ -22,8 +22,10 @@ struct ExpandedPanelView: View {
 
             ModeSwitcherRow(viewModel: viewModel)
         }
-        .padding(ADHDSpacing.cardPadding)
-        .padding(.top, ADHDSpacing.sm) // Extra top padding below notch curve
+        // Paper design: 20px top, 12px sides, 12px bottom
+        .padding(.top, 20)
+        .padding(.horizontal, ADHDSpacing.cardPadding)
+        .padding(.bottom, ADHDSpacing.cardPadding)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Expanded task panel")

@@ -1,7 +1,12 @@
 import SwiftUI
 
 /// Ambient: minimal text flanking the notch edges.
-/// Left: current task name (truncated). Right: countdown to next event.
+///
+/// Paper spec:
+/// - 200×28, pure black background, bottom corners 14px radius
+/// - Left: task name truncated in Lexend Regular 12px, color #ABABAB
+/// - Right: countdown (e.g. "23m") in Lexend Regular 12px, color #ABABAB
+/// - Horizontal padding: 12px
 struct AmbientView: View {
     let taskName: String
     let nextEventCountdown: String?
@@ -9,8 +14,8 @@ struct AmbientView: View {
     var body: some View {
         HStack {
             Text(truncatedName)
-                .font(ADHDTypography.Notch.glanceCaption)
-                .foregroundStyle(ADHDColors.Text.inverse.opacity(0.7))
+                .font(ADHDTypography.Notch.ambientLabel)
+                .foregroundStyle(ADHDColors.Text.notchMuted)
                 .lineLimit(1)
                 .accessibilityLabel("Current task: \(taskName)")
 
@@ -18,8 +23,8 @@ struct AmbientView: View {
 
             if let countdown = nextEventCountdown {
                 Text(countdown)
-                    .font(ADHDTypography.Notch.glanceCaption)
-                    .foregroundStyle(ADHDColors.Text.inverse.opacity(0.7))
+                    .font(ADHDTypography.Notch.ambientLabel)
+                    .foregroundStyle(ADHDColors.Text.notchMuted)
                     .lineLimit(1)
                     .accessibilityLabel("Next event: \(countdown)")
             }

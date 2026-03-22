@@ -128,6 +128,33 @@ final class DashboardViewModel {
         return Int(Double(stats.interventionsAccepted) / Double(stats.interventionsTriggered) * 100)
     }
 
+    // MARK: - Computed Properties: Behavioral State Minutes (from timeline)
+
+    var focusedMinutes: Int {
+        guard let stats = dashboardStats else { return 0 }
+        let timeline = stats.focusTimeline
+        let totalFraction = timeline.filter { $0.category == "focused" }.reduce(0.0) { $0 + $1.duration }
+        let activeMin = Double(stats.totalActiveMinutes)
+        return Int(totalFraction * activeMin)
+    }
+
+    var hyperfocusedMinutes: Int {
+        guard let stats = dashboardStats else { return 0 }
+        let timeline = stats.focusTimeline
+        // Approximate: large focused segments (> 0.2 fraction) as hyperfocus
+        let totalFraction = timeline.filter { $0.category == "focused" && $0.duration > 0.2 }.reduce(0.0) { $0 + $1.duration }
+        let activeMin = Double(stats.totalActiveMinutes)
+        return Int(totalFraction * activeMin)
+    }
+
+    var distractedMinutes: Int {
+        guard let stats = dashboardStats else { return 0 }
+        let timeline = stats.focusTimeline
+        let totalFraction = timeline.filter { $0.category == "distracted" }.reduce(0.0) { $0 + $1.duration }
+        let activeMin = Double(stats.totalActiveMinutes)
+        return Int(totalFraction * activeMin)
+    }
+
     // MARK: - Computed Properties: Focus Timeline (from dashboardStats)
 
     var focusTimeline: [TimelineSegment] {
@@ -147,15 +174,16 @@ final class DashboardViewModel {
 
     var emotionStateLabel: String {
         guard let scores = dashboardStats?.emotionScores else { return "No data" }
-        // Derive a simple label from the dominant score
-        let values: [(String, Double)] = [
-            ("Focused", scores.attention),
-            ("Pleasant", scores.pleasantness),
-            ("Sensitive", scores.sensitivity),
-            ("Capable", scores.aptitude)
+        // Derive a composite label from the two strongest dimensions
+        let values: [(String, String, Double)] = [
+            ("Calm", "Focus", scores.attention),
+            ("Warm", "Ease", scores.pleasantness),
+            ("Deep", "Sensitivity", scores.sensitivity),
+            ("Sharp", "Drive", scores.aptitude)
         ]
-        guard let dominant = values.max(by: { $0.1 < $1.1 }) else { return "Neutral" }
-        return dominant.0
+        let sorted = values.sorted { $0.2 > $1.2 }
+        let top = sorted[0]
+        return "\(top.0) \(top.1)"
     }
 
     // MARK: - Computed Properties: Weekly Report

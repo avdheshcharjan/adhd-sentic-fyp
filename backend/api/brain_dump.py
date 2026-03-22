@@ -1,9 +1,11 @@
 """Brain Dump API router — /api/v1/brain-dump endpoints."""
 
+import json
 import logging
 from datetime import datetime
 
 from fastapi import APIRouter
+from fastapi.responses import StreamingResponse
 
 from models.brain_dump_models import (
     BrainDumpRequest,
@@ -13,6 +15,7 @@ from models.brain_dump_models import (
 )
 from services.brain_dump_service import BrainDumpService
 from services.memory_service import memory_service
+from services.shared_state import brain_dump_reminders
 from services.senticnet_pipeline import SenticNetPipeline
 
 logger = logging.getLogger("adhd-brain.api.brain-dump")
@@ -26,9 +29,12 @@ _service: BrainDumpService | None = None
 def _get_service() -> BrainDumpService:
     global _service
     if _service is None:
+        from services.mlx_inference import mlx_inference
+
         _service = BrainDumpService(
             memory=memory_service,
             senticnet=SenticNetPipeline(),
+            llm=mlx_inference,
         )
     return _service
 
@@ -42,7 +48,42 @@ async def capture_brain_dump(request: BrainDumpRequest):
         user_id="default_user",
         session_id=request.session_id,
     )
+
+    # Queue for JITAI reminder when user is idle
+    brain_dump_reminders.add(entry_id=result["id"], content=request.content)
+
     return BrainDumpResponse(**result)
+
+
+@router.post("/stream")
+async def capture_brain_dump_stream(request: BrainDumpRequest):
+    """Capture a brain dump and stream an AI summary back via SSE."""
+    service = _get_service()
+
+    # First capture the brain dump (store in Mem0)
+    result = await service.capture(
+        content=request.content,
+        user_id="default_user",
+        session_id=request.session_id,
+    )
+
+    # Queue for JITAI reminder when user is idle
+    brain_dump_reminders.add(entry_id=result["id"], content=request.content)
+
+    async def event_stream():
+        # Emit the capture confirmation first
+        yield f"data: {json.dumps({'type': 'captured', 'id': result['id'], 'emotional_state': result.get('emotional_state')})}\n\n"
+
+        # Stream the AI summary
+        async for chunk in service.stream_summary(
+            content=request.content,
+            emotional_state=result.get("emotional_state"),
+        ):
+            yield f"data: {json.dumps({'type': 'summary', 'token': chunk})}\n\n"
+
+        yield "data: [DONE]\n\n"
+
+    return StreamingResponse(event_stream(), media_type="text/event-stream")
 
 
 @router.get("/review/session/{session_id}", response_model=BrainDumpReviewResponse)

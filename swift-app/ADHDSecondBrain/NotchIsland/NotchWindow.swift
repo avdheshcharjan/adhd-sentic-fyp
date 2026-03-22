@@ -12,6 +12,11 @@ import SwiftUI
 class NotchWindow: NSPanel {
 
     /// Fixed canvas size — large enough for expanded state + shadow room.
+    ///
+    /// Width: 380 (expanded) + 60 shadow padding = 440
+    /// Height: 280 (expanded, Paper spec) + 60 shadow padding = 340
+    /// All other states (dormant 28px, ambient 28px, glanceable 36px, alert 80px)
+    /// are smaller and fit inside this canvas.
     static let canvasSize = CGSize(
         width: ADHDSpacing.notchExpandedWidth + 60,
         height: ADHDSpacing.notchExpandedHeight + 60

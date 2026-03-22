@@ -13,7 +13,7 @@ struct GlanceableView: View {
             Spacer()
             TimeRemainingLabel(seconds: timeRemaining)
         }
-        .padding(.horizontal, ADHDSpacing.notchPaddingH)
+        .padding(.horizontal, ADHDSpacing.lg)
         .padding(.vertical, ADHDSpacing.notchPaddingV)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .accessibilityElement(children: .combine)
