@@ -1,0 +1,312 @@
+{
+  "component": "energy",
+  "timestamp": "2026-03-24T16:06:48.854230+00:00",
+  "system_info": {
+    "os": "macOS 26.2",
+    "chip": "arm64",
+    "ram_gb": 16.0,
+    "python": "3.14.0",
+    "mlx_version": "installed",
+    "mlx_lm_version": "0.31.1",
+    "sentence_transformers_version": "5.2.3"
+  },
+  "metrics": {
+    "idle_power": {
+      "duration_s": 5,
+      "cpu_total_mj": 2440,
+      "gpu_mj": 181,
+      "dram_mj": 777,
+      "ane_mj": 0,
+      "total_mj": 3398,
+      "estimated_watts": 0.68
+    },
+    "energy_per_inference": {
+      "total_mj": {
+        "mean": 21606,
+        "median": 21491.0,
+        "min": 16374,
+        "max": 29932,
+        "stdev": 3334.9
+      },
+      "gpu_mj": {
+        "mean": 15546.3,
+        "median": 15350.0,
+        "min": 12061,
+        "max": 20488
+      },
+      "cpu_mj": {
+        "mean": 1416.5,
+        "median": 1340.5,
+        "min": 824,
+        "max": 3071
+      },
+      "dram_mj": {
+        "mean": 4643.2,
+        "median": 4590.0,
+        "min": 3464,
+        "max": 6373
+      },
+      "latency_ms": {
+        "mean": 1636.2,
+        "median": 1614.9
+      },
+      "inference_count": 20
+    },
+    "battery_estimate": {
+      "battery_capacity_wh": 72.4,
+      "mean_energy_per_inference_mj": 21606,
+      "idle_energy_per_hour_mj": 2446560.0,
+      "active_coaching": {
+        "inferences_per_hour": 60,
+        "inference_energy_per_hour_mj": 1296360,
+        "total_energy_per_hour_mj": 3742920.0,
+        "estimated_battery_hours": 69.6
+      },
+      "casual_use": {
+        "inferences_per_hour": 12,
+        "inference_energy_per_hour_mj": 259272,
+        "total_energy_per_hour_mj": 2705832.0,
+        "estimated_battery_hours": 96.3
+      }
+    }
+  },
+  "raw_measurements": [
+    {
+      "test": "idle_power",
+      "data": {
+        "duration_s": 5,
+        "cpu_total_mj": 2440,
+        "gpu_mj": 181,
+        "dram_mj": 777,
+        "ane_mj": 0,
+        "total_mj": 3398,
+        "estimated_watts": 0.68
+      }
+    },
+    {
+      "test": "energy_per_inference",
+      "data": [
+        {
+          "prompt_index": 0,
+          "latency_ms": 1665.4,
+          "cpu_total_mj": 2205,
+          "gpu_mj": 15380,
+          "gpu_sram_mj": 3,
+          "dram_mj": 4713,
+          "ane_mj": 0,
+          "total_mj": 22298
+        },
+        {
+          "prompt_index": 1,
+          "latency_ms": 1512.6,
+          "cpu_total_mj": 1467,
+          "gpu_mj": 13981,
+          "gpu_sram_mj": 2,
+          "dram_mj": 4208,
+          "ane_mj": 0,
+          "total_mj": 19656
+        },
+        {
+          "prompt_index": 2,
+          "latency_ms": 1534.6,
+          "cpu_total_mj": 1607,
+          "gpu_mj": 14353,
+          "gpu_sram_mj": 1,
+          "dram_mj": 4304,
+          "ane_mj": 0,
+          "total_mj": 20264
+        },
+        {
+          "prompt_index": 3,
+          "latency_ms": 1722.8,
+          "cpu_total_mj": 1471,
+          "gpu_mj": 16283,
+          "gpu_sram_mj": 0,
+          "dram_mj": 4931,
+          "ane_mj": 0,
+          "total_mj": 22685
+        },
+        {
+          "prompt_index": 4,
+          "latency_ms": 1405.9,
+          "cpu_total_mj": 1055,
+          "gpu_mj": 13035,
+          "gpu_sram_mj": 1,
+          "dram_mj": 3823,
+          "ane_mj": 0,
+          "total_mj": 17913
+        },
+        {
+          "prompt_index": 5,
+          "latency_ms": 1298.5,
+          "cpu_total_mj": 824,
+          "gpu_mj": 12369,
+          "gpu_sram_mj": 1,
+          "dram_mj": 3571,
+          "ane_mj": 0,
+          "total_mj": 16764
+        },
+        {
+          "prompt_index": 6,
+          "latency_ms": 2000.1,
+          "cpu_total_mj": 1964,
+          "gpu_mj": 18579,
+          "gpu_sram_mj": 0,
+          "dram_mj": 5768,
+          "ane_mj": 0,
+          "total_mj": 26311
+        },
+        {
+          "prompt_index": 7,
+          "latency_ms": 2192.4,
+          "cpu_total_mj": 3071,
+          "gpu_mj": 20488,
+          "gpu_sram_mj": 0,
+          "dram_mj": 6373,
+          "ane_mj": 0,
+          "total_mj": 29932
+        },
+        {
+          "prompt_index": 8,
+          "latency_ms": 1831.6,
+          "cpu_total_mj": 1440,
+          "gpu_mj": 17318,
+          "gpu_sram_mj": 0,
+          "dram_mj": 5255,
+          "ane_mj": 0,
+          "total_mj": 24013
+        },
+        {
+          "prompt_index": 9,
+          "latency_ms": 1657.0,
+          "cpu_total_mj": 1293,
+          "gpu_mj": 15863,
+          "gpu_sram_mj": 0,
+          "dram_mj": 4710,
+          "ane_mj": 0,
+          "total_mj": 21866
+        },
+        {
+          "prompt_index": 10,
+          "latency_ms": 1398.1,
+          "cpu_total_mj": 877,
+          "gpu_mj": 13422,
+          "gpu_sram_mj": 0,
+          "dram_mj": 3905,
+          "ane_mj": 0,
+          "total_mj": 18204
+        },
+        {
+          "prompt_index": 11,
+          "latency_ms": 1568.5,
+          "cpu_total_mj": 933,
+          "gpu_mj": 15114,
+          "gpu_sram_mj": 0,
+          "dram_mj": 4456,
+          "ane_mj": 0,
+          "total_mj": 20503
+        },
+        {
+          "prompt_index": 12,
+          "latency_ms": 1257.8,
+          "cpu_total_mj": 849,
+          "gpu_mj": 12061,
+          "gpu_sram_mj": 0,
+          "dram_mj": 3464,
+          "ane_mj": 0,
+          "total_mj": 16374
+        },
+        {
+          "prompt_index": 13,
+          "latency_ms": 1940.2,
+          "cpu_total_mj": 1355,
+          "gpu_mj": 18587,
+          "gpu_sram_mj": 0,
+          "dram_mj": 5645,
+          "ane_mj": 0,
+          "total_mj": 25587
+        },
+        {
+          "prompt_index": 14,
+          "latency_ms": 1771.1,
+          "cpu_total_mj": 1133,
+          "gpu_mj": 17028,
+          "gpu_sram_mj": 0,
+          "dram_mj": 5077,
+          "ane_mj": 0,
+          "total_mj": 23238
+        },
+        {
+          "prompt_index": 15,
+          "latency_ms": 1456.5,
+          "cpu_total_mj": 1859,
+          "gpu_mj": 14118,
+          "gpu_sram_mj": 0,
+          "dram_mj": 4105,
+          "ane_mj": 0,
+          "total_mj": 20082
+        },
+        {
+          "prompt_index": 16,
+          "latency_ms": 1720.9,
+          "cpu_total_mj": 1606,
+          "gpu_mj": 16492,
+          "gpu_sram_mj": 0,
+          "dram_mj": 4930,
+          "ane_mj": 0,
+          "total_mj": 23028
+        },
+        {
+          "prompt_index": 17,
+          "latency_ms": 1472.6,
+          "cpu_total_mj": 984,
+          "gpu_mj": 14274,
+          "gpu_sram_mj": 0,
+          "dram_mj": 4157,
+          "ane_mj": 0,
+          "total_mj": 19415
+        },
+        {
+          "prompt_index": 18,
+          "latency_ms": 1744.2,
+          "cpu_total_mj": 1010,
+          "gpu_mj": 16861,
+          "gpu_sram_mj": 0,
+          "dram_mj": 5000,
+          "ane_mj": 0,
+          "total_mj": 22871
+        },
+        {
+          "prompt_index": 19,
+          "latency_ms": 1572.8,
+          "cpu_total_mj": 1326,
+          "gpu_mj": 15320,
+          "gpu_sram_mj": 0,
+          "dram_mj": 4470,
+          "ane_mj": 0,
+          "total_mj": 21116
+        }
+      ]
+    },
+    {
+      "test": "battery_estimate",
+      "data": {
+        "battery_capacity_wh": 72.4,
+        "mean_energy_per_inference_mj": 21606,
+        "idle_energy_per_hour_mj": 2446560.0,
+        "active_coaching": {
+          "inferences_per_hour": 60,
+          "inference_energy_per_hour_mj": 1296360,
+          "total_energy_per_hour_mj": 3742920.0,
+          "estimated_battery_hours": 69.6
+        },
+        "casual_use": {
+          "inferences_per_hour": 12,
+          "inference_energy_per_hour_mj": 259272,
+          "total_energy_per_hour_mj": 2705832.0,
+          "estimated_battery_hours": 96.3
+        }
+      }
+    }
+  ]
+}

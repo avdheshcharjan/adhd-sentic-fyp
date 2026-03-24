@@ -1,0 +1,462 @@
+[
+  {
+    "profile_id": "user_001",
+    "description": "Graduate student in CS, combined ADHD, struggles with long reading tasks",
+    "memories": [
+      {"memory_id": "mem_001_01", "content": "User prefers breaking reading into 15-minute chunks with 5-minute breaks", "metadata": {"topic": "reading_strategies", "emotion": "neutral"}},
+      {"memory_id": "mem_001_02", "content": "User gets most focused work done between 10am and 1pm", "metadata": {"topic": "peak_hours", "emotion": "focused"}},
+      {"memory_id": "mem_001_03", "content": "User takes 20mg Adderall XR in the morning, wears off around 4pm", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_001_04", "content": "User finds background brown noise helpful for deep reading", "metadata": {"topic": "environment", "emotion": "focused"}},
+      {"memory_id": "mem_001_05", "content": "User tends to skip lunch when hyperfocused, then crashes hard", "metadata": {"topic": "eating_patterns", "emotion": "frustrated"}},
+      {"memory_id": "mem_001_06", "content": "User's FYP topic is affective computing for ADHD coaching", "metadata": {"topic": "academic", "emotion": "neutral"}},
+      {"memory_id": "mem_001_07", "content": "User finds pair programming helpful for staying on task", "metadata": {"topic": "work_strategies", "emotion": "focused"}},
+      {"memory_id": "mem_001_08", "content": "User avoids studying in their bedroom because they always end up napping", "metadata": {"topic": "environment", "emotion": "disengaged"}},
+      {"memory_id": "mem_001_09", "content": "User gets anxious before supervisor meetings and over-prepares", "metadata": {"topic": "social_anxiety", "emotion": "anxious"}},
+      {"memory_id": "mem_001_10", "content": "User has a weekly accountability check-in with a friend every Monday", "metadata": {"topic": "support_system", "emotion": "neutral"}}
+    ],
+    "test_queries": [
+      {"query": "How should I approach this long paper I need to read?", "expected_memory_id": "mem_001_01"},
+      {"query": "When is the best time for me to work on hard problems?", "expected_memory_id": "mem_001_02"},
+      {"query": "What should I know about my medication schedule?", "expected_memory_id": "mem_001_03"},
+      {"query": "What helps me concentrate when reading?", "expected_memory_id": "mem_001_04"},
+      {"query": "Where should I go to study effectively?", "expected_memory_id": "mem_001_08"}
+    ]
+  },
+  {
+    "profile_id": "user_002",
+    "description": "Marketing professional, inattentive ADHD, struggles with email management",
+    "memories": [
+      {"memory_id": "mem_002_01", "content": "User processes emails best when batched into 3 daily sessions: 9am, 12pm, 4pm", "metadata": {"topic": "email_strategy", "emotion": "focused"}},
+      {"memory_id": "mem_002_02", "content": "User gets overwhelmed by Slack notifications and has turned off all non-DM alerts", "metadata": {"topic": "notification_management", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_002_03", "content": "User uses the 2-minute rule: if an email takes less than 2 minutes, handle it immediately", "metadata": {"topic": "email_strategy", "emotion": "neutral"}},
+      {"memory_id": "mem_002_04", "content": "User has a Monday morning ritual of planning the week using a paper planner", "metadata": {"topic": "planning", "emotion": "focused"}},
+      {"memory_id": "mem_002_05", "content": "User struggles most on Wednesdays due to back-to-back meetings all morning", "metadata": {"topic": "schedule_patterns", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_002_06", "content": "User finds walking meetings more productive than sitting in conference rooms", "metadata": {"topic": "meeting_preferences", "emotion": "focused"}},
+      {"memory_id": "mem_002_07", "content": "User's manager is understanding about ADHD and allows flexible deadlines", "metadata": {"topic": "work_accommodation", "emotion": "neutral"}},
+      {"memory_id": "mem_002_08", "content": "User tends to abandon productivity apps after 2-3 weeks", "metadata": {"topic": "tool_patterns", "emotion": "frustrated"}},
+      {"memory_id": "mem_002_09", "content": "User drinks too much coffee when stressed, which makes focus worse", "metadata": {"topic": "caffeine_habits", "emotion": "anxious"}},
+      {"memory_id": "mem_002_10", "content": "User finds creating mind maps more effective than linear note-taking", "metadata": {"topic": "note_taking", "emotion": "focused"}}
+    ],
+    "test_queries": [
+      {"query": "How should I handle my overflowing inbox?", "expected_memory_id": "mem_002_01"},
+      {"query": "I keep getting distracted by notifications. What did I try before?", "expected_memory_id": "mem_002_02"},
+      {"query": "What's my weekly planning routine?", "expected_memory_id": "mem_002_04"},
+      {"query": "Which day of the week is hardest for me?", "expected_memory_id": "mem_002_05"},
+      {"query": "What type of note-taking works best for me?", "expected_memory_id": "mem_002_10"}
+    ]
+  },
+  {
+    "profile_id": "user_003",
+    "description": "Freelance designer, hyperactive-impulsive ADHD, high emotional reactivity",
+    "memories": [
+      {"memory_id": "mem_003_01", "content": "User works best in short intense bursts of 20-25 minutes", "metadata": {"topic": "work_pattern", "emotion": "focused"}},
+      {"memory_id": "mem_003_02", "content": "User tends to overcommit to client projects due to impulsive yes-saying", "metadata": {"topic": "work_boundaries", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_003_03", "content": "User uses a physical timer on desk to manage time blindness", "metadata": {"topic": "time_management", "emotion": "neutral"}},
+      {"memory_id": "mem_003_04", "content": "User experiences strong rejection sensitivity when clients request revisions", "metadata": {"topic": "emotional_pattern", "emotion": "frustrated"}},
+      {"memory_id": "mem_003_05", "content": "User calms down fastest by going for a 10-minute walk outside", "metadata": {"topic": "regulation_strategy", "emotion": "neutral"}},
+      {"memory_id": "mem_003_06", "content": "User chose not to take medication, relies on exercise and structured routines", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_003_07", "content": "User gets most creative work done late at night between 10pm and 1am", "metadata": {"topic": "peak_hours", "emotion": "focused"}},
+      {"memory_id": "mem_003_08", "content": "User has trouble estimating project timelines, usually underestimates by 50%", "metadata": {"topic": "time_estimation", "emotion": "frustrated"}},
+      {"memory_id": "mem_003_09", "content": "User finds accountability body-doubling sessions helpful via Discord", "metadata": {"topic": "support_system", "emotion": "focused"}},
+      {"memory_id": "mem_003_10", "content": "User's biggest distraction trigger is social media, especially Instagram", "metadata": {"topic": "distraction_trigger", "emotion": "disengaged"}}
+    ],
+    "test_queries": [
+      {"query": "How long should my work sessions be?", "expected_memory_id": "mem_003_01"},
+      {"query": "I'm feeling emotional about client feedback. What helps me?", "expected_memory_id": "mem_003_05"},
+      {"query": "When am I most creative?", "expected_memory_id": "mem_003_07"},
+      {"query": "How should I estimate project deadlines?", "expected_memory_id": "mem_003_08"},
+      {"query": "What's my biggest source of distraction?", "expected_memory_id": "mem_003_10"}
+    ]
+  },
+  {
+    "profile_id": "user_004",
+    "description": "First-year university student, suspected undiagnosed ADHD, anxious about academics",
+    "memories": [
+      {"memory_id": "mem_004_01", "content": "User feels like everyone else understands lectures but she zones out after 10 minutes", "metadata": {"topic": "academic_struggle", "emotion": "anxious"}},
+      {"memory_id": "mem_004_02", "content": "User finds studying with flashcards more effective than re-reading notes", "metadata": {"topic": "study_strategy", "emotion": "focused"}},
+      {"memory_id": "mem_004_03", "content": "User has trouble sleeping before exam days due to racing thoughts", "metadata": {"topic": "sleep_issues", "emotion": "anxious"}},
+      {"memory_id": "mem_004_04", "content": "User's mother dismisses ADHD concerns saying she just needs to try harder", "metadata": {"topic": "family_dynamics", "emotion": "frustrated"}},
+      {"memory_id": "mem_004_05", "content": "User studies best at the library's silent floor, not at home", "metadata": {"topic": "environment", "emotion": "focused"}},
+      {"memory_id": "mem_004_06", "content": "User has been writing a journal every night to track her mood and productivity", "metadata": {"topic": "self_monitoring", "emotion": "neutral"}},
+      {"memory_id": "mem_004_07", "content": "User struggles to start assignments until the deadline pressure kicks in", "metadata": {"topic": "procrastination", "emotion": "anxious"}},
+      {"memory_id": "mem_004_08", "content": "User finds group study sessions helpful because they keep her accountable", "metadata": {"topic": "study_strategy", "emotion": "focused"}},
+      {"memory_id": "mem_004_09", "content": "User uses color-coded highlighters to make reading more engaging", "metadata": {"topic": "study_strategy", "emotion": "neutral"}},
+      {"memory_id": "mem_004_10", "content": "User experiences physical anxiety symptoms: tight chest, sweaty palms before presentations", "metadata": {"topic": "anxiety_symptoms", "emotion": "anxious"}}
+    ],
+    "test_queries": [
+      {"query": "What study technique works for me?", "expected_memory_id": "mem_004_02"},
+      {"query": "I can't sleep before my exam. Has this happened before?", "expected_memory_id": "mem_004_03"},
+      {"query": "Where should I go to study?", "expected_memory_id": "mem_004_05"},
+      {"query": "Why do I always wait until the last minute?", "expected_memory_id": "mem_004_07"},
+      {"query": "I'm nervous about presenting. What do I usually experience?", "expected_memory_id": "mem_004_10"}
+    ]
+  },
+  {
+    "profile_id": "user_005",
+    "description": "Software engineer, combined ADHD, medicated, manages well most days",
+    "memories": [
+      {"memory_id": "mem_005_01", "content": "User uses Todoist with recurring tasks for daily standup prep, works well", "metadata": {"topic": "tool_preference", "emotion": "focused"}},
+      {"memory_id": "mem_005_02", "content": "User's focus deteriorates significantly during high-stress sprint weeks", "metadata": {"topic": "stress_pattern", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_005_03", "content": "User takes Concerta 36mg, effectiveness drops when sleep is less than 6 hours", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_005_04", "content": "User does best on complex debugging tasks, struggles with repetitive documentation", "metadata": {"topic": "task_preference", "emotion": "focused"}},
+      {"memory_id": "mem_005_05", "content": "User unwinds with gaming for 30 minutes after work; more than that spirals into hyperfocus", "metadata": {"topic": "leisure_pattern", "emotion": "neutral"}},
+      {"memory_id": "mem_005_06", "content": "User has standing desk and alternates between sitting and standing every 45 minutes", "metadata": {"topic": "workspace", "emotion": "neutral"}},
+      {"memory_id": "mem_005_07", "content": "User finds code reviews mentally draining and prefers to batch them on Fridays", "metadata": {"topic": "work_pattern", "emotion": "disengaged"}},
+      {"memory_id": "mem_005_08", "content": "User's wife reminds him about household tasks; he uses shared Apple Reminders", "metadata": {"topic": "support_system", "emotion": "neutral"}},
+      {"memory_id": "mem_005_09", "content": "User meditates for 5 minutes before starting deep work, says it helps a lot", "metadata": {"topic": "focus_technique", "emotion": "focused"}},
+      {"memory_id": "mem_005_10", "content": "User experienced burnout last quarter after 3 consecutive sprint overruns", "metadata": {"topic": "burnout_history", "emotion": "overwhelmed"}}
+    ],
+    "test_queries": [
+      {"query": "What tool do I use for task management?", "expected_memory_id": "mem_005_01"},
+      {"query": "What happens to my focus during stressful weeks?", "expected_memory_id": "mem_005_02"},
+      {"query": "How does my sleep affect my medication?", "expected_memory_id": "mem_005_03"},
+      {"query": "What kind of work tasks am I best at?", "expected_memory_id": "mem_005_04"},
+      {"query": "What do I do before starting deep work?", "expected_memory_id": "mem_005_09"}
+    ]
+  },
+  {
+    "profile_id": "user_006",
+    "description": "PhD researcher in psychology, inattentive ADHD, diagnosed in grad school",
+    "memories": [
+      {"memory_id": "mem_006_01", "content": "User writes best in cafes, the ambient noise helps maintain focus", "metadata": {"topic": "environment", "emotion": "focused"}},
+      {"memory_id": "mem_006_02", "content": "User uses the Pomodoro technique with 30-min work and 10-min break cycles", "metadata": {"topic": "work_technique", "emotion": "focused"}},
+      {"memory_id": "mem_006_03", "content": "User gets paralyzed by perfectionism when writing literature reviews", "metadata": {"topic": "perfectionism", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_006_04", "content": "User takes Vyvanse 40mg and finds it wears off around 6pm", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_006_05", "content": "User's advisor prefers detailed written updates over verbal check-ins", "metadata": {"topic": "advisor_preference", "emotion": "neutral"}},
+      {"memory_id": "mem_006_06", "content": "User uses Zotero for reference management and has 2000+ papers saved", "metadata": {"topic": "tool_preference", "emotion": "neutral"}},
+      {"memory_id": "mem_006_07", "content": "User finds reading papers on a tablet with annotation tools more engaging than printouts", "metadata": {"topic": "reading_strategy", "emotion": "focused"}},
+      {"memory_id": "mem_006_08", "content": "User co-works with another PhD student every Thursday for mutual accountability", "metadata": {"topic": "support_system", "emotion": "focused"}},
+      {"memory_id": "mem_006_09", "content": "User's research focus is emotion regulation in ADHD populations", "metadata": {"topic": "academic", "emotion": "neutral"}},
+      {"memory_id": "mem_006_10", "content": "User struggles with the administrative side of research: ethics forms, grant applications", "metadata": {"topic": "academic_struggle", "emotion": "frustrated"}}
+    ],
+    "test_queries": [
+      {"query": "Where do I write best?", "expected_memory_id": "mem_006_01"},
+      {"query": "I'm stuck on my literature review. What's my usual blocker?", "expected_memory_id": "mem_006_03"},
+      {"query": "When does my medication stop working?", "expected_memory_id": "mem_006_04"},
+      {"query": "How do I manage my references?", "expected_memory_id": "mem_006_06"},
+      {"query": "What parts of research do I find hardest?", "expected_memory_id": "mem_006_10"}
+    ]
+  },
+  {
+    "profile_id": "user_007",
+    "description": "High school teacher, combined ADHD, recently started medication",
+    "memories": [
+      {"memory_id": "mem_007_01", "content": "User finds grading papers the most challenging task due to repetitiveness", "metadata": {"topic": "work_challenge", "emotion": "disengaged"}},
+      {"memory_id": "mem_007_02", "content": "User uses timer-based grading: 5 minutes per paper maximum", "metadata": {"topic": "work_strategy", "emotion": "neutral"}},
+      {"memory_id": "mem_007_03", "content": "User started Strattera 3 weeks ago, still adjusting to side effects", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_007_04", "content": "User has strong mornings but energy crashes after lunch, struggles with afternoon classes", "metadata": {"topic": "energy_pattern", "emotion": "disengaged"}},
+      {"memory_id": "mem_007_05", "content": "User prepares lesson plans best on Sunday evenings with lo-fi music", "metadata": {"topic": "planning", "emotion": "focused"}},
+      {"memory_id": "mem_007_06", "content": "User uses a visual timer in classroom which helps both teacher and students", "metadata": {"topic": "classroom_strategy", "emotion": "focused"}},
+      {"memory_id": "mem_007_07", "content": "User forgets to eat lunch on busy days and gets irritable by 3pm", "metadata": {"topic": "eating_patterns", "emotion": "frustrated"}},
+      {"memory_id": "mem_007_08", "content": "User's partner is also a teacher and understands the workload pressures", "metadata": {"topic": "support_system", "emotion": "neutral"}},
+      {"memory_id": "mem_007_09", "content": "User finds interactive teaching activities more engaging to plan than lecture-based ones", "metadata": {"topic": "teaching_preference", "emotion": "focused"}},
+      {"memory_id": "mem_007_10", "content": "User keeps a sticky note on monitor: 'One task at a time' as visual reminder", "metadata": {"topic": "coping_strategy", "emotion": "neutral"}}
+    ],
+    "test_queries": [
+      {"query": "What's my biggest work challenge?", "expected_memory_id": "mem_007_01"},
+      {"query": "How do I get through grading efficiently?", "expected_memory_id": "mem_007_02"},
+      {"query": "When do I lose energy during the day?", "expected_memory_id": "mem_007_04"},
+      {"query": "When do I prepare my lesson plans?", "expected_memory_id": "mem_007_05"},
+      {"query": "What happens when I forget to eat?", "expected_memory_id": "mem_007_07"}
+    ]
+  },
+  {
+    "profile_id": "user_008",
+    "description": "Graphic design student, hyperactive ADHD, unmedicated, uses exercise as primary coping",
+    "memories": [
+      {"memory_id": "mem_008_01", "content": "User runs 5km every morning to regulate energy levels before class", "metadata": {"topic": "exercise", "emotion": "focused"}},
+      {"memory_id": "mem_008_02", "content": "User cannot sit still during long lectures and fidgets with a stress ball", "metadata": {"topic": "hyperactivity", "emotion": "neutral"}},
+      {"memory_id": "mem_008_03", "content": "User's creative output peaks after exercise and in the evening hours", "metadata": {"topic": "peak_hours", "emotion": "focused"}},
+      {"memory_id": "mem_008_04", "content": "User impulsively buys art supplies and has a collection of unused sketchbooks", "metadata": {"topic": "impulsivity", "emotion": "frustrated"}},
+      {"memory_id": "mem_008_05", "content": "User works on design projects using multiple screens and finds single-screen work suffocating", "metadata": {"topic": "workspace", "emotion": "neutral"}},
+      {"memory_id": "mem_008_06", "content": "User thrives in collaborative studio sessions but procrastinates solo work", "metadata": {"topic": "work_preference", "emotion": "focused"}},
+      {"memory_id": "mem_008_07", "content": "User uses Procreate on iPad for initial sketches, then moves to Figma", "metadata": {"topic": "tool_preference", "emotion": "focused"}},
+      {"memory_id": "mem_008_08", "content": "User tends to start multiple projects simultaneously and finish none", "metadata": {"topic": "project_pattern", "emotion": "frustrated"}},
+      {"memory_id": "mem_008_09", "content": "User finds color theory lectures fascinating and can hyperfocus on color work", "metadata": {"topic": "interest_area", "emotion": "focused"}},
+      {"memory_id": "mem_008_10", "content": "User skips breakfast frequently, relies on energy drinks which worsen hyperactivity", "metadata": {"topic": "nutrition", "emotion": "neutral"}}
+    ],
+    "test_queries": [
+      {"query": "What do I do to manage my energy?", "expected_memory_id": "mem_008_01"},
+      {"query": "When am I most creative?", "expected_memory_id": "mem_008_03"},
+      {"query": "I keep starting new projects. Is this a pattern?", "expected_memory_id": "mem_008_08"},
+      {"query": "What design tool do I use for sketching?", "expected_memory_id": "mem_008_07"},
+      {"query": "Do I work better alone or with others?", "expected_memory_id": "mem_008_06"}
+    ]
+  },
+  {
+    "profile_id": "user_009",
+    "description": "Working mother, inattentive ADHD, juggles remote work and childcare",
+    "memories": [
+      {"memory_id": "mem_009_01", "content": "User works during children's nap time (1pm-3pm) and after bedtime (8pm-10pm)", "metadata": {"topic": "schedule", "emotion": "neutral"}},
+      {"memory_id": "mem_009_02", "content": "User keeps all important dates in a shared family Google Calendar with color coding", "metadata": {"topic": "organization", "emotion": "neutral"}},
+      {"memory_id": "mem_009_03", "content": "User experiences guilt about screen time when children want attention during work hours", "metadata": {"topic": "emotional_pattern", "emotion": "frustrated"}},
+      {"memory_id": "mem_009_04", "content": "User finds meal prepping on Sundays reduces weekday decision fatigue significantly", "metadata": {"topic": "coping_strategy", "emotion": "focused"}},
+      {"memory_id": "mem_009_05", "content": "User has a 'launch pad' by the front door for keys, wallet, and kids' bags to prevent forgetting", "metadata": {"topic": "organization", "emotion": "neutral"}},
+      {"memory_id": "mem_009_06", "content": "User takes 10mg Ritalin as needed, usually only on work-heavy days", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_009_07", "content": "User's most forgotten task is replying to school emails from children's teachers", "metadata": {"topic": "forgetfulness", "emotion": "frustrated"}},
+      {"memory_id": "mem_009_08", "content": "User thrives with visual checklists on the fridge for daily routines", "metadata": {"topic": "coping_strategy", "emotion": "focused"}},
+      {"memory_id": "mem_009_09", "content": "User's partner handles finances because user tends to impulse-buy online", "metadata": {"topic": "financial_management", "emotion": "neutral"}},
+      {"memory_id": "mem_009_10", "content": "User finds audio content (podcasts, audiobooks) easier to process than reading text", "metadata": {"topic": "learning_preference", "emotion": "focused"}}
+    ],
+    "test_queries": [
+      {"query": "When are my best windows for focused work?", "expected_memory_id": "mem_009_01"},
+      {"query": "How do I keep track of family appointments?", "expected_memory_id": "mem_009_02"},
+      {"query": "What helps reduce my decision fatigue?", "expected_memory_id": "mem_009_04"},
+      {"query": "What do I always forget to do?", "expected_memory_id": "mem_009_07"},
+      {"query": "How do I learn best?", "expected_memory_id": "mem_009_10"}
+    ]
+  },
+  {
+    "profile_id": "user_010",
+    "description": "Entrepreneur, combined ADHD, thrives on novelty but struggles with operations",
+    "memories": [
+      {"memory_id": "mem_010_01", "content": "User is excellent at generating ideas but terrible at executing them consistently", "metadata": {"topic": "self_awareness", "emotion": "neutral"}},
+      {"memory_id": "mem_010_02", "content": "User hired a virtual assistant to handle email and scheduling after forgetting 3 investor meetings", "metadata": {"topic": "delegation", "emotion": "neutral"}},
+      {"memory_id": "mem_010_03", "content": "User works in 90-minute deep work blocks with strict no-meeting zones from 9am-12pm", "metadata": {"topic": "work_schedule", "emotion": "focused"}},
+      {"memory_id": "mem_010_04", "content": "User gets bored of projects after the exciting initial phase and needs accountability to persist", "metadata": {"topic": "motivation_pattern", "emotion": "disengaged"}},
+      {"memory_id": "mem_010_05", "content": "User has a business partner who handles operations while user handles vision and client relations", "metadata": {"topic": "work_division", "emotion": "neutral"}},
+      {"memory_id": "mem_010_06", "content": "User practices cold showers in the morning to improve alertness before medication kicks in", "metadata": {"topic": "morning_routine", "emotion": "neutral"}},
+      {"memory_id": "mem_010_07", "content": "User's worst time for decisions is between 3pm-5pm when energy and focus dip", "metadata": {"topic": "energy_pattern", "emotion": "disengaged"}},
+      {"memory_id": "mem_010_08", "content": "User uses voice memos extensively to capture ideas before they disappear", "metadata": {"topic": "idea_capture", "emotion": "focused"}},
+      {"memory_id": "mem_010_09", "content": "User takes Dexedrine 15mg twice daily with strict adherence to timing", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_010_10", "content": "User finds quarterly planning retreats essential for maintaining strategic direction", "metadata": {"topic": "planning", "emotion": "focused"}}
+    ],
+    "test_queries": [
+      {"query": "Why do I lose interest in projects midway through?", "expected_memory_id": "mem_010_04"},
+      {"query": "When should I schedule important meetings?", "expected_memory_id": "mem_010_03"},
+      {"query": "How do I capture ideas before I forget them?", "expected_memory_id": "mem_010_08"},
+      {"query": "When should I avoid making big decisions?", "expected_memory_id": "mem_010_07"},
+      {"query": "What's my medication schedule?", "expected_memory_id": "mem_010_09"}
+    ]
+  },
+  {
+    "profile_id": "user_011",
+    "description": "Data analyst, inattentive ADHD, struggles with detail-oriented reports",
+    "memories": [
+      {"memory_id": "mem_011_01", "content": "User makes careless errors in spreadsheets when rushing; uses a review checklist to catch them", "metadata": {"topic": "error_pattern", "emotion": "frustrated"}},
+      {"memory_id": "mem_011_02", "content": "User finds SQL queries engaging but writing report summaries painfully boring", "metadata": {"topic": "task_preference", "emotion": "neutral"}},
+      {"memory_id": "mem_011_03", "content": "User uses a second monitor for reference material to reduce tab-switching distraction", "metadata": {"topic": "workspace", "emotion": "focused"}},
+      {"memory_id": "mem_011_04", "content": "User takes methylphenidate 20mg, prefers taking it only on workdays", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_011_05", "content": "User finds data visualization the most stimulating part of the job", "metadata": {"topic": "interest_area", "emotion": "focused"}},
+      {"memory_id": "mem_011_06", "content": "User keeps a running 'parking lot' document for tangential ideas that pop up during work", "metadata": {"topic": "coping_strategy", "emotion": "neutral"}},
+      {"memory_id": "mem_011_07", "content": "User prefers working with headphones even when music isn't playing, as a social barrier", "metadata": {"topic": "workspace", "emotion": "neutral"}},
+      {"memory_id": "mem_011_08", "content": "User gets anxious about presenting data to stakeholders, prefers written reports", "metadata": {"topic": "communication_preference", "emotion": "anxious"}},
+      {"memory_id": "mem_011_09", "content": "User's focus drops significantly on Mondays; attributes it to weekend sleep schedule disruption", "metadata": {"topic": "weekly_pattern", "emotion": "disengaged"}},
+      {"memory_id": "mem_011_10", "content": "User exercises during lunch break 3x/week which improves afternoon productivity", "metadata": {"topic": "exercise", "emotion": "focused"}}
+    ],
+    "test_queries": [
+      {"query": "I keep making mistakes in my reports. What helps?", "expected_memory_id": "mem_011_01"},
+      {"query": "What kind of work do I find most engaging?", "expected_memory_id": "mem_011_05"},
+      {"query": "How do I handle random ideas during focused work?", "expected_memory_id": "mem_011_06"},
+      {"query": "Why are Mondays always so hard?", "expected_memory_id": "mem_011_09"},
+      {"query": "What improves my afternoon work?", "expected_memory_id": "mem_011_10"}
+    ]
+  },
+  {
+    "profile_id": "user_012",
+    "description": "Nursing student, combined ADHD, struggles with clinical rotations schedule",
+    "memories": [
+      {"memory_id": "mem_012_01", "content": "User uses color-coded study schedule with different colors for each subject", "metadata": {"topic": "study_strategy", "emotion": "focused"}},
+      {"memory_id": "mem_012_02", "content": "User finds clinical rotations easier than classroom learning because they are hands-on", "metadata": {"topic": "learning_preference", "emotion": "focused"}},
+      {"memory_id": "mem_012_03", "content": "User struggles with medication timing due to irregular shift schedule", "metadata": {"topic": "medication", "emotion": "frustrated"}},
+      {"memory_id": "mem_012_04", "content": "User uses Anki flashcards for pharmacology and reviews 50 cards daily on the bus", "metadata": {"topic": "study_strategy", "emotion": "neutral"}},
+      {"memory_id": "mem_012_05", "content": "User gets overwhelmed during multi-patient simulations and freezes up", "metadata": {"topic": "overwhelm_trigger", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_012_06", "content": "User has a study group of 4 peers who meet every Wednesday evening", "metadata": {"topic": "support_system", "emotion": "focused"}},
+      {"memory_id": "mem_012_07", "content": "User finds writing care plans extremely tedious and procrastinates on them", "metadata": {"topic": "task_avoidance", "emotion": "disengaged"}},
+      {"memory_id": "mem_012_08", "content": "User sleeps only 5-6 hours during clinical weeks and focus suffers significantly", "metadata": {"topic": "sleep_pattern", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_012_09", "content": "User keeps a pocket notebook for quick task notes during clinical shifts", "metadata": {"topic": "tool_preference", "emotion": "neutral"}},
+      {"memory_id": "mem_012_10", "content": "User finds patient interaction energizing but documentation draining", "metadata": {"topic": "energy_pattern", "emotion": "neutral"}}
+    ],
+    "test_queries": [
+      {"query": "How do I organize my studying across subjects?", "expected_memory_id": "mem_012_01"},
+      {"query": "What type of learning environment suits me best?", "expected_memory_id": "mem_012_02"},
+      {"query": "What situations make me freeze up?", "expected_memory_id": "mem_012_05"},
+      {"query": "How does lack of sleep affect my performance?", "expected_memory_id": "mem_012_08"},
+      {"query": "How do I keep track of tasks during shifts?", "expected_memory_id": "mem_012_09"}
+    ]
+  },
+  {
+    "profile_id": "user_013",
+    "description": "Accountant, inattentive ADHD, late diagnosis at age 45, coping mechanisms established",
+    "memories": [
+      {"memory_id": "mem_013_01", "content": "User relies on a paper planner and refuses to go fully digital after losing data twice", "metadata": {"topic": "tool_preference", "emotion": "neutral"}},
+      {"memory_id": "mem_013_02", "content": "User triple-checks all financial figures using a manual verification process", "metadata": {"topic": "work_strategy", "emotion": "neutral"}},
+      {"memory_id": "mem_013_03", "content": "User finds tax season extremely stressful and starts preparation 2 months early to cope", "metadata": {"topic": "stress_management", "emotion": "anxious"}},
+      {"memory_id": "mem_013_04", "content": "User does not take ADHD medication, manages with structure and routines built over 20 years", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_013_05", "content": "User listens to the same classical music album every workday as a focus anchor", "metadata": {"topic": "focus_technique", "emotion": "focused"}},
+      {"memory_id": "mem_013_06", "content": "User has an early morning routine: 5am wake, 30min walk, breakfast, desk by 7am", "metadata": {"topic": "morning_routine", "emotion": "focused"}},
+      {"memory_id": "mem_013_07", "content": "User struggles with open-plan office noise and wears earplugs", "metadata": {"topic": "workspace", "emotion": "frustrated"}},
+      {"memory_id": "mem_013_08", "content": "User finds end-of-month reconciliation tasks mind-numbing and procrastinates", "metadata": {"topic": "task_avoidance", "emotion": "disengaged"}},
+      {"memory_id": "mem_013_09", "content": "User's wife handles all social planning because user forgets dates and appointments", "metadata": {"topic": "support_system", "emotion": "neutral"}},
+      {"memory_id": "mem_013_10", "content": "User prefers face-to-face meetings over email because email responses get lost in inbox", "metadata": {"topic": "communication_preference", "emotion": "neutral"}}
+    ],
+    "test_queries": [
+      {"query": "What planning system works best for me?", "expected_memory_id": "mem_013_01"},
+      {"query": "How do I avoid errors in my work?", "expected_memory_id": "mem_013_02"},
+      {"query": "How do I handle tax season stress?", "expected_memory_id": "mem_013_03"},
+      {"query": "What's my morning routine?", "expected_memory_id": "mem_013_06"},
+      {"query": "How do I deal with office noise?", "expected_memory_id": "mem_013_07"}
+    ]
+  },
+  {
+    "profile_id": "user_014",
+    "description": "Music producer, combined ADHD, hyperfocuses on creative work but neglects admin",
+    "memories": [
+      {"memory_id": "mem_014_01", "content": "User can work on music production for 8+ hours straight without realizing time passed", "metadata": {"topic": "hyperfocus", "emotion": "focused"}},
+      {"memory_id": "mem_014_02", "content": "User has 50+ unfinished tracks because starting new beats is more exciting than finishing old ones", "metadata": {"topic": "project_completion", "emotion": "frustrated"}},
+      {"memory_id": "mem_014_03", "content": "User's invoicing is always late, costing thousands in delayed payments", "metadata": {"topic": "admin_struggle", "emotion": "frustrated"}},
+      {"memory_id": "mem_014_04", "content": "User finds deadlines from clients motivating but self-imposed deadlines meaningless", "metadata": {"topic": "motivation_pattern", "emotion": "neutral"}},
+      {"memory_id": "mem_014_05", "content": "User works best between 10pm and 4am, which conflicts with partner's schedule", "metadata": {"topic": "peak_hours", "emotion": "neutral"}},
+      {"memory_id": "mem_014_06", "content": "User takes Adderall 20mg IR, two doses: morning and afternoon", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_014_07", "content": "User uses a whiteboard above desk with current project priorities, updated weekly", "metadata": {"topic": "organization", "emotion": "neutral"}},
+      {"memory_id": "mem_014_08", "content": "User gets deeply upset by negative feedback on music, takes days to recover emotionally", "metadata": {"topic": "rejection_sensitivity", "emotion": "frustrated"}},
+      {"memory_id": "mem_014_09", "content": "User finds accounting software overwhelming and prefers a simple spreadsheet", "metadata": {"topic": "tool_preference", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_014_10", "content": "User collaborates with other producers online which helps maintain motivation on projects", "metadata": {"topic": "collaboration", "emotion": "focused"}}
+    ],
+    "test_queries": [
+      {"query": "Why do I never finish my tracks?", "expected_memory_id": "mem_014_02"},
+      {"query": "How do I handle my invoicing problems?", "expected_memory_id": "mem_014_03"},
+      {"query": "What kind of deadlines motivate me?", "expected_memory_id": "mem_014_04"},
+      {"query": "When am I most productive for creative work?", "expected_memory_id": "mem_014_05"},
+      {"query": "How do I deal with criticism of my work?", "expected_memory_id": "mem_014_08"}
+    ]
+  },
+  {
+    "profile_id": "user_015",
+    "description": "Law student, inattentive ADHD, overwhelmed by reading volume",
+    "memories": [
+      {"memory_id": "mem_015_01", "content": "User reads legal cases most effectively using text-to-speech at 1.5x speed while following along", "metadata": {"topic": "reading_strategy", "emotion": "focused"}},
+      {"memory_id": "mem_015_02", "content": "User briefs cases in bullet points rather than full paragraphs to maintain engagement", "metadata": {"topic": "study_strategy", "emotion": "focused"}},
+      {"memory_id": "mem_015_03", "content": "User gets called on in class and blanks out because mind was wandering", "metadata": {"topic": "attention_lapse", "emotion": "anxious"}},
+      {"memory_id": "mem_015_04", "content": "User studies at the law library exclusively; home is too distracting", "metadata": {"topic": "environment", "emotion": "focused"}},
+      {"memory_id": "mem_015_05", "content": "User takes Focalin 15mg and supplements with caffeine strategically", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_015_06", "content": "User schedules all reading during morning hours when medication is at peak effectiveness", "metadata": {"topic": "schedule_strategy", "emotion": "focused"}},
+      {"memory_id": "mem_015_07", "content": "User participates in a moot court team which provides structured deadlines and social accountability", "metadata": {"topic": "support_system", "emotion": "focused"}},
+      {"memory_id": "mem_015_08", "content": "User's biggest struggle is organizing research across multiple cases for essays", "metadata": {"topic": "organization_challenge", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_015_09", "content": "User records study sessions on phone to review what was covered when mind wandered", "metadata": {"topic": "coping_strategy", "emotion": "neutral"}},
+      {"memory_id": "mem_015_10", "content": "User feels like a fraud compared to classmates who seem to grasp material faster", "metadata": {"topic": "impostor_syndrome", "emotion": "anxious"}}
+    ],
+    "test_queries": [
+      {"query": "How do I get through long legal readings?", "expected_memory_id": "mem_015_01"},
+      {"query": "What's my strategy for case briefing?", "expected_memory_id": "mem_015_02"},
+      {"query": "Where should I study?", "expected_memory_id": "mem_015_04"},
+      {"query": "When should I do my heavy reading?", "expected_memory_id": "mem_015_06"},
+      {"query": "How do I organize research for essays?", "expected_memory_id": "mem_015_08"}
+    ]
+  },
+  {
+    "profile_id": "user_016",
+    "description": "Retired military, combined ADHD, transitioning to civilian career",
+    "memories": [
+      {"memory_id": "mem_016_01", "content": "User thrived in military due to imposed structure; struggles without it in civilian life", "metadata": {"topic": "transition", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_016_02", "content": "User maintains military-style morning routine: 5:30am wake, exercise, structured day plan", "metadata": {"topic": "morning_routine", "emotion": "focused"}},
+      {"memory_id": "mem_016_03", "content": "User finds open-ended tasks paralyzing; needs clear objectives and deadlines", "metadata": {"topic": "task_preference", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_016_04", "content": "User diagnosed with ADHD at 38 after leaving service; explains lifelong patterns", "metadata": {"topic": "diagnosis", "emotion": "neutral"}},
+      {"memory_id": "mem_016_05", "content": "User takes guanfacine 2mg for ADHD plus anxiety management", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_016_06", "content": "User excels in crisis situations but struggles with routine administrative tasks", "metadata": {"topic": "skill_pattern", "emotion": "neutral"}},
+      {"memory_id": "mem_016_07", "content": "User uses a physical operations board at home desk mimicking military planning boards", "metadata": {"topic": "organization", "emotion": "focused"}},
+      {"memory_id": "mem_016_08", "content": "User attends a veterans ADHD support group every other Saturday", "metadata": {"topic": "support_system", "emotion": "neutral"}},
+      {"memory_id": "mem_016_09", "content": "User finds networking events overwhelming due to social stimulation overload", "metadata": {"topic": "social_challenge", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_016_10", "content": "User's goal is to become a project manager; the role suits ADHD strengths in variety and urgency", "metadata": {"topic": "career_goal", "emotion": "focused"}}
+    ],
+    "test_queries": [
+      {"query": "Why is civilian life harder than military for me?", "expected_memory_id": "mem_016_01"},
+      {"query": "What kind of task structure do I need?", "expected_memory_id": "mem_016_03"},
+      {"query": "What am I good at under pressure?", "expected_memory_id": "mem_016_06"},
+      {"query": "How do I stay organized?", "expected_memory_id": "mem_016_07"},
+      {"query": "What career am I working toward?", "expected_memory_id": "mem_016_10"}
+    ]
+  },
+  {
+    "profile_id": "user_017",
+    "description": "College athlete, hyperactive ADHD, balances sport with academics",
+    "memories": [
+      {"memory_id": "mem_017_01", "content": "User focuses much better on academic work immediately after basketball practice", "metadata": {"topic": "exercise_effect", "emotion": "focused"}},
+      {"memory_id": "mem_017_02", "content": "User cannot study for more than 30 minutes without physical movement breaks", "metadata": {"topic": "study_pattern", "emotion": "neutral"}},
+      {"memory_id": "mem_017_03", "content": "User has an academic tutor provided by the athletic department who helps with scheduling", "metadata": {"topic": "support_system", "emotion": "neutral"}},
+      {"memory_id": "mem_017_04", "content": "User struggles most with writing assignments; finds math and physics more engaging", "metadata": {"topic": "academic_preference", "emotion": "neutral"}},
+      {"memory_id": "mem_017_05", "content": "User takes Adderall 10mg on study days only, not on game days", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_017_06", "content": "User studies with teammates in the athletic facility study hall for accountability", "metadata": {"topic": "study_environment", "emotion": "focused"}},
+      {"memory_id": "mem_017_07", "content": "User tends to leave assignments until travel days then crams on the bus", "metadata": {"topic": "procrastination", "emotion": "anxious"}},
+      {"memory_id": "mem_017_08", "content": "User listens to hype music before games and it improves focus temporarily for academics too", "metadata": {"topic": "music_effect", "emotion": "focused"}},
+      {"memory_id": "mem_017_09", "content": "User's biggest fear is losing athletic scholarship due to GPA dropping below 2.5", "metadata": {"topic": "academic_anxiety", "emotion": "anxious"}},
+      {"memory_id": "mem_017_10", "content": "User uses speech-to-text for writing essays because typing feels too slow for racing thoughts", "metadata": {"topic": "tool_preference", "emotion": "neutral"}}
+    ],
+    "test_queries": [
+      {"query": "When is the best time for me to study?", "expected_memory_id": "mem_017_01"},
+      {"query": "How often do I need breaks while studying?", "expected_memory_id": "mem_017_02"},
+      {"query": "Where do I study best?", "expected_memory_id": "mem_017_06"},
+      {"query": "What am I most worried about academically?", "expected_memory_id": "mem_017_09"},
+      {"query": "How do I handle writing assignments?", "expected_memory_id": "mem_017_10"}
+    ]
+  },
+  {
+    "profile_id": "user_018",
+    "description": "Journalist, combined ADHD, thrives on deadlines but crashes after",
+    "memories": [
+      {"memory_id": "mem_018_01", "content": "User writes best articles under tight deadline pressure, producing 2000 words in 2 hours", "metadata": {"topic": "work_pattern", "emotion": "focused"}},
+      {"memory_id": "mem_018_02", "content": "User crashes hard after deadline sprints, needing 1-2 days to recover energy", "metadata": {"topic": "energy_pattern", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_018_03", "content": "User has a dictation habit for first drafts, then edits the transcript", "metadata": {"topic": "writing_technique", "emotion": "focused"}},
+      {"memory_id": "mem_018_04", "content": "User keeps an Evernote database of story ideas, quotes, and source contacts", "metadata": {"topic": "organization", "emotion": "neutral"}},
+      {"memory_id": "mem_018_05", "content": "User takes modafinil off-label for focus, prescribed by psychiatrist", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_018_06", "content": "User finds interviews energizing but transcribing them painfully tedious", "metadata": {"topic": "task_preference", "emotion": "neutral"}},
+      {"memory_id": "mem_018_07", "content": "User's editor has learned to set fake earlier deadlines because user always submits last minute", "metadata": {"topic": "work_accommodation", "emotion": "neutral"}},
+      {"memory_id": "mem_018_08", "content": "User reads 10+ articles daily for research but often forgets to bookmark the good ones", "metadata": {"topic": "research_habit", "emotion": "frustrated"}},
+      {"memory_id": "mem_018_09", "content": "User works from coffee shops 4 days a week; the commute ritual helps transition into work mode", "metadata": {"topic": "environment", "emotion": "focused"}},
+      {"memory_id": "mem_018_10", "content": "User goes through phases of intense productivity followed by creative blocks lasting weeks", "metadata": {"topic": "productivity_cycle", "emotion": "disengaged"}}
+    ],
+    "test_queries": [
+      {"query": "How do I write my best work?", "expected_memory_id": "mem_018_01"},
+      {"query": "What happens after I finish a big deadline?", "expected_memory_id": "mem_018_02"},
+      {"query": "What's my first draft process?", "expected_memory_id": "mem_018_03"},
+      {"query": "Where do I work best?", "expected_memory_id": "mem_018_09"},
+      {"query": "Why do I go through unproductive phases?", "expected_memory_id": "mem_018_10"}
+    ]
+  },
+  {
+    "profile_id": "user_019",
+    "description": "Stay-at-home parent returning to workforce, inattentive ADHD, rebuilding confidence",
+    "memories": [
+      {"memory_id": "mem_019_01", "content": "User hasn't worked professionally in 8 years and feels skills are outdated", "metadata": {"topic": "career_anxiety", "emotion": "anxious"}},
+      {"memory_id": "mem_019_02", "content": "User finds online courses helpful but abandons them after week 2 consistently", "metadata": {"topic": "learning_pattern", "emotion": "frustrated"}},
+      {"memory_id": "mem_019_03", "content": "User's biggest strength during parenting years was creative problem-solving for the family", "metadata": {"topic": "strengths", "emotion": "neutral"}},
+      {"memory_id": "mem_019_04", "content": "User prefers learning by doing over watching tutorials or reading documentation", "metadata": {"topic": "learning_preference", "emotion": "focused"}},
+      {"memory_id": "mem_019_05", "content": "User gets overwhelmed by job application processes and has applied to only 3 positions in 2 months", "metadata": {"topic": "job_search", "emotion": "overwhelmed"}},
+      {"memory_id": "mem_019_06", "content": "User recently started Wellbutrin 150mg which is helping with motivation", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_019_07", "content": "User studies best during school hours when the house is quiet (9am-2pm)", "metadata": {"topic": "schedule", "emotion": "focused"}},
+      {"memory_id": "mem_019_08", "content": "User joined an online ADHD women's support group and finds it validating", "metadata": {"topic": "support_system", "emotion": "neutral"}},
+      {"memory_id": "mem_019_09", "content": "User compares self negatively to peers who maintained careers and feels behind", "metadata": {"topic": "self_comparison", "emotion": "anxious"}},
+      {"memory_id": "mem_019_10", "content": "User writes down 3 achievements daily in a gratitude journal to combat negative self-talk", "metadata": {"topic": "coping_strategy", "emotion": "neutral"}}
+    ],
+    "test_queries": [
+      {"query": "Why do I keep quitting online courses?", "expected_memory_id": "mem_019_02"},
+      {"query": "What's my best learning style?", "expected_memory_id": "mem_019_04"},
+      {"query": "Why is the job search so hard for me?", "expected_memory_id": "mem_019_05"},
+      {"query": "When is my best time to study?", "expected_memory_id": "mem_019_07"},
+      {"query": "What helps me feel better about myself?", "expected_memory_id": "mem_019_10"}
+    ]
+  },
+  {
+    "profile_id": "user_020",
+    "description": "Game developer, combined ADHD, hyperfocuses on code but neglects health",
+    "memories": [
+      {"memory_id": "mem_020_01", "content": "User regularly codes for 12+ hours forgetting to eat, drink water, or stretch", "metadata": {"topic": "hyperfocus_risk", "emotion": "focused"}},
+      {"memory_id": "mem_020_02", "content": "User set up automated reminders every 90 minutes for water and standing breaks", "metadata": {"topic": "health_strategy", "emotion": "neutral"}},
+      {"memory_id": "mem_020_03", "content": "User finds game physics and AI programming deeply engaging but UI work tedious", "metadata": {"topic": "task_preference", "emotion": "focused"}},
+      {"memory_id": "mem_020_04", "content": "User's sleep schedule is erratic: sleeps at 4am some nights, 10pm others", "metadata": {"topic": "sleep_pattern", "emotion": "neutral"}},
+      {"memory_id": "mem_020_05", "content": "User takes Vyvanse 50mg and effectiveness varies greatly depending on sleep quality", "metadata": {"topic": "medication", "emotion": "neutral"}},
+      {"memory_id": "mem_020_06", "content": "User participates in game jams which provide the deadline pressure needed for completion", "metadata": {"topic": "motivation_strategy", "emotion": "focused"}},
+      {"memory_id": "mem_020_07", "content": "User's personal projects never get finished; has 15 abandoned game prototypes on GitHub", "metadata": {"topic": "project_completion", "emotion": "frustrated"}},
+      {"memory_id": "mem_020_08", "content": "User experiences back pain from extended coding sessions in bad posture", "metadata": {"topic": "health_issue", "emotion": "frustrated"}},
+      {"memory_id": "mem_020_09", "content": "User finds rubber duck debugging effective and keeps a literal rubber duck on desk", "metadata": {"topic": "debugging_technique", "emotion": "neutral"}},
+      {"memory_id": "mem_020_10", "content": "User's team lead assigns paired tasks because user works better with someone else present", "metadata": {"topic": "work_accommodation", "emotion": "focused"}}
+    ],
+    "test_queries": [
+      {"query": "How do I take care of myself during long coding sessions?", "expected_memory_id": "mem_020_02"},
+      {"query": "What kind of programming do I enjoy most?", "expected_memory_id": "mem_020_03"},
+      {"query": "How does my sleep affect my focus?", "expected_memory_id": "mem_020_05"},
+      {"query": "Why don't I finish personal projects?", "expected_memory_id": "mem_020_07"},
+      {"query": "What helps me work better on tasks?", "expected_memory_id": "mem_020_10"}
+    ]
+  }
+]

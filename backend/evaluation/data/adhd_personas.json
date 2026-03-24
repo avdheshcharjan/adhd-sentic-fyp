@@ -1,0 +1,92 @@
+[
+  {
+    "persona_id": "persona_01",
+    "name": "Alex",
+    "age": 22,
+    "gender": "male",
+    "occupation": "final-year computer science student",
+    "adhd_subtype": "combined",
+    "severity": "moderate",
+    "context": "Struggling to complete FYP while managing coursework. Recently diagnosed, still adjusting to medication (Adderall XR 20mg). Lives in a shared apartment near campus. Has a part-time job as a TA which adds to scheduling pressure.",
+    "emotional_tendency": "Oscillates between hyperfocus excitement and frustration when interrupted. Gets defensive when people suggest he 'just needs to try harder'. Experiences strong shame spirals after unproductive days.",
+    "conversation_starters": [
+      "I've been staring at my code for an hour and nothing makes sense anymore",
+      "My medication is making me feel weird today, kind of jittery but still can't focus",
+      "I had the most productive morning ever but now it's 3pm and I'm completely drained",
+      "My FYP supervisor wants a progress update and I have almost nothing to show",
+      "Everyone in my group project has finished their parts except me"
+    ]
+  },
+  {
+    "persona_id": "persona_02",
+    "name": "Priya",
+    "age": 28,
+    "gender": "female",
+    "occupation": "marketing professional",
+    "adhd_subtype": "inattentive",
+    "severity": "mild",
+    "context": "Diagnosed at 24 after years of 'just being forgetful'. Manages a small team of 3 at a tech startup. Uses multiple productivity apps but abandons them after a few weeks. Has developed strong masking behaviors that exhaust her by end of day.",
+    "emotional_tendency": "Anxious about forgetting things and missing details. Self-critical and perfectionistic as a compensation strategy. Feels like an impostor despite being promoted twice. Calm exterior but internal chaos.",
+    "conversation_starters": [
+      "I forgot to follow up on three client emails this week and my boss noticed",
+      "I've downloaded another productivity app. I know I'll stop using it in two weeks but I can't help hoping this one is different",
+      "I spent 45 minutes perfecting a slide deck that nobody will even look at closely",
+      "I'm exhausted from pretending to be organized all day. The mask is so heavy",
+      "My team thinks I'm scatter-brained and it hurts even though they say it affectionately"
+    ]
+  },
+  {
+    "persona_id": "persona_03",
+    "name": "Jordan",
+    "age": 35,
+    "gender": "non-binary",
+    "occupation": "freelance graphic designer",
+    "adhd_subtype": "hyperactive-impulsive",
+    "severity": "severe",
+    "context": "Unmedicated by choice after bad experiences with stimulants. Relies on intense exercise (cycling, rock climbing), strict routines, and body-doubling for management. Works from home with a dog for companionship. Frequently overcommits to projects due to impulsive yes-saying.",
+    "emotional_tendency": "High emotional reactivity — feelings hit fast and hard. Experiences intense rejection sensitivity, especially around client feedback. Quick to anger but also quick to recover. Passionate and enthusiastic about new projects, deflates rapidly when excitement wears off.",
+    "conversation_starters": [
+      "I just agreed to three new client projects and I'm already behind on two existing ones. Why do I do this to myself?",
+      "A client asked for 'minor revisions' and I feel like they hate everything I made. I know that's not rational but I can't shake it.",
+      "I was supposed to work all morning but I impulsively deep-cleaned my entire apartment instead",
+      "I can't sit still today. I've walked to the kitchen 15 times and it's not even noon",
+      "I started a new illustration project and I'm so excited I forgot to eat lunch. It's 4pm."
+    ]
+  },
+  {
+    "persona_id": "persona_04",
+    "name": "Maya",
+    "age": 19,
+    "gender": "female",
+    "occupation": "first-year university student",
+    "adhd_subtype": "inattentive",
+    "severity": "moderate",
+    "context": "Undiagnosed but strongly suspects ADHD after learning about it on social media. Doing well enough in high school through last-minute panic studying, but university workload is exposing her coping gaps. Anxious about seeking diagnosis due to family stigma around mental health. First in family to attend university.",
+    "emotional_tendency": "Chronically anxious about academic performance. Compares herself to peers who seem effortlessly organized. Experiences imposter syndrome intensely. Tends toward rumination and catastrophizing. Seeks reassurance frequently but feels guilty for needing it.",
+    "conversation_starters": [
+      "I've read the same paragraph 7 times and I still don't know what it says",
+      "Everyone in my lecture takes these perfect organized notes and mine are just random scribbles",
+      "I think I might have ADHD but my parents would say I'm just making excuses. Should I get tested?",
+      "I stayed up all night finishing an assignment I had 3 weeks to do. I'm so tired I feel sick",
+      "My high school strategy of cramming the night before isn't working anymore and I don't have a backup plan"
+    ]
+  },
+  {
+    "persona_id": "persona_05",
+    "name": "Sam",
+    "age": 41,
+    "gender": "male",
+    "occupation": "software engineer",
+    "adhd_subtype": "combined",
+    "severity": "moderate",
+    "context": "Diagnosed at 30, medicated with Concerta 36mg. Has built extensive coping systems over the past decade — shared family calendar, automated reminders, meal prep Sundays, standing desk. Manages well most days but crashes hard during high-stress periods like production incidents or quarterly planning. Married with two kids.",
+    "emotional_tendency": "Generally even-keeled due to years of managed ADHD, but stress unravels coping mechanisms quickly. During crashes, reverts to old patterns: staying up late, skipping meals, doom-scrolling. Feels guilty about how his ADHD affects his family. Values efficiency and dislikes overly emotional approaches to coaching.",
+    "conversation_starters": [
+      "We had a production outage last night and I've been in firefight mode for 16 hours. All my routines are broken.",
+      "I know I need to sleep but my brain won't stop replaying the sprint retro meeting",
+      "Good day today — finished my sprint tickets ahead of schedule. What should I tackle next while I'm in the zone?",
+      "My wife said I've been 'absent' even when I'm physically present. I think she's right and I don't know how to fix it.",
+      "Quarterly planning is next week and the thought of it makes me want to call in sick for the entire week"
+    ]
+  }
+]

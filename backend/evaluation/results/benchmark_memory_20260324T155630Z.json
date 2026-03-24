@@ -1,0 +1,154 @@
+{
+  "component": "memory",
+  "timestamp": "2026-03-24T15:56:30.246031+00:00",
+  "system_info": {
+    "os": "macOS 26.2",
+    "chip": "arm64",
+    "ram_gb": 16.0,
+    "python": "3.14.0",
+    "mlx_version": "installed",
+    "mlx_lm_version": "0.31.1",
+    "sentence_transformers_version": "5.2.3"
+  },
+  "metrics": {
+    "store_latency": {
+      "count": 20,
+      "mean_ms": 5533.3,
+      "median_ms": 5587.4,
+      "p95_ms": 7451.2,
+      "min_ms": 3658.2,
+      "max_ms": 7451.2
+    },
+    "retrieval_latency": {
+      "count": 10,
+      "mean_ms": 238.8,
+      "median_ms": 195.5,
+      "p95_ms": 333.6,
+      "min_ms": 183.5,
+      "max_ms": 333.6
+    },
+    "retrieval_relevance": {
+      "hits": 10,
+      "total": 10,
+      "hit_rate_pct": 100.0
+    },
+    "memory_footprint": {
+      "rss_mb": 504.0,
+      "memories_stored": 20
+    }
+  },
+  "raw_measurements": [
+    {
+      "test": "store_latency",
+      "times_ms": [
+        3658.2,
+        4241.1,
+        4114.1,
+        5162.6,
+        5933.2,
+        5164.6,
+        4863.1,
+        7451.2,
+        6070.8,
+        5050.5,
+        6826.2,
+        5721.8,
+        6703.1,
+        5595.2,
+        6145.1,
+        5668.6,
+        6728.6,
+        5579.6,
+        4957.8,
+        5029.4
+      ]
+    },
+    {
+      "test": "retrieval_latency",
+      "times_ms": [
+        333.6,
+        257.4,
+        185.7,
+        326.9,
+        188.5,
+        189.6,
+        191.8,
+        332.3,
+        199.2,
+        183.5
+      ]
+    },
+    {
+      "test": "retrieval_relevance",
+      "details": [
+        {
+          "query": "How long should my work sessions be?",
+          "expected_keyword": "pomodoro",
+          "top_result_snippet": "user prefers working in 25-minute pomodoro sessions with 5-minute breaks",
+          "hit": true
+        },
+        {
+          "query": "When am I most productive?",
+          "expected_keyword": "9am",
+          "top_result_snippet": "user is most productive between 9am and 12pm on weekdays",
+          "hit": true
+        },
+        {
+          "query": "What medication do I take?",
+          "expected_keyword": "adderall",
+          "top_result_snippet": "takes adderall xr 20mg every morning at 8am",
+          "hit": true
+        },
+        {
+          "query": "What distracts me the most?",
+          "expected_keyword": "social media",
+          "top_result_snippet": "user's biggest distraction trigger is social media notifications",
+          "hit": true
+        },
+        {
+          "query": "Do I exercise?",
+          "expected_keyword": "exercise",
+          "top_result_snippet": "exercises every morning for 30 minutes",
+          "hit": true
+        },
+        {
+          "query": "When do I meet my supervisor?",
+          "expected_keyword": "thursday",
+          "top_result_snippet": "user's fyp supervisor meets every thursday at 2pm",
+          "hit": true
+        },
+        {
+          "query": "What happens when I skip meals?",
+          "expected_keyword": "lunch",
+          "top_result_snippet": "user tends to skip lunch when hyperfocused",
+          "hit": true
+        },
+        {
+          "query": "Do I use a standing desk?",
+          "expected_keyword": "standing desk",
+          "top_result_snippet": "uses a standing desk",
+          "hit": true
+        },
+        {
+          "query": "What helps me code better?",
+          "expected_keyword": "pair programming",
+          "top_result_snippet": "finds pair programming more productive than solo coding",
+          "hit": true
+        },
+        {
+          "query": "How does sleep affect my medication?",
+          "expected_keyword": "sleeping",
+          "top_result_snippet": "user's medication effectiveness drops when sleeping less than 6 hours",
+          "hit": true
+        }
+      ]
+    },
+    {
+      "test": "memory_footprint",
+      "data": {
+        "rss_mb": 504.0,
+        "memories_stored": 20
+      }
+    }
+  ]
+}

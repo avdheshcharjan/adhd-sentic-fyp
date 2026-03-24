@@ -18,6 +18,9 @@
     "TablePlus": "development",
     "Postman": "development",
     "GitKraken": "development",
+    "Vim": "development",
+    "Neovim": "development",
+    "PyCharm Professional": "development",
 
     "Notion": "productivity",
     "Obsidian": "productivity",
@@ -31,6 +34,9 @@
     "Pages": "writing",
     "Google Docs": "writing",
     "Grammarly": "writing",
+    "Overleaf": "writing",
+
+    "WhatsApp Web": "communication",
 
     "Slack": "communication",
     "Discord": "communication",
@@ -41,6 +47,11 @@
     "Mail": "communication",
     "Telegram": "communication",
     "WhatsApp": "communication",
+
+    "Steam": "entertainment",
+    "Valorant": "entertainment",
+    "Minecraft": "entertainment",
+    "League of Legends": "entertainment",
 
     "Spotify": "entertainment",
     "Music": "entertainment",
@@ -58,6 +69,8 @@
     "Canva": "design",
     "Preview": "design",
 
+    "Calculator": "system",
+
     "Finder": "system",
     "System Preferences": "system",
     "System Settings": "system",
@@ -69,6 +82,7 @@
 
     "Safari": "browser",
     "Google Chrome": "browser",
+    "Chrome": "browser",
     "Firefox": "browser",
     "Arc": "browser",
     "Brave Browser": "browser",

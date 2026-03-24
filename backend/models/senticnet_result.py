@@ -106,3 +106,4 @@ class SenticNetResult(BaseModel):
     adhd_signals: ADHDRelevantSignals = Field(default_factory=ADHDRelevantSignals)
     personality: PersonalityProfile | None = None
     ensemble_raw: str | None = None  # Raw ensemble response for debugging
+    primary_adhd_state: str = "neutral"  # Mapped from Hourglass dimensions

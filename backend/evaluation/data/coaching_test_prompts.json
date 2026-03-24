@@ -1,0 +1,362 @@
+[
+  {
+    "id": "overwhelm_01",
+    "scenario": "overwhelm",
+    "message": "I have 6 things due this week and I haven't started any of them. I just keep opening and closing the same tabs.",
+    "expected_emotion": "overwhelmed",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "overwhelm_02",
+    "scenario": "overwhelm",
+    "message": "I literally cannot make myself open this document. I've been sitting here for an hour doing nothing. My brain just won't engage.",
+    "expected_emotion": "overwhelmed",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "low",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "overwhelm_03",
+    "scenario": "overwhelm",
+    "message": "Everything is piling up. Emails, assignments, dishes, laundry. I feel like I'm drowning and I can't even pick which thing to start with because they all feel equally urgent.",
+    "expected_emotion": "overwhelmed",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "overwhelm_04",
+    "scenario": "overwhelm",
+    "message": "I just want to sleep. Not because I'm tired, but because being awake means I have to deal with all the things I'm behind on. Is that bad?",
+    "expected_emotion": "overwhelmed",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "low",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "overwhelm_05",
+    "scenario": "overwhelm",
+    "message": "Help. I have a presentation tomorrow that I haven't even started on, two overdue assignments, and my group project members are messaging me. What do I even do first?",
+    "expected_emotion": "overwhelmed",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "distracted_01",
+    "scenario": "distracted",
+    "message": "I've opened YouTube 'just for a second' four times in the last 30 minutes and I don't know how to stop. My essay is right there but my brain refuses to look at it.",
+    "expected_emotion": "frustrated",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "low",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "distracted_02",
+    "scenario": "distracted",
+    "message": "I started working on my code, then I googled one thing, somehow ended up reading about the history of submarines, and now it's been 2 hours. What even happened.",
+    "expected_emotion": "disengaged",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "low",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "distracted_03",
+    "scenario": "distracted",
+    "message": "Every notification pulls me away. I turned off my phone but now I keep checking my laptop notifications instead. It's like my brain is actively looking for distractions.",
+    "expected_emotion": "frustrated",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "distracted_04",
+    "scenario": "distracted",
+    "message": "I keep task-switching. Code for 3 minutes, check Slack, code for 2 minutes, check email, code for 1 minute, check phone. I know I'm doing it but I can't stop.",
+    "expected_emotion": "anxious",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "distracted_05",
+    "scenario": "distracted",
+    "message": "Why can't I just focus on one thing? My roommate can study for hours straight. I can barely do 10 minutes before I'm on my phone again. Is something wrong with me?",
+    "expected_emotion": "frustrated",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "emotional_01",
+    "scenario": "emotional_dysregulation",
+    "message": "My supervisor gave me feedback and I know it was fine but I feel like I'm going to cry and I can't calm down. I hate that I react like this to normal things.",
+    "expected_emotion": "frustrated",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "emotional_02",
+    "scenario": "emotional_dysregulation",
+    "message": "Someone made a joke about me being late again and now I'm irrationally angry. I know it was just a joke but it feels like they think I'm lazy and incompetent.",
+    "expected_emotion": "frustrated",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "emotional_03",
+    "scenario": "emotional_dysregulation",
+    "message": "I just snapped at my partner for asking what's for dinner. It wasn't about dinner at all. I was already overwhelmed and that one small question broke me. I feel terrible.",
+    "expected_emotion": "overwhelmed",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "emotional_04",
+    "scenario": "emotional_dysregulation",
+    "message": "I got a B+ and I should be happy but I'm not. I studied really hard and I feel like it doesn't matter. Everyone else seemed to find it easy. Maybe I'm just not smart enough.",
+    "expected_emotion": "frustrated",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "emotional_05",
+    "scenario": "emotional_dysregulation",
+    "message": "I feel so ashamed. I promised myself I'd finish this today and it's midnight and I've done nothing. Again. I don't know how to stop this cycle of letting myself down.",
+    "expected_emotion": "overwhelmed",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "timeblind_01",
+    "scenario": "time_blindness",
+    "message": "It's 2am and the assignment is due at 9am and I'm only on the introduction. How did I let this happen again. I thought I had so much time.",
+    "expected_emotion": "anxious",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "timeblind_02",
+    "scenario": "time_blindness",
+    "message": "I looked at the clock and somehow 4 hours disappeared. I was supposed to leave for my appointment 30 minutes ago. This keeps happening and people think I don't care.",
+    "expected_emotion": "anxious",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "timeblind_03",
+    "scenario": "time_blindness",
+    "message": "I missed the deadline. By two whole days. I didn't even realize it had passed. My professor is going to think I'm irresponsible but I genuinely lost track.",
+    "expected_emotion": "anxious",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "timeblind_04",
+    "scenario": "time_blindness",
+    "message": "I started the project thinking I had a week. Turns out it's due in 2 days. How do I salvage this? Is there even enough time to produce something decent?",
+    "expected_emotion": "anxious",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "timeblind_05",
+    "scenario": "time_blindness",
+    "message": "I keep telling myself '10 more minutes' on Reddit and then an hour goes by. I know it's happening while it's happening but I still can't stop. It's like time isn't real to my brain.",
+    "expected_emotion": "frustrated",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "low",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "decomp_01",
+    "scenario": "task_decomposition",
+    "message": "I need to write a 3000 word essay. I've written the title. That's it. I don't know what comes next. The blank page is just staring at me.",
+    "expected_emotion": "overwhelmed",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "low",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "decomp_02",
+    "scenario": "task_decomposition",
+    "message": "My FYP is this massive thing and every time I try to work on it, I don't know which part to touch. It all feels connected and I can't isolate a single starting point.",
+    "expected_emotion": "overwhelmed",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "low",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "decomp_03",
+    "scenario": "task_decomposition",
+    "message": "I need to 'study for finals' but that means 8 subjects and hundreds of pages of notes. Can you help me figure out where to even begin? I have 5 days.",
+    "expected_emotion": "anxious",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "decomp_04",
+    "scenario": "task_decomposition",
+    "message": "I made a to-do list with 47 items on it and now I'm more overwhelmed than before. I think the list itself is part of the problem. How do I simplify this?",
+    "expected_emotion": "overwhelmed",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "high",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "decomp_05",
+    "scenario": "task_decomposition",
+    "message": "I have to 'set up the project infrastructure'. I know what the end result should look like but the gap between where I am and where I need to be feels impossibly wide.",
+    "expected_emotion": "overwhelmed",
+    "expected_hourglass": {
+      "pleasantness": "low",
+      "attention": "low",
+      "sensitivity": "low",
+      "aptitude": "low"
+    }
+  },
+  {
+    "id": "positive_01",
+    "scenario": "positive",
+    "message": "I actually finished two whole tasks before lunch! I don't want to jinx it but what should I do next to keep this momentum going?",
+    "expected_emotion": "joyful",
+    "expected_hourglass": {
+      "pleasantness": "high",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "high"
+    }
+  },
+  {
+    "id": "positive_02",
+    "scenario": "positive",
+    "message": "I just had the most productive 3 hours of my entire semester. Everything clicked, the code worked, I actually understood what I was doing. Is this what flow state feels like??",
+    "expected_emotion": "joyful",
+    "expected_hourglass": {
+      "pleasantness": "high",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "high"
+    }
+  },
+  {
+    "id": "positive_03",
+    "scenario": "positive",
+    "message": "I submitted my assignment a full day before the deadline. I'm honestly shocked at myself. I used that timer technique you suggested and it actually worked.",
+    "expected_emotion": "joyful",
+    "expected_hourglass": {
+      "pleasantness": "high",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "high"
+    }
+  },
+  {
+    "id": "positive_04",
+    "scenario": "positive",
+    "message": "Having a surprisingly good focus day. I'm a bit worried because these never last, but for now I want to make the most of it. What's the best way to ride this wave?",
+    "expected_emotion": "focused",
+    "expected_hourglass": {
+      "pleasantness": "high",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "high"
+    }
+  },
+  {
+    "id": "positive_05",
+    "scenario": "positive",
+    "message": "I finally cleaned my desk and organized my notes. It took all morning but I feel so much better. Now I actually want to start working. That never happens!",
+    "expected_emotion": "joyful",
+    "expected_hourglass": {
+      "pleasantness": "high",
+      "attention": "high",
+      "sensitivity": "high",
+      "aptitude": "high"
+    }
+  }
+]

@@ -1,0 +1,977 @@
+{
+  "timestamp": "20260324T170526Z",
+  "mode": "gpt4o_judge",
+  "dataset_size": 30,
+  "responses_file": "evaluation/results/coaching_responses_20260324T165317Z.json",
+  "metrics": {
+    "dimension_metrics": {
+      "empathy": {
+        "with_sentic_mean": 4.666666666666667,
+        "with_sentic_std": 0.4714045207910317,
+        "without_sentic_mean": 4.966666666666667,
+        "without_sentic_std": 0.17950549357115014,
+        "difference": -0.2999999999999998,
+        "wilcoxon_stat": 6.0,
+        "wilcoxon_p": 0.9966721972585253,
+        "significant": false
+      },
+      "helpfulness": {
+        "with_sentic_mean": 4.666666666666667,
+        "with_sentic_std": 0.4714045207910317,
+        "without_sentic_mean": 4.866666666666666,
+        "without_sentic_std": 0.33993463423951903,
+        "difference": -0.1999999999999993,
+        "wilcoxon_stat": 19.5,
+        "wilcoxon_p": 0.9583677416682248,
+        "significant": false
+      },
+      "adhd_appropriateness": {
+        "with_sentic_mean": 4.933333333333334,
+        "with_sentic_std": 0.24944382578492943,
+        "without_sentic_mean": 5.0,
+        "without_sentic_std": 0.0,
+        "difference": -0.06666666666666643,
+        "wilcoxon_stat": 0.0,
+        "wilcoxon_p": 0.9213503964748575,
+        "significant": false
+      },
+      "coherence": {
+        "with_sentic_mean": 5.0,
+        "with_sentic_std": 0.0,
+        "without_sentic_mean": 4.966666666666667,
+        "without_sentic_std": 0.17950549357115014,
+        "difference": 0.033333333333333215,
+        "wilcoxon_stat": 1.0,
+        "wilcoxon_p": 0.15865525393145707,
+        "significant": false
+      },
+      "informativeness": {
+        "with_sentic_mean": 4.266666666666667,
+        "with_sentic_std": 0.5120763831912406,
+        "without_sentic_mean": 4.566666666666666,
+        "without_sentic_std": 0.4955356249106168,
+        "difference": -0.2999999999999998,
+        "wilcoxon_stat": 14.0,
+        "wilcoxon_p": 0.9937225407015168,
+        "significant": false
+      }
+    },
+    "safety_metrics": {
+      "with_sentic_pass_rate": 1.0,
+      "without_sentic_pass_rate": 1.0
+    },
+    "comparison_metrics": {
+      "wins": 11,
+      "ties": 4,
+      "losses": 15,
+      "total": 30,
+      "win_rate": 0.36666666666666664,
+      "tie_rate": 0.13333333333333333,
+      "loss_rate": 0.5
+    }
+  },
+  "scores": [
+    {
+      "prompt_id": "overwhelm_01",
+      "scenario": "overwhelm",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, provides specific and actionable advice, is concise and structured, safe, coherent, and informative with ADHD-specific strategies."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, provides specific and structured advice suitable for ADHD, is safe, coherent, and informative."
+      }
+    },
+    {
+      "prompt_id": "overwhelm_02",
+      "scenario": "overwhelm",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, provides specific and actionable advice, is concise and structured, safe, coherent, and informative with ADHD-specific strategies."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, offers specific and actionable advice, is concise and structured, safe, coherent, and informative with ADHD-appropriate strategies."
+      }
+    },
+    {
+      "prompt_id": "overwhelm_03",
+      "scenario": "overwhelm",
+      "with_sentic": {
+        "empathy": 4,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, provides clear and actionable advice, is concise and structured, safe, coherent, and informative with ADHD-specific strategies."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response empathetically acknowledges the user's feelings, offers specific and manageable suggestions, is concise and structured, avoids any harmful advice, is coherent, and provides informative insights tailored to ADHD challenges."
+      }
+    },
+    {
+      "prompt_id": "overwhelm_04",
+      "scenario": "overwhelm",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 4,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response empathetically acknowledges the user's feelings, offers specific and manageable advice, is concise and structured, avoids harmful suggestions, is coherent, and provides insights relevant to ADHD."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, provides clear and actionable steps, is concise and structured, safe, coherent, and offers more than generic advice by addressing the user's emotional state and suggesting practical strategies."
+      }
+    },
+    {
+      "prompt_id": "overwhelm_05",
+      "scenario": "overwhelm",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, provides clear and actionable steps, is concise and structured, avoids harmful advice, is coherent, and offers specific insights relevant to ADHD."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, provides specific and actionable advice, is concise and structured, safe, coherent, and informative with ADHD-specific strategies."
+      }
+    },
+    {
+      "prompt_id": "distracted_01",
+      "scenario": "distracted",
+      "with_sentic": {
+        "empathy": 4,
+        "helpfulness": 4,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, offers specific and structured advice, is safe, coherent, and informative with ADHD-appropriate strategies."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, offers a specific and structured strategy, is concise and safe, and provides insightful advice tailored to ADHD challenges."
+      }
+    },
+    {
+      "prompt_id": "distracted_02",
+      "scenario": "distracted",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, offers specific and actionable advice, is concise and structured, safe, coherent, and informative by normalizing the experience and suggesting practical strategies."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 4,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, offers specific strategies, is concise, safe, coherent, and informative about ADHD tendencies."
+      }
+    },
+    {
+      "prompt_id": "distracted_03",
+      "scenario": "distracted",
+      "with_sentic": {
+        "empathy": 4,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, offers specific and actionable advice, is concise and structured, safe, coherent, and provides a helpful reframe about the brain's behavior."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response empathetically acknowledges the user's struggle, offers specific and actionable advice, is concise and structured, maintains safety, is coherent, and provides informative suggestions tailored to ADHD challenges."
+      }
+    },
+    {
+      "prompt_id": "distracted_04",
+      "scenario": "distracted",
+      "with_sentic": {
+        "empathy": 4,
+        "helpfulness": 4,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, provides specific strategies, is concise and structured, safe, coherent, and informative with ADHD-specific advice."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response empathetically acknowledges the user's struggle, offers specific and structured strategies, is safe, coherent, and informative about ADHD-related task-switching."
+      }
+    },
+    {
+      "prompt_id": "distracted_05",
+      "scenario": "distracted",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response empathetically validates the user's feelings, offers a specific and manageable strategy, is concise and structured, avoids harmful advice, is coherent, and provides informative insights about ADHD."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, offers specific and actionable advice, is concise and structured, safe, coherent, and informative about ADHD-related strengths."
+      }
+    },
+    {
+      "prompt_id": "emotional_01",
+      "scenario": "emotional_dysregulation",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, offers specific calming strategies, is concise, safe, coherent, and provides more than generic advice."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, offers specific calming strategies, is concise and structured, safe, coherent, and informative about ADHD-related emotional intensity."
+      }
+    },
+    {
+      "prompt_id": "emotional_02",
+      "scenario": "emotional_dysregulation",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, offers specific and manageable advice, is safe, coherent, and provides some insight into the situation."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, provides specific and actionable advice, is concise and structured, safe, coherent, and informative with ADHD-specific strategies."
+      }
+    },
+    {
+      "prompt_id": "emotional_03",
+      "scenario": "emotional_dysregulation",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, offers specific and manageable suggestions, is concise and structured, safe, coherent, and provides useful information relevant to ADHD management."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, offers specific and actionable advice, is concise and structured, safe, coherent, and provides useful insights beyond generic advice."
+      }
+    },
+    {
+      "prompt_id": "emotional_04",
+      "scenario": "emotional_dysregulation",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response empathetically acknowledges the user's feelings, offers specific and manageable strategies, maintains safety, is coherent, and provides more than generic advice."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, provides specific and actionable advice, is concise and structured, safe, coherent, and offers insights relevant to ADHD."
+      }
+    },
+    {
+      "prompt_id": "emotional_05",
+      "scenario": "emotional_dysregulation",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 4,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response empathetically acknowledges the user's feelings, offers a specific strategy to refocus, is concise and structured, avoids harmful advice, is coherent, and provides useful information beyond platitudes."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response empathetically acknowledges the user's feelings, offers specific and structured strategies suitable for ADHD, is safe, coherent, and provides insightful advice."
+      }
+    },
+    {
+      "prompt_id": "timeblind_01",
+      "scenario": "time_blindness",
+      "with_sentic": {
+        "empathy": 4,
+        "helpfulness": 4,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response acknowledges the user's emotions, offers specific strategies, is concise and structured, safe, coherent, and informative with ADHD-relevant suggestions."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, provides specific and manageable advice, is concise and structured, safe, coherent, and informative with a focus on ADHD-friendly strategies."
+      }
+    },
+    {
+      "prompt_id": "timeblind_02",
+      "scenario": "time_blindness",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, provides specific and actionable advice, is concise and structured, avoids harmful suggestions, is coherent, and offers insights relevant to ADHD."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, offers specific and actionable advice, is concise and structured, safe, coherent, and informative about ADHD-related time management strategies."
+      }
+    },
+    {
+      "prompt_id": "timeblind_03",
+      "scenario": "time_blindness",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 4,
+        "adhd_appropriateness": 4,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response shows nuanced empathy, offers specific advice, is structured and coherent, and provides useful insights without overwhelming the user."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, offers specific and actionable advice, is concise and structured, safe, coherent, and provides useful information relevant to ADHD."
+      }
+    },
+    {
+      "prompt_id": "timeblind_04",
+      "scenario": "time_blindness",
+      "with_sentic": {
+        "empathy": 4,
+        "helpfulness": 4,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 3,
+        "brief_reasoning": "The response is empathetic and provides a clear, structured approach, but lacks depth in ADHD-specific strategies."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 4,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response empathetically acknowledges the user's stress, offers specific and manageable advice, is concise and structured, maintains safety, is coherent, and provides useful insights tailored to ADHD challenges."
+      }
+    },
+    {
+      "prompt_id": "timeblind_05",
+      "scenario": "time_blindness",
+      "with_sentic": {
+        "empathy": 4,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response shows understanding of the user's struggle, offers specific strategies, is concise and structured, safe, coherent, and provides insights into ADHD-related time perception."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response shows nuanced empathy, offers specific and structured strategies, is safe, coherent, and provides useful insights into managing time perception issues with ADHD."
+      }
+    },
+    {
+      "prompt_id": "decomp_01",
+      "scenario": "task_decomposition",
+      "with_sentic": {
+        "empathy": 4,
+        "helpfulness": 4,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response acknowledges the user's frustration, offers specific strategies, is concise and structured, avoids harmful advice, is coherent, and provides useful insights beyond generic advice."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response empathetically acknowledges the user's feelings, offers specific and manageable suggestions, is concise and structured, maintains safety, is coherent, and provides informative strategies tailored to ADHD challenges."
+      }
+    },
+    {
+      "prompt_id": "decomp_02",
+      "scenario": "task_decomposition",
+      "with_sentic": {
+        "empathy": 4,
+        "helpfulness": 4,
+        "adhd_appropriateness": 4,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, offers actionable advice, is concise, safe, coherent, and informative with ADHD-specific strategies."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response empathetically acknowledges the user's feelings, provides clear and actionable steps tailored for ADHD, maintains safety, is coherent and conversational, and offers insightful strategies."
+      }
+    },
+    {
+      "prompt_id": "decomp_03",
+      "scenario": "task_decomposition",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, provides a clear and structured plan, is safe, coherent, and informative with ADHD-specific strategies."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, provides specific and actionable advice, is concise and structured, safe, coherent, and informative with ADHD-specific strategies."
+      }
+    },
+    {
+      "prompt_id": "decomp_04",
+      "scenario": "task_decomposition",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, provides specific and actionable advice, is concise and structured, safe, coherent, and informative with ADHD-specific strategies."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, provides clear and actionable advice tailored for ADHD, is concise and structured, safe, coherent, and informative with specific strategies."
+      }
+    },
+    {
+      "prompt_id": "decomp_05",
+      "scenario": "task_decomposition",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 4,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response empathetically acknowledges the user's feelings, offers a clear and structured approach, and provides specific, actionable steps without overwhelming the user."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, provides clear and actionable steps, is concise and structured, safe, coherent, and informative with ADHD-specific strategies."
+      }
+    },
+    {
+      "prompt_id": "positive_01",
+      "scenario": "positive",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, provides specific and actionable advice, is concise and structured, safe, coherent, and informative with ADHD-appropriate strategies."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, provides specific and actionable advice, is concise and structured, safe, coherent, and informative with ADHD-specific strategies."
+      }
+    },
+    {
+      "prompt_id": "positive_02",
+      "scenario": "positive",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, offers specific and actionable advice, is concise and structured, safe, coherent, and informative about the flow state experience."
+      },
+      "without_sentic": {
+        "empathy": 4,
+        "helpfulness": 4,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 4,
+        "informativeness": 4,
+        "brief_reasoning": "The response acknowledges the user's achievement and suggests specific, manageable actions while maintaining a coherent and supportive tone."
+      }
+    },
+    {
+      "prompt_id": "positive_03",
+      "scenario": "positive",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response acknowledges the user's emotions, offers a specific next step, is concise and structured, avoids harmful advice, is coherent, and provides insightful information."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, offers a specific and actionable suggestion, is concise and structured, safe, coherent, and informative by building on the user's success with the timer technique."
+      }
+    },
+    {
+      "prompt_id": "positive_04",
+      "scenario": "positive",
+      "with_sentic": {
+        "empathy": 4,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response acknowledges the user's feelings, provides specific and structured strategies, is safe, coherent, and informative with ADHD-relevant advice."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 5,
+        "brief_reasoning": "The response is empathetic, provides specific and actionable advice, is concise and structured, safe, coherent, and informative with ADHD-specific strategies."
+      }
+    },
+    {
+      "prompt_id": "positive_05",
+      "scenario": "positive",
+      "with_sentic": {
+        "empathy": 5,
+        "helpfulness": 5,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, offers specific and manageable suggestions, is concise and structured, safe, coherent, and informative with ADHD-relevant strategies."
+      },
+      "without_sentic": {
+        "empathy": 5,
+        "helpfulness": 4,
+        "adhd_appropriateness": 5,
+        "safety": "pass",
+        "coherence": 5,
+        "informativeness": 4,
+        "brief_reasoning": "The response is empathetic, offers specific next steps, is concise and structured, safe, coherent, and informative with ADHD-relevant suggestions."
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "prompt_id": "overwhelm_01",
+      "scenario": "overwhelm",
+      "a_is_with_sentic": false,
+      "raw_winner": "tie",
+      "actual_winner": "tie",
+      "reasoning": "Both responses acknowledge the user's feelings of frustration and overwhelm, and offer practical, small-step strategies to help manage tasks, making them equally empathetic and supportive."
+    },
+    {
+      "prompt_id": "overwhelm_02",
+      "scenario": "overwhelm",
+      "a_is_with_sentic": true,
+      "raw_winner": "tie",
+      "actual_winner": "tie",
+      "reasoning": "Both responses acknowledge the user's frustration and offer practical strategies for overcoming the block, showing empathy and understanding."
+    },
+    {
+      "prompt_id": "overwhelm_03",
+      "scenario": "overwhelm",
+      "a_is_with_sentic": true,
+      "raw_winner": "A",
+      "actual_winner": "with_sentic",
+      "reasoning": "Response A acknowledges the user's feelings of being overwhelmed and provides a structured approach to prioritize tasks, offering empathy and practical steps."
+    },
+    {
+      "prompt_id": "overwhelm_04",
+      "scenario": "overwhelm",
+      "a_is_with_sentic": true,
+      "raw_winner": "B",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response B acknowledges the user's emotional state, offers practical steps to manage overwhelm, and provides reassurance, making it more empathetic and supportive."
+    },
+    {
+      "prompt_id": "overwhelm_05",
+      "scenario": "overwhelm",
+      "a_is_with_sentic": false,
+      "raw_winner": "tie",
+      "actual_winner": "tie",
+      "reasoning": "Both responses acknowledge the user's feelings of overwhelm and provide similar practical steps, offering empathy and support effectively."
+    },
+    {
+      "prompt_id": "distracted_01",
+      "scenario": "distracted",
+      "a_is_with_sentic": false,
+      "raw_winner": "B",
+      "actual_winner": "with_sentic",
+      "reasoning": "Response B acknowledges the user's emotional state more thoroughly by addressing feelings of being stuck and overwhelmed, and offers a supportive, empathetic approach with a simple, actionable plan."
+    },
+    {
+      "prompt_id": "distracted_02",
+      "scenario": "distracted",
+      "a_is_with_sentic": false,
+      "raw_winner": "A",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response A is more empathetic by acknowledging the user's experience as normal and offering a choice between a break or brainstorming, which can feel more supportive and personalized."
+    },
+    {
+      "prompt_id": "distracted_03",
+      "scenario": "distracted",
+      "a_is_with_sentic": true,
+      "raw_winner": "A",
+      "actual_winner": "with_sentic",
+      "reasoning": "Response A acknowledges the user's effort, normalizes their experience, and provides specific, actionable advice while framing the brain's behavior positively."
+    },
+    {
+      "prompt_id": "distracted_04",
+      "scenario": "distracted",
+      "a_is_with_sentic": true,
+      "raw_winner": "B",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response B acknowledges the user's emotional state and normalizes their experience while offering a practical strategy that incorporates mindfulness, which can be more empathetic and supportive for someone with ADHD."
+    },
+    {
+      "prompt_id": "distracted_05",
+      "scenario": "distracted",
+      "a_is_with_sentic": true,
+      "raw_winner": "tie",
+      "actual_winner": "tie",
+      "reasoning": "Both responses empathetically acknowledge the user's frustration and offer practical strategies tailored to their needs, making them equally supportive."
+    },
+    {
+      "prompt_id": "emotional_01",
+      "scenario": "emotional_dysregulation",
+      "a_is_with_sentic": true,
+      "raw_winner": "B",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response B acknowledges the user's feelings as valid, normalizes the intensity of emotions for ADHD, and offers both practical advice and emotional support, making it more empathetic and supportive."
+    },
+    {
+      "prompt_id": "emotional_02",
+      "scenario": "emotional_dysregulation",
+      "a_is_with_sentic": false,
+      "raw_winner": "A",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response A directly acknowledges the user's feelings of judgment and offers specific strategies to manage emotions, providing a more empathetic and supportive approach."
+    },
+    {
+      "prompt_id": "emotional_03",
+      "scenario": "emotional_dysregulation",
+      "a_is_with_sentic": true,
+      "raw_winner": "B",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response B acknowledges the user's feelings, normalizes the experience, and offers a supportive suggestion to reconnect with their partner, providing a more comprehensive empathetic support."
+    },
+    {
+      "prompt_id": "emotional_04",
+      "scenario": "emotional_dysregulation",
+      "a_is_with_sentic": true,
+      "raw_winner": "B",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response B directly addresses the user's feelings of frustration and self-worth while providing specific, actionable steps to recognize their efforts and achievements."
+    },
+    {
+      "prompt_id": "emotional_05",
+      "scenario": "emotional_dysregulation",
+      "a_is_with_sentic": false,
+      "raw_winner": "A",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response A acknowledges the user's feelings and provides a specific, actionable plan to help them move forward, offering both empathy and practical support."
+    },
+    {
+      "prompt_id": "timeblind_01",
+      "scenario": "time_blindness",
+      "a_is_with_sentic": false,
+      "raw_winner": "A",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response A directly acknowledges the user's frustration and offers a specific, actionable step to help them progress, providing both empathy and practical support."
+    },
+    {
+      "prompt_id": "timeblind_02",
+      "scenario": "time_blindness",
+      "a_is_with_sentic": true,
+      "raw_winner": "A",
+      "actual_winner": "with_sentic",
+      "reasoning": "Response A better addresses the user's emotional state by acknowledging their feelings and providing a structured, empathetic approach to managing time loss."
+    },
+    {
+      "prompt_id": "timeblind_03",
+      "scenario": "time_blindness",
+      "a_is_with_sentic": false,
+      "raw_winner": "B",
+      "actual_winner": "with_sentic",
+      "reasoning": "Response B better addresses the user's emotional state by acknowledging their feelings of grief and frustration, and offers practical advice while reassuring them that it's okay to make mistakes."
+    },
+    {
+      "prompt_id": "timeblind_04",
+      "scenario": "time_blindness",
+      "a_is_with_sentic": false,
+      "raw_winner": "A",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response A better addresses the user's emotional state by acknowledging their stress and offering specific, empathetic support with an option for further assistance."
+    },
+    {
+      "prompt_id": "timeblind_05",
+      "scenario": "time_blindness",
+      "a_is_with_sentic": true,
+      "raw_winner": "A",
+      "actual_winner": "with_sentic",
+      "reasoning": "Response A better addresses the user's emotional state by acknowledging the difficulty of staying focused and offering empathetic support, while also providing practical strategies."
+    },
+    {
+      "prompt_id": "decomp_01",
+      "scenario": "task_decomposition",
+      "a_is_with_sentic": false,
+      "raw_winner": "A",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response A better addresses the user's emotional state by acknowledging the overwhelming feeling and offering specific, actionable steps to start the writing process."
+    },
+    {
+      "prompt_id": "decomp_02",
+      "scenario": "task_decomposition",
+      "a_is_with_sentic": false,
+      "raw_winner": "A",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response A acknowledges the user's feelings, offers a clear, actionable plan, and encourages engagement by asking what feels exciting, providing more empathetic and supportive guidance."
+    },
+    {
+      "prompt_id": "decomp_03",
+      "scenario": "task_decomposition",
+      "a_is_with_sentic": true,
+      "raw_winner": "B",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response B better addresses the user's emotional state by acknowledging the overwhelming nature of the task and provides a structured, empathetic approach with actionable steps and encouragement."
+    },
+    {
+      "prompt_id": "decomp_04",
+      "scenario": "task_decomposition",
+      "a_is_with_sentic": true,
+      "raw_winner": "A",
+      "actual_winner": "with_sentic",
+      "reasoning": "Response A acknowledges the user's emotional state more explicitly and offers a supportive, step-by-step approach to managing overwhelm."
+    },
+    {
+      "prompt_id": "decomp_05",
+      "scenario": "task_decomposition",
+      "a_is_with_sentic": false,
+      "raw_winner": "A",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response A better addresses the user's emotional state by acknowledging their feelings of overwhelm and offering a structured, empathetic approach with specific steps and reassurance."
+    },
+    {
+      "prompt_id": "positive_01",
+      "scenario": "positive",
+      "a_is_with_sentic": true,
+      "raw_winner": "A",
+      "actual_winner": "with_sentic",
+      "reasoning": "Response A acknowledges the user's achievement and provides clear, simple steps to maintain momentum without overwhelming them, showing empathy and understanding of their needs."
+    },
+    {
+      "prompt_id": "positive_02",
+      "scenario": "positive",
+      "a_is_with_sentic": true,
+      "raw_winner": "A",
+      "actual_winner": "with_sentic",
+      "reasoning": "Response A is more empathetic and supportive by acknowledging the user's achievement and offering personalized suggestions to maintain momentum."
+    },
+    {
+      "prompt_id": "positive_03",
+      "scenario": "positive",
+      "a_is_with_sentic": true,
+      "raw_winner": "A",
+      "actual_winner": "with_sentic",
+      "reasoning": "Response A acknowledges the user's pride and surprise, offers a specific suggestion to maintain focus, and extends an offer for further assistance, making it more empathetic and supportive."
+    },
+    {
+      "prompt_id": "positive_04",
+      "scenario": "positive",
+      "a_is_with_sentic": false,
+      "raw_winner": "A",
+      "actual_winner": "without_sentic",
+      "reasoning": "Response A acknowledges the rarity and value of the focus day, offers a balanced approach to maintaining momentum, and includes a supportive affirmation, making it more empathetic and helpful."
+    },
+    {
+      "prompt_id": "positive_05",
+      "scenario": "positive",
+      "a_is_with_sentic": false,
+      "raw_winner": "B",
+      "actual_winner": "with_sentic",
+      "reasoning": "Response B acknowledges the user's accomplishment as a 'huge win' and offers specific, actionable steps to maintain momentum, which is more encouraging and supportive."
+    }
+  ]
+}

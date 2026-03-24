@@ -162,6 +162,7 @@ class ChatProcessor:
             "wellbeing_score": result.adhd_signals.wellbeing_score,
             "safety_level": result.safety.level,
             "concepts": result.adhd_signals.concepts[:5],
+            "primary_adhd_state": result.primary_adhd_state,
         }
 
     async def _log_evaluation_data(

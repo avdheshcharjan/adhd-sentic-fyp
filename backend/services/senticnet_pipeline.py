@@ -80,11 +80,54 @@ class SenticNetPipeline:
         result.adhd_signals = adhd
 
         # TIER 4: Deep Analysis
-        personality, ensemble_raw = await self._tier4_deep(text)
+        personality, ensemble_dict = await self._tier4_deep(text)
         result.personality = personality
-        result.ensemble_raw = ensemble_raw
+        result.ensemble_raw = str(ensemble_dict) if ensemble_dict else None
+
+        # Extract Hourglass dimensions from ensemble response
+        if ensemble_dict:
+            result.emotion.introspection = self._parse_float(ensemble_dict.get("introspection"))
+            result.emotion.temper = self._parse_float(ensemble_dict.get("temper"))
+            result.emotion.attitude = self._parse_float(ensemble_dict.get("attitude"))
+            result.emotion.sensitivity = self._parse_float(ensemble_dict.get("sensitivity"))
+            result.emotion.polarity_score = self._parse_float(ensemble_dict.get("intensity"))
+
+        # Map Hourglass dimensions to ADHD state
+        hourglass = {
+            "introspection": result.emotion.introspection,
+            "temper": result.emotion.temper,
+            "attitude": result.emotion.attitude,
+            "sensitivity": result.emotion.sensitivity,
+        }
+        adhd_mapping = self.map_hourglass_to_adhd_state(hourglass)
+        result.primary_adhd_state = adhd_mapping["primary_adhd_state"]
+
+        # Fix 3a: Polarity-based emotion correction
+        # If polarity is negative but primary_emotion maps to a positive category,
+        # flag it as uncertain — word-level emotion may contradict sentence-level polarity
+        _POSITIVE_EMOTIONS = {
+            "joy", "happiness", "ecstasy", "delight", "cheerfulness", "excitement",
+            "bliss", "elation", "enthusiasm", "relief", "satisfaction", "pride",
+            "admiration", "gratitude", "love", "serenity", "amusement", "contentment",
+            "hope", "optimism", "pleasantness", "calmness",
+        }
+        if result.emotion.polarity == "negative":
+            if result.emotion.primary_emotion.lower() in _POSITIVE_EMOTIONS:
+                result.emotion.primary_emotion = "uncertain_" + result.emotion.primary_emotion
 
         return result
+
+    @staticmethod
+    def _parse_float(value: str | float | None) -> float:
+        """Safely parse a float from ensemble string values."""
+        if value is None:
+            return 0.0
+        if isinstance(value, (int, float)):
+            return float(value)
+        try:
+            return float(value)
+        except (ValueError, TypeError):
+            return 0.0
 
     # ── Lightweight Pipeline (3 APIs) ────────────────────────────────
 
@@ -244,8 +287,12 @@ class SenticNetPipeline:
             **flags,
         )
 
-    async def _tier4_deep(self, text: str) -> tuple[PersonalityProfile | None, str | None]:
-        """Tier 4: Personality + Ensemble (concurrent, on demand)."""
+    async def _tier4_deep(self, text: str) -> tuple[PersonalityProfile | None, dict | None]:
+        """Tier 4: Personality + Ensemble (concurrent, on demand).
+
+        Returns the ensemble as a parsed dict (not stringified) so _run_full()
+        can extract Hourglass dimensions.
+        """
 
         personality_raw, ensemble_raw = await asyncio.gather(
             self.client.get_personality(text),
@@ -267,14 +314,12 @@ class SenticNetPipeline:
                 neuroticism=parsed.get("N", ""),
             )
 
-        # Ensemble raw for debugging
-        ensemble_str = None
+        # Return ensemble as dict for Hourglass extraction
+        ensemble_dict: dict | None = None
         if isinstance(ensemble_raw, dict):
-            ensemble_str = str(ensemble_raw)
-        elif isinstance(ensemble_raw, str):
-            ensemble_str = ensemble_raw
+            ensemble_dict = ensemble_raw
 
-        return personality, ensemble_str
+        return personality, ensemble_dict
 
     # ── Phase 4: Hourglass → ADHD State Mapping ─────────────────────
 

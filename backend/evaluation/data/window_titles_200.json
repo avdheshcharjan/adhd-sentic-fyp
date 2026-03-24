@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "prod_001",
+    "title": "Visual Studio Code - main.py \u2014 adhd-sentic-fyp",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "ide"
+  },
+  {
+    "id": "prod_002",
+    "title": "Visual Studio Code - services/chat_processor.py \u2014 backend",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "ide"
+  },
+  {
+    "id": "prod_004",
+    "title": "PyCharm Professional - test_pipeline.py",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "ide"
+  },
+  {
+    "id": "prod_006",
+    "title": "Xcode - ADHDSecondBrain.xcodeproj \u2014 ContentView.swift",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "ide"
+  },
+  {
+    "id": "prod_007",
+    "title": "IntelliJ IDEA - DatabaseConfig.kt \u2014 MyProject",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "ide"
+  },
+  {
+    "id": "prod_008",
+    "title": "Cursor - app/api/route.ts \u2014 next-app",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "ide"
+  },
+  {
+    "id": "prod_009",
+    "title": "Vim - senticnet_pipeline.py + [Modified]",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "ide"
+  },
+  {
+    "id": "prod_010",
+    "title": "Neovim - ~/.config/nvim/init.lua",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "ide"
+  },
+  {
+    "id": "prod_011",
+    "title": "Google Docs - FYP Literature Review Draft 3",
+    "label": "writing",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "prod_012",
+    "title": "Google Docs - Meeting Notes \u2014 March 2026",
+    "label": "writing",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "prod_013",
+    "title": "Microsoft Word - Thesis Chapter 4 v2.docx",
+    "label": "writing",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "prod_014",
+    "title": "Preview - ADHD_Medication_Guide.pdf",
+    "label": "design",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "prod_015",
+    "title": "Notion - Sprint Planning \u2014 Week 12",
+    "label": "productivity",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "prod_016",
+    "title": "Overleaf - FYP Report LaTeX \u2014 Section 5.2 Evaluation",
+    "label": "writing",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "prod_017",
+    "title": "Pages - Cover Letter \u2014 Google SWE Application",
+    "label": "writing",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "prod_018",
+    "title": "Safari - github.com/avdheshcharjan/adhd-sentic-fyp - Pull Request #42",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_019",
+    "title": "Google Chrome - stackoverflow.com - Python asyncio gather exception handling",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_020",
+    "title": "Arc - docs.python.org - asyncio \u2014 Asynchronous I/O",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_021",
+    "title": "Firefox - arxiv.org - 2403.12345 - Affective Computing in ADHD Support Systems",
+    "label": "research",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_022",
+    "title": "Safari - developer.apple.com - SwiftUI documentation",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_023",
+    "title": "Chrome - huggingface.co - sentence-transformers/all-MiniLM-L6-v2",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_024",
+    "title": "Arc - github.com - Issues \u00b7 fastapi/fastapi",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_026",
+    "title": "Terminal - python backend/main.py",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "terminal"
+  },
+  {
+    "id": "prod_027",
+    "title": "iTerm2 - ssh lab-server \u2014 training job monitor",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "terminal"
+  },
+  {
+    "id": "prod_028",
+    "title": "Warp - git log --oneline -20",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "terminal"
+  },
+  {
+    "id": "prod_029",
+    "title": "Terminal - docker compose up -d",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "terminal"
+  },
+  {
+    "id": "prod_030",
+    "title": "iTerm2 - pytest tests/ -v --tb=short",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "terminal"
+  },
+  {
+    "id": "prod_031",
+    "title": "Terminal - ssh production-server",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "terminal"
+  },
+  {
+    "id": "prod_032",
+    "title": "Safari - scholar.google.com - ADHD executive function interventions",
+    "label": "research",
+    "productivity_label": "productive",
+    "category": "research"
+  },
+  {
+    "id": "prod_033",
+    "title": "Chrome - pubmed.ncbi.nlm.nih.gov - SenticNet emotion analysis review",
+    "label": "research",
+    "productivity_label": "productive",
+    "category": "research"
+  },
+  {
+    "id": "prod_034",
+    "title": "Firefox - semanticscholar.org - Barkley Executive Function Model",
+    "label": "research",
+    "productivity_label": "productive",
+    "category": "research"
+  },
+  {
+    "id": "prod_035",
+    "title": "Arc - researchgate.net - Affective computing for neurodivergent users",
+    "label": "research",
+    "productivity_label": "productive",
+    "category": "research"
+  },
+  {
+    "id": "prod_036",
+    "title": "Safari - nature.com - Digital phenotyping for ADHD monitoring",
+    "label": "research",
+    "productivity_label": "productive",
+    "category": "research"
+  },
+  {
+    "id": "prod_037",
+    "title": "Figma - ADHD Second Brain \u2014 Mobile Screens v3",
+    "label": "design",
+    "productivity_label": "productive",
+    "category": "design"
+  },
+  {
+    "id": "prod_038",
+    "title": "Sketch - App Icon Iterations \u2014 ADHDCoach",
+    "label": "design",
+    "productivity_label": "productive",
+    "category": "design"
+  },
+  {
+    "id": "prod_039",
+    "title": "Figma - Component Library \u2014 Focus Timer Widget",
+    "label": "design",
+    "productivity_label": "productive",
+    "category": "design"
+  },
+  {
+    "id": "prod_040",
+    "title": "Adobe Photoshop - fyp-poster-final-v4.psd",
+    "label": "design",
+    "productivity_label": "productive",
+    "category": "design"
+  },
+  {
+    "id": "prod_041",
+    "title": "Canva - FYP Presentation Slides \u2014 Defense",
+    "label": "design",
+    "productivity_label": "productive",
+    "category": "design"
+  },
+  {
+    "id": "prod_042",
+    "title": "Chrome - linear.app - Sprint 7 \u2014 ADHD Second Brain",
+    "label": "productivity",
+    "productivity_label": "productive",
+    "category": "project_management"
+  },
+  {
+    "id": "prod_043",
+    "title": "Safari - jira.atlassian.com - ADHD-142: Fix SenticNet timeout handling",
+    "label": "productivity",
+    "productivity_label": "productive",
+    "category": "project_management"
+  },
+  {
+    "id": "prod_044",
+    "title": "Firefox - trello.com - FYP Task Board \u2014 Phase 7",
+    "label": "productivity",
+    "productivity_label": "productive",
+    "category": "project_management"
+  },
+  {
+    "id": "prod_045",
+    "title": "Arc - asana.com - My Tasks \u2014 This Week",
+    "label": "productivity",
+    "productivity_label": "productive",
+    "category": "project_management"
+  },
+  {
+    "id": "prod_046",
+    "title": "Chrome - clickup.com - Team Sprint \u2014 Backend Tasks",
+    "label": "productivity",
+    "productivity_label": "productive",
+    "category": "project_management"
+  },
+  {
+    "id": "prod_047",
+    "title": "Postman - POST /api/chat \u2014 SenticNet Pipeline Test",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "dev_tools"
+  },
+  {
+    "id": "prod_048",
+    "title": "TablePlus - adhd_brain@localhost \u2014 behavioral_patterns",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "dev_tools"
+  },
+  {
+    "id": "prod_049",
+    "title": "Docker Desktop - adhd-brain-db running",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "dev_tools"
+  },
+  {
+    "id": "prod_050",
+    "title": "GitKraken - adhd-sentic-fyp \u2014 feature/phase7-llm",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "dev_tools"
+  },
+  {
+    "id": "prod_051",
+    "title": "Chrome - overleaf.com - FYP Report \u2014 Chapter 3 Methodology",
+    "label": "writing",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "prod_052",
+    "title": "Obsidian - ADHD Research Notes \u2014 Hourglass Model",
+    "label": "productivity",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "prod_053",
+    "title": "Todoist - Today \u2014 5 tasks remaining",
+    "label": "productivity",
+    "productivity_label": "productive",
+    "category": "project_management"
+  },
+  {
+    "id": "prod_054",
+    "title": "Sublime Text - config.py \u2014 adhd-sentic-fyp",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "ide"
+  },
+  {
+    "id": "prod_055",
+    "title": "Chrome - leetcode.com - 42. Trapping Rain Water",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_056",
+    "title": "Safari - developer.mozilla.org - Web APIs - Fetch API",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_058",
+    "title": "Grammarly - Checking: thesis_chapter_5.docx",
+    "label": "writing",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "prod_059",
+    "title": "Chrome - docs.google.com - Supervisor Meeting Agenda \u2014 Week 11",
+    "label": "writing",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "prod_060",
+    "title": "Preview - System Architecture Diagram.pdf",
+    "label": "design",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "prod_061",
+    "title": "Zed - evaluation/bench_pipeline.py \u2014 adhd-sentic-fyp",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "ide"
+  },
+  {
+    "id": "prod_062",
+    "title": "Android Studio - ADHDCompanion \u2014 MainActivity.kt",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "ide"
+  },
+  {
+    "id": "prod_063",
+    "title": "Safari - ieee.org - Proceedings on Affective Computing 2025",
+    "label": "research",
+    "productivity_label": "productive",
+    "category": "research"
+  },
+  {
+    "id": "prod_064",
+    "title": "Chrome - acm.org - CHI 2026 - ADHD Digital Interventions",
+    "label": "research",
+    "productivity_label": "productive",
+    "category": "research"
+  },
+  {
+    "id": "prod_065",
+    "title": "Arc - sciencedirect.com - Review: Emotion Recognition in Text",
+    "label": "research",
+    "productivity_label": "productive",
+    "category": "research"
+  },
+  {
+    "id": "prod_066",
+    "title": "Firefox - jstor.org - Historical perspectives on attention disorders",
+    "label": "research",
+    "productivity_label": "productive",
+    "category": "research"
+  },
+  {
+    "id": "prod_067",
+    "title": "Chrome - replit.com - Prototype: emotion-classifier-demo",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_068",
+    "title": "Safari - supabase.com - Project: adhd-brain \u2014 Table Editor",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_070",
+    "title": "Notion - FYP Timeline & Milestones \u2014 Gantt View",
+    "label": "productivity",
+    "productivity_label": "productive",
+    "category": "project_management"
+  },
+  {
+    "id": "prod_071",
+    "title": "Things - Today \u2014 Write evaluation chapter",
+    "label": "productivity",
+    "productivity_label": "productive",
+    "category": "project_management"
+  },
+  {
+    "id": "prod_072",
+    "title": "TickTick - Focus Timer \u2014 25:00 remaining",
+    "label": "productivity",
+    "productivity_label": "productive",
+    "category": "project_management"
+  },
+  {
+    "id": "prod_073",
+    "title": "Warp - npm run build \u2014 adhd-dashboard",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "terminal"
+  },
+  {
+    "id": "prod_074",
+    "title": "Terminal - tail -f logs/adhd-brain.log",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "terminal"
+  },
+  {
+    "id": "prod_075",
+    "title": "iTerm2 - python -m pytest evaluation/ -v",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "terminal"
+  },
+  {
+    "id": "prod_076",
+    "title": "Chrome - stackoverflow.com - How to use mlx_lm with Qwen3 on M4",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_077",
+    "title": "Safari - pypi.org - mem0ai 0.1.29",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_078",
+    "title": "Arc - npmjs.com - @anthropic-ai/sdk",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_079",
+    "title": "Chrome - devdocs.io - FastAPI \u2014 Request Body",
+    "label": "development",
+    "productivity_label": "productive",
+    "category": "browser_work"
+  },
+  {
+    "id": "prod_080",
+    "title": "Microsoft Word - FYP Interim Report Final.docx",
+    "label": "writing",
+    "productivity_label": "productive",
+    "category": "documents"
+  },
+  {
+    "id": "neut_001",
+    "title": "Finder - Downloads",
+    "label": "system",
+    "productivity_label": "neutral",
+    "category": "system_utility"
+  },
+  {
+    "id": "neut_002",
+    "title": "Finder - Applications",
+    "label": "system",
+    "productivity_label": "neutral",
+    "category": "system_utility"
+  },
+  {
+    "id": "neut_003",
+    "title": "Calculator",
+    "label": "system",
+    "productivity_label": "neutral",
+    "category": "system_utility"
+  },
+  {
+    "id": "neut_004",
+    "title": "System Settings - General",
+    "label": "system",
+    "productivity_label": "neutral",
+    "category": "system_utility"
+  },
+  {
+    "id": "neut_005",
+    "title": "Activity Monitor - All Processes (CPU: 23%)",
+    "label": "system",
+    "productivity_label": "neutral",
+    "category": "system_utility"
+  },
+  {
+    "id": "neut_006",
+    "title": "System Preferences - Network",
+    "label": "system",
+    "productivity_label": "neutral",
+    "category": "system_utility"
+  },
+  {
+    "id": "neut_007",
+    "title": "Keychain Access - login keychain",
+    "label": "system",
+    "productivity_label": "neutral",
+    "category": "system_utility"
+  },
+  {
+    "id": "neut_008",
+    "title": "Disk Utility - Macintosh HD",
+    "label": "system",
+    "productivity_label": "neutral",
+    "category": "system_utility"
+  },
+  {
+    "id": "neut_009",
+    "title": "App Store - Updates Available",
+    "label": "system",
+    "productivity_label": "neutral",
+    "category": "system_utility"
+  },
+  {
+    "id": "neut_010",
+    "title": "Mail - Inbox (3 unread)",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "email"
+  },
+  {
+    "id": "neut_011",
+    "title": "Chrome - mail.google.com - Inbox (12) \u2014 avdhesh@gmail.com",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "email"
+  },
+  {
+    "id": "neut_012",
+    "title": "Safari - outlook.com - Focused Inbox",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "email"
+  },
+  {
+    "id": "neut_013",
+    "title": "Mail - Composing: Re: Project Update",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "email"
+  },
+  {
+    "id": "neut_014",
+    "title": "Calendar - Week View \u2014 March 2026",
+    "label": "productivity",
+    "productivity_label": "neutral",
+    "category": "calendar"
+  },
+  {
+    "id": "neut_015",
+    "title": "Chrome - calendar.google.com \u2014 March 24, 2026",
+    "label": "productivity",
+    "productivity_label": "neutral",
+    "category": "calendar"
+  },
+  {
+    "id": "neut_016",
+    "title": "Reminders - Shopping List",
+    "label": "productivity",
+    "productivity_label": "neutral",
+    "category": "calendar"
+  },
+  {
+    "id": "neut_017",
+    "title": "Slack - #general \u2014 ADHD Research Lab",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "messaging"
+  },
+  {
+    "id": "neut_018",
+    "title": "Microsoft Teams - Meeting: Weekly Standup",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "messaging"
+  },
+  {
+    "id": "neut_019",
+    "title": "Zoom - FYP Supervisor Meeting",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "messaging"
+  },
+  {
+    "id": "neut_020",
+    "title": "Slack - DM with @priya \u2014 Code review request",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "messaging"
+  },
+  {
+    "id": "neut_021",
+    "title": "Microsoft Teams - Chat with Prof. Mao",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "messaging"
+  },
+  {
+    "id": "neut_022",
+    "title": "Messages - Conversation with Mom",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "messaging"
+  },
+  {
+    "id": "neut_023",
+    "title": "Telegram - Study Group Chat",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "messaging"
+  },
+  {
+    "id": "neut_024",
+    "title": "FaceTime - Incoming call from Alex",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "messaging"
+  },
+  {
+    "id": "neut_025",
+    "title": "Chrome - drive.google.com - My Drive \u2014 FYP Files",
+    "label": "productivity",
+    "productivity_label": "neutral",
+    "category": "file_management"
+  },
+  {
+    "id": "neut_026",
+    "title": "Finder - Dropbox \u2014 Shared Files",
+    "label": "system",
+    "productivity_label": "neutral",
+    "category": "file_management"
+  },
+  {
+    "id": "neut_027",
+    "title": "Safari - onedrive.live.com - Documents",
+    "label": "productivity",
+    "productivity_label": "neutral",
+    "category": "file_management"
+  },
+  {
+    "id": "neut_028",
+    "title": "Arc - medium.com - Understanding ADHD Burnout Cycles",
+    "label": "research",
+    "productivity_label": "neutral",
+    "category": "browser_ambiguous"
+  },
+  {
+    "id": "neut_029",
+    "title": "Chrome - medium.com - 10 Best VS Code Extensions for 2026",
+    "label": "research",
+    "productivity_label": "neutral",
+    "category": "browser_ambiguous"
+  },
+  {
+    "id": "neut_030",
+    "title": "Safari - wikipedia.org - Attention deficit hyperactivity disorder",
+    "label": "research",
+    "productivity_label": "neutral",
+    "category": "browser_ambiguous"
+  },
+  {
+    "id": "neut_031",
+    "title": "Firefox - wikipedia.org - SenticNet",
+    "label": "research",
+    "productivity_label": "neutral",
+    "category": "browser_ambiguous"
+  },
+  {
+    "id": "neut_033",
+    "title": "Spotify - Focus Playlist \u2014 Deep Work Beats",
+    "label": "entertainment",
+    "productivity_label": "neutral",
+    "category": "music"
+  },
+  {
+    "id": "neut_034",
+    "title": "Apple Music - Lo-fi Study Beats",
+    "label": "entertainment",
+    "productivity_label": "neutral",
+    "category": "music"
+  },
+  {
+    "id": "neut_035",
+    "title": "Spotify - Brown Noise \u2014 10 Hours",
+    "label": "entertainment",
+    "productivity_label": "neutral",
+    "category": "music"
+  },
+  {
+    "id": "neut_036",
+    "title": "Music - Classical Focus \u2014 Mozart Piano Concertos",
+    "label": "entertainment",
+    "productivity_label": "neutral",
+    "category": "music"
+  },
+  {
+    "id": "neut_037",
+    "title": "Spotify - Discover Weekly",
+    "label": "entertainment",
+    "productivity_label": "neutral",
+    "category": "music"
+  },
+  {
+    "id": "neut_038",
+    "title": "WhatsApp Web",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "messaging"
+  },
+  {
+    "id": "neut_039",
+    "title": "Notes - Quick thoughts and ideas",
+    "label": "productivity",
+    "productivity_label": "neutral",
+    "category": "system_utility"
+  },
+  {
+    "id": "neut_040",
+    "title": "Safari - weather.com - Singapore Weather Forecast",
+    "label": "other",
+    "productivity_label": "neutral",
+    "category": "browser_ambiguous"
+  },
+  {
+    "id": "neut_041",
+    "title": "Chrome - maps.google.com - NUS to Changi Airport",
+    "label": "other",
+    "productivity_label": "neutral",
+    "category": "browser_ambiguous"
+  },
+  {
+    "id": "neut_042",
+    "title": "Arc - notion.so - Personal Journal \u2014 March 2026",
+    "label": "productivity",
+    "productivity_label": "neutral",
+    "category": "documents"
+  },
+  {
+    "id": "neut_043",
+    "title": "Safari - linkedin.com - Feed",
+    "label": "social_media",
+    "productivity_label": "neutral",
+    "category": "social_ambiguous"
+  },
+  {
+    "id": "neut_044",
+    "title": "Chrome - linkedin.com - Job Search \u2014 Software Engineer Singapore",
+    "label": "social_media",
+    "productivity_label": "neutral",
+    "category": "social_ambiguous"
+  },
+  {
+    "id": "neut_045",
+    "title": "Firefox - quora.com - What is it like to have ADHD as an adult?",
+    "label": "social_media",
+    "productivity_label": "neutral",
+    "category": "social_ambiguous"
+  },
+  {
+    "id": "neut_046",
+    "title": "Zoom - Waiting for host to start the meeting",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "messaging"
+  },
+  {
+    "id": "neut_047",
+    "title": "Slack - #adhd-support \u2014 Community Channel",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "messaging"
+  },
+  {
+    "id": "neut_048",
+    "title": "Safari - mail.yahoo.com - Inbox (47)",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "email"
+  },
+  {
+    "id": "neut_049",
+    "title": "Chrome - meet.google.com - Weekly Lab Meeting",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "messaging"
+  },
+  {
+    "id": "neut_050",
+    "title": "Finder - Documents \u2014 FYP Materials",
+    "label": "system",
+    "productivity_label": "neutral",
+    "category": "file_management"
+  },
+  {
+    "id": "neut_051",
+    "title": "Chrome - protonmail.com - Inbox",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "email"
+  },
+  {
+    "id": "neut_052",
+    "title": "Safari - wise.com - Transfer Status",
+    "label": "finance",
+    "productivity_label": "neutral",
+    "category": "finance"
+  },
+  {
+    "id": "neut_053",
+    "title": "Chrome - paypal.com - Activity",
+    "label": "finance",
+    "productivity_label": "neutral",
+    "category": "finance"
+  },
+  {
+    "id": "neut_054",
+    "title": "Safari - revolut.com - Account Overview",
+    "label": "finance",
+    "productivity_label": "neutral",
+    "category": "finance"
+  },
+  {
+    "id": "neut_055",
+    "title": "Finder - AirDrop",
+    "label": "system",
+    "productivity_label": "neutral",
+    "category": "system_utility"
+  },
+  {
+    "id": "neut_056",
+    "title": "VLC - Lecture Recording \u2014 CS3244 Week 10.mp4",
+    "label": "entertainment",
+    "productivity_label": "neutral",
+    "category": "media"
+  },
+  {
+    "id": "neut_057",
+    "title": "QuickTime Player - Screen Recording 2026-03-24.mov",
+    "label": "entertainment",
+    "productivity_label": "neutral",
+    "category": "media"
+  },
+  {
+    "id": "neut_059",
+    "title": "Chrome - substack.com - ADHD Weekly Newsletter",
+    "label": "writing",
+    "productivity_label": "neutral",
+    "category": "browser_ambiguous"
+  },
+  {
+    "id": "neut_060",
+    "title": "Spotify - Playing: Weightless by Marconi Union",
+    "label": "entertainment",
+    "productivity_label": "neutral",
+    "category": "music"
+  },
+  {
+    "id": "dist_001",
+    "title": "Chrome - reddit.com - r/gaming: What's the best RPG of 2026?",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_002",
+    "title": "Safari - reddit.com - r/memes: Top posts today",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_003",
+    "title": "Chrome - reddit.com - r/AskReddit: What's a secret you'll never tell?",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_004",
+    "title": "Firefox - reddit.com - r/cats: My cat just did the funniest thing",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_005",
+    "title": "Safari - twitter.com - Home Timeline",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_006",
+    "title": "Chrome - x.com - For You \u2014 Trending",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_007",
+    "title": "Safari - instagram.com - Feed",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_008",
+    "title": "Chrome - instagram.com - Reels",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_009",
+    "title": "Safari - tiktok.com - For You Page",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_010",
+    "title": "Chrome - facebook.com - News Feed",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_011",
+    "title": "Firefox - threads.net - Following",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_012",
+    "title": "Chrome - youtube.com - MrBeast: I Spent 50 Hours Buried Alive",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_013",
+    "title": "Safari - youtube.com - Shorts",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_014",
+    "title": "Chrome - youtube.com - PewDiePie: Minecraft Part 47",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_015",
+    "title": "Firefox - youtube.com - Top 10 Most Satisfying Videos",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_016",
+    "title": "Safari - netflix.com - Stranger Things S5 E3",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_017",
+    "title": "Chrome - netflix.com/browse - Browse All",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_018",
+    "title": "Safari - twitch.tv - shroud playing Valorant \u2014 45K viewers",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_019",
+    "title": "Chrome - twitch.tv - Just Chatting \u2014 pokimane",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_020",
+    "title": "Firefox - disneyplus.com - The Mandalorian S4",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_021",
+    "title": "Chrome - hbomax.com - House of the Dragon",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_022",
+    "title": "Steam - Counter-Strike 2",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "gaming"
+  },
+  {
+    "id": "dist_023",
+    "title": "Valorant - Competitive \u2014 Ascent",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "gaming"
+  },
+  {
+    "id": "dist_024",
+    "title": "Minecraft - Singleplayer \u2014 Survival World",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "gaming"
+  },
+  {
+    "id": "dist_025",
+    "title": "League of Legends - Ranked Solo/Duo \u2014 Champion Select",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "gaming"
+  },
+  {
+    "id": "dist_026",
+    "title": "Chrome - steampowered.com - Steam Sale \u2014 Wishlist",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "gaming"
+  },
+  {
+    "id": "dist_027",
+    "title": "Safari - epicgames.com - Free Games This Week",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "gaming"
+  },
+  {
+    "id": "dist_028",
+    "title": "Chrome - amazon.com - Mechanical Keyboards \u2014 Bestsellers",
+    "label": "shopping",
+    "productivity_label": "distracting",
+    "category": "shopping"
+  },
+  {
+    "id": "dist_029",
+    "title": "Safari - shopee.sg - Flash Sale \u2014 Electronics",
+    "label": "shopping",
+    "productivity_label": "distracting",
+    "category": "shopping"
+  },
+  {
+    "id": "dist_030",
+    "title": "Chrome - lazada.sg - Your Cart (3 items)",
+    "label": "shopping",
+    "productivity_label": "distracting",
+    "category": "shopping"
+  },
+  {
+    "id": "dist_031",
+    "title": "Firefox - amazon.com - Nintendo Switch Games \u2014 Best Sellers",
+    "label": "shopping",
+    "productivity_label": "distracting",
+    "category": "shopping"
+  },
+  {
+    "id": "dist_032",
+    "title": "Chrome - shein.com - New Arrivals \u2014 Women's Clothing",
+    "label": "shopping",
+    "productivity_label": "distracting",
+    "category": "shopping"
+  },
+  {
+    "id": "dist_033",
+    "title": "Safari - temu.com - Under $5 Deals",
+    "label": "shopping",
+    "productivity_label": "distracting",
+    "category": "shopping"
+  },
+  {
+    "id": "dist_034",
+    "title": "Chrome - etsy.com - Custom Mechanical Keyboard Parts",
+    "label": "shopping",
+    "productivity_label": "distracting",
+    "category": "shopping"
+  },
+  {
+    "id": "dist_035",
+    "title": "Safari - cnn.com - Breaking: Latest World News Updates",
+    "label": "news",
+    "productivity_label": "distracting",
+    "category": "news"
+  },
+  {
+    "id": "dist_036",
+    "title": "Chrome - bbc.com - Sport \u2014 Premier League Results",
+    "label": "news",
+    "productivity_label": "distracting",
+    "category": "news"
+  },
+  {
+    "id": "dist_037",
+    "title": "Firefox - reuters.com - Markets \u2014 S&P 500 Falls 2%",
+    "label": "news",
+    "productivity_label": "distracting",
+    "category": "news"
+  },
+  {
+    "id": "dist_038",
+    "title": "Chrome - buzzfeed.com - 23 Things Only 90s Kids Remember",
+    "label": "news",
+    "productivity_label": "distracting",
+    "category": "news"
+  },
+  {
+    "id": "dist_039",
+    "title": "Safari - mashable.com - The Best Memes of March 2026",
+    "label": "news",
+    "productivity_label": "distracting",
+    "category": "news"
+  },
+  {
+    "id": "dist_040",
+    "title": "Chrome - dailymotion.com - Funny Fail Compilation 2026",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_041",
+    "title": "Safari - 9anime.to - One Piece Episode 1142",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_042",
+    "title": "Chrome - crunchyroll.com - Jujutsu Kaisen Season 3",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_043",
+    "title": "Safari - pinterest.com - Home Decor Ideas \u2014 Aesthetic Room",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_046",
+    "title": "Chrome - youtube.com - Compilation: Best TikTok Memes",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_048",
+    "title": "Chrome - ign.com - Game Reviews \u2014 March 2026",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "news"
+  },
+  {
+    "id": "dist_049",
+    "title": "Safari - gamespot.com - GTA 6 Release Date Confirmed",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "news"
+  },
+  {
+    "id": "dist_050",
+    "title": "Chrome - roblox.com - Popular Games",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "gaming"
+  },
+  {
+    "id": "dist_051",
+    "title": "Chrome - coinmarketcap.com - Bitcoin Price Live",
+    "label": "finance",
+    "productivity_label": "distracting",
+    "category": "finance_speculative"
+  },
+  {
+    "id": "dist_052",
+    "title": "Safari - binance.com - Trade \u2014 BTC/USDT",
+    "label": "finance",
+    "productivity_label": "distracting",
+    "category": "finance_speculative"
+  },
+  {
+    "id": "dist_053",
+    "title": "Chrome - robinhood.com - Crypto \u2014 Trending",
+    "label": "finance",
+    "productivity_label": "distracting",
+    "category": "finance_speculative"
+  },
+  {
+    "id": "dist_054",
+    "title": "Firefox - tradingview.com - NVDA Chart \u2014 1D",
+    "label": "finance",
+    "productivity_label": "distracting",
+    "category": "finance_speculative"
+  },
+  {
+    "id": "dist_055",
+    "title": "Chrome - aliexpress.com - Smart Gadgets Sale",
+    "label": "shopping",
+    "productivity_label": "distracting",
+    "category": "shopping"
+  },
+  {
+    "id": "dist_056",
+    "title": "Safari - xiaohongshu.com - Explore Feed",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_057",
+    "title": "Chrome - bsky.app - Following Feed",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "dist_058",
+    "title": "Preview - memes.pdf",
+    "label": "design",
+    "productivity_label": "distracting",
+    "category": "entertainment_other"
+  },
+  {
+    "id": "dist_059",
+    "title": "Chrome - vimeo.com - Cat Videos Compilation",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "entertainment_video"
+  },
+  {
+    "id": "dist_060",
+    "title": "Safari - lemon8-app.com - Trending \u2014 Food & Travel",
+    "label": "social_media",
+    "productivity_label": "distracting",
+    "category": "social_media"
+  },
+  {
+    "id": "edge_001",
+    "title": "Chrome - YouTube - MIT OpenCourseWare Lecture 5: Machine Learning",
+    "label": "entertainment",
+    "productivity_label": "productive",
+    "category": "edge_case"
+  },
+  {
+    "id": "edge_002",
+    "title": "Safari - ChatGPT \u2014 Help me debug this Python error",
+    "label": "other",
+    "productivity_label": "productive",
+    "category": "edge_case"
+  },
+  {
+    "id": "edge_003",
+    "title": "Discord - FYP Project Server \u2014 #code-review",
+    "label": "communication",
+    "productivity_label": "productive",
+    "category": "edge_case"
+  },
+  {
+    "id": "edge_004",
+    "title": "Chrome - Reddit - r/MachineLearning: New ADHD detection paper from MIT",
+    "label": "social_media",
+    "productivity_label": "productive",
+    "category": "edge_case"
+  },
+  {
+    "id": "edge_005",
+    "title": "Spotify - Focus Playlist \u2014 Brain.fm Concentration",
+    "label": "entertainment",
+    "productivity_label": "neutral",
+    "category": "edge_case"
+  },
+  {
+    "id": "edge_006",
+    "title": "Safari - twitter.com/ylecun \u2014 Latest post on LLM reasoning",
+    "label": "social_media",
+    "productivity_label": "neutral",
+    "category": "edge_case"
+  },
+  {
+    "id": "edge_007",
+    "title": "WhatsApp Web \u2014 FYP Group Chat",
+    "label": "communication",
+    "productivity_label": "neutral",
+    "category": "edge_case"
+  },
+  {
+    "id": "edge_008",
+    "title": "Chrome - netflix.com/browse \u2014 Documentaries About the Brain",
+    "label": "entertainment",
+    "productivity_label": "distracting",
+    "category": "edge_case"
+  },
+  {
+    "id": "edge_009",
+    "title": "Preview - vacation-photos-2025.pdf",
+    "label": "design",
+    "productivity_label": "distracting",
+    "category": "edge_case"
+  },
+  {
+    "id": "edge_010",
+    "title": "Terminal - neofetch",
+    "label": "development",
+    "productivity_label": "neutral",
+    "category": "edge_case"
+  }
+]

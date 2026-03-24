@@ -1,0 +1,425 @@
+{
+  "component": "senticnet",
+  "timestamp": "2026-03-24T14:06:54.032285+00:00",
+  "system_info": {
+    "os": "macOS 26.2",
+    "chip": "arm64",
+    "ram_gb": 16.0,
+    "python": "3.11.11",
+    "mlx_version": "installed",
+    "mlx_lm_version": "0.31.1",
+    "sentence_transformers_version": "5.2.3"
+  },
+  "metrics": {
+    "single_lookup_latency": {
+      "mean_ms": 536.7,
+      "median_ms": 511.1,
+      "p95_ms": 697.8,
+      "p99_ms": 1192.5,
+      "min_ms": 454.3,
+      "max_ms": 1192.5,
+      "success_count": 50,
+      "failure_count": 0
+    },
+    "pipeline_latency_by_length": {
+      "10_words": {
+        "word_count": 10,
+        "mean_ms": 2763.9,
+        "median_ms": 2451.8,
+        "min_ms": 2423.1,
+        "max_ms": 4023.1
+      },
+      "50_words": {
+        "word_count": 53,
+        "mean_ms": 3231.4,
+        "median_ms": 3239.1,
+        "min_ms": 3141.1,
+        "max_ms": 3304.9
+      },
+      "100_words": {
+        "word_count": 94,
+        "mean_ms": 4560.2,
+        "median_ms": 4546.5,
+        "min_ms": 4421.6,
+        "max_ms": 4718.5
+      },
+      "200_words": {
+        "word_count": 201,
+        "mean_ms": 8820.4,
+        "median_ms": 8860.5,
+        "min_ms": 8508.1,
+        "max_ms": 9073.4
+      }
+    },
+    "api_reliability": {
+      "total_calls": 100,
+      "success": 100,
+      "failure": 0,
+      "success_rate_pct": 100.0,
+      "failure_types": {}
+    },
+    "hourglass_distribution": {
+      "introspection": {
+        "mean": 0.0,
+        "stdev": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 50
+      },
+      "temper": {
+        "mean": 0.0,
+        "stdev": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 50
+      },
+      "attitude": {
+        "mean": 0.0,
+        "stdev": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 50
+      },
+      "sensitivity": {
+        "mean": 0.0,
+        "stdev": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "n": 50
+      }
+    }
+  },
+  "raw_measurements": [
+    {
+      "test": "single_lookup",
+      "results": [
+        {
+          "sentence": "I feel happy today",
+          "result": "joy (99.7%)",
+          "latency_ms": 1192.49
+        },
+        {
+          "sentence": "This is frustrating",
+          "result": "annoyance (99.7%)",
+          "latency_ms": 564.43
+        },
+        {
+          "sentence": "I am overwhelmed",
+          "result": "dislike (65.76%) & annoyance (28.18%)",
+          "latency_ms": 454.28
+        },
+        {
+          "sentence": "Great progress",
+          "result": "enthusiasm (87.58%) & delight (65.91%)",
+          "latency_ms": 507.51
+        },
+        {
+          "sentence": "I can't focus",
+          "result": "anger (99.7%)",
+          "latency_ms": 574.55
+        },
+        {
+          "sentence": "Everything is fine",
+          "result": "pleasantness (63.94%)",
+          "latency_ms": 557.75
+        },
+        {
+          "sentence": "I hate this",
+          "result": "sadness (99.7%)",
+          "latency_ms": 500.56
+        },
+        {
+          "sentence": "Wonderful news",
+          "result": "delight (100%)",
+          "latency_ms": 582.29
+        },
+        {
+          "sentence": "I'm scared",
+          "result": "fear (99.7%)",
+          "latency_ms": 473.16
+        },
+        {
+          "sentence": "Boring task",
+          "result": "grief (73.33%) & disgust (62.58%)",
+          "latency_ms": 487.44
+        },
+        {
+          "sentence": "I feel happy today",
+          "result": "joy (99.7%)",
+          "latency_ms": 493.67
+        },
+        {
+          "sentence": "This is frustrating",
+          "result": "annoyance (99.7%)",
+          "latency_ms": 799.56
+        },
+        {
+          "sentence": "I am overwhelmed",
+          "result": "dislike (65.76%) & annoyance (28.18%)",
+          "latency_ms": 508.13
+        },
+        {
+          "sentence": "Great progress",
+          "result": "enthusiasm (87.58%) & delight (65.91%)",
+          "latency_ms": 478.84
+        },
+        {
+          "sentence": "I can't focus",
+          "result": "anger (99.7%)",
+          "latency_ms": 465.88
+        },
+        {
+          "sentence": "Everything is fine",
+          "result": "pleasantness (63.94%)",
+          "latency_ms": 528.91
+        },
+        {
+          "sentence": "I hate this",
+          "result": "sadness (99.7%)",
+          "latency_ms": 491.86
+        },
+        {
+          "sentence": "Wonderful news",
+          "result": "delight (100%)",
+          "latency_ms": 697.82
+        },
+        {
+          "sentence": "I'm scared",
+          "result": "fear (99.7%)",
+          "latency_ms": 507.26
+        },
+        {
+          "sentence": "Boring task",
+          "result": "grief (73.33%) & disgust (62.58%)",
+          "latency_ms": 463.21
+        },
+        {
+          "sentence": "I feel happy today",
+          "result": "joy (99.7%)",
+          "latency_ms": 477.8
+        },
+        {
+          "sentence": "This is frustrating",
+          "result": "annoyance (99.7%)",
+          "latency_ms": 490.87
+        },
+        {
+          "sentence": "I am overwhelmed",
+          "result": "dislike (65.76%) & annoyance (28.18%)",
+          "latency_ms": 483.11
+        },
+        {
+          "sentence": "Great progress",
+          "result": "enthusiasm (87.58%) & delight (65.91%)",
+          "latency_ms": 498.38
+        },
+        {
+          "sentence": "I can't focus",
+          "result": "anger (99.7%)",
+          "latency_ms": 560.4
+        },
+        {
+          "sentence": "Everything is fine",
+          "result": "pleasantness (63.94%)",
+          "latency_ms": 511.72
+        },
+        {
+          "sentence": "I hate this",
+          "result": "sadness (99.7%)",
+          "latency_ms": 547.93
+        },
+        {
+          "sentence": "Wonderful news",
+          "result": "delight (100%)",
+          "latency_ms": 493.3
+        },
+        {
+          "sentence": "I'm scared",
+          "result": "fear (99.7%)",
+          "latency_ms": 510.94
+        },
+        {
+          "sentence": "Boring task",
+          "result": "grief (73.33%) & disgust (62.58%)",
+          "latency_ms": 490.17
+        },
+        {
+          "sentence": "I feel happy today",
+          "result": "joy (99.7%)",
+          "latency_ms": 550.28
+        },
+        {
+          "sentence": "This is frustrating",
+          "result": "annoyance (99.7%)",
+          "latency_ms": 547.25
+        },
+        {
+          "sentence": "I am overwhelmed",
+          "result": "dislike (65.76%) & annoyance (28.18%)",
+          "latency_ms": 517.07
+        },
+        {
+          "sentence": "Great progress",
+          "result": "enthusiasm (87.58%) & delight (65.91%)",
+          "latency_ms": 531.0
+        },
+        {
+          "sentence": "I can't focus",
+          "result": "anger (99.7%)",
+          "latency_ms": 477.58
+        },
+        {
+          "sentence": "Everything is fine",
+          "result": "pleasantness (63.94%)",
+          "latency_ms": 555.57
+        },
+        {
+          "sentence": "I hate this",
+          "result": "sadness (99.7%)",
+          "latency_ms": 494.83
+        },
+        {
+          "sentence": "Wonderful news",
+          "result": "delight (100%)",
+          "latency_ms": 503.98
+        },
+        {
+          "sentence": "I'm scared",
+          "result": "fear (99.7%)",
+          "latency_ms": 538.38
+        },
+        {
+          "sentence": "Boring task",
+          "result": "grief (73.33%) & disgust (62.58%)",
+          "latency_ms": 522.34
+        },
+        {
+          "sentence": "I feel happy today",
+          "result": "joy (99.7%)",
+          "latency_ms": 538.41
+        },
+        {
+          "sentence": "This is frustrating",
+          "result": "annoyance (99.7%)",
+          "latency_ms": 578.63
+        },
+        {
+          "sentence": "I am overwhelmed",
+          "result": "dislike (65.76%) & annoyance (28.18%)",
+          "latency_ms": 512.98
+        },
+        {
+          "sentence": "Great progress",
+          "result": "enthusiasm (87.58%) & delight (65.91%)",
+          "latency_ms": 483.53
+        },
+        {
+          "sentence": "I can't focus",
+          "result": "anger (99.7%)",
+          "latency_ms": 539.48
+        },
+        {
+          "sentence": "Everything is fine",
+          "result": "pleasantness (63.94%)",
+          "latency_ms": 511.23
+        },
+        {
+          "sentence": "I hate this",
+          "result": "sadness (99.7%)",
+          "latency_ms": 466.09
+        },
+        {
+          "sentence": "Wonderful news",
+          "result": "delight (100%)",
+          "latency_ms": 542.05
+        },
+        {
+          "sentence": "I'm scared",
+          "result": "fear (99.7%)",
+          "latency_ms": 507.52
+        },
+        {
+          "sentence": "Boring task",
+          "result": "grief (73.33%) & disgust (62.58%)",
+          "latency_ms": 523.96
+        }
+      ]
+    },
+    {
+      "test": "pipeline_by_length",
+      "data": {
+        "10_words": {
+          "word_count": 10,
+          "mean_ms": 2763.9,
+          "median_ms": 2451.8,
+          "min_ms": 2423.1,
+          "max_ms": 4023.1
+        },
+        "50_words": {
+          "word_count": 53,
+          "mean_ms": 3231.4,
+          "median_ms": 3239.1,
+          "min_ms": 3141.1,
+          "max_ms": 3304.9
+        },
+        "100_words": {
+          "word_count": 94,
+          "mean_ms": 4560.2,
+          "median_ms": 4546.5,
+          "min_ms": 4421.6,
+          "max_ms": 4718.5
+        },
+        "200_words": {
+          "word_count": 201,
+          "mean_ms": 8820.4,
+          "median_ms": 8860.5,
+          "min_ms": 8508.1,
+          "max_ms": 9073.4
+        }
+      }
+    },
+    {
+      "test": "reliability",
+      "data": {
+        "total_calls": 100,
+        "success": 100,
+        "failure": 0,
+        "success_rate_pct": 100.0,
+        "failure_types": {}
+      }
+    },
+    {
+      "test": "hourglass_distribution",
+      "data": {
+        "introspection": {
+          "mean": 0.0,
+          "stdev": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "n": 50
+        },
+        "temper": {
+          "mean": 0.0,
+          "stdev": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "n": 50
+        },
+        "attitude": {
+          "mean": 0.0,
+          "stdev": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "n": 50
+        },
+        "sensitivity": {
+          "mean": 0.0,
+          "stdev": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "n": 50
+        }
+      }
+    }
+  ]
+}

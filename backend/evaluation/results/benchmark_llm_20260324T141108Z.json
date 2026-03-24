@@ -1,0 +1,174 @@
+{
+  "component": "llm",
+  "timestamp": "2026-03-24T14:11:08.665480+00:00",
+  "system_info": {
+    "os": "macOS 26.2",
+    "chip": "arm64",
+    "ram_gb": 16.0,
+    "python": "3.11.11",
+    "mlx_version": "installed",
+    "mlx_lm_version": "0.31.1",
+    "sentence_transformers_version": "5.2.3"
+  },
+  "metrics": {
+    "cold_start": {
+      "mean_s": 1.78,
+      "median_s": 1.66,
+      "min_s": 1.56,
+      "max_s": 2.2,
+      "stdev_s": 0.25
+    },
+    "generation_time": {
+      "short": {
+        "mean_ms": 1465.9,
+        "median_ms": 1494.4,
+        "p95_ms": 1544.1,
+        "min_ms": 1300.6,
+        "max_ms": 1544.1,
+        "mean_tokens": 52.0
+      },
+      "medium": {
+        "mean_ms": 2225.3,
+        "median_ms": 2306.0,
+        "p95_ms": 2438.5,
+        "min_ms": 1831.3,
+        "max_ms": 2438.5,
+        "mean_tokens": 79.0
+      },
+      "long": {
+        "mean_ms": 2357.0,
+        "median_ms": 2358.3,
+        "p95_ms": 2696.9,
+        "min_ms": 2003.3,
+        "max_ms": 2696.9,
+        "mean_tokens": 84.0
+      }
+    },
+    "throughput": {
+      "short": {
+        "mean_tok_s": 35.8,
+        "median_tok_s": 36.0,
+        "min_tok_s": 33.6,
+        "max_tok_s": 37.7
+      },
+      "medium": {
+        "mean_tok_s": 36.0,
+        "median_tok_s": 36.4,
+        "min_tok_s": 32.7,
+        "max_tok_s": 38.7
+      },
+      "long": {
+        "mean_tok_s": 37.3,
+        "median_tok_s": 37.2,
+        "min_tok_s": 34.4,
+        "max_tok_s": 41.1
+      }
+    },
+    "memory": {
+      "rss_with_model_mb": 1678.0,
+      "rss_peak_generation_mb": 1699.0,
+      "rss_after_unload_mb": 1907.0,
+      "model_footprint_mb": -230.0
+    },
+    "thinking_mode": {
+      "think": {
+        "mean_ms": 5346.0,
+        "median_ms": 5357.0,
+        "mean_tokens": 242.0
+      },
+      "no_think": {
+        "mean_ms": 2060.0,
+        "median_ms": 2094.0,
+        "mean_tokens": 73.0
+      }
+    }
+  },
+  "raw_measurements": [
+    {
+      "test": "cold_start",
+      "times_s": [
+        2.201,
+        1.813,
+        1.559,
+        1.664,
+        1.66
+      ]
+    },
+    {
+      "test": "generation_time",
+      "data": {
+        "short": {
+          "mean_ms": 1465.9,
+          "median_ms": 1494.4,
+          "p95_ms": 1544.1,
+          "min_ms": 1300.6,
+          "max_ms": 1544.1,
+          "mean_tokens": 52.0
+        },
+        "medium": {
+          "mean_ms": 2225.3,
+          "median_ms": 2306.0,
+          "p95_ms": 2438.5,
+          "min_ms": 1831.3,
+          "max_ms": 2438.5,
+          "mean_tokens": 79.0
+        },
+        "long": {
+          "mean_ms": 2357.0,
+          "median_ms": 2358.3,
+          "p95_ms": 2696.9,
+          "min_ms": 2003.3,
+          "max_ms": 2696.9,
+          "mean_tokens": 84.0
+        }
+      }
+    },
+    {
+      "test": "throughput",
+      "data": {
+        "short": {
+          "mean_tok_s": 35.8,
+          "median_tok_s": 36.0,
+          "min_tok_s": 33.6,
+          "max_tok_s": 37.7
+        },
+        "medium": {
+          "mean_tok_s": 36.0,
+          "median_tok_s": 36.4,
+          "min_tok_s": 32.7,
+          "max_tok_s": 38.7
+        },
+        "long": {
+          "mean_tok_s": 37.3,
+          "median_tok_s": 37.2,
+          "min_tok_s": 34.4,
+          "max_tok_s": 41.1
+        }
+      }
+    },
+    {
+      "test": "memory",
+      "data": {
+        "rss_with_model_mb": 1678.0,
+        "rss_peak_generation_mb": 1699.0,
+        "rss_after_unload_mb": 1907.0,
+        "model_footprint_mb": -230.0
+      }
+    },
+    {
+      "test": "thinking_mode",
+      "data": {
+        "think": {
+          "mean_ms": 5346.0,
+          "median_ms": 5357.0,
+          "mean_tokens": 242.0
+        },
+        "no_think": {
+          "mean_ms": 2060.0,
+          "median_ms": 2094.0,
+          "mean_tokens": 73.0
+        }
+      }
+    }
+  ]
+}
