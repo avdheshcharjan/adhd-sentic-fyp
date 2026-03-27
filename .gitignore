@@ -48,3 +48,12 @@ node_modules/
 
 # ── Swift ───────────────────────────────────────────────
 swift-app/.build/
+
+# ── Trained Models ──────────────────────────────────────
+backend/models/adhd-emotion-*/
+
+# ── Large / Raw Evaluation Data ─────────────────────────
+backend/evaluation/data/kaggle_raw/
+backend/evaluation/data/kaggle_*.json
+backend/evaluation/data/augmented_emotion_training_data.json
+backend/evaluation/data/senticnet_cache/

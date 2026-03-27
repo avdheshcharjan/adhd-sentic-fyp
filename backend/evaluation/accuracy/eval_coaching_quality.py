@@ -164,7 +164,7 @@ def generate_responses(test_data: list) -> list:
             user_message=message,
             senticnet_context=senticnet_context,
             use_thinking=False,
-            max_tokens=250,
+            max_tokens=350,
         )
         with_latency = (time.perf_counter() - sentic_start) * 1000
         print(f" done ({with_latency:.0f}ms, {len(response_with)} chars)")

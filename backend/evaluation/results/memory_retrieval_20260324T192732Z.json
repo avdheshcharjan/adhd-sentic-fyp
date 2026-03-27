@@ -1,0 +1,2611 @@
+{
+  "timestamp": "20260324T192732Z",
+  "total_profiles": 20,
+  "total_queries": 100,
+  "aggregate_metrics": {
+    "hit_at_1": 0.9,
+    "hit_at_3": 0.97,
+    "hit_at_5": 0.99,
+    "ndcg_at_3": 1.1138045457857206,
+    "mean_latency_ms": 268.8208084600046,
+    "median_latency_ms": 217.90860465262085,
+    "p95_latency_ms": 459.92686450481364
+  },
+  "misses": [
+    {
+      "profile": "user_003",
+      "query": "I'm feeling emotional about client feedback. What helps me?",
+      "expected_id": "mem_003_05",
+      "expected_content": "",
+      "retrieved": [
+        "Experiences strong rejection sensitivity when clients request revisions",
+        "Tends to overcommit to client projects due to impulsive yes-saying",
+        "Finds accountability body-doubling sessions helpful via Discord"
+      ]
+    },
+    {
+      "profile": "user_016",
+      "query": "How do I stay organized?",
+      "expected_id": "mem_016_07",
+      "expected_content": "",
+      "retrieved": [
+        "Has a structured day plan",
+        "Struggles with routine administrative tasks",
+        "Needs clear objectives and deadlines"
+      ]
+    },
+    {
+      "profile": "user_020",
+      "query": "How do I take care of myself during long coding sessions?",
+      "expected_id": "mem_020_02",
+      "expected_content": "",
+      "retrieved": [
+        "Forgets to eat, drink water, or stretch while coding",
+        "User regularly codes for 12+ hours",
+        "Experiences back pain from extended coding sessions in bad posture"
+      ]
+    }
+  ],
+  "per_profile_results": [
+    {
+      "profile_id": "user_001",
+      "description": "Graduate student in CS, combined ADHD, struggles with long reading tasks",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How should I approach this long paper I need to read?",
+          "expected_memory_id": "mem_001_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_001_01",
+            "mem_001_04",
+            "mem_001_09",
+            "mem_001_08",
+            "mem_001_09"
+          ],
+          "retrieved_contents": [
+            "User prefers breaking reading into 15-minute chunks with 5-minute breaks",
+            "Finds background brown noise helpful for deep reading",
+            "User over-prepares for supervisor meetings",
+            "User avoids studying in their bedroom because they always end up napping",
+            "User gets anxious before supervisor meetings"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 445.42616698890924
+        },
+        {
+          "query": "When is the best time for me to work on hard problems?",
+          "expected_memory_id": "mem_001_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_001_02",
+            "mem_001_07",
+            "mem_001_05",
+            "mem_001_09",
+            "mem_001_01"
+          ],
+          "retrieved_contents": [
+            "User gets most focused work done between 10am and 1pm",
+            "Finds pair programming helpful for staying on task",
+            "User tends to skip lunch when hyperfocused",
+            "User over-prepares for supervisor meetings",
+            "User prefers breaking reading into 15-minute chunks with 5-minute breaks"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 205.73266595602036
+        },
+        {
+          "query": "What should I know about my medication schedule?",
+          "expected_memory_id": "mem_001_03",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_001_03",
+            "mem_001_03",
+            "mem_001_09",
+            "mem_001_09",
+            "mem_001_01"
+          ],
+          "retrieved_contents": [
+            "Adderall XR wears off around 4pm",
+            "Takes 20mg Adderall XR in the morning",
+            "User over-prepares for supervisor meetings",
+            "User gets anxious before supervisor meetings",
+            "User prefers breaking reading into 15-minute chunks with 5-minute breaks"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 170.17591721378267
+        },
+        {
+          "query": "What helps me concentrate when reading?",
+          "expected_memory_id": "mem_001_04",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_001_04",
+            "mem_001_01",
+            "mem_001_05",
+            "mem_001_07",
+            "mem_001_02"
+          ],
+          "retrieved_contents": [
+            "Finds background brown noise helpful for deep reading",
+            "User prefers breaking reading into 15-minute chunks with 5-minute breaks",
+            "User tends to skip lunch when hyperfocused",
+            "Finds pair programming helpful for staying on task",
+            "User gets most focused work done between 10am and 1pm"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 257.57320900447667
+        },
+        {
+          "query": "Where should I go to study effectively?",
+          "expected_memory_id": "mem_001_08",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_001_08",
+            "mem_001_02",
+            "mem_001_07",
+            "mem_001_04",
+            "mem_001_09"
+          ],
+          "retrieved_contents": [
+            "User avoids studying in their bedroom because they always end up napping",
+            "User gets most focused work done between 10am and 1pm",
+            "Finds pair programming helpful for staying on task",
+            "Finds background brown noise helpful for deep reading",
+            "User over-prepares for supervisor meetings"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 177.95704188756645
+        }
+      ]
+    },
+    {
+      "profile_id": "user_002",
+      "description": "Marketing professional, inattentive ADHD, struggles with email management",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How should I handle my overflowing inbox?",
+          "expected_memory_id": "mem_002_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_002_02",
+            "mem_002_03",
+            "mem_002_01",
+            "mem_002_07",
+            "mem_002_02"
+          ],
+          "retrieved_contents": [
+            "User gets overwhelmed by Slack notifications",
+            "Uses the 2-minute rule: if an email takes less than 2 minutes, handle it immediately",
+            "Processes emails best when batched into 3 daily sessions: 9am, 12pm, 4pm",
+            "Allows flexible deadlines",
+            "User has turned off all non-DM alerts"
+          ],
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 0.5,
+          "latency_ms": 217.69200009293854
+        },
+        {
+          "query": "I keep getting distracted by notifications. What did I try before?",
+          "expected_memory_id": "mem_002_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_002_02",
+            "mem_002_02",
+            "mem_002_08",
+            "mem_002_01",
+            "mem_002_03"
+          ],
+          "retrieved_contents": [
+            "User gets overwhelmed by Slack notifications",
+            "User has turned off all non-DM alerts",
+            "Tends to abandon productivity apps after 2-3 weeks",
+            "Processes emails best when batched into 3 daily sessions: 9am, 12pm, 4pm",
+            "Uses the 2-minute rule: if an email takes less than 2 minutes, handle it immediately"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 188.29395901411772
+        },
+        {
+          "query": "What's my weekly planning routine?",
+          "expected_memory_id": "mem_002_04",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_002_04",
+            "mem_002_05",
+            "mem_002_08",
+            "mem_002_01",
+            "mem_002_07"
+          ],
+          "retrieved_contents": [
+            "User has a Monday morning ritual of planning the week using a paper planner",
+            "Struggles most on Wednesdays due to back-to-back meetings all morning",
+            "Tends to abandon productivity apps after 2-3 weeks",
+            "Processes emails best when batched into 3 daily sessions: 9am, 12pm, 4pm",
+            "Allows flexible deadlines"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 253.99337499402463
+        },
+        {
+          "query": "Which day of the week is hardest for me?",
+          "expected_memory_id": "mem_002_05",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_002_05",
+            "mem_002_04",
+            "mem_002_01",
+            "mem_002_07",
+            "mem_002_09"
+          ],
+          "retrieved_contents": [
+            "Struggles most on Wednesdays due to back-to-back meetings all morning",
+            "User has a Monday morning ritual of planning the week using a paper planner",
+            "Processes emails best when batched into 3 daily sessions: 9am, 12pm, 4pm",
+            "Allows flexible deadlines",
+            "Drinking too much coffee makes focus worse"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 641.920667141676
+        },
+        {
+          "query": "What type of note-taking works best for me?",
+          "expected_memory_id": "mem_002_10",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_002_10",
+            "mem_002_04",
+            "mem_002_06",
+            "mem_002_01",
+            "mem_002_07"
+          ],
+          "retrieved_contents": [
+            "User finds creating mind maps more effective than linear note-taking",
+            "User has a Monday morning ritual of planning the week using a paper planner",
+            "User finds walking meetings more productive than sitting in conference rooms",
+            "Processes emails best when batched into 3 daily sessions: 9am, 12pm, 4pm",
+            "User's manager is understanding about ADHD"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 252.24454095587134
+        }
+      ]
+    },
+    {
+      "profile_id": "user_003",
+      "description": "Freelance designer, hyperactive-impulsive ADHD, high emotional reactivity",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How long should my work sessions be?",
+          "expected_memory_id": "mem_003_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_003_01",
+            "mem_003_07",
+            "mem_003_06",
+            "mem_003_08",
+            "mem_003_09"
+          ],
+          "retrieved_contents": [
+            "User works best in short intense bursts of 20-25 minutes",
+            "User gets most creative work done late at night between 10pm and 1am",
+            "Relies on exercise and structured routines",
+            "User has trouble estimating project timelines",
+            "Finds accountability body-doubling sessions helpful via Discord"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 207.953582983464
+        },
+        {
+          "query": "I'm feeling emotional about client feedback. What helps me?",
+          "expected_memory_id": "mem_003_05",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_003_04",
+            "mem_003_02",
+            "mem_003_09",
+            "mem_003_05",
+            "mem_003_08"
+          ],
+          "retrieved_contents": [
+            "Experiences strong rejection sensitivity when clients request revisions",
+            "Tends to overcommit to client projects due to impulsive yes-saying",
+            "Finds accountability body-doubling sessions helpful via Discord",
+            "User calms down fastest by going for a 10-minute walk outside",
+            "User has trouble estimating project timelines"
+          ],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 321.79470802657306
+        },
+        {
+          "query": "When am I most creative?",
+          "expected_memory_id": "mem_003_07",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_003_07",
+            "mem_003_01",
+            "mem_003_02",
+            "mem_003_05",
+            "mem_003_08"
+          ],
+          "retrieved_contents": [
+            "User gets most creative work done late at night between 10pm and 1am",
+            "User works best in short intense bursts of 20-25 minutes",
+            "Tends to overcommit to client projects due to impulsive yes-saying",
+            "User calms down fastest by going for a 10-minute walk outside",
+            "User has trouble estimating project timelines"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 319.91233420558274
+        },
+        {
+          "query": "How should I estimate project deadlines?",
+          "expected_memory_id": "mem_003_08",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_003_08",
+            "mem_003_08",
+            "mem_003_02",
+            "mem_003_07",
+            "mem_003_01"
+          ],
+          "retrieved_contents": [
+            "User has trouble estimating project timelines",
+            "Usually underestimates project timelines by 50%",
+            "Tends to overcommit to client projects due to impulsive yes-saying",
+            "User gets most creative work done late at night between 10pm and 1am",
+            "User works best in short intense bursts of 20-25 minutes"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 180.90216699056327
+        },
+        {
+          "query": "What's my biggest source of distraction?",
+          "expected_memory_id": "mem_003_10",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_003_10",
+            "mem_003_02",
+            "mem_003_03",
+            "mem_003_07",
+            "mem_003_05"
+          ],
+          "retrieved_contents": [
+            "User's biggest distraction trigger is social media, especially Instagram",
+            "Tends to overcommit to client projects due to impulsive yes-saying",
+            "Uses a physical timer on desk to manage time blindness",
+            "User gets most creative work done late at night between 10pm and 1am",
+            "User calms down fastest by going for a 10-minute walk outside"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 196.7777090612799
+        }
+      ]
+    },
+    {
+      "profile_id": "user_004",
+      "description": "First-year university student, suspected undiagnosed ADHD, anxious about academics",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "What study technique works for me?",
+          "expected_memory_id": "mem_004_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_004_02",
+            "mem_004_08",
+            "mem_004_05",
+            "mem_004_01",
+            "mem_004_05"
+          ],
+          "retrieved_contents": [
+            "Finds studying with flashcards more effective than re-reading notes",
+            "User finds group study sessions helpful because they keep her accountable",
+            "User does not study well at home",
+            "User feels like everyone else understands lectures",
+            "User studies best at the library's silent floor"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 333.9176250156015
+        },
+        {
+          "query": "I can't sleep before my exam. Has this happened before?",
+          "expected_memory_id": "mem_004_03",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_004_03",
+            "mem_004_10",
+            "mem_004_07",
+            "mem_004_05",
+            "mem_004_01"
+          ],
+          "retrieved_contents": [
+            "User has trouble sleeping before exam days due to racing thoughts",
+            "Experiences physical anxiety symptoms: tight chest, sweaty palms before presentations",
+            "User struggles to start assignments until the deadline pressure kicks in",
+            "User does not study well at home",
+            "User zones out after 10 minutes of lectures"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 177.53349989652634
+        },
+        {
+          "query": "Where should I go to study?",
+          "expected_memory_id": "mem_004_05",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_004_05",
+            "mem_004_02",
+            "mem_004_05",
+            "mem_004_08",
+            "mem_004_01"
+          ],
+          "retrieved_contents": [
+            "User does not study well at home",
+            "Finds studying with flashcards more effective than re-reading notes",
+            "User studies best at the library's silent floor",
+            "User finds group study sessions helpful because they keep her accountable",
+            "User zones out after 10 minutes of lectures"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.5,
+          "latency_ms": 218.12520921230316
+        },
+        {
+          "query": "Why do I always wait until the last minute?",
+          "expected_memory_id": "mem_004_07",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_004_07",
+            "mem_004_03",
+            "mem_004_05",
+            "mem_004_10",
+            "mem_004_01"
+          ],
+          "retrieved_contents": [
+            "User struggles to start assignments until the deadline pressure kicks in",
+            "User has trouble sleeping before exam days due to racing thoughts",
+            "User does not study well at home",
+            "Experiences physical anxiety symptoms: tight chest, sweaty palms before presentations",
+            "User zones out after 10 minutes of lectures"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 170.9116669371724
+        },
+        {
+          "query": "I'm nervous about presenting. What do I usually experience?",
+          "expected_memory_id": "mem_004_10",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_004_10",
+            "mem_004_01",
+            "mem_004_03",
+            "mem_004_07",
+            "mem_004_01"
+          ],
+          "retrieved_contents": [
+            "Experiences physical anxiety symptoms: tight chest, sweaty palms before presentations",
+            "User feels like everyone else understands lectures",
+            "User has trouble sleeping before exam days due to racing thoughts",
+            "User struggles to start assignments until the deadline pressure kicks in",
+            "User zones out after 10 minutes of lectures"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 323.60300002619624
+        }
+      ]
+    },
+    {
+      "profile_id": "user_005",
+      "description": "Software engineer, combined ADHD, medicated, manages well most days",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "What tool do I use for task management?",
+          "expected_memory_id": "mem_005_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_005_01",
+            "mem_005_04",
+            "mem_005_08",
+            "mem_005_04",
+            "mem_005_02"
+          ],
+          "retrieved_contents": [
+            "Uses Todoist with recurring tasks for daily standup prep",
+            "User struggles with repetitive documentation",
+            "Uses shared Apple Reminders",
+            "User does best on complex debugging tasks",
+            "User's focus deteriorates significantly during high-stress sprint weeks"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 329.95350006967783
+        },
+        {
+          "query": "What happens to my focus during stressful weeks?",
+          "expected_memory_id": "mem_005_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_005_02",
+            "mem_005_05",
+            "mem_005_10",
+            "mem_005_07",
+            "mem_005_09"
+          ],
+          "retrieved_contents": [
+            "User's focus deteriorates significantly during high-stress sprint weeks",
+            "More than 30 minutes of gaming spirals into hyperfocus",
+            "User experienced burnout last quarter after 3 consecutive sprint overruns",
+            "Finds code reviews mentally draining",
+            "User meditates for 5 minutes before starting deep work"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 444.65241697616875
+        },
+        {
+          "query": "How does my sleep affect my medication?",
+          "expected_memory_id": "mem_005_03",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_005_03",
+            "mem_005_03",
+            "mem_005_09",
+            "mem_005_06",
+            "mem_005_02"
+          ],
+          "retrieved_contents": [
+            "Effectiveness drops when sleep is less than 6 hours",
+            "Takes Concerta 36mg",
+            "Meditation helps the user a lot",
+            "Alternates between sitting and standing every 45 minutes",
+            "User's focus deteriorates significantly during high-stress sprint weeks"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 364.7913751192391
+        },
+        {
+          "query": "What kind of work tasks am I best at?",
+          "expected_memory_id": "mem_005_04",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_005_04",
+            "mem_005_07",
+            "mem_005_04",
+            "mem_005_01",
+            "mem_005_05"
+          ],
+          "retrieved_contents": [
+            "User does best on complex debugging tasks",
+            "Finds code reviews mentally draining",
+            "User struggles with repetitive documentation",
+            "Works well",
+            "User unwinds with gaming for 30 minutes after work"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.5,
+          "latency_ms": 173.97837503813207
+        },
+        {
+          "query": "What do I do before starting deep work?",
+          "expected_memory_id": "mem_005_09",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_005_09",
+            "mem_005_04",
+            "mem_005_05",
+            "mem_005_02",
+            "mem_005_04"
+          ],
+          "retrieved_contents": [
+            "User meditates for 5 minutes before starting deep work",
+            "User does best on complex debugging tasks",
+            "User unwinds with gaming for 30 minutes after work",
+            "User's focus deteriorates significantly during high-stress sprint weeks",
+            "User struggles with repetitive documentation"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 301.7497081309557
+        }
+      ]
+    },
+    {
+      "profile_id": "user_006",
+      "description": "PhD researcher in psychology, inattentive ADHD, diagnosed in grad school",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "Where do I write best?",
+          "expected_memory_id": "mem_006_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_006_01",
+            "mem_006_03",
+            "mem_006_10",
+            "mem_006_05",
+            "mem_006_10"
+          ],
+          "retrieved_contents": [
+            "User writes best in cafes",
+            "User gets paralyzed by perfectionism when writing literature reviews",
+            "Struggles with grant applications",
+            "User's advisor prefers detailed written updates over verbal check-ins",
+            "Struggles with ethics forms"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 211.29849995486438
+        },
+        {
+          "query": "I'm stuck on my literature review. What's my usual blocker?",
+          "expected_memory_id": "mem_006_03",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_006_03",
+            "mem_006_10",
+            "mem_006_10",
+            "mem_006_10",
+            "mem_006_05"
+          ],
+          "retrieved_contents": [
+            "User gets paralyzed by perfectionism when writing literature reviews",
+            "Struggles with the administrative side of research",
+            "Struggles with grant applications",
+            "Struggles with ethics forms",
+            "User's advisor prefers detailed written updates over verbal check-ins"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 185.89141685515642
+        },
+        {
+          "query": "When does my medication stop working?",
+          "expected_memory_id": "mem_006_04",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_006_04",
+            "mem_006_04",
+            "mem_006_02",
+            "mem_006_08",
+            "mem_006_01"
+          ],
+          "retrieved_contents": [
+            "Vyvanse wears off around 6pm",
+            "User takes Vyvanse 40mg",
+            "Uses the Pomodoro technique with 30-min work and 10-min break cycles",
+            "User co-works with another PhD student every Thursday for mutual accountability",
+            "Ambient noise helps maintain focus"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 699.869749834761
+        },
+        {
+          "query": "How do I manage my references?",
+          "expected_memory_id": "mem_006_06",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_006_06",
+            "mem_006_10",
+            "mem_006_06",
+            "mem_006_10",
+            "mem_006_08"
+          ],
+          "retrieved_contents": [
+            "Uses Zotero for reference management",
+            "Struggles with the administrative side of research",
+            "Has 2000+ papers saved",
+            "Struggles with grant applications",
+            "User co-works with another PhD student every Thursday for mutual accountability"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.5,
+          "latency_ms": 196.2527921423316
+        },
+        {
+          "query": "What parts of research do I find hardest?",
+          "expected_memory_id": "mem_006_10",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_006_10",
+            "mem_006_10",
+            "mem_006_03",
+            "mem_006_09",
+            "mem_006_10"
+          ],
+          "retrieved_contents": [
+            "Struggles with the administrative side of research",
+            "Struggles with grant applications",
+            "User gets paralyzed by perfectionism when writing literature reviews",
+            "User's research focus is emotion regulation in ADHD populations",
+            "Struggles with ethics forms"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 244.48812496848404
+        }
+      ]
+    },
+    {
+      "profile_id": "user_007",
+      "description": "High school teacher, combined ADHD, recently started medication",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "What's my biggest work challenge?",
+          "expected_memory_id": "mem_007_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_007_01",
+            "mem_007_08",
+            "mem_007_10",
+            "mem_007_04",
+            "mem_007_04"
+          ],
+          "retrieved_contents": [
+            "Finds grading papers the most challenging task due to repetitiveness",
+            "User's partner understands the workload pressures",
+            "Keeps a sticky note on monitor: 'One task at a time' as visual reminder",
+            "User struggles with afternoon classes",
+            "User has strong mornings"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 185.61895890161395
+        },
+        {
+          "query": "How do I get through grading efficiently?",
+          "expected_memory_id": "mem_007_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_007_01",
+            "mem_007_02",
+            "mem_007_04",
+            "mem_007_05",
+            "mem_007_09"
+          ],
+          "retrieved_contents": [
+            "Finds grading papers the most challenging task due to repetitiveness",
+            "Uses timer-based grading: 5 minutes per paper maximum",
+            "User struggles with afternoon classes",
+            "User prepares lesson plans best on Sunday evenings",
+            "User finds interactive teaching activities more engaging to plan than lecture-based ones"
+          ],
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 0.6309297535714575,
+          "latency_ms": 182.16416705399752
+        },
+        {
+          "query": "When do I lose energy during the day?",
+          "expected_memory_id": "mem_007_04",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_007_04",
+            "mem_007_07",
+            "mem_007_07",
+            "mem_007_04",
+            "mem_007_04"
+          ],
+          "retrieved_contents": [
+            "User's energy crashes after lunch",
+            "User forgets to eat lunch on busy days",
+            "User gets irritable by 3pm",
+            "User struggles with afternoon classes",
+            "User has strong mornings"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 304.4235419947654
+        },
+        {
+          "query": "When do I prepare my lesson plans?",
+          "expected_memory_id": "mem_007_05",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_007_05",
+            "mem_007_05",
+            "mem_007_09",
+            "mem_007_06",
+            "mem_007_04"
+          ],
+          "retrieved_contents": [
+            "User prepares lesson plans best on Sunday evenings",
+            "User prefers lo-fi music while preparing lesson plans",
+            "User finds interactive teaching activities more engaging to plan than lecture-based ones",
+            "Uses a visual timer in classroom which helps both teacher and students",
+            "User struggles with afternoon classes"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 209.61254206486046
+        },
+        {
+          "query": "What happens when I forget to eat?",
+          "expected_memory_id": "mem_007_07",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_007_07",
+            "mem_007_04",
+            "mem_007_07",
+            "mem_007_04",
+            "mem_007_04"
+          ],
+          "retrieved_contents": [
+            "User forgets to eat lunch on busy days",
+            "User's energy crashes after lunch",
+            "User gets irritable by 3pm",
+            "User has strong mornings",
+            "User struggles with afternoon classes"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.5,
+          "latency_ms": 208.15979107283056
+        }
+      ]
+    },
+    {
+      "profile_id": "user_008",
+      "description": "Graphic design student, hyperactive ADHD, unmedicated, uses exercise as primary coping",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "What do I do to manage my energy?",
+          "expected_memory_id": "mem_008_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_008_01",
+            "mem_008_10",
+            "mem_008_10",
+            "mem_008_10",
+            "mem_008_03"
+          ],
+          "retrieved_contents": [
+            "User runs 5km every morning to regulate energy levels before class",
+            "Relies on energy drinks",
+            "Energy drinks worsen hyperactivity",
+            "User skips breakfast frequently",
+            "User's creative output peaks after exercise"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 808.0882499925792
+        },
+        {
+          "query": "When am I most creative?",
+          "expected_memory_id": "mem_008_03",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_008_03",
+            "mem_008_03",
+            "mem_008_06",
+            "mem_008_09",
+            "mem_008_04"
+          ],
+          "retrieved_contents": [
+            "User's creative output peaks in the evening hours",
+            "User's creative output peaks after exercise",
+            "User thrives in collaborative studio sessions",
+            "Can hyperfocus on color work",
+            "User impulsively buys art supplies"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 302.39887489005923
+        },
+        {
+          "query": "I keep starting new projects. Is this a pattern?",
+          "expected_memory_id": "mem_008_08",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_008_08",
+            "mem_008_06",
+            "mem_008_05",
+            "mem_008_04",
+            "mem_008_04"
+          ],
+          "retrieved_contents": [
+            "Tends to start multiple projects simultaneously and finish none",
+            "User procrastinates solo work",
+            "User works on design projects using multiple screens",
+            "User impulsively buys art supplies",
+            "User has a collection of unused sketchbooks"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 315.28879213146865
+        },
+        {
+          "query": "What design tool do I use for sketching?",
+          "expected_memory_id": "mem_008_07",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_008_07",
+            "mem_008_07",
+            "mem_008_05",
+            "mem_008_04",
+            "mem_008_06"
+          ],
+          "retrieved_contents": [
+            "Uses Procreate on iPad for initial sketches",
+            "Moves to Figma after initial sketches",
+            "User works on design projects using multiple screens",
+            "User has a collection of unused sketchbooks",
+            "User thrives in collaborative studio sessions"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 180.60249998234212
+        },
+        {
+          "query": "Do I work better alone or with others?",
+          "expected_memory_id": "mem_008_06",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_008_06",
+            "mem_008_06",
+            "mem_008_05",
+            "mem_008_05",
+            "mem_008_08"
+          ],
+          "retrieved_contents": [
+            "User procrastinates solo work",
+            "User thrives in collaborative studio sessions",
+            "User works on design projects using multiple screens",
+            "Finds single-screen work suffocating",
+            "Tends to start multiple projects simultaneously and finish none"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 196.0897920653224
+        }
+      ]
+    },
+    {
+      "profile_id": "user_009",
+      "description": "Working mother, inattentive ADHD, juggles remote work and childcare",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "When are my best windows for focused work?",
+          "expected_memory_id": "mem_009_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_009_03",
+            "mem_009_01",
+            "mem_009_01",
+            "mem_009_06",
+            "mem_009_08"
+          ],
+          "retrieved_contents": [
+            "User experiences guilt about screen time when children want attention during work hours",
+            "User works during children's nap time (1pm-3pm)",
+            "User works after bedtime (8pm-10pm)",
+            "Takes 10mg Ritalin as needed, usually only on work-heavy days",
+            "User thrives with visual checklists on the fridge for daily routines"
+          ],
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.1309297535714575,
+          "latency_ms": 230.2171669434756
+        },
+        {
+          "query": "How do I keep track of family appointments?",
+          "expected_memory_id": "mem_009_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_009_02",
+            "mem_009_08",
+            "mem_009_05",
+            "mem_009_04",
+            "mem_009_03"
+          ],
+          "retrieved_contents": [
+            "Keeps all important dates in a shared family Google Calendar with color coding",
+            "User thrives with visual checklists on the fridge for daily routines",
+            "User has a 'launch pad' by the front door for keys, wallet, and kids' bags to prevent forgetting",
+            "User finds meal prepping on Sundays reduces weekday decision fatigue significantly",
+            "User experiences guilt about screen time when children want attention during work hours"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 174.20179187320173
+        },
+        {
+          "query": "What helps reduce my decision fatigue?",
+          "expected_memory_id": "mem_009_04",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_009_04",
+            "mem_009_08",
+            "mem_009_03",
+            "mem_009_10",
+            "mem_009_06"
+          ],
+          "retrieved_contents": [
+            "User finds meal prepping on Sundays reduces weekday decision fatigue significantly",
+            "User thrives with visual checklists on the fridge for daily routines",
+            "User experiences guilt about screen time when children want attention during work hours",
+            "Finds audio content (podcasts, audiobooks) easier to process than reading text",
+            "Takes 10mg Ritalin as needed, usually only on work-heavy days"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 189.4960419740528
+        },
+        {
+          "query": "What do I always forget to do?",
+          "expected_memory_id": "mem_009_07",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_009_07",
+            "mem_009_08",
+            "mem_009_05",
+            "mem_009_04",
+            "mem_009_06"
+          ],
+          "retrieved_contents": [
+            "User's most forgotten task is replying to school emails from children's teachers",
+            "User thrives with visual checklists on the fridge for daily routines",
+            "User has a 'launch pad' by the front door for keys, wallet, and kids' bags to prevent forgetting",
+            "User finds meal prepping on Sundays reduces weekday decision fatigue significantly",
+            "Takes 10mg Ritalin as needed, usually only on work-heavy days"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 297.7579589933157
+        },
+        {
+          "query": "How do I learn best?",
+          "expected_memory_id": "mem_009_10",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_009_10",
+            "mem_009_08",
+            "mem_009_07",
+            "mem_009_09",
+            "mem_009_04"
+          ],
+          "retrieved_contents": [
+            "Finds audio content (podcasts, audiobooks) easier to process than reading text",
+            "User thrives with visual checklists on the fridge for daily routines",
+            "User's most forgotten task is replying to school emails from children's teachers",
+            "User tends to impulse-buy online",
+            "User finds meal prepping on Sundays reduces weekday decision fatigue significantly"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 173.77133388072252
+        }
+      ]
+    },
+    {
+      "profile_id": "user_010",
+      "description": "Entrepreneur, combined ADHD, thrives on novelty but struggles with operations",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "Why do I lose interest in projects midway through?",
+          "expected_memory_id": "mem_010_04",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_010_04",
+            "mem_010_01",
+            "mem_010_07",
+            "mem_010_03",
+            "mem_010_04"
+          ],
+          "retrieved_contents": [
+            "User gets bored of projects after the exciting initial phase",
+            "User is terrible at executing ideas consistently",
+            "User's worst time for decisions is between 3pm-5pm when energy and focus dip",
+            "User works in 90-minute deep work blocks",
+            "User needs accountability to persist"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 211.80733293294907
+        },
+        {
+          "query": "When should I schedule important meetings?",
+          "expected_memory_id": "mem_010_03",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_010_03",
+            "mem_010_10",
+            "mem_010_07",
+            "mem_010_02",
+            "mem_010_02"
+          ],
+          "retrieved_contents": [
+            "User has strict no-meeting zones from 9am-12pm",
+            "User finds quarterly planning retreats essential for maintaining strategic direction",
+            "User's worst time for decisions is between 3pm-5pm when energy and focus dip",
+            "User hired a virtual assistant to handle email and scheduling",
+            "User forgot 3 investor meetings"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 367.2737090382725
+        },
+        {
+          "query": "How do I capture ideas before I forget them?",
+          "expected_memory_id": "mem_010_08",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_010_08",
+            "mem_010_01",
+            "mem_010_01",
+            "mem_010_06",
+            "mem_010_04"
+          ],
+          "retrieved_contents": [
+            "Uses voice memos extensively to capture ideas before they disappear",
+            "User is excellent at generating ideas",
+            "User is terrible at executing ideas consistently",
+            "Practices cold showers in the morning to improve alertness before medication kicks in",
+            "User needs accountability to persist"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 168.83295797742903
+        },
+        {
+          "query": "When should I avoid making big decisions?",
+          "expected_memory_id": "mem_010_07",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_010_07",
+            "mem_010_04",
+            "mem_010_01",
+            "mem_010_10",
+            "mem_010_06"
+          ],
+          "retrieved_contents": [
+            "User's worst time for decisions is between 3pm-5pm when energy and focus dip",
+            "User gets bored of projects after the exciting initial phase",
+            "User is terrible at executing ideas consistently",
+            "User finds quarterly planning retreats essential for maintaining strategic direction",
+            "Practices cold showers in the morning to improve alertness before medication kicks in"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 298.8076249603182
+        },
+        {
+          "query": "What's my medication schedule?",
+          "expected_memory_id": "mem_010_09",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_010_09",
+            "mem_010_06",
+            "mem_010_02",
+            "mem_010_03",
+            "mem_010_07"
+          ],
+          "retrieved_contents": [
+            "Takes Dexedrine 15mg twice daily with strict adherence to timing",
+            "Practices cold showers in the morning to improve alertness before medication kicks in",
+            "User hired a virtual assistant to handle email and scheduling",
+            "User has strict no-meeting zones from 9am-12pm",
+            "User's worst time for decisions is between 3pm-5pm when energy and focus dip"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 202.47187511995435
+        }
+      ]
+    },
+    {
+      "profile_id": "user_011",
+      "description": "Data analyst, inattentive ADHD, struggles with detail-oriented reports",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "I keep making mistakes in my reports. What helps?",
+          "expected_memory_id": "mem_011_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_011_01",
+            "mem_011_02",
+            "mem_011_08",
+            "mem_011_01",
+            "mem_011_08"
+          ],
+          "retrieved_contents": [
+            "User makes careless errors in spreadsheets when rushing",
+            "Finds writing report summaries painfully boring",
+            "User prefers written reports",
+            "Uses a review checklist to catch errors",
+            "User gets anxious about presenting data to stakeholders"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 214.2117079347372
+        },
+        {
+          "query": "What kind of work do I find most engaging?",
+          "expected_memory_id": "mem_011_05",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_011_05",
+            "mem_011_02",
+            "mem_011_02",
+            "mem_011_06",
+            "mem_011_10"
+          ],
+          "retrieved_contents": [
+            "User finds data visualization the most stimulating part of the job",
+            "Finds SQL queries engaging",
+            "Finds writing report summaries painfully boring",
+            "User keeps a running 'parking lot' document for tangential ideas that pop up during work",
+            "Exercising improves afternoon productivity"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 192.37945787608624
+        },
+        {
+          "query": "How do I handle random ideas during focused work?",
+          "expected_memory_id": "mem_011_06",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_011_06",
+            "mem_011_09",
+            "mem_011_03",
+            "mem_011_09",
+            "mem_011_05"
+          ],
+          "retrieved_contents": [
+            "User keeps a running 'parking lot' document for tangential ideas that pop up during work",
+            "User's focus drops significantly on Mondays",
+            "Uses a second monitor for reference material to reduce tab-switching distraction",
+            "Attributes focus drop to weekend sleep schedule disruption",
+            "User finds data visualization the most stimulating part of the job"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 178.92020801082253
+        },
+        {
+          "query": "Why are Mondays always so hard?",
+          "expected_memory_id": "mem_011_09",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_011_09",
+            "mem_011_04",
+            "mem_011_09",
+            "mem_011_10",
+            "mem_011_02"
+          ],
+          "retrieved_contents": [
+            "User's focus drops significantly on Mondays",
+            "Prefers taking it only on workdays",
+            "Attributes focus drop to weekend sleep schedule disruption",
+            "Exercising improves afternoon productivity",
+            "Finds writing report summaries painfully boring"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.5,
+          "latency_ms": 348.55750016868114
+        },
+        {
+          "query": "What improves my afternoon work?",
+          "expected_memory_id": "mem_011_10",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_011_10",
+            "mem_011_10",
+            "mem_011_04",
+            "mem_011_09",
+            "mem_011_05"
+          ],
+          "retrieved_contents": [
+            "Exercising improves afternoon productivity",
+            "User exercises during lunch break 3 times a week",
+            "Prefers taking it only on workdays",
+            "User's focus drops significantly on Mondays",
+            "User finds data visualization the most stimulating part of the job"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 623.7589169759303
+        }
+      ]
+    },
+    {
+      "profile_id": "user_012",
+      "description": "Nursing student, combined ADHD, struggles with clinical rotations schedule",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How do I organize my studying across subjects?",
+          "expected_memory_id": "mem_012_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_012_01",
+            "mem_012_06",
+            "mem_012_04",
+            "mem_012_08",
+            "mem_012_03"
+          ],
+          "retrieved_contents": [
+            "Uses color-coded study schedule with different colors for each subject",
+            "User has a study group of 4 peers",
+            "Uses Anki flashcards for pharmacology",
+            "User's focus suffers significantly during clinical weeks",
+            "User struggles with medication timing due to irregular shift schedule"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 245.79524993896484
+        },
+        {
+          "query": "What type of learning environment suits me best?",
+          "expected_memory_id": "mem_012_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_012_02",
+            "mem_012_10",
+            "mem_012_06",
+            "mem_012_08",
+            "mem_012_05"
+          ],
+          "retrieved_contents": [
+            "User finds clinical rotations easier than classroom learning because they are hands-on",
+            "Finds patient interaction energizing",
+            "User has a study group of 4 peers",
+            "User's focus suffers significantly during clinical weeks",
+            "User gets overwhelmed during multi-patient simulations and freezes up"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 319.4106249138713
+        },
+        {
+          "query": "What situations make me freeze up?",
+          "expected_memory_id": "mem_012_05",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_012_05",
+            "mem_012_08",
+            "mem_012_07",
+            "mem_012_10",
+            "mem_012_10"
+          ],
+          "retrieved_contents": [
+            "User gets overwhelmed during multi-patient simulations and freezes up",
+            "User's focus suffers significantly during clinical weeks",
+            "Procrastinates on writing care plans",
+            "Finds patient interaction energizing",
+            "Finds documentation draining"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 310.52795914001763
+        },
+        {
+          "query": "How does lack of sleep affect my performance?",
+          "expected_memory_id": "mem_012_08",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_012_08",
+            "mem_012_03",
+            "mem_012_08",
+            "mem_012_07",
+            "mem_012_09"
+          ],
+          "retrieved_contents": [
+            "User sleeps only 5-6 hours during clinical weeks",
+            "User struggles with medication timing due to irregular shift schedule",
+            "User's focus suffers significantly during clinical weeks",
+            "Procrastinates on writing care plans",
+            "User keeps a pocket notebook for quick task notes during clinical shifts"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.5,
+          "latency_ms": 318.1439999025315
+        },
+        {
+          "query": "How do I keep track of tasks during shifts?",
+          "expected_memory_id": "mem_012_09",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_012_09",
+            "mem_012_03",
+            "mem_012_07",
+            "mem_012_07",
+            "mem_012_01"
+          ],
+          "retrieved_contents": [
+            "User keeps a pocket notebook for quick task notes during clinical shifts",
+            "User struggles with medication timing due to irregular shift schedule",
+            "Procrastinates on writing care plans",
+            "Finds writing care plans extremely tedious",
+            "Uses color-coded study schedule with different colors for each subject"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 175.5941251758486
+        }
+      ]
+    },
+    {
+      "profile_id": "user_013",
+      "description": "Accountant, inattentive ADHD, late diagnosis at age 45, coping mechanisms established",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "What planning system works best for me?",
+          "expected_memory_id": "mem_013_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_013_01",
+            "mem_013_04",
+            "mem_013_09",
+            "mem_013_07",
+            "mem_013_03"
+          ],
+          "retrieved_contents": [
+            "User relies on a paper planner",
+            "Manages ADHD with structure and routines built over 20 years",
+            "User's wife handles all social planning",
+            "Struggles with open-plan office noise",
+            "Starts preparation 2 months early to cope"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 222.38808404654264
+        },
+        {
+          "query": "How do I avoid errors in my work?",
+          "expected_memory_id": "mem_013_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_013_08",
+            "mem_013_02",
+            "mem_013_08",
+            "mem_013_01",
+            "mem_013_04"
+          ],
+          "retrieved_contents": [
+            "Procrastinates on end-of-month reconciliation tasks",
+            "User triple-checks all financial figures using a manual verification process",
+            "Finds end-of-month reconciliation tasks mind-numbing",
+            "User relies on a paper planner",
+            "Manages ADHD with structure and routines built over 20 years"
+          ],
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 0.6309297535714575,
+          "latency_ms": 290.96512496471405
+        },
+        {
+          "query": "How do I handle tax season stress?",
+          "expected_memory_id": "mem_013_03",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_013_03",
+            "mem_013_08",
+            "mem_013_08",
+            "mem_013_03",
+            "mem_013_02"
+          ],
+          "retrieved_contents": [
+            "Finds tax season extremely stressful",
+            "Procrastinates on end-of-month reconciliation tasks",
+            "Finds end-of-month reconciliation tasks mind-numbing",
+            "Starts preparation 2 months early to cope",
+            "User triple-checks all financial figures using a manual verification process"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 181.50641699321568
+        },
+        {
+          "query": "What's my morning routine?",
+          "expected_memory_id": "mem_013_06",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_013_06",
+            "mem_013_06",
+            "mem_013_06",
+            "mem_013_06",
+            "mem_013_06"
+          ],
+          "retrieved_contents": [
+            "User has an early morning routine",
+            "Wakes up at 5am",
+            "At desk by 7am",
+            "30min walk in the morning",
+            "Breakfast after walk"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 2.1309297535714578,
+          "latency_ms": 638.0780418403447
+        },
+        {
+          "query": "How do I deal with office noise?",
+          "expected_memory_id": "mem_013_07",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_013_07",
+            "mem_013_07",
+            "mem_013_06",
+            "mem_013_05",
+            "mem_013_04"
+          ],
+          "retrieved_contents": [
+            "Struggles with open-plan office noise",
+            "Wears earplugs",
+            "At desk by 7am",
+            "Listens to the same classical music album every workday as a focus anchor",
+            "Manages ADHD with structure and routines built over 20 years"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 204.15629190392792
+        }
+      ]
+    },
+    {
+      "profile_id": "user_014",
+      "description": "Music producer, combined ADHD, hyperfocuses on creative work but neglects admin",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "Why do I never finish my tracks?",
+          "expected_memory_id": "mem_014_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_014_02",
+            "mem_014_02",
+            "mem_014_01",
+            "mem_014_04",
+            "mem_014_03"
+          ],
+          "retrieved_contents": [
+            "User has 50+ unfinished tracks",
+            "Starting new beats is more exciting than finishing old ones",
+            "User can work on music production for 8+ hours straight without realizing time passed",
+            "Finds self-imposed deadlines meaningless",
+            "User's invoicing is always late"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 342.9888340178877
+        },
+        {
+          "query": "How do I handle my invoicing problems?",
+          "expected_memory_id": "mem_014_03",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_014_03",
+            "mem_014_09",
+            "mem_014_03",
+            "mem_014_09",
+            "mem_014_04"
+          ],
+          "retrieved_contents": [
+            "User's invoicing is always late",
+            "Finds accounting software overwhelming",
+            "Costs thousands in delayed payments",
+            "Prefers a simple spreadsheet",
+            "Finds deadlines from clients motivating"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.5,
+          "latency_ms": 178.8880000822246
+        },
+        {
+          "query": "What kind of deadlines motivate me?",
+          "expected_memory_id": "mem_014_04",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_014_04",
+            "mem_014_04",
+            "mem_014_10",
+            "mem_014_07",
+            "mem_014_07"
+          ],
+          "retrieved_contents": [
+            "Finds deadlines from clients motivating",
+            "Finds self-imposed deadlines meaningless",
+            "Collaboration helps maintain motivation on projects",
+            "Updates project priorities weekly",
+            "Uses a whiteboard above desk with current project priorities"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 184.4419171102345
+        },
+        {
+          "query": "When am I most productive for creative work?",
+          "expected_memory_id": "mem_014_05",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_014_05",
+            "mem_014_01",
+            "mem_014_10",
+            "mem_014_04",
+            "mem_014_07"
+          ],
+          "retrieved_contents": [
+            "User works best between 10pm and 4am",
+            "User can work on music production for 8+ hours straight without realizing time passed",
+            "Collaboration helps maintain motivation on projects",
+            "Finds deadlines from clients motivating",
+            "Uses a whiteboard above desk with current project priorities"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 180.243750102818
+        },
+        {
+          "query": "How do I deal with criticism of my work?",
+          "expected_memory_id": "mem_014_08",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_014_08",
+            "mem_014_08",
+            "mem_014_04",
+            "mem_014_10",
+            "mem_014_04"
+          ],
+          "retrieved_contents": [
+            "User gets deeply upset by negative feedback on music",
+            "Takes days to recover emotionally from negative feedback on music",
+            "Finds self-imposed deadlines meaningless",
+            "Collaboration helps maintain motivation on projects",
+            "Finds deadlines from clients motivating"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 332.4058342259377
+        }
+      ]
+    },
+    {
+      "profile_id": "user_015",
+      "description": "Law student, inattentive ADHD, overwhelmed by reading volume",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How do I get through long legal readings?",
+          "expected_memory_id": "mem_015_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_015_01",
+            "mem_015_04",
+            "mem_015_09",
+            "mem_015_02",
+            "mem_015_06"
+          ],
+          "retrieved_contents": [
+            "Reads legal cases most effectively using text-to-speech at 1.5x speed while following along",
+            "Studies at the law library exclusively",
+            "Records study sessions on phone to review what was covered when mind wandered",
+            "User briefs cases in bullet points rather than full paragraphs to maintain engagement",
+            "Schedules all reading during morning hours when medication is at peak effectiveness"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 335.91420808807015
+        },
+        {
+          "query": "What's my strategy for case briefing?",
+          "expected_memory_id": "mem_015_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_015_02",
+            "mem_015_08",
+            "mem_015_01",
+            "mem_015_07",
+            "mem_015_07"
+          ],
+          "retrieved_contents": [
+            "User briefs cases in bullet points rather than full paragraphs to maintain engagement",
+            "User's biggest struggle is organizing research across multiple cases for essays",
+            "Reads legal cases most effectively using text-to-speech at 1.5x speed while following along",
+            "Participates in a moot court team",
+            "Moot court team provides structured deadlines and social accountability"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 177.3196249268949
+        },
+        {
+          "query": "Where should I study?",
+          "expected_memory_id": "mem_015_04",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_015_04",
+            "mem_015_08",
+            "mem_015_09",
+            "mem_015_07",
+            "mem_015_04"
+          ],
+          "retrieved_contents": [
+            "Studies at the law library exclusively",
+            "User's biggest struggle is organizing research across multiple cases for essays",
+            "Records study sessions on phone to review what was covered when mind wandered",
+            "Participates in a moot court team",
+            "Home is too distracting"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 199.4838749524206
+        },
+        {
+          "query": "When should I do my heavy reading?",
+          "expected_memory_id": "mem_015_06",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_015_06",
+            "mem_015_01",
+            "mem_015_04",
+            "mem_015_09",
+            "mem_015_08"
+          ],
+          "retrieved_contents": [
+            "Schedules all reading during morning hours when medication is at peak effectiveness",
+            "Reads legal cases most effectively using text-to-speech at 1.5x speed while following along",
+            "Studies at the law library exclusively",
+            "Records study sessions on phone to review what was covered when mind wandered",
+            "User's biggest struggle is organizing research across multiple cases for essays"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 313.901332905516
+        },
+        {
+          "query": "How do I organize research for essays?",
+          "expected_memory_id": "mem_015_08",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_015_08",
+            "mem_015_09",
+            "mem_015_02",
+            "mem_015_04",
+            "mem_015_07"
+          ],
+          "retrieved_contents": [
+            "User's biggest struggle is organizing research across multiple cases for essays",
+            "Records study sessions on phone to review what was covered when mind wandered",
+            "User briefs cases in bullet points rather than full paragraphs to maintain engagement",
+            "Studies at the law library exclusively",
+            "Moot court team provides structured deadlines and social accountability"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 316.5848341304809
+        }
+      ]
+    },
+    {
+      "profile_id": "user_016",
+      "description": "Retired military, combined ADHD, transitioning to civilian career",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "Why is civilian life harder than military for me?",
+          "expected_memory_id": "mem_016_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_016_01",
+            "mem_016_01",
+            "mem_016_04",
+            "mem_016_06",
+            "mem_016_02"
+          ],
+          "retrieved_contents": [
+            "Struggles without structure in civilian life",
+            "User thrived in military due to imposed structure",
+            "User diagnosed with ADHD at 38 after leaving service",
+            "Struggles with routine administrative tasks",
+            "Maintains military-style morning routine"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 210.92166705057025
+        },
+        {
+          "query": "What kind of task structure do I need?",
+          "expected_memory_id": "mem_016_03",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_016_03",
+            "mem_016_02",
+            "mem_016_06",
+            "mem_016_10",
+            "mem_016_01"
+          ],
+          "retrieved_contents": [
+            "Finds open-ended tasks paralyzing",
+            "Has a structured day plan",
+            "Struggles with routine administrative tasks",
+            "User's goal is to become a project manager",
+            "Struggles without structure in civilian life"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 174.6801668778062
+        },
+        {
+          "query": "What am I good at under pressure?",
+          "expected_memory_id": "mem_016_06",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_016_06",
+            "mem_016_10",
+            "mem_016_03",
+            "mem_016_06",
+            "mem_016_01"
+          ],
+          "retrieved_contents": [
+            "Excels in crisis situations",
+            "The role suits ADHD strengths in variety and urgency",
+            "Finds open-ended tasks paralyzing",
+            "Struggles with routine administrative tasks",
+            "Struggles without structure in civilian life"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 205.88716585189104
+        },
+        {
+          "query": "How do I stay organized?",
+          "expected_memory_id": "mem_016_07",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_016_02",
+            "mem_016_06",
+            "mem_016_03",
+            "mem_016_01",
+            "mem_016_02"
+          ],
+          "retrieved_contents": [
+            "Has a structured day plan",
+            "Struggles with routine administrative tasks",
+            "Needs clear objectives and deadlines",
+            "Struggles without structure in civilian life",
+            "Maintains military-style morning routine"
+          ],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 202.49625016003847
+        },
+        {
+          "query": "What career am I working toward?",
+          "expected_memory_id": "mem_016_10",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_016_10",
+            "mem_016_04",
+            "mem_016_03",
+            "mem_016_06",
+            "mem_016_01"
+          ],
+          "retrieved_contents": [
+            "User's goal is to become a project manager",
+            "User diagnosed with ADHD at 38 after leaving service",
+            "Needs clear objectives and deadlines",
+            "Struggles with routine administrative tasks",
+            "Struggles without structure in civilian life"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 255.56141696870327
+        }
+      ]
+    },
+    {
+      "profile_id": "user_017",
+      "description": "College athlete, hyperactive ADHD, balances sport with academics",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "When is the best time for me to study?",
+          "expected_memory_id": "mem_017_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_017_02",
+            "mem_017_05",
+            "mem_017_01",
+            "mem_017_08",
+            "mem_017_04"
+          ],
+          "retrieved_contents": [
+            "User cannot study for more than 30 minutes without physical movement breaks",
+            "Takes Adderall 10mg on study days only",
+            "User focuses much better on academic work immediately after basketball practice",
+            "Hype music improves focus temporarily for academics",
+            "Struggles most with writing assignments"
+          ],
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 0.5,
+          "latency_ms": 270.14016709290445
+        },
+        {
+          "query": "How often do I need breaks while studying?",
+          "expected_memory_id": "mem_017_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_017_02",
+            "mem_017_05",
+            "mem_017_01",
+            "mem_017_04",
+            "mem_017_07"
+          ],
+          "retrieved_contents": [
+            "User cannot study for more than 30 minutes without physical movement breaks",
+            "Takes Adderall 10mg on study days only",
+            "User focuses much better on academic work immediately after basketball practice",
+            "Struggles most with writing assignments",
+            "User tends to leave assignments until travel days"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 180.42712518945336
+        },
+        {
+          "query": "Where do I study best?",
+          "expected_memory_id": "mem_017_06",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_017_04",
+            "mem_017_04",
+            "mem_017_06",
+            "mem_017_08",
+            "mem_017_01"
+          ],
+          "retrieved_contents": [
+            "Finds math and physics more engaging",
+            "Struggles most with writing assignments",
+            "User studies with teammates in the athletic facility study hall for accountability",
+            "Hype music improves focus temporarily for academics",
+            "User focuses much better on academic work immediately after basketball practice"
+          ],
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 0.5,
+          "latency_ms": 346.0748749785125
+        },
+        {
+          "query": "What am I most worried about academically?",
+          "expected_memory_id": "mem_017_09",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_017_09",
+            "mem_017_04",
+            "mem_017_03",
+            "mem_017_01",
+            "mem_017_08"
+          ],
+          "retrieved_contents": [
+            "User's biggest fear is losing athletic scholarship due to GPA dropping below 2.5",
+            "Struggles most with writing assignments",
+            "User has an academic tutor provided by the athletic department who helps with scheduling",
+            "User focuses much better on academic work immediately after basketball practice",
+            "Hype music improves focus temporarily for academics"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 170.05899990908802
+        },
+        {
+          "query": "How do I handle writing assignments?",
+          "expected_memory_id": "mem_017_10",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_017_04",
+            "mem_017_07",
+            "mem_017_10",
+            "mem_017_06",
+            "mem_017_01"
+          ],
+          "retrieved_contents": [
+            "Struggles most with writing assignments",
+            "User tends to leave assignments until travel days",
+            "Uses speech-to-text for writing essays",
+            "User studies with teammates in the athletic facility study hall for accountability",
+            "User focuses much better on academic work immediately after basketball practice"
+          ],
+          "hit_at_1": 0.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 0.5,
+          "latency_ms": 351.45104117691517
+        }
+      ]
+    },
+    {
+      "profile_id": "user_018",
+      "description": "Journalist, combined ADHD, thrives on deadlines but crashes after",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How do I write my best work?",
+          "expected_memory_id": "mem_018_01",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_018_01",
+            "mem_018_10",
+            "mem_018_03",
+            "mem_018_01",
+            "mem_018_07"
+          ],
+          "retrieved_contents": [
+            "Writes best articles under tight deadline pressure",
+            "User goes through phases of intense productivity followed by creative blocks lasting weeks",
+            "User has a dictation habit for first drafts",
+            "Produces 2000 words in 2 hours",
+            "User's editor has learned to set fake earlier deadlines because user always submits last minute"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 271.91062504425645
+        },
+        {
+          "query": "What happens after I finish a big deadline?",
+          "expected_memory_id": "mem_018_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_018_02",
+            "mem_018_07",
+            "mem_018_01",
+            "mem_018_10",
+            "mem_018_09"
+          ],
+          "retrieved_contents": [
+            "User crashes hard after deadline sprints",
+            "User's editor has learned to set fake earlier deadlines because user always submits last minute",
+            "Writes best articles under tight deadline pressure",
+            "User goes through phases of intense productivity followed by creative blocks lasting weeks",
+            "Commute ritual helps transition into work mode"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 255.06224995478988
+        },
+        {
+          "query": "What's my first draft process?",
+          "expected_memory_id": "mem_018_03",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_018_03",
+            "mem_018_10",
+            "mem_018_04",
+            "mem_018_01",
+            "mem_018_06"
+          ],
+          "retrieved_contents": [
+            "User has a dictation habit for first drafts",
+            "User goes through phases of intense productivity followed by creative blocks lasting weeks",
+            "Keeps an Evernote database of story ideas, quotes, and source contacts",
+            "Writes best articles under tight deadline pressure",
+            "Finds transcribing interviews painfully tedious"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 209.27987503819168
+        },
+        {
+          "query": "Where do I work best?",
+          "expected_memory_id": "mem_018_09",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_018_09",
+            "mem_018_06",
+            "mem_018_09",
+            "mem_018_10",
+            "mem_018_06"
+          ],
+          "retrieved_contents": [
+            "User works from coffee shops 4 days a week",
+            "Finds interviews energizing",
+            "Commute ritual helps transition into work mode",
+            "User goes through phases of intense productivity followed by creative blocks lasting weeks",
+            "Finds transcribing interviews painfully tedious"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.5,
+          "latency_ms": 200.80445799976587
+        },
+        {
+          "query": "Why do I go through unproductive phases?",
+          "expected_memory_id": "mem_018_10",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_018_10",
+            "mem_018_09",
+            "mem_018_06",
+            "mem_018_02",
+            "mem_018_02"
+          ],
+          "retrieved_contents": [
+            "User goes through phases of intense productivity followed by creative blocks lasting weeks",
+            "Commute ritual helps transition into work mode",
+            "Finds interviews energizing",
+            "Needs 1-2 days to recover energy",
+            "User crashes hard after deadline sprints"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 326.4260839205235
+        }
+      ]
+    },
+    {
+      "profile_id": "user_019",
+      "description": "Stay-at-home parent returning to workforce, inattentive ADHD, rebuilding confidence",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "Why do I keep quitting online courses?",
+          "expected_memory_id": "mem_019_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_019_02",
+            "mem_019_09",
+            "mem_019_05",
+            "mem_019_01",
+            "mem_019_04"
+          ],
+          "retrieved_contents": [
+            "Finds online courses helpful but abandons them after week 2 consistently",
+            "User compares self negatively to peers who maintained careers",
+            "User gets overwhelmed by job application processes",
+            "User feels skills are outdated",
+            "User prefers learning by doing over watching tutorials or reading documentation"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 451.3041249010712
+        },
+        {
+          "query": "What's my best learning style?",
+          "expected_memory_id": "mem_019_04",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_019_04",
+            "mem_019_02",
+            "mem_019_07",
+            "mem_019_08",
+            "mem_019_03"
+          ],
+          "retrieved_contents": [
+            "User prefers learning by doing over watching tutorials or reading documentation",
+            "Finds online courses helpful but abandons them after week 2 consistently",
+            "User studies best during school hours when the house is quiet (9am-2pm)",
+            "Joined an online ADHD women's support group",
+            "User's biggest strength during parenting years was creative problem-solving for the family"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 307.7898749615997
+        },
+        {
+          "query": "Why is the job search so hard for me?",
+          "expected_memory_id": "mem_019_05",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_019_05",
+            "mem_019_05",
+            "mem_019_01",
+            "mem_019_09",
+            "mem_019_01"
+          ],
+          "retrieved_contents": [
+            "User gets overwhelmed by job application processes",
+            "Has applied to only 3 positions in 2 months",
+            "User hasn't worked professionally in 8 years",
+            "User compares self negatively to peers who maintained careers",
+            "User feels skills are outdated"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 186.77662499248981
+        },
+        {
+          "query": "When is my best time to study?",
+          "expected_memory_id": "mem_019_07",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_019_07",
+            "mem_019_02",
+            "mem_019_04",
+            "mem_019_06",
+            "mem_019_03"
+          ],
+          "retrieved_contents": [
+            "User studies best during school hours when the house is quiet (9am-2pm)",
+            "Finds online courses helpful but abandons them after week 2 consistently",
+            "User prefers learning by doing over watching tutorials or reading documentation",
+            "Wellbutrin is helping with motivation",
+            "User's biggest strength during parenting years was creative problem-solving for the family"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 177.95154196210206
+        },
+        {
+          "query": "What helps me feel better about myself?",
+          "expected_memory_id": "mem_019_10",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_019_10",
+            "mem_019_06",
+            "mem_019_09",
+            "mem_019_08",
+            "mem_019_08"
+          ],
+          "retrieved_contents": [
+            "Writes down 3 achievements daily in a gratitude journal to combat negative self-talk",
+            "Wellbutrin is helping with motivation",
+            "User compares self negatively to peers who maintained careers",
+            "Finds it validating",
+            "Joined an online ADHD women's support group"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 353.89504209160805
+        }
+      ]
+    },
+    {
+      "profile_id": "user_020",
+      "description": "Game developer, combined ADHD, hyperfocuses on code but neglects health",
+      "memories_stored": 10,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How do I take care of myself during long coding sessions?",
+          "expected_memory_id": "mem_020_02",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_020_01",
+            "mem_020_01",
+            "mem_020_08",
+            "mem_020_02",
+            "mem_020_06"
+          ],
+          "retrieved_contents": [
+            "Forgets to eat, drink water, or stretch while coding",
+            "User regularly codes for 12+ hours",
+            "Experiences back pain from extended coding sessions in bad posture",
+            "Set up automated reminders every 90 minutes for water and standing breaks",
+            "Participates in game jams which provide deadline pressure needed for completion"
+          ],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 243.36079112254083
+        },
+        {
+          "query": "What kind of programming do I enjoy most?",
+          "expected_memory_id": "mem_020_03",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_020_03",
+            "mem_020_01",
+            "mem_020_03",
+            "mem_020_01",
+            "mem_020_08"
+          ],
+          "retrieved_contents": [
+            "Finds game physics and AI programming deeply engaging",
+            "User regularly codes for 12+ hours",
+            "Finds UI work tedious",
+            "Forgets to eat, drink water, or stretch while coding",
+            "Experiences back pain from extended coding sessions in bad posture"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.5,
+          "latency_ms": 311.70787499286234
+        },
+        {
+          "query": "How does my sleep affect my focus?",
+          "expected_memory_id": "mem_020_05",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_020_05",
+            "mem_020_04",
+            "mem_020_01",
+            "mem_020_05",
+            "mem_020_08"
+          ],
+          "retrieved_contents": [
+            "Effectiveness varies greatly depending on sleep quality",
+            "User's sleep schedule is erratic: sleeps at 4am some nights, 10pm others",
+            "Forgets to eat, drink water, or stretch while coding",
+            "Takes Vyvanse 50mg",
+            "Experiences back pain from extended coding sessions in bad posture"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 178.49029204808176
+        },
+        {
+          "query": "Why don't I finish personal projects?",
+          "expected_memory_id": "mem_020_07",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_020_07",
+            "mem_020_06",
+            "mem_020_03",
+            "mem_020_01",
+            "mem_020_07"
+          ],
+          "retrieved_contents": [
+            "User's personal projects never get finished",
+            "Participates in game jams which provide deadline pressure needed for completion",
+            "Finds UI work tedious",
+            "Forgets to eat, drink water, or stretch while coding",
+            "Has 15 abandoned game prototypes on GitHub"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.0,
+          "latency_ms": 187.92804097756743
+        },
+        {
+          "query": "What helps me work better on tasks?",
+          "expected_memory_id": "mem_020_10",
+          "expected_content": "",
+          "retrieved_ids": [
+            "mem_020_10",
+            "mem_020_10",
+            "mem_020_05",
+            "mem_020_03",
+            "mem_020_01"
+          ],
+          "retrieved_contents": [
+            "User works better with someone else present",
+            "User's team lead assigns paired tasks",
+            "Effectiveness varies greatly depending on sleep quality",
+            "Finds UI work tedious",
+            "Forgets to eat, drink water, or stretch while coding"
+          ],
+          "hit_at_1": 1.0,
+          "hit_at_3": 1.0,
+          "hit_at_5": 1.0,
+          "ndcg_at_3": 1.6309297535714575,
+          "latency_ms": 202.6765418704599
+        }
+      ]
+    }
+  ]
+}

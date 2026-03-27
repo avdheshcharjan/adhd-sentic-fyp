@@ -48,8 +48,25 @@ DISTRACTING_CATEGORIES = {
 }
 
 
-def category_to_productivity(category: str) -> str:
+PRODUCTIVITY_OVERRIDES: dict[tuple[str, frozenset[str]], str] = {
+    # Focus music: entertainment app + focus keywords → neutral
+    ("entertainment", frozenset({
+        "focus", "study", "lo-fi", "lofi", "brown noise", "deep work",
+        "concentration", "classical", "ambient", "white noise",
+    })): "neutral",
+    # Speculative finance: specific domains → distracting
+    ("finance", frozenset({
+        "coinmarketcap", "binance", "robinhood", "tradingview", "crypto",
+    })): "distracting",
+}
+
+
+def category_to_productivity(category: str, title: str = "") -> str:
     """Map a granular category to productive/neutral/distracting."""
+    title_lower = title.lower()
+    for (cat, keywords), productivity in PRODUCTIVITY_OVERRIDES.items():
+        if category == cat and any(kw in title_lower for kw in keywords):
+            return productivity
     if category in PRODUCTIVE_CATEGORIES:
         return "productive"
     if category in DISTRACTING_CATEGORIES:
@@ -97,10 +114,11 @@ def extract_url_from_title(title: str, app_name: str) -> str | None:
     # The second segment typically contains the domain/URL
     candidate = parts[1].strip()
 
-    # Check if it looks like a domain (contains a dot, no spaces)
-    if "." in candidate and " " not in candidate.split("/")[0]:
-        # Return as a full URL so urlparse can extract the hostname
-        return "https://" + candidate
+    # Strip at the first space or em-dash before the domain check
+    # Handles titles like "Chrome - calendar.google.com — March 24, 2026"
+    domain_part = candidate.split("/")[0].split(" ")[0].split("\u2014")[0].strip()
+    if "." in domain_part and " " not in domain_part:
+        return "https://" + domain_part
 
     return None
 
@@ -144,7 +162,7 @@ def run_evaluation():
         elapsed_ms = (time.perf_counter() - start) * 1000
         total_time += elapsed_ms
 
-        predicted_productivity = category_to_productivity(predicted_category)
+        predicted_productivity = category_to_productivity(predicted_category, title)
 
         predictions.append({
             "id": item["id"],

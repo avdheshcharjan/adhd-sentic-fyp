@@ -1,0 +1,1549 @@
+{
+  "timestamp": "20260324T184521Z",
+  "dataset_size": 50,
+  "coverage": {
+    "items_with_results": 49,
+    "total": 50,
+    "rate": 0.98
+  },
+  "emotion_classification": {
+    "accuracy": 0.28,
+    "macro_f1": 0.26360652448113747,
+    "weighted_f1": 0.2647113863089095,
+    "per_class_report": {
+      "joyful": {
+        "precision": 0.2222222222222222,
+        "recall": 0.25,
+        "f1-score": 0.23529411764705882,
+        "support": 8.0
+      },
+      "focused": {
+        "precision": 0.125,
+        "recall": 0.125,
+        "f1-score": 0.125,
+        "support": 8.0
+      },
+      "frustrated": {
+        "precision": 0.3,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.3157894736842105,
+        "support": 9.0
+      },
+      "anxious": {
+        "precision": 0.3333333333333333,
+        "recall": 0.2222222222222222,
+        "f1-score": 0.26666666666666666,
+        "support": 9.0
+      },
+      "disengaged": {
+        "precision": 1.0,
+        "recall": 0.125,
+        "f1-score": 0.2222222222222222,
+        "support": 8.0
+      },
+      "overwhelmed": {
+        "precision": 0.3125,
+        "recall": 0.625,
+        "f1-score": 0.4166666666666667,
+        "support": 8.0
+      },
+      "accuracy": 0.28,
+      "macro avg": {
+        "precision": 0.38217592592592586,
+        "recall": 0.28009259259259256,
+        "f1-score": 0.26360652448113747,
+        "support": 50.0
+      },
+      "weighted avg": {
+        "precision": 0.37955555555555553,
+        "recall": 0.28,
+        "f1-score": 0.2647113863089095,
+        "support": 50.0
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "joyful",
+        "focused",
+        "frustrated",
+        "anxious",
+        "disengaged",
+        "overwhelmed"
+      ],
+      "matrix": [
+        [
+          2,
+          4,
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          4,
+          1,
+          1,
+          0,
+          0,
+          2
+        ],
+        [
+          1,
+          1,
+          3,
+          1,
+          0,
+          3
+        ],
+        [
+          1,
+          0,
+          3,
+          2,
+          0,
+          3
+        ],
+        [
+          0,
+          2,
+          1,
+          1,
+          1,
+          3
+        ],
+        [
+          1,
+          0,
+          1,
+          1,
+          0,
+          5
+        ]
+      ]
+    }
+  },
+  "hourglass_correlations": {
+    "pleasantness": {
+      "spearman_r": 0.43344574926977286,
+      "p_value": 0.0016643594038093128,
+      "significant": true
+    },
+    "attention": {
+      "spearman_r": 0.2312903011589349,
+      "p_value": 0.10607234133889762,
+      "significant": false
+    },
+    "sensitivity": {
+      "spearman_r": -0.13613001399134658,
+      "p_value": 0.3458671295119368,
+      "significant": false
+    },
+    "aptitude": {
+      "spearman_r": 0.3897771140335408,
+      "p_value": 0.005141521670503875,
+      "significant": true
+    }
+  },
+  "dimension_distributions": {
+    "pleasantness": {
+      "mean": 8.498400000000002,
+      "stdev": 65.98211182919201,
+      "min": -97.7,
+      "max": 99.1,
+      "range": 196.8
+    },
+    "attention": {
+      "mean": 4.5774,
+      "stdev": 47.74237077523487,
+      "min": -96.7,
+      "max": 99.9,
+      "range": 196.60000000000002
+    },
+    "sensitivity": {
+      "mean": 12.450999999999999,
+      "stdev": 53.04213842785752,
+      "min": -99.9,
+      "max": 98.1,
+      "range": 198.0
+    },
+    "aptitude": {
+      "mean": 8.0134,
+      "stdev": 57.65331739319083,
+      "min": -89.5,
+      "max": 82.1,
+      "range": 171.6
+    }
+  },
+  "low_variance_dimensions": [],
+  "latency_stats": {
+    "mean_ms": 2947.0362683059648,
+    "median_ms": 2929.2589584365487,
+    "p95_ms": 3639.836559596005,
+    "max_ms": 4264.297582907602,
+    "total_s": 147.35181341529824
+  },
+  "error_analysis": {
+    "total_errors": 36,
+    "errors_by_expected": {
+      "joyful": 6,
+      "focused": 7,
+      "frustrated": 6,
+      "anxious": 7,
+      "disengaged": 7,
+      "overwhelmed": 3
+    }
+  },
+  "failed_analyses": [],
+  "all_results": [
+    {
+      "id": "emo_001",
+      "sentence": "I finally finished the hardest section of my report!",
+      "expected_emotion": "joyful",
+      "predicted_emotion_raw": "enthusiasm",
+      "predicted_emotion_category": "focused",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 92.3,
+        "attention": 18.0,
+        "sensitivity": 94.5,
+        "aptitude": 59.85
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "low",
+        "aptitude": "high"
+      },
+      "emotion_details": "enthusiasm (86.36%) & ecstasy (79.7%)",
+      "polarity": "positive",
+      "intensity": 66.0,
+      "engagement": 50.0,
+      "wellbeing": 16.67,
+      "latency_ms": 4264.297582907602
+    },
+    {
+      "id": "emo_002",
+      "sentence": "I actually got an A on the exam I was dreading. I can't believe it!",
+      "expected_emotion": "joyful",
+      "predicted_emotion_raw": "fear",
+      "predicted_emotion_category": "anxious",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": -86.2,
+        "sensitivity": -65.9,
+        "aptitude": 0.0
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "high"
+      },
+      "emotion_details": "rage (61.21%) & fear (99.7%)",
+      "polarity": "negative",
+      "intensity": 76.0,
+      "engagement": -16.67,
+      "wellbeing": 0.0,
+      "latency_ms": 3764.0102908480912
+    },
+    {
+      "id": "emo_003",
+      "sentence": "My code compiled on the first try and all the tests passed. Today is a good day.",
+      "expected_emotion": "joyful",
+      "predicted_emotion_raw": "responsiveness",
+      "predicted_emotion_category": "focused",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": 20.1,
+        "sensitivity": 32.6,
+        "aptitude": 39.05
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "low",
+        "aptitude": "high"
+      },
+      "emotion_details": "pleasantness (18.33%) & responsiveness (98.79%)",
+      "polarity": "positive",
+      "intensity": 30.0,
+      "engagement": 50.0,
+      "wellbeing": 16.67,
+      "latency_ms": 2571.5471669100225
+    },
+    {
+      "id": "emo_004",
+      "sentence": "I managed to cook a proper meal and clean up after myself without getting distracted once.",
+      "expected_emotion": "joyful",
+      "predicted_emotion_raw": "calmness",
+      "predicted_emotion_category": "joyful",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": 60.5,
+        "sensitivity": 0.0,
+        "aptitude": 47.98
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "low",
+        "aptitude": "high"
+      },
+      "emotion_details": "calmness (83.33%) & pleasantness (45.38%)",
+      "polarity": "positive",
+      "intensity": 54.0,
+      "engagement": 16.67,
+      "wellbeing": 33.33,
+      "latency_ms": 2876.8508329521865
+    },
+    {
+      "id": "emo_005",
+      "sentence": "My therapist said I'm making real progress and I actually believe her for once.",
+      "expected_emotion": "joyful",
+      "predicted_emotion_raw": "enthusiasm",
+      "predicted_emotion_category": "focused",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 31.8,
+        "attention": 86.2,
+        "sensitivity": 94.9,
+        "aptitude": 82.1
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "high"
+      },
+      "emotion_details": "enthusiasm (87.58%) & bliss (61.21%)",
+      "polarity": "positive",
+      "intensity": 73.0,
+      "engagement": 100.0,
+      "wellbeing": 66.67,
+      "latency_ms": 3056.03912496008
+    },
+    {
+      "id": "emo_006",
+      "sentence": "I just realized I've been working for two straight hours without checking my phone. Small wins!",
+      "expected_emotion": "joyful",
+      "predicted_emotion_raw": "dislike",
+      "predicted_emotion_category": "frustrated",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": 0.0,
+        "sensitivity": 0.0,
+        "aptitude": -25.0
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "low",
+        "aptitude": "high"
+      },
+      "emotion_details": "dislike (75.76%)",
+      "polarity": "negative",
+      "intensity": 25.0,
+      "engagement": -50.0,
+      "wellbeing": -100.0,
+      "latency_ms": 2617.529582930729
+    },
+    {
+      "id": "emo_007",
+      "sentence": "The Pomodoro technique actually worked for me today. Four full cycles done!",
+      "expected_emotion": "joyful",
+      "predicted_emotion_raw": "enthusiasm",
+      "predicted_emotion_category": "focused",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 88.2,
+        "attention": 79.4,
+        "sensitivity": 94.3,
+        "aptitude": 81.2
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "low",
+        "aptitude": "high"
+      },
+      "emotion_details": "enthusiasm (85.76%) & ecstasy (67.27%)",
+      "polarity": "positive",
+      "intensity": 85.0,
+      "engagement": 100.0,
+      "wellbeing": 100.0,
+      "latency_ms": 3027.752749854699
+    },
+    {
+      "id": "emo_008",
+      "sentence": "I remembered my appointment today without any reminders. Growth!",
+      "expected_emotion": "joyful",
+      "predicted_emotion_raw": "ecstasy",
+      "predicted_emotion_category": "joyful",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 98.8,
+        "attention": 82.4,
+        "sensitivity": 65.9,
+        "aptitude": 62.25
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "low",
+        "aptitude": "high"
+      },
+      "emotion_details": "ecstasy (99.39%) & bliss (49.7%)",
+      "polarity": "positive",
+      "intensity": 77.0,
+      "engagement": 33.33,
+      "wellbeing": 100.0,
+      "latency_ms": 3169.689292088151
+    },
+    {
+      "id": "emo_009",
+      "sentence": "I'm deep into this research paper and everything is connecting perfectly. I don't want to stop.",
+      "expected_emotion": "focused",
+      "predicted_emotion_raw": "disappointment",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 92.9,
+        "attention": 84.9,
+        "sensitivity": 98.1,
+        "aptitude": 79.39
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "high"
+      },
+      "emotion_details": "enthusiasm (97.27%) & ecstasy (81.52%)",
+      "polarity": "positive",
+      "intensity": 88.0,
+      "engagement": 100.0,
+      "wellbeing": 100.0,
+      "latency_ms": 2500.9092499967664
+    },
+    {
+      "id": "emo_010",
+      "sentence": "I've been in flow state for the past hour coding this feature and it feels incredible.",
+      "expected_emotion": "focused",
+      "predicted_emotion_raw": "eagerness",
+      "predicted_emotion_category": "focused",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 23.7,
+        "attention": 0.0,
+        "sensitivity": 54.6,
+        "aptitude": 79.8
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "high"
+      },
+      "emotion_details": "delight (41.82%) & eagerness (65.45%)",
+      "polarity": "positive",
+      "intensity": 52.0,
+      "engagement": 83.33,
+      "wellbeing": 16.67,
+      "latency_ms": 2549.3125000502914
+    },
+    {
+      "id": "emo_011",
+      "sentence": "The world faded away while I was writing. I looked up and three hours had passed. But productive hours this time.",
+      "expected_emotion": "focused",
+      "predicted_emotion_raw": "ecstasy",
+      "predicted_emotion_category": "joyful",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 91.0,
+        "attention": 16.8,
+        "sensitivity": 0.0,
+        "aptitude": 45.6
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "low",
+        "aptitude": "high"
+      },
+      "emotion_details": "ecstasy (75.76%) & pleasantness (38.18%)",
+      "polarity": "positive",
+      "intensity": 51.0,
+      "engagement": 16.67,
+      "wellbeing": 66.67,
+      "latency_ms": 3062.629166059196
+    },
+    {
+      "id": "emo_012",
+      "sentence": "I've got my noise-cancelling headphones on and I'm completely locked into this problem. Don't disturb me.",
+      "expected_emotion": "focused",
+      "predicted_emotion_raw": "disappointment",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 99.1,
+        "attention": 32.9,
+        "sensitivity": 0.0,
+        "aptitude": 0.0
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "low",
+        "aptitude": "high"
+      },
+      "emotion_details": "ecstasy (100%) & serenity (99.7%)",
+      "polarity": "positive",
+      "intensity": 66.0,
+      "engagement": 66.67,
+      "wellbeing": 16.67,
+      "latency_ms": 3307.058624923229
+    },
+    {
+      "id": "emo_013",
+      "sentence": "I finally understand how this algorithm works. Every piece just clicked into place and I can see it clearly now.",
+      "expected_emotion": "focused",
+      "predicted_emotion_raw": "ecstasy",
+      "predicted_emotion_category": "joyful",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 96.36,
+        "attention": 78.45,
+        "sensitivity": 94.5,
+        "aptitude": 77.75
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "high"
+      },
+      "emotion_details": "ecstasy (92.01%) & enthusiasm (86.36%)",
+      "polarity": "positive",
+      "intensity": 86.0,
+      "engagement": 50.0,
+      "wellbeing": 50.0,
+      "latency_ms": 2655.35583300516
+    },
+    {
+      "id": "emo_014",
+      "sentence": "The data analysis is going smoothly. I'm finding patterns I didn't expect and it's genuinely exciting.",
+      "expected_emotion": "focused",
+      "predicted_emotion_raw": "loathing",
+      "predicted_emotion_category": "frustrated",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -3.5,
+        "attention": 0.0,
+        "sensitivity": 0.0,
+        "aptitude": -81.5
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "high"
+      },
+      "emotion_details": "loathing (46.97%) & melancholy (10.61%)",
+      "polarity": "negative",
+      "intensity": 42.0,
+      "engagement": -33.33,
+      "wellbeing": -33.33,
+      "latency_ms": 3076.5242921188474
+    },
+    {
+      "id": "emo_015",
+      "sentence": "I'm on a roll with my writing today. The ideas are coming faster than I can type them.",
+      "expected_emotion": "focused",
+      "predicted_emotion_raw": "ecstasy",
+      "predicted_emotion_category": "joyful",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 87.95,
+        "attention": 16.8,
+        "sensitivity": 80.9,
+        "aptitude": 53.85
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "high"
+      },
+      "emotion_details": "ecstasy (66.52%) & enthusiasm (45.15%)",
+      "polarity": "positive",
+      "intensity": 59.0,
+      "engagement": 33.33,
+      "wellbeing": 16.67,
+      "latency_ms": 3365.364042110741
+    },
+    {
+      "id": "emo_016",
+      "sentence": "When I'm locked in like this, ADHD almost feels like a superpower. Hyperfocus mode activated.",
+      "expected_emotion": "focused",
+      "predicted_emotion_raw": "pleasantness",
+      "predicted_emotion_category": "joyful",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": 0.0,
+        "sensitivity": 49.4,
+        "aptitude": 65.9
+      },
+      "hourglass_expected": {
+        "pleasantness": "high",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "high"
+      },
+      "emotion_details": "pleasantness (99.7%) & eagerness (49.7%)",
+      "polarity": "positive",
+      "intensity": 57.0,
+      "engagement": 33.33,
+      "wellbeing": 0.0,
+      "latency_ms": 3262.9209589213133
+    },
+    {
+      "id": "emo_017",
+      "sentence": "I've tried three different approaches and nothing works. I'm about to throw my laptop out the window.",
+      "expected_emotion": "frustrated",
+      "predicted_emotion_raw": "sadness",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -53.7,
+        "attention": 0.0,
+        "sensitivity": 0.0,
+        "aptitude": -37.7
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "sadness (62.73%) & disgust (14.24%)",
+      "polarity": "negative",
+      "intensity": 45.0,
+      "engagement": -16.67,
+      "wellbeing": -50.0,
+      "latency_ms": 2696.223999839276
+    },
+    {
+      "id": "emo_018",
+      "sentence": "The build keeps failing with the same cryptic error and Google has no answers. I'm losing my mind.",
+      "expected_emotion": "frustrated",
+      "predicted_emotion_raw": "grief",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -80.39,
+        "attention": 26.15,
+        "sensitivity": 0.0,
+        "aptitude": -47.07
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "grief (43.6%) & disgust (42.65%)",
+      "polarity": "negative",
+      "intensity": 63.0,
+      "engagement": -16.67,
+      "wellbeing": -83.33,
+      "latency_ms": 3250.957916956395
+    },
+    {
+      "id": "emo_019",
+      "sentence": "I was finally concentrating and then someone called me for something stupid and now the focus is gone completely.",
+      "expected_emotion": "frustrated",
+      "predicted_emotion_raw": "ecstasy",
+      "predicted_emotion_category": "focused",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 92.75,
+        "attention": 65.9,
+        "sensitivity": 80.2,
+        "aptitude": 77.75
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "ecstasy (81.06%) & enthusiasm (43.03%)",
+      "polarity": "positive",
+      "intensity": 79.0,
+      "engagement": 83.33,
+      "wellbeing": 33.33,
+      "latency_ms": 3488.068665843457
+    },
+    {
+      "id": "emo_020",
+      "sentence": "Every time I sit down to study, my brain does everything except study. It's infuriating.",
+      "expected_emotion": "frustrated",
+      "predicted_emotion_raw": "bliss",
+      "predicted_emotion_category": "joyful",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 97.4,
+        "attention": 99.9,
+        "sensitivity": 0.0,
+        "aptitude": 76.2
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "bliss (100%) & ecstasy (95.15%)",
+      "polarity": "positive",
+      "intensity": 91.0,
+      "engagement": 50.0,
+      "wellbeing": 100.0,
+      "latency_ms": 2624.838500050828
+    },
+    {
+      "id": "emo_021",
+      "sentence": "I can't believe I forgot about the meeting. Again. My team must think I'm completely unreliable.",
+      "expected_emotion": "frustrated",
+      "predicted_emotion_raw": "disappointment",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 96.25,
+        "attention": 0.0,
+        "sensitivity": 57.5,
+        "aptitude": 77.9
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "ecstasy (91.67%) & delight (36.06%)",
+      "polarity": "positive",
+      "intensity": 77.0,
+      "engagement": 83.33,
+      "wellbeing": 0.0,
+      "latency_ms": 2937.5209589488804
+    },
+    {
+      "id": "emo_022",
+      "sentence": "The medication isn't working today and I'm watching myself fail in slow motion. I hate this.",
+      "expected_emotion": "frustrated",
+      "predicted_emotion_raw": "rage",
+      "predicted_emotion_category": "frustrated",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -77.05,
+        "attention": -79.4,
+        "sensitivity": 0.0,
+        "aptitude": -60.6
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "rage (40.61%) & grief (33.48%)",
+      "polarity": "negative",
+      "intensity": 72.0,
+      "engagement": -16.67,
+      "wellbeing": -83.33,
+      "latency_ms": 3004.4387080706656
+    },
+    {
+      "id": "emo_023",
+      "sentence": "I've rewritten this paragraph five times and it still sounds terrible. I can't get the words right.",
+      "expected_emotion": "frustrated",
+      "predicted_emotion_raw": "disgust",
+      "predicted_emotion_category": "frustrated",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": -96.7,
+        "sensitivity": 0.0,
+        "aptitude": -65.9
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "rage (93.03%) & disgust (99.7%)",
+      "polarity": "negative",
+      "intensity": 81.0,
+      "engagement": -33.33,
+      "wellbeing": -50.0,
+      "latency_ms": 2641.0261248238385
+    },
+    {
+      "id": "emo_024",
+      "sentence": "My computer crashed and I lost all my unsaved work from the past hour. I want to scream.",
+      "expected_emotion": "frustrated",
+      "predicted_emotion_raw": "loathing",
+      "predicted_emotion_category": "frustrated",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -69.95,
+        "attention": -43.1,
+        "sensitivity": -62.45,
+        "aptitude": -89.5
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "loathing (71.21%) & grief (11.97%)",
+      "polarity": "negative",
+      "intensity": 66.0,
+      "engagement": -83.33,
+      "wellbeing": -33.33,
+      "latency_ms": 2747.0262909773737
+    },
+    {
+      "id": "emo_025",
+      "sentence": "Everyone in my group already finished their parts and I haven't even started. They're waiting on me.",
+      "expected_emotion": "frustrated",
+      "predicted_emotion_raw": "anxiety",
+      "predicted_emotion_category": "anxious",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": 0.0,
+        "sensitivity": -31.9,
+        "aptitude": 0.0
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "anxiety (96.67%)",
+      "polarity": "negative",
+      "intensity": 31.0,
+      "engagement": -16.67,
+      "wellbeing": -50.0,
+      "latency_ms": 2821.8429998960346
+    },
+    {
+      "id": "emo_026",
+      "sentence": "The deadline is in 4 hours and I have way too much left to do. My heart is pounding.",
+      "expected_emotion": "anxious",
+      "predicted_emotion_raw": "dislike",
+      "predicted_emotion_category": "frustrated",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": -48.1,
+        "sensitivity": 0.0,
+        "aptitude": -21.7
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "anger (45.76%) & dislike (65.76%)",
+      "polarity": "negative",
+      "intensity": 34.0,
+      "engagement": -16.67,
+      "wellbeing": -16.67,
+      "latency_ms": 2674.396665999666
+    },
+    {
+      "id": "emo_027",
+      "sentence": "I keep imagining all the ways my presentation could go wrong tomorrow. I can't stop the spiral.",
+      "expected_emotion": "anxious",
+      "predicted_emotion_raw": "disappointment",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 92.0,
+        "attention": 22.3,
+        "sensitivity": 92.3,
+        "aptitude": 78.7
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "enthusiasm (79.7%) & ecstasy (78.79%)",
+      "polarity": "positive",
+      "intensity": 71.0,
+      "engagement": 100.0,
+      "wellbeing": 83.33,
+      "latency_ms": 3214.4417921081185
+    },
+    {
+      "id": "emo_028",
+      "sentence": "What if my supervisor asks me a question I can't answer during the defense? What if I freeze up?",
+      "expected_emotion": "anxious",
+      "predicted_emotion_raw": "grief",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -93.2,
+        "attention": -29.8,
+        "sensitivity": 0.0,
+        "aptitude": -82.4
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "grief (82.42%) & loathing (49.7%)",
+      "polarity": "negative",
+      "intensity": 68.0,
+      "engagement": 0.0,
+      "wellbeing": -16.67,
+      "latency_ms": 2706.4008340239525
+    },
+    {
+      "id": "emo_029",
+      "sentence": "I haven't checked my grades yet because I'm too scared of what they'll say. I'd rather not know.",
+      "expected_emotion": "anxious",
+      "predicted_emotion_raw": "dislike",
+      "predicted_emotion_category": "frustrated",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": -9.3,
+        "sensitivity": 0.0,
+        "aptitude": -21.7
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "dislike (65.76%) & annoyance (28.18%)",
+      "polarity": "negative",
+      "intensity": 15.0,
+      "engagement": -16.67,
+      "wellbeing": -16.67,
+      "latency_ms": 2938.250958221033
+    },
+    {
+      "id": "emo_030",
+      "sentence": "I have to give a presentation to 50 people and just thinking about it makes me feel sick.",
+      "expected_emotion": "anxious",
+      "predicted_emotion_raw": "ecstasy",
+      "predicted_emotion_category": "joyful",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 90.8,
+        "attention": 78.0,
+        "sensitivity": 0.0,
+        "aptitude": 78.6
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "ecstasy (75.15%) & delight (38.18%)",
+      "polarity": "positive",
+      "intensity": 82.0,
+      "engagement": 0.0,
+      "wellbeing": 50.0,
+      "latency_ms": 2920.996957924217
+    },
+    {
+      "id": "emo_031",
+      "sentence": "Everyone seems to know what they're doing except me. I feel like a fraud who somehow got into this program.",
+      "expected_emotion": "anxious",
+      "predicted_emotion_raw": "anger",
+      "predicted_emotion_category": "frustrated",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": -65.2,
+        "sensitivity": -12.2,
+        "aptitude": 0.0
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "anger (97.58%) & anxiety (36.97%)",
+      "polarity": "negative",
+      "intensity": 38.0,
+      "engagement": -16.67,
+      "wellbeing": -33.33,
+      "latency_ms": 3150.7342499680817
+    },
+    {
+      "id": "emo_032",
+      "sentence": "I'm procrastinating on even checking what I need to do because the list will make me panic.",
+      "expected_emotion": "anxious",
+      "predicted_emotion_raw": "terror",
+      "predicted_emotion_category": "anxious",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": -25.0,
+        "sensitivity": -99.9,
+        "aptitude": -12.1
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "terror (100%) & annoyance (75.76%)",
+      "polarity": "negative",
+      "intensity": 45.0,
+      "engagement": -66.67,
+      "wellbeing": -16.67,
+      "latency_ms": 2840.947166085243
+    },
+    {
+      "id": "emo_033",
+      "sentence": "My stomach drops every time I get an email notification. It might be bad news about my overdue work.",
+      "expected_emotion": "anxious",
+      "predicted_emotion_raw": "fear",
+      "predicted_emotion_category": "anxious",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -90.2,
+        "attention": -9.3,
+        "sensitivity": -58.85,
+        "aptitude": -50.6
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "grief (73.33%) & fear (78.33%)",
+      "polarity": "negative",
+      "intensity": 52.0,
+      "engagement": -66.67,
+      "wellbeing": -16.67,
+      "latency_ms": 2500.259666936472
+    },
+    {
+      "id": "emo_034",
+      "sentence": "I know I should be worried about this deadline but honestly I just don't care anymore. I've given up.",
+      "expected_emotion": "anxious",
+      "predicted_emotion_raw": "grief",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -97.7,
+        "attention": -81.0,
+        "sensitivity": -16.5,
+        "aptitude": -65.9
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "low",
+        "aptitude": "low"
+      },
+      "emotion_details": "grief (96.06%) & rage (45.45%)",
+      "polarity": "negative",
+      "intensity": 65.0,
+      "engagement": -33.33,
+      "wellbeing": -66.67,
+      "latency_ms": 3265.9277499187738
+    },
+    {
+      "id": "emo_035",
+      "sentence": "I'm staring at the screen and the words just blur together. Nothing registers. My brain is offline.",
+      "expected_emotion": "disengaged",
+      "predicted_emotion_raw": "dislike",
+      "predicted_emotion_category": "frustrated",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": -57.95,
+        "sensitivity": 0.0,
+        "aptitude": -30.2
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "low",
+        "aptitude": "low"
+      },
+      "emotion_details": "anger (75.61%) & dislike (91.52%)",
+      "polarity": "negative",
+      "intensity": 44.0,
+      "engagement": -66.67,
+      "wellbeing": -16.67,
+      "latency_ms": 3287.6164589542896
+    },
+    {
+      "id": "emo_036",
+      "sentence": "This lecture is so boring I physically cannot make myself pay attention. My mind keeps drifting away.",
+      "expected_emotion": "disengaged",
+      "predicted_emotion_raw": "eagerness",
+      "predicted_emotion_category": "focused",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": 0.0,
+        "sensitivity": 65.9,
+        "aptitude": 76.2
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "low",
+        "aptitude": "low"
+      },
+      "emotion_details": "delight (30.91%) & eagerness (99.7%)",
+      "polarity": "positive",
+      "intensity": 71.0,
+      "engagement": 0.0,
+      "wellbeing": 33.33,
+      "latency_ms": 2760.8151249587536
+    },
+    {
+      "id": "emo_037",
+      "sentence": "I'm going through the motions but I'm not actually absorbing anything. I've read this page three times.",
+      "expected_emotion": "disengaged",
+      "predicted_emotion_raw": "disappointment",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": 18.1,
+        "sensitivity": 0.0,
+        "aptitude": 14.8
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "low",
+        "aptitude": "low"
+      },
+      "emotion_details": "serenity (54.85%) & acceptance (44.85%)",
+      "polarity": "positive",
+      "intensity": 16.0,
+      "engagement": 16.67,
+      "wellbeing": 33.33,
+      "latency_ms": 3047.0146669540554
+    },
+    {
+      "id": "emo_038",
+      "sentence": "I opened my laptop, stared at the screen for 20 minutes, and then closed it. Zero motivation.",
+      "expected_emotion": "disengaged",
+      "predicted_emotion_raw": "unknown",
+      "predicted_emotion_category": "disengaged",
+      "emotion_correct": true,
+      "has_result": false,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": 0.0,
+        "sensitivity": 0.0,
+        "aptitude": 0.0
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "low",
+        "aptitude": "low"
+      },
+      "emotion_details": "",
+      "polarity": "neutral",
+      "intensity": 0.0,
+      "engagement": 0.0,
+      "wellbeing": 0.0,
+      "latency_ms": 723.057083087042
+    },
+    {
+      "id": "emo_039",
+      "sentence": "I used to be interested in this project but now it just feels like a chore. Where did the excitement go?",
+      "expected_emotion": "disengaged",
+      "predicted_emotion_raw": "joy",
+      "predicted_emotion_category": "focused",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 65.9,
+        "attention": 0.0,
+        "sensitivity": 65.9,
+        "aptitude": 65.9
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "low",
+        "aptitude": "low"
+      },
+      "emotion_details": "joy (99.7%)",
+      "polarity": "positive",
+      "intensity": 65.0,
+      "engagement": 66.67,
+      "wellbeing": 16.67,
+      "latency_ms": 3411.2127090338618
+    },
+    {
+      "id": "emo_040",
+      "sentence": "Nothing excites me right now. Not work, not hobbies, not food. Everything feels flat and gray.",
+      "expected_emotion": "disengaged",
+      "predicted_emotion_raw": "disappointment",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 65.9,
+        "attention": 0.0,
+        "sensitivity": 74.95,
+        "aptitude": 77.4
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "low",
+        "aptitude": "low"
+      },
+      "emotion_details": "delight (34.55%) & enthusiasm (27.12%)",
+      "polarity": "positive",
+      "intensity": 72.0,
+      "engagement": 16.67,
+      "wellbeing": 66.67,
+      "latency_ms": 3274.8942500911653
+    },
+    {
+      "id": "emo_041",
+      "sentence": "I keep scrolling through my phone not because I enjoy it, but because I don't have the energy to do anything else.",
+      "expected_emotion": "disengaged",
+      "predicted_emotion_raw": "terror",
+      "predicted_emotion_category": "anxious",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": 0.0,
+        "sensitivity": -99.9,
+        "aptitude": 0.0
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "low",
+        "aptitude": "low"
+      },
+      "emotion_details": "terror (100%)",
+      "polarity": "negative",
+      "intensity": 99.0,
+      "engagement": 0.0,
+      "wellbeing": -33.33,
+      "latency_ms": 2740.2695841155946
+    },
+    {
+      "id": "emo_042",
+      "sentence": "My to-do list has 30 items and every single one makes me feel exhausted just looking at it.",
+      "expected_emotion": "disengaged",
+      "predicted_emotion_raw": "grief",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -95.2,
+        "attention": 0.0,
+        "sensitivity": 0.0,
+        "aptitude": -75.2
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "low",
+        "aptitude": "low"
+      },
+      "emotion_details": "grief (88.48%) & loathing (27.88%)",
+      "polarity": "negative",
+      "intensity": 85.0,
+      "engagement": -50.0,
+      "wellbeing": -50.0,
+      "latency_ms": 2775.753250112757
+    },
+    {
+      "id": "emo_043",
+      "sentence": "There are so many things happening at once that my brain has just shut down. I can't process any of it.",
+      "expected_emotion": "overwhelmed",
+      "predicted_emotion_raw": "sadness",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -53.2,
+        "attention": -15.7,
+        "sensitivity": 0.0,
+        "aptitude": 0.0
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "sadness (61.21%) & annoyance (47.58%)",
+      "polarity": "negative",
+      "intensity": 34.0,
+      "engagement": 0.0,
+      "wellbeing": -50.0,
+      "latency_ms": 2624.257375020534
+    },
+    {
+      "id": "emo_044",
+      "sentence": "The noise, the notifications, the people talking \u2014 it's all too much. I need everything to just stop.",
+      "expected_emotion": "overwhelmed",
+      "predicted_emotion_raw": "grief",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -96.7,
+        "attention": -48.48,
+        "sensitivity": 0.0,
+        "aptitude": -33.38
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "grief (93.03%) & anger (46.89%)",
+      "polarity": "negative",
+      "intensity": 59.0,
+      "engagement": -33.33,
+      "wellbeing": -66.67,
+      "latency_ms": 2707.191958092153
+    },
+    {
+      "id": "emo_045",
+      "sentence": "I have three urgent things due and I can't decide which one to do first so I'm doing none of them.",
+      "expected_emotion": "overwhelmed",
+      "predicted_emotion_raw": "grief",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -85.65,
+        "attention": -32.8,
+        "sensitivity": -46.2,
+        "aptitude": -46.7
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "grief (59.55%) & disgust (41.52%)",
+      "polarity": "negative",
+      "intensity": 52.0,
+      "engagement": -66.67,
+      "wellbeing": -66.67,
+      "latency_ms": 2901.963833021
+    },
+    {
+      "id": "emo_046",
+      "sentence": "I tried to make a plan but the plan itself became overwhelming. There are too many steps and dependencies.",
+      "expected_emotion": "overwhelmed",
+      "predicted_emotion_raw": "grief",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -91.5,
+        "attention": -9.3,
+        "sensitivity": 0.0,
+        "aptitude": -50.95
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "grief (77.27%) & disgust (54.39%)",
+      "polarity": "negative",
+      "intensity": 50.0,
+      "engagement": -33.33,
+      "wellbeing": -66.67,
+      "latency_ms": 2656.1354999430478
+    },
+    {
+      "id": "emo_047",
+      "sentence": "My inbox has 200 unread emails and I'm paralyzed. I don't even know where to start sorting through them.",
+      "expected_emotion": "overwhelmed",
+      "predicted_emotion_raw": "dislike",
+      "predicted_emotion_category": "frustrated",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 0.0,
+        "attention": 0.0,
+        "sensitivity": -60.15,
+        "aptitude": -28.4
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "fear (82.27%) & dislike (86.06%)",
+      "polarity": "negative",
+      "intensity": 44.0,
+      "engagement": -50.0,
+      "wellbeing": 0.0,
+      "latency_ms": 3027.557749999687
+    },
+    {
+      "id": "emo_048",
+      "sentence": "I feel like I'm failing at everything simultaneously \u2014 school, work, relationships, basic self-care.",
+      "expected_emotion": "overwhelmed",
+      "predicted_emotion_raw": "ecstasy",
+      "predicted_emotion_category": "joyful",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": 88.25,
+        "attention": 79.4,
+        "sensitivity": 73.85,
+        "aptitude": 70.9
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "low",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "ecstasy (67.42%) & bliss (40.61%)",
+      "polarity": "positive",
+      "intensity": 78.0,
+      "engagement": 33.33,
+      "wellbeing": 0.0,
+      "latency_ms": 3908.2895410247147
+    },
+    {
+      "id": "emo_049",
+      "sentence": "Someone just added three more tasks to my plate when I was already drowning. I want to cry.",
+      "expected_emotion": "overwhelmed",
+      "predicted_emotion_raw": "grief",
+      "predicted_emotion_category": "overwhelmed",
+      "emotion_correct": true,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -76.55,
+        "attention": 0.0,
+        "sensitivity": 0.0,
+        "aptitude": -74.8
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "grief (31.97%) & loathing (26.67%)",
+      "polarity": "negative",
+      "intensity": 75.0,
+      "engagement": -16.67,
+      "wellbeing": -33.33,
+      "latency_ms": 3144.841083791107
+    },
+    {
+      "id": "emo_050",
+      "sentence": "The semester is ending and I have incomplete grades in four classes. I don't know how to fix this.",
+      "expected_emotion": "overwhelmed",
+      "predicted_emotion_raw": "terror",
+      "predicted_emotion_category": "anxious",
+      "emotion_correct": false,
+      "has_result": true,
+      "hourglass_actual": {
+        "pleasantness": -1.95,
+        "attention": 0.0,
+        "sensitivity": -93.8,
+        "aptitude": -67.1
+      },
+      "hourglass_expected": {
+        "pleasantness": "low",
+        "attention": "high",
+        "sensitivity": "high",
+        "aptitude": "low"
+      },
+      "emotion_details": "terror (84.24%) & loathing (3.33%)",
+      "polarity": "negative",
+      "intensity": 54.0,
+      "engagement": -33.33,
+      "wellbeing": -50.0,
+      "latency_ms": 2808.8517498690635
+    }
+  ]
+}

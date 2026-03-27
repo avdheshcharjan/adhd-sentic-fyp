@@ -80,6 +80,7 @@ def run_evaluation():
     all_results = []
     hit_at_1_scores = []
     hit_at_3_scores = []
+    hit_at_5_scores = []
     ndcg_scores = []
     all_latencies = []
 
@@ -159,7 +160,7 @@ def run_evaluation():
                 search_results = mem_service.search_relevant_context(
                     user_id=eval_user_id,
                     query=query_text,
-                    limit=3,
+                    limit=5,
                 )
             except Exception as e:
                 print(f" [ERROR: {e}]")
@@ -191,13 +192,15 @@ def run_evaluation():
             # Compute metrics
             hit1 = 1.0 if retrieved_eval_ids and retrieved_eval_ids[0] == expected_memory_id else 0.0
             hit3 = 1.0 if expected_memory_id in retrieved_eval_ids[:3] else 0.0
+            hit5 = 1.0 if expected_memory_id in retrieved_eval_ids[:5] else 0.0
             ndcg = ndcg_at_k(retrieved_eval_ids, expected_memory_id, k=3)
 
             hit_at_1_scores.append(hit1)
             hit_at_3_scores.append(hit3)
+            hit_at_5_scores.append(hit5)
             ndcg_scores.append(ndcg)
 
-            status = "HIT@1" if hit1 else ("HIT@3" if hit3 else "MISS")
+            status = "HIT@1" if hit1 else ("HIT@3" if hit3 else ("HIT@5" if hit5 else "MISS"))
             print(f" [{status}] nDCG={ndcg:.2f} ({latency_ms:.0f}ms)")
 
             profile_results.append({
@@ -205,9 +208,10 @@ def run_evaluation():
                 "expected_memory_id": expected_memory_id,
                 "expected_content": expected_content,
                 "retrieved_ids": retrieved_eval_ids,
-                "retrieved_contents": retrieved_contents[:3],
+                "retrieved_contents": retrieved_contents[:5],
                 "hit_at_1": hit1,
                 "hit_at_3": hit3,
+                "hit_at_5": hit5,
                 "ndcg_at_3": ndcg,
                 "latency_ms": latency_ms,
             })
@@ -239,6 +243,7 @@ def run_evaluation():
     # ── Aggregate metrics ────────────────────────────────────────────
     mean_hit1 = float(np.mean(hit_at_1_scores)) if hit_at_1_scores else 0.0
     mean_hit3 = float(np.mean(hit_at_3_scores)) if hit_at_3_scores else 0.0
+    mean_hit5 = float(np.mean(hit_at_5_scores)) if hit_at_5_scores else 0.0
     mean_ndcg = float(np.mean(ndcg_scores)) if ndcg_scores else 0.0
     mean_latency = float(np.mean(all_latencies)) if all_latencies else 0.0
 
@@ -251,6 +256,7 @@ def run_evaluation():
     print(f"  Total queries:  {total_queries}")
     print(f"  Hit@1:          {mean_hit1:.4f} ({mean_hit1 * 100:.1f}%)")
     print(f"  Hit@3:          {mean_hit3:.4f} ({mean_hit3 * 100:.1f}%)")
+    print(f"  Hit@5:          {mean_hit5:.4f} ({mean_hit5 * 100:.1f}%)")
     print(f"  nDCG@3:         {mean_ndcg:.4f}")
     print(f"  Mean latency:   {mean_latency:.1f} ms")
 
@@ -293,6 +299,7 @@ def run_evaluation():
         "aggregate_metrics": {
             "hit_at_1": mean_hit1,
             "hit_at_3": mean_hit3,
+            "hit_at_5": mean_hit5,
             "ndcg_at_3": mean_ndcg,
             "mean_latency_ms": mean_latency,
             "median_latency_ms": float(np.median(all_latencies)) if all_latencies else 0.0,

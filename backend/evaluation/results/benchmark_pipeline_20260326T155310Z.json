@@ -1,0 +1,746 @@
+{
+  "component": "pipeline",
+  "timestamp": "2026-03-26T15:53:10.481065+00:00",
+  "system_info": {
+    "os": "macOS 26.2",
+    "chip": "arm64",
+    "ram_gb": 16.0,
+    "python": "3.11.11",
+    "mlx_version": "installed",
+    "mlx_lm_version": "0.31.1",
+    "sentence_transformers_version": "5.2.3"
+  },
+  "metrics": {
+    "latency_waterfall": {
+      "averages": {
+        "senticnet_analysis_ms": {
+          "mean": 4294.2,
+          "median": 4199.9,
+          "min": 3571.5,
+          "max": 6886.4
+        },
+        "safety_check_ms": {
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "memory_retrieval_ms": {
+          "mean": 424.1,
+          "median": 398.2,
+          "min": 196.3,
+          "max": 911.3
+        },
+        "prompt_assembly_ms": {
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.1
+        },
+        "llm_generation_ms": {
+          "mean": 5269.8,
+          "median": 5915.4,
+          "min": 3388.9,
+          "max": 7918.9
+        },
+        "memory_store_ms": {
+          "mean": 5402.8,
+          "median": 5472.6,
+          "min": 768.7,
+          "max": 11172.2
+        },
+        "total_ms": {
+          "mean": 15391.0,
+          "median": 15432.4,
+          "min": 9498.9,
+          "max": 21664.1
+        }
+      },
+      "bottleneck": "memory_store_ms",
+      "message_count": 20
+    },
+    "warm_vs_cold": {
+      "warm_mean_ms": 3176.0,
+      "cold_start_overhead_ms": 1780,
+      "estimated_cold_first_ms": 4956.0,
+      "note": "Cold start measured in bench_llm.py; MLX Metal GPU assertion prevents in-process reload"
+    },
+    "ablation_timing": {
+      "full_pipeline_mean_ms": 6774.0,
+      "ablation_mean_ms": 2720.0,
+      "senticnet_cost_ms": 4053.0,
+      "senticnet_cost_pct": 59.8
+    },
+    "burst_resources": {
+      "burst_duration_s": 31.9,
+      "sample_count": 63,
+      "peak_cpu_pct": 85.4,
+      "avg_cpu_pct": 21.7,
+      "peak_rss_mb": 186.0,
+      "avg_rss_mb": 165.0
+    },
+    "sequential_stress": {
+      "request_count": 5,
+      "all_succeeded": true,
+      "total_wall_time_ms": 15994.0,
+      "mean_latency_ms": 3199.0,
+      "max_latency_ms": 3821.0,
+      "min_latency_ms": 2716.0,
+      "note": "Sequential (not concurrent) \u2014 MLX Metal backend is not thread-safe"
+    }
+  },
+  "raw_measurements": [
+    {
+      "test": "latency_waterfall",
+      "data": [
+        {
+          "message_index": 0,
+          "message_preview": "I can't focus today",
+          "stages": {
+            "senticnet_analysis_ms": 6886.4,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 512.1,
+            "prompt_assembly_ms": 0.06,
+            "llm_generation_ms": 7918.9,
+            "memory_store_ms": 6346.6,
+            "total_ms": 21664.1
+          }
+        },
+        {
+          "message_index": 1,
+          "message_preview": "I feel overwhelmed with my workload",
+          "stages": {
+            "senticnet_analysis_ms": 3638.9,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 581.5,
+            "prompt_assembly_ms": 0.08,
+            "llm_generation_ms": 3905.1,
+            "memory_store_ms": 6370.0,
+            "total_ms": 14495.6
+          }
+        },
+        {
+          "message_index": 2,
+          "message_preview": "I keep checking social media instead of working",
+          "stages": {
+            "senticnet_analysis_ms": 4572.4,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 339.6,
+            "prompt_assembly_ms": 0.04,
+            "llm_generation_ms": 5947.2,
+            "memory_store_ms": 5430.5,
+            "total_ms": 16289.7
+          }
+        },
+        {
+          "message_index": 3,
+          "message_preview": "My medication doesn't seem to be helping today",
+          "stages": {
+            "senticnet_analysis_ms": 4008.8,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 319.7,
+            "prompt_assembly_ms": 0.02,
+            "llm_generation_ms": 5842.7,
+            "memory_store_ms": 5193.9,
+            "total_ms": 15365.1
+          }
+        },
+        {
+          "message_index": 4,
+          "message_preview": "I'm so frustrated I can't get anything done",
+          "stages": {
+            "senticnet_analysis_ms": 4681.1,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 399.1,
+            "prompt_assembly_ms": 0.03,
+            "llm_generation_ms": 3650.0,
+            "memory_store_ms": 768.7,
+            "total_ms": 9498.9
+          }
+        },
+        {
+          "message_index": 5,
+          "message_preview": "I've been productive all morning and feel great",
+          "stages": {
+            "senticnet_analysis_ms": 3854.1,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 721.9,
+            "prompt_assembly_ms": 0.02,
+            "llm_generation_ms": 5964.5,
+            "memory_store_ms": 4935.7,
+            "total_ms": 15476.2
+          }
+        },
+        {
+          "message_index": 6,
+          "message_preview": "I need to study for an exam but can't concentrate",
+          "stages": {
+            "senticnet_analysis_ms": 3748.9,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 423.6,
+            "prompt_assembly_ms": 0.01,
+            "llm_generation_ms": 6128.9,
+            "memory_store_ms": 11172.2,
+            "total_ms": 21473.6
+          }
+        },
+        {
+          "message_index": 7,
+          "message_preview": "I'm anxious about my presentation tomorrow",
+          "stages": {
+            "senticnet_analysis_ms": 3571.5,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 332.9,
+            "prompt_assembly_ms": 0.02,
+            "llm_generation_ms": 3388.9,
+            "memory_store_ms": 5606.4,
+            "total_ms": 12899.7
+          }
+        },
+        {
+          "message_index": 8,
+          "message_preview": "Everything feels pointless right now",
+          "stages": {
+            "senticnet_analysis_ms": 4047.2,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 457.4,
+            "prompt_assembly_ms": 0.05,
+            "llm_generation_ms": 6023.1,
+            "memory_store_ms": 861.1,
+            "total_ms": 11388.9
+          }
+        },
+        {
+          "message_index": 9,
+          "message_preview": "I just wasted three hours scrolling my phone",
+          "stages": {
+            "senticnet_analysis_ms": 3938.5,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 487.5,
+            "prompt_assembly_ms": 0.03,
+            "llm_generation_ms": 3984.1,
+            "memory_store_ms": 6517.5,
+            "total_ms": 14927.6
+          }
+        },
+        {
+          "message_index": 10,
+          "message_preview": "I'm trying to break down this big project but don'",
+          "stages": {
+            "senticnet_analysis_ms": 4469.8,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 196.3,
+            "prompt_assembly_ms": 0.01,
+            "llm_generation_ms": 6149.6,
+            "memory_store_ms": 5703.4,
+            "total_ms": 16519.1
+          }
+        },
+        {
+          "message_index": 11,
+          "message_preview": "I had a really good therapy session today",
+          "stages": {
+            "senticnet_analysis_ms": 4210.1,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 397.4,
+            "prompt_assembly_ms": 0.01,
+            "llm_generation_ms": 3541.5,
+            "memory_store_ms": 5063.2,
+            "total_ms": 13212.2
+          }
+        },
+        {
+          "message_index": 12,
+          "message_preview": "My sleep was terrible and now I can't function",
+          "stages": {
+            "senticnet_analysis_ms": 4215.7,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 911.3,
+            "prompt_assembly_ms": 0.03,
+            "llm_generation_ms": 5968.6,
+            "memory_store_ms": 5535.8,
+            "total_ms": 16631.4
+          }
+        },
+        {
+          "message_index": 13,
+          "message_preview": "I feel guilty about not being productive enough",
+          "stages": {
+            "senticnet_analysis_ms": 4151.9,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 450.8,
+            "prompt_assembly_ms": 0.02,
+            "llm_generation_ms": 5193.2,
+            "memory_store_ms": 5039.1,
+            "total_ms": 14835.0
+          }
+        },
+        {
+          "message_index": 14,
+          "message_preview": "Can you help me plan my study schedule?",
+          "stages": {
+            "senticnet_analysis_ms": 4229.5,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 273.6,
+            "prompt_assembly_ms": 0.1,
+            "llm_generation_ms": 5991.1,
+            "memory_store_ms": 5033.1,
+            "total_ms": 15527.4
+          }
+        },
+        {
+          "message_index": 15,
+          "message_preview": "I'm feeling jittery but can't focus on anything",
+          "stages": {
+            "senticnet_analysis_ms": 4189.7,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 288.9,
+            "prompt_assembly_ms": 0.03,
+            "llm_generation_ms": 3747.9,
+            "memory_store_ms": 5514.8,
+            "total_ms": 13741.3
+          }
+        },
+        {
+          "message_index": 16,
+          "message_preview": "I've been hyperfocusing on the wrong task again",
+          "stages": {
+            "senticnet_analysis_ms": 4411.1,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 646.3,
+            "prompt_assembly_ms": 0.03,
+            "llm_generation_ms": 5999.7,
+            "memory_store_ms": 5587.7,
+            "total_ms": 16644.8
+          }
+        },
+        {
+          "message_index": 17,
+          "message_preview": "My partner says I never listen to them",
+          "stages": {
+            "senticnet_analysis_ms": 4098.7,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 252.8,
+            "prompt_assembly_ms": 0.06,
+            "llm_generation_ms": 4169.8,
+            "memory_store_ms": 6867.1,
+            "total_ms": 15388.5
+          }
+        },
+        {
+          "message_index": 18,
+          "message_preview": "I finally finished that assignment I've been putti",
+          "stages": {
+            "senticnet_analysis_ms": 4285.7,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 234.6,
+            "prompt_assembly_ms": 0.02,
+            "llm_generation_ms": 5883.5,
+            "memory_store_ms": 5166.3,
+            "total_ms": 15570.1
+          }
+        },
+        {
+          "message_index": 19,
+          "message_preview": "I feel like everyone else has their life together ",
+          "stages": {
+            "senticnet_analysis_ms": 4674.7,
+            "safety_check_ms": 0.0,
+            "memory_retrieval_ms": 254.7,
+            "prompt_assembly_ms": 0.05,
+            "llm_generation_ms": 5998.2,
+            "memory_store_ms": 5342.2,
+            "total_ms": 16269.8
+          }
+        }
+      ]
+    },
+    {
+      "test": "warm_vs_cold",
+      "warm_times": [
+        3107.0,
+        3119.4,
+        3573.1,
+        3316.6,
+        2762.7
+      ]
+    },
+    {
+      "test": "ablation_timing",
+      "full_times": [
+        8073.8,
+        6116.1,
+        6427.3,
+        6137.9,
+        6577.5,
+        6447.1,
+        6424.6,
+        6657.5,
+        6799.7,
+        8073.7
+      ],
+      "ablation_times": [
+        2691.0,
+        2760.2,
+        2949.0,
+        2334.4,
+        2557.0,
+        2840.3,
+        2906.2,
+        2755.1,
+        2687.3,
+        2721.7
+      ]
+    },
+    {
+      "test": "burst_resources",
+      "samples": [
+        {
+          "timestamp": 1774540342.29074,
+          "cpu_pct": 85.4,
+          "rss_mb": 185.40625
+        },
+        {
+          "timestamp": 1774540342.8021498,
+          "cpu_pct": 2.2,
+          "rss_mb": 185.421875
+        },
+        {
+          "timestamp": 1774540343.310963,
+          "cpu_pct": 1.0,
+          "rss_mb": 185.421875
+        },
+        {
+          "timestamp": 1774540343.8198469,
+          "cpu_pct": 20.1,
+          "rss_mb": 185.46875
+        },
+        {
+          "timestamp": 1774540344.325836,
+          "cpu_pct": 31.4,
+          "rss_mb": 185.46875
+        },
+        {
+          "timestamp": 1774540344.83288,
+          "cpu_pct": 26.6,
+          "rss_mb": 185.484375
+        },
+        {
+          "timestamp": 1774540345.345679,
+          "cpu_pct": 17.7,
+          "rss_mb": 185.5
+        },
+        {
+          "timestamp": 1774540345.8528798,
+          "cpu_pct": 0.9,
+          "rss_mb": 185.5
+        },
+        {
+          "timestamp": 1774540346.356138,
+          "cpu_pct": 3.9,
+          "rss_mb": 185.078125
+        },
+        {
+          "timestamp": 1774540346.85994,
+          "cpu_pct": 33.1,
+          "rss_mb": 185.234375
+        },
+        {
+          "timestamp": 1774540347.365443,
+          "cpu_pct": 29.2,
+          "rss_mb": 185.234375
+        },
+        {
+          "timestamp": 1774540347.8674371,
+          "cpu_pct": 23.2,
+          "rss_mb": 185.234375
+        },
+        {
+          "timestamp": 1774540348.410739,
+          "cpu_pct": 49.1,
+          "rss_mb": 185.25
+        },
+        {
+          "timestamp": 1774540348.914164,
+          "cpu_pct": 1.0,
+          "rss_mb": 185.25
+        },
+        {
+          "timestamp": 1774540349.418379,
+          "cpu_pct": 0.5,
+          "rss_mb": 185.25
+        },
+        {
+          "timestamp": 1774540349.924505,
+          "cpu_pct": 28.4,
+          "rss_mb": 185.234375
+        },
+        {
+          "timestamp": 1774540350.43345,
+          "cpu_pct": 32.0,
+          "rss_mb": 185.234375
+        },
+        {
+          "timestamp": 1774540350.9362361,
+          "cpu_pct": 33.1,
+          "rss_mb": 185.234375
+        },
+        {
+          "timestamp": 1774540351.445378,
+          "cpu_pct": 30.8,
+          "rss_mb": 185.234375
+        },
+        {
+          "timestamp": 1774540351.949731,
+          "cpu_pct": 1.1,
+          "rss_mb": 185.25
+        },
+        {
+          "timestamp": 1774540352.458225,
+          "cpu_pct": 0.7,
+          "rss_mb": 185.25
+        },
+        {
+          "timestamp": 1774540352.964851,
+          "cpu_pct": 38.2,
+          "rss_mb": 185.3125
+        },
+        {
+          "timestamp": 1774540353.473011,
+          "cpu_pct": 30.6,
+          "rss_mb": 185.3125
+        },
+        {
+          "timestamp": 1774540353.976792,
+          "cpu_pct": 26.6,
+          "rss_mb": 185.3125
+        },
+        {
+          "timestamp": 1774540354.484632,
+          "cpu_pct": 23.6,
+          "rss_mb": 185.3125
+        },
+        {
+          "timestamp": 1774540355.0005262,
+          "cpu_pct": 0.9,
+          "rss_mb": 171.421875
+        },
+        {
+          "timestamp": 1774540355.5100229,
+          "cpu_pct": 0.2,
+          "rss_mb": 171.421875
+        },
+        {
+          "timestamp": 1774540356.0167732,
+          "cpu_pct": 36.4,
+          "rss_mb": 171.25
+        },
+        {
+          "timestamp": 1774540356.525585,
+          "cpu_pct": 29.3,
+          "rss_mb": 171.25
+        },
+        {
+          "timestamp": 1774540357.0299861,
+          "cpu_pct": 28.7,
+          "rss_mb": 171.25
+        },
+        {
+          "timestamp": 1774540357.5338922,
+          "cpu_pct": 25.6,
+          "rss_mb": 171.25
+        },
+        {
+          "timestamp": 1774540358.039169,
+          "cpu_pct": 0.6,
+          "rss_mb": 171.265625
+        },
+        {
+          "timestamp": 1774540358.549324,
+          "cpu_pct": 0.9,
+          "rss_mb": 171.265625
+        },
+        {
+          "timestamp": 1774540359.054463,
+          "cpu_pct": 22.4,
+          "rss_mb": 171.25
+        },
+        {
+          "timestamp": 1774540359.563912,
+          "cpu_pct": 33.9,
+          "rss_mb": 171.25
+        },
+        {
+          "timestamp": 1774540360.071307,
+          "cpu_pct": 36.9,
+          "rss_mb": 171.25
+        },
+        {
+          "timestamp": 1774540360.576797,
+          "cpu_pct": 36.6,
+          "rss_mb": 171.25
+        },
+        {
+          "timestamp": 1774540361.08337,
+          "cpu_pct": 0.7,
+          "rss_mb": 168.734375
+        },
+        {
+          "timestamp": 1774540361.592694,
+          "cpu_pct": 0.7,
+          "rss_mb": 168.734375
+        },
+        {
+          "timestamp": 1774540362.10063,
+          "cpu_pct": 30.0,
+          "rss_mb": 140.28125
+        },
+        {
+          "timestamp": 1774540362.60807,
+          "cpu_pct": 17.0,
+          "rss_mb": 140.296875
+        },
+        {
+          "timestamp": 1774540363.11391,
+          "cpu_pct": 26.5,
+          "rss_mb": 140.296875
+        },
+        {
+          "timestamp": 1774540363.623022,
+          "cpu_pct": 32.6,
+          "rss_mb": 140.296875
+        },
+        {
+          "timestamp": 1774540364.128416,
+          "cpu_pct": 28.5,
+          "rss_mb": 140.296875
+        },
+        {
+          "timestamp": 1774540364.63006,
+          "cpu_pct": 0.8,
+          "rss_mb": 140.25
+        },
+        {
+          "timestamp": 1774540365.135264,
+          "cpu_pct": 0.8,
+          "rss_mb": 140.25
+        },
+        {
+          "timestamp": 1774540365.641429,
+          "cpu_pct": 18.3,
+          "rss_mb": 140.21875
+        },
+        {
+          "timestamp": 1774540366.148819,
+          "cpu_pct": 25.5,
+          "rss_mb": 140.21875
+        },
+        {
+          "timestamp": 1774540366.6589801,
+          "cpu_pct": 36.4,
+          "rss_mb": 140.28125
+        },
+        {
+          "timestamp": 1774540367.1660218,
+          "cpu_pct": 30.4,
+          "rss_mb": 140.28125
+        },
+        {
+          "timestamp": 1774540367.671693,
+          "cpu_pct": 21.4,
+          "rss_mb": 140.28125
+        },
+        {
+          "timestamp": 1774540368.179795,
+          "cpu_pct": 0.7,
+          "rss_mb": 140.296875
+        },
+        {
+          "timestamp": 1774540368.684315,
+          "cpu_pct": 0.5,
+          "rss_mb": 140.296875
+        },
+        {
+          "timestamp": 1774540369.1945128,
+          "cpu_pct": 14.9,
+          "rss_mb": 140.203125
+        },
+        {
+          "timestamp": 1774540369.699807,
+          "cpu_pct": 40.4,
+          "rss_mb": 140.328125
+        },
+        {
+          "timestamp": 1774540370.2029219,
+          "cpu_pct": 35.4,
+          "rss_mb": 140.328125
+        },
+        {
+          "timestamp": 1774540370.7087328,
+          "cpu_pct": 35.7,
+          "rss_mb": 140.34375
+        },
+        {
+          "timestamp": 1774540371.216337,
+          "cpu_pct": 65.3,
+          "rss_mb": 140.453125
+        },
+        {
+          "timestamp": 1774540371.727541,
+          "cpu_pct": 1.2,
+          "rss_mb": 140.453125
+        },
+        {
+          "timestamp": 1774540372.23702,
+          "cpu_pct": 1.0,
+          "rss_mb": 140.453125
+        },
+        {
+          "timestamp": 1774540372.742319,
+          "cpu_pct": 23.3,
+          "rss_mb": 140.421875
+        },
+        {
+          "timestamp": 1774540373.2509692,
+          "cpu_pct": 32.8,
+          "rss_mb": 140.421875
+        },
+        {
+          "timestamp": 1774540373.761166,
+          "cpu_pct": 26.6,
+          "rss_mb": 140.453125
+        }
+      ]
+    },
+    {
+      "test": "sequential_stress",
+      "results": [
+        {
+          "message": "I can't focus today",
+          "latency_ms": 3021.4,
+          "success": true
+        },
+        {
+          "message": "I feel overwhelmed with my workload",
+          "latency_ms": 2716.0,
+          "success": true
+        },
+        {
+          "message": "I keep checking social media instead of ",
+          "latency_ms": 3820.7,
+          "success": true
+        },
+        {
+          "message": "My medication doesn't seem to be helping",
+          "latency_ms": 2985.8,
+          "success": true
+        },
+        {
+          "message": "I'm so frustrated I can't get anything d",
+          "latency_ms": 3450.0,
+          "success": true
+        }
+      ]
+    }
+  ]
+}

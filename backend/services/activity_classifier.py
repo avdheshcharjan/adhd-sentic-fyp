@@ -64,6 +64,9 @@ TITLE_KEYWORDS: dict[str, str] = {
     "scholar": "research",
     "wikipedia": "research",
     "pubmed": "research",
+    "chatgpt": "other",
+    "weather": "other",
+    "maps": "other",
 }
 
 # Category descriptions for Layer 4 zero-shot embedding similarity

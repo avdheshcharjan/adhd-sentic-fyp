@@ -53,7 +53,11 @@ class MemoryService:
                     "port": 5433,
                     "collection_name": "adhd_memories"
                 }
-            }
+            },
+            # NOTE: Mem0 reranker and custom_fact_extraction_prompt configs
+            # were attempted (fixes 4.2, 4.5) but are incompatible with the
+            # current Mem0 version — they cause 'dict' object has no attribute
+            # 'replace' errors during mem0.add(). Reverted to default config.
         }
         
         try:
@@ -65,34 +69,55 @@ class MemoryService:
 
     # ── Layer 1: Conversational Memory (Mem0) ───────────────────────────────────
 
-    def add_conversation_memory(self, user_id: str, message: str, context: Optional[str] = None):
+    def add_conversation_memory(
+        self,
+        user_id: str,
+        message: str,
+        context: Optional[str] = None,
+        memory_type: str = "conversation",
+    ):
         """
         Store chat context after a vent session or regular interaction.
+
+        Args:
+            memory_type: "conversation", "strategy", "problem", "trigger", or "preference"
         """
         if not self.mem0:
             logger.warning("Mem0 is not initialized, skipping conversation memory.")
             return
 
-        metadata = {"type": "conversation"}
+        metadata = {"type": memory_type}
         if context:
             metadata["context"] = context
-            
+
         try:
             # Note: mem0 add() blocks/is synchronous natively unless wrapped
             self.mem0.add(message, user_id=user_id, metadata=metadata)
-            logger.info(f"Added conversation memory for user {user_id}")
+            logger.info(f"Added {memory_type} memory for user {user_id}")
         except Exception as e:
             logger.error(f"Error adding conversation memory: {e}")
 
-    def search_relevant_context(self, user_id: str, query: str, limit: int = 5) -> List[Dict[str, Any]]:
+    def search_relevant_context(
+        self,
+        user_id: str,
+        query: str,
+        limit: int = 5,
+        memory_type: Optional[str] = None,
+    ) -> List[Dict[str, Any]]:
         """
         Retrieve context for LLM injection.
+
+        Args:
+            memory_type: Optional filter — "conversation", "strategy", "problem", etc.
         """
         if not self.mem0:
             return []
 
         try:
-            results = self.mem0.search(query, user_id=user_id, limit=limit)
+            kwargs: Dict[str, Any] = {"user_id": user_id, "limit": limit}
+            if memory_type:
+                kwargs["filters"] = {"type": memory_type}
+            results = self.mem0.search(query, **kwargs)
             if isinstance(results, dict) and "results" in results:
                 return results["results"]
             return results

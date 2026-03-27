@@ -6,9 +6,9 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      "/insights": "http://localhost:8420",
-      "/whoop": "http://localhost:8420",
-      "/interventions": "http://localhost:8420",
+      "/insights": "http://127.0.0.1:8420",
+      "/whoop": "http://127.0.0.1:8420",
+      "/interventions": "http://127.0.0.1:8420",
     },
   },
 });

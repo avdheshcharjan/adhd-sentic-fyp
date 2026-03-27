@@ -1,0 +1,1442 @@
+[
+  {
+    "sentence": "I keep thinking about that exam next month and I'm pretty sure I'm going to fail it.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "What if I said something weird in class today and everyone thinks I'm strange?",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "I have this nagging feeling that I don't actually deserve to be here\u2014like someone's going to figure out I'm a fraud.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "My assignment isn't due for two weeks but I'm already dreading starting it.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "I can't stop imagining worst-case scenarios about my presentation on Friday.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "What if my professor realizes I don't understand the material as well as my classmates?",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "I'm nervous that I'm going to mess up this group project and let everyone down.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "Every time I check my email I'm anxious there's going to be bad news from my department.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "I keep worrying that I'm falling behind and I'll never catch up.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "What if I freeze up during the interview and can't answer their questions?",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "I have this constant dread that I'm going to disappoint my parents with my grades.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "I'm scared that if I ask for help, people will think I'm incompetent.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "I keep imagining that I'm going to bomb the final exam even though I haven't even studied yet.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "What if everyone in my class is smarter than me and figures out I don't belong here?",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "I'm nervous about networking events because I'm sure I'll say something awkward and embarrass myself.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_overwhelmed"
+  },
+  {
+    "sentence": "I'm staring at my four open assignments, three browser tabs, and two Discord notifications, and my brain just... stopped working.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "There are so many things I need to do right now that I literally cannot figure out which one to start with, so I'm just sitting here refreshing Reddit instead.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "My professor is explaining the assignment but there's too much information coming at me too fast and I can feel my brain shutting down mid-lecture.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "I have the readings, the notes, the lecture slides, AND the study guide open at the same time, and now I don't know what any of them say.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "Someone's talking to me while I'm trying to work while my phone's buzzing and the library's too loud, and I just went completely blank.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "I made a list of everything I need to do this week and it was so long that I put the list away and took a nap instead.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "I keep opening my essay document, reading the first sentence, and then closing it because I genuinely don't know where to begin.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "There are snacks on my desk, my roommate's being loud, the group chat won't stop, and I can't focus on anything because there's just too much happening.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "I've got my laptop, my notebook, my textbook, and three different apps open, and I've accomplished nothing in the last two hours.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "My inbox has 47 unread emails and just looking at it made me decide I'll deal with it tomorrow.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "The assignment requirements are so detailed that I read them twice and actually understand less now than I did the first time.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "I'm supposed to start studying, but I'm also hungry, my room's messy, I need to text someone back, and I'm just going to sit here instead.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "Everything feels urgent and nothing feels doable, so I picked up my phone and I'm definitely not putting it down for a while.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "I have three different group projects happening simultaneously and I legitimately forgot which one has the deadline today.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "My brain feels like a browser with 47 tabs open and all of them are frozen.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_anxious"
+  },
+  {
+    "sentence": "I've rewritten this essay introduction four times and it still sounds terrible\u2014why can't I just get it right the first time?",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "The library printer jammed again, and now I'm going to be late turning this in.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "I keep losing my notes right after I write them down, and it's driving me absolutely crazy.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "My professor won't return my emails about the deadline extension, and I'm getting really fed up with waiting.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "I've clicked \"submit\" on this assignment three times and the system keeps saying it failed\u2014this is ridiculous.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "Why do I always forget to charge my laptop the night before I need it most?",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "I sat down to study and my roommate won't stop talking; I just need five minutes of quiet and he won't shut up.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "This textbook costs $300 and I've only used two chapters\u2014what a ripoff.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "I finally got focused and then someone texted me asking where I was, and now I've lost my train of thought.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "My medication wore off right in the middle of my exam and I could feel myself falling apart.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "I've been trying to schedule an appointment with my advisor for two weeks and the system keeps crashing.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "This assignment is straightforward but I keep making careless mistakes\u2014it's so frustrating.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "I told myself I'd read this chapter today and instead I've rewatched the same show for three hours.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "The campus WiFi drops out constantly, and I can't work on anything that requires internet.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "I know exactly what I want to write but my fingers won't keep up with my brain.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_overwhelmed"
+  },
+  {
+    "sentence": "I opened my laptop to start studying and just froze\u2014there are four assignments due this week, two exams to prep for, and I can't figure out where to even begin.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "My phone won't stop buzzing with notifications, my roommate is talking, there's construction outside, and I can feel my brain just shutting down from all of it.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "I made a to-do list this morning and now looking at it makes me feel so heavy that I've just been staring at the wall for twenty minutes instead.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "There are so many tabs open on my browser, so many half-finished notes, and I genuinely don't know which task is actually the most important right now.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "I tried to organize my study materials and ended up with papers everywhere, and now I'm just sitting on the floor because the mess feels like too much to process.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "My professor gave feedback on my essay, mentioned three areas to improve, and suddenly the whole assignment feels impossible even though I was almost done.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "I have group chat notifications, emails, assignment deadlines, and a meeting in an hour, and I'm just kind of... not moving or thinking clearly about any of it.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "The library is too loud today, my notes don't make sense, and I have too many chapters left to read, so I just packed up without getting anything done.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "I keep switching between tasks because I don't know which one matters most, and now I've made zero progress on everything instead of progress on something.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "My brain feels like it's running fifteen browser tabs at once and I can't close any of them or focus on what's actually on the screen.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "I have two projects, three readings, and a presentation, all due at different times, and I'm genuinely unsure how to move forward without feeling like I'm drowning.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "Someone asked me what I'm doing this weekend and I couldn't even answer because I don't know where my studying ends and my life begins right now.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "I looked at my calendar and saw how packed the next two weeks are, and I just felt something in my chest tighten and my thinking go quiet.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "There's so much sensory input right now\u2014lights, sounds, people\u2014and I've basically checked out mentally because my system can't process any more information.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "I sat down to work on one assignment but kept thinking about the three others I'm not doing, so I ended up just paralyzed and doing none of them.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_frustrated"
+  },
+  {
+    "sentence": "What if I completely bomb this presentation tomorrow and everyone realizes I have no idea what I'm talking about?",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "I keep thinking about the exam next month and my stomach gets tight just imagining all the ways I could fail.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "My professor is going to find out eventually that I'm not as smart as my paper made me seem.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "I haven't started the assignment yet and it's already due in three days\u2014I'm going to mess this up for sure.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "Every time I'm about to submit something, I panic that I've missed something obvious that will make me look incompetent.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "What if my ADHD medication stops working and I can't keep up anymore?",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "I'm terrified the accommodation office will deny my request and I'll fall behind without support.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "My mind goes straight to worst-case scenarios whenever I think about group projects\u2014what if I let everyone down?",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "I dread getting the grade back because I'm convinced it'll be worse than I think it was.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "Sometimes I lie awake at night spiraling about whether I should even be at university at all.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "I'm nervous that if I ask for an extension, professors will think I'm just making excuses about my ADHD.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "The thought of networking at the career fair makes my chest tight\u2014what if no one takes me seriously?",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "I keep imagining dropping out because I'm so scared I won't make it through next semester.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "What if I get called on in class and freeze, and everyone sees how unprepared I actually am?",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "I'm worried that my messy notes and disorganization will eventually catch up with me in a catastrophic way.",
+    "label": "anxious",
+    "source": "boundary_anxious_vs_frustrated"
+  },
+  {
+    "sentence": "I've rewritten this essay three times and it still doesn't make sense\u2014why can't I just get it right the first time?",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "My professor keeps changing the assignment deadline and I'm so sick of having to reorganize everything.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "I sat down to study an hour ago and I've already switched tasks five times because nothing is holding my attention.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "Why does every single thing have to be harder for me than it is for everyone else in this class?",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "I've lost my notes again\u2014this is absolutely infuriating, I literally just had them.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "My medication wore off right in the middle of the lecture and I missed everything important, which is just great.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "I keep getting distracted by my phone even though I know I need to focus, and I'm so frustrated with myself right now.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "The library is too noisy, the caf\u00e9 is too crowded, and there's literally nowhere I can get any work done.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "I don't understand why this concept is so hard when the professor made it sound so simple yesterday.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "I've submitted three assignments late this semester already and I'm tired of making excuses for myself.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "My roommate won't stop talking and I can't concentrate\u2014can't anyone just leave me alone for five minutes?",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "I started this project weeks ago but somehow it's still not done and now it's due tomorrow.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "Why does my brain work fine for video games but completely shut down when I try to read a textbook?",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "I've tried four different study methods and none of them work, so what's even the point anymore?",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "My friends finished their assignments yesterday and here I am still struggling\u2014this is so annoying.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_anxious"
+  },
+  {
+    "sentence": "I've been staring at this textbook for twenty minutes and none of the words are sticking. I don't really care if they do.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "I went to lecture today but honestly I couldn't tell you what it was about.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "I know I should start that essay, but I just can't find a reason to actually do it right now.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "My friends are going out tonight and they invited me, but I'd rather just sit here doing nothing.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "I finished my assignment, but it feels like I was just going through the motions the whole time.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "Scrolling through my phone for the third hour feels about as interesting as anything else I could be doing.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "I got a B on that test and honestly it just feels like whatever\u2014nothing really feels like it matters much anyway.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "I'm in my room surrounded by stuff I could do, but everything just feels kind of flat and pointless.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "I used to love this subject in high school, but somewhere along the way I just stopped caring about it.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "I'm doing okay, I guess\u2014just kind of coasting through each day without really feeling invested in any of it.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "My roommate's telling me about their weekend and I'm nodding along, but I'm not really absorbing anything.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "I made myself go to the gym this morning, but it felt like I was operating on autopilot the whole time.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "There's a club fair happening and everyone's excited, but I can't seem to muster up enthusiasm for anything.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "I keep meaning to reach out to people, but honestly the effort of it just doesn't feel worth it right now.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "I submitted three assignments this week, but I have no idea if any of them were actually good\u2014and I'm not sure I care enough to find out.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_overwhelmed"
+  },
+  {
+    "sentence": "I have three essays due tomorrow, two exams next week, and my group project presentation is in three days\u2014I don't even know where to start so I'm just sitting here frozen.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "The library is so loud right now with people talking and typing and someone's phone keeps buzzing, and I can't focus on anything because every sound is pulling my attention.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "I opened my email and there are 47 unread messages, my professor added new readings to the syllabus, and I just got a Slack notification about a meeting I forgot about\u2014my brain feels like it's short-circuiting.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "I want to work on my essay but also I need to respond to my groupmates, and my mom just texted asking about my schedule, and I can feel myself just shutting down from all of it.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "Every time I try to pick one task, my brain immediately reminds me of five other things I'm supposed to be doing.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "I'm looking at my to-do list and it's so long that I can't even bring myself to open the document anymore.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "There are too many assignment deadlines, too many notifications, too many people asking me things, and I feel like I'm drowning in real time.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "My desk is a mess, my inbox is overflowing, I have sticky notes everywhere with half-forgotten tasks, and I genuinely don't know which problem to solve first.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "I keep switching between different assignments every five minutes because I'm panicking about all of them equally and can't settle into any single one.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "I tried to make a study schedule but there's literally not enough time in the day for everything, and now I'm just staring at it feeling completely helpless.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "Someone asked me a simple question in class and I couldn't even process what they were asking because my brain is already maxed out from trying to keep track of everything else.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "I have notifications coming in from my calendar, my group chat is blowing up, my readings are piling up, and I can feel my anxiety physically building in my chest.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "I sat down to start studying and immediately felt so overwhelmed by where to even begin that I just closed my laptop and froze.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "The sensory input right now is too much\u2014the fluorescent lights, the background conversations, the pressure of all my deadlines\u2014and I'm starting to feel like my system is just going offline.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "I know exactly what I need to do but there's so much of it that my executive function just completely collapsed and I can't move forward on any of it.",
+    "label": "overwhelmed",
+    "source": "boundary_overwhelmed_vs_disengaged"
+  },
+  {
+    "sentence": "I've been coding for two hours straight and everything just clicks\u2014I can see exactly what needs to happen next.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "My notes are flowing onto the page faster than I can think; the ideas are connecting in real time.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "I'm so into this essay that I forgot to check my phone, which never happens.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "The problem set suddenly makes sense, and I'm solving these questions almost automatically now.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "I can feel myself in the zone\u2014my fingers are moving and my mind is clear.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "This textbook chapter is actually fascinating when I stop skimming and really dig in.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "I've been drawing diagrams for this project and I'm completely absorbed; time disappeared.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "My thoughts are organized right now in a way they usually aren't\u2014everything feels sharp.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "I'm so locked into this task that distractions just bounce off me.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "The work is hard but I'm moving through it smoothly, making real progress.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "I found the rhythm with this assignment and now it's just flowing naturally.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "My brain feels like it's running at full capacity\u2014I'm tracking everything and it all matters.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "I'm three pages deep into this analysis and I haven't lost the thread once.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "The hyperfocus kicked in and suddenly the whole problem unfolds itself in front of me.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "I'm in that rare headspace where learning something new actually feels effortless.",
+    "label": "focused",
+    "source": "boundary_focused_vs_frustrated"
+  },
+  {
+    "sentence": "I've read this same paragraph like five times and I still have no idea what it says.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "Why does everything take so long? I just want to finish this assignment already.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "I keep starting different tasks but nothing feels right, so I end up doing none of them.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "This is so boring\u2014can I just skip this part and come back to it later?",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "I've been clicking between tabs for twenty minutes and haven't written a single word.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "My brain literally will not cooperate right now, no matter what I try.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "Why is this so hard when everyone else seems to get it immediately?",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "I'm frustrated because I know what I need to do but I can't make myself actually do it.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "This stupid notification just ruined my entire train of thought.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "I've restarted this essay three times already\u2014I just want it to be good enough.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "Nothing's working. The reading doesn't make sense, my notes are messy, and I'm running out of time.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "I hate how scattered my thoughts are right now; I'm jumping from idea to idea and getting nowhere.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "Why can't I just sit down like a normal person and finish one thing?",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "I'm so tired of fighting my own brain every single day.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "This is taking forever and I'm already over it.",
+    "label": "frustrated",
+    "source": "boundary_frustrated_vs_focused"
+  },
+  {
+    "sentence": "I sat through another lecture today, but honestly, I can't remember a single thing the professor said.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "My assignment is due tomorrow and I still haven't started it, but I just can't seem to care enough to begin.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "I showed up to class because I had to, not because any of it matters to me right now.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "Everyone keeps asking me how university is going, and I just say \"fine\" because I don't have the energy to explain that I feel nothing about it.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "I used to love learning, but now every reading feels like pushing a boulder uphill for no reason.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "My friends are making plans for the weekend, and I'll probably just go along since it's easier than saying no.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "I got a decent grade on my exam, but it felt so hollow that I didn't even tell anyone.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "Sitting in the library, surrounded by people who actually seem engaged, makes me feel like I'm faking everything.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "I keep starting projects and abandoning them because the initial spark just isn't there anymore.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "The motivation I had at the start of the semester has completely evaporated, and I'm just operating on autopilot now.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "I don't really know what I want to do with my degree, and at this point, I'm too tired to figure it out.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "I've been scrolling on my phone for three hours instead of studying, and I don't even feel bad about it.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "My notes are a mess because I zone out halfway through every class, but whatever.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "I'm getting by, I guess, but nothing feels real or important anymore.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "The things that used to excite me about university have turned into grey, monotonous obligations.",
+    "label": "disengaged",
+    "source": "boundary_disengaged_vs_joyful"
+  },
+  {
+    "sentence": "I just finished my assignment early and I'm genuinely stoked about how my argument came together!",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "My study group actually gets my humor\u2014I laughed so hard during our review session that my stomach hurt.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "I can't believe I sat through an entire lecture without losing focus; I'm really proud of myself right now.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "This professor's explanation of the concept finally clicked for me, and now I'm excited to actually use it in my project.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "My friends surprised me by showing up to my presentation, and seeing their faces in the crowd made me so happy I almost cried.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "I organized my notes in a new way today and it feels like I've unlocked a cheat code for studying.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "Getting that B+ back felt incredible because I actually worked for it and it paid off.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "I'm so grateful my roommate reminded me about that deadline\u2014we celebrated with our favorite snacks afterward.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "Today I helped someone in class understand the material and it felt amazing to be useful.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "I discovered a study method that actually works with how my brain functions, and I'm buzzing with energy.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "My family called to check in and hearing their voices genuinely lifted my entire day.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "I'm so pumped about this new research topic that I've already read three papers voluntarily.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "My TA remembered my name and asked how my project was going\u2014it made me feel seen and valued.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "I managed my time well this week and actually have free time to do something fun; this is a win!",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "Connecting with another student who also has ADHD made me feel less alone than I have in months.",
+    "label": "joyful",
+    "source": "boundary_joyful_vs_disengaged"
+  },
+  {
+    "sentence": "I just finished my essay two days early and I'm so proud I could burst!",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "My medication is finally working the way it should, and I feel like myself again.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "My best friend surprised me with coffee this morning and we laughed for twenty minutes straight.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "I actually remembered to do my laundry without being reminded, and it feels amazing.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "Got an A on that exam I was terrified about\u2014I can't stop smiling!",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "My roommate and I stayed up late talking about our dreams and it reminded me why I love them.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "I made my bed today and kept it clean for a whole week; I'm genuinely celebrating this.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "My professor said my unique perspective in class was valuable and I felt so seen.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "I managed my time well enough to actually have a free evening, and the relief is incredible.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "My family called just to check in and tell me they're proud of me.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "I helped a classmate understand something difficult and they thanked me so genuinely.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "Got through my morning routine without feeling chaotic and I'm riding this high all day.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "My therapist said she's noticed real progress in how I'm managing my ADHD symptoms.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "I said yes to a social event and actually had the energy to go\u2014felt so alive!",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "My group project partner told me I'm dependable and it meant everything.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "I'm taking my medication consistently and I can feel the difference in my focus.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "My dog greeted me like I'm the best person in the world when I got home.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "I'm genuinely excited about my classes this semester and that's a feeling I haven't had in years.",
+    "label": "joyful",
+    "source": "general_joyful"
+  },
+  {
+    "sentence": "When I finally sit down with my notes, everything else just disappears\u2014it's just me and the material, and I can actually understand it.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "I've been coding for three hours straight without checking my phone, which honestly feels like a superpower for someone like me.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "During our conversation last night, I was so locked in on what they were saying that I forgot to fidget or interrupt for once.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "My medication kicked in right before my essay, and suddenly I could see the whole argument clearly instead of jumping between ideas.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "I'm in that zone with my coffee and my to-do list where I'm actually crossing things off instead of just staring at them.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "When I'm drawing, time doesn't exist\u2014I look up and two hours have gone by without my brain screaming about something else.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "In my study group today, I was so focused on solving the problem that I didn't even notice people leaving around me.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "I managed to sit through an entire lecture without my mind wandering, and I actually remember what was said.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "Right now, organizing my desk is the only thing I want to do, and I'm fully committed to it.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "When I'm with them and they have my full attention, everything feels clearer and more real.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "I'm in deep with this project and I can actually see myself finishing it before the deadline.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "My morning routine clicked today\u2014made the bed, took my meds on time, ate breakfast\u2014everything flowed naturally.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "During the exam, I stopped overthinking and just let myself work through each question with total clarity.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "I'm so immersed in this book that I'm reading past my bedtime without guilt.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "When I started my workout, something just locked in and I pushed harder than I usually do.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "I've been working on this problem for an hour and my brain isn't scattered for once\u2014it's actually helping.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "During therapy, I was so present that I could actually articulate what's been bothering me.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "Right now, with my noise-canceling headphones and my task list, I feel unstoppable.",
+    "label": "focused",
+    "source": "general_focused"
+  },
+  {
+    "sentence": "I've read this paragraph five times and I still have no idea what it says\u2014my brain just won't cooperate.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "Why do I keep forgetting to take my medication even though I literally set phone reminders?",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "My friend keeps asking me the same question I answered last week, and honestly I'm getting tired of repeating myself.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "I started this assignment three days ago and I'm still staring at a blank page\u2014this is ridiculous.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "The professor changed the deadline with no warning and now everyone's freaking out, which is just making everything worse.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "I can't believe I lost my keys again; I swear I put them in the same spot every single time.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "My roommate leaves dishes everywhere and apparently asking nicely doesn't work because nothing ever changes.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "I've been trying to fall asleep for an hour but my brain won't shut up about a conversation from yesterday.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "The campus WiFi is down AGAIN and I have an assignment due in two hours\u2014this is so frustrating.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "I make a schedule and follow it for like two days before everything falls apart.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "Why is laundry so hard? I've got clean clothes piling up because I can't seem to finish the cycle.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "My study group cancelled last minute for the third time this semester and I'm genuinely done.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "I got feedback saying I \"didn't follow instructions\" when they weren't clear to me in the first place.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "I know I should start my essay but I'm spending hours watching videos instead and I hate myself for it.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "My family keeps pushing me to explain why my grades dropped, like I haven't already stressed about it enough.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "I finally sat down to do work and now I'm starving, need water, have to use the bathroom\u2014my body won't let me focus.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "The medication helps sometimes but other days it feels like it does nothing and I don't understand why.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "I told myself I'd go to bed early and here it is 3 AM and I haven't even started the reading due tomorrow.",
+    "label": "frustrated",
+    "source": "general_frustrated"
+  },
+  {
+    "sentence": "I haven't started the assignment due tomorrow and I'm convinced I'm going to fail the entire course.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "What if my medication stops working and I can't function like I have been?",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "I'm terrified my friends will realize I'm actually just pretending to be normal and competent.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "My professor called me into their office and now I'm spiraling about what I did wrong.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "I keep forgetting to eat and sleep on a normal schedule\u2014what if this ruins my health permanently?",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "Everyone in my class seems to understand the material instantly, and I'm going to be exposed as a fraud eventually.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "I haven't opened my email in three days because I'm afraid of what I might have missed.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "What if I mess up this relationship too like I always do?",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "I have so many tasks to do right now that I'm frozen and can't start any of them.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "My brain feels foggy today and I'm panicking that my ADHD is getting worse.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "I'm going to embarrass myself in the group presentation and everyone will judge me.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "What if I'm not actually smart enough to be here and they're going to figure that out?",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "I haven't been to the gym in weeks and now I'm convinced I'll never get back into it.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "My sleep schedule is completely backwards again and I'm dreading how behind I'll be.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "I keep thinking about that awkward thing I said in class last week and I want to disappear.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "What if I run out of medication before I can refill it and have a complete breakdown?",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "I'm supposed to call my parents back but I'm too anxious about disappointing them with my grades.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "Everything feels urgent and impossible at the same time, and I don't know where to even begin.",
+    "label": "anxious",
+    "source": "general_anxious"
+  },
+  {
+    "sentence": "I sat through another lecture today and honestly couldn't tell you what it was about.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "My roommate was talking to me about their weekend, and I just nodded along while thinking about nothing.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "I opened my assignment rubric three times this week but never actually started writing anything.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "My meds kicked in around noon, but I still felt like I was watching my life happen from behind glass.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "I scrolled through my phone for two hours last night instead of studying, and I didn't even care.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "Everyone keeps asking how I'm doing, so I just say \"fine\" because explaining the numbness sounds exhausting.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "I made plans with friends on Friday, but when the day came, I just didn't feel like going.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "Sitting in my morning class, I wondered why I even bothered showing up.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "I got my midterm grade back and felt absolutely nothing, not even disappointment.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "My therapist asked what I was looking forward to, and I genuinely couldn't think of anything.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "I used to love writing, but now I stare at blank documents and feel this weird emptiness.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "My laundry has been piling up for two weeks and I keep walking past it like it's not there.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "I ate lunch today without tasting any of it, just going through the motions.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "Someone complimented my project and I thought, \"Cool, I guess,\" with absolutely zero pride.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "I keep forgetting why I chose this major in the first place.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "My parents called to check in and I gave them the shortest answers possible.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "I showed up to my part-time job but spent the shift counting down the minutes until I could leave.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "Even when my medication is working, I feel like I'm just existing, not actually living.",
+    "label": "disengaged",
+    "source": "general_disengaged"
+  },
+  {
+    "sentence": "I have three essays due next week, two exams I haven't studied for, and my therapist wants me to start journaling, but I can't even remember where I put my planner.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "My roommate is talking to me about their weekend while my phone is buzzing with Discord notifications, my professor is emailing about the assignment I forgot, and I'm trying to eat cereal.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "I sat down to write one paragraph and now it's 2 AM and I've opened seventeen browser tabs but haven't written anything.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "My mom called about visiting home, my friend needs relationship advice, my professor wants to meet about my grades, and I'm still in my pajamas from yesterday.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "The library is too loud but my room is too distracting and I don't know where to even start with this research paper so I'm just scrolling instead.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "I took my medication this morning but my brain still feels like seventeen things are happening at once and I can't grab onto any of them.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "My laundry pile is becoming a permanent fixture, my dishes are multiplying, and I genuinely don't remember the last time I showered.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "I have the list of things to do but looking at it makes me feel so paralyzed that I end up doing nothing at all.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "Someone asked me a simple question about dinner plans and I literally couldn't answer because I'm too busy thinking about three different assignments.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "The fluorescent lights in the study hall, the keyboard sounds, the people talking\u2014it's all too much and my brain is just shutting down.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "I have five notifications from my group project and I can't even open the messages because the thought of catching up makes me want to lie in bed forever.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "My doctor asked if the new medication dose is working and I couldn't even explain how I'm feeling because I don't have the words for this static in my head.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "I need to eat, shower, study, email my professor, call my dad back, and start my laundry, and I'm just standing in my room doing nothing.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "There are so many small decisions I have to make today that I'm stuck on whether to have coffee or tea and I've been standing here for five minutes.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "My friends want to make plans, my family wants updates, my classes need my attention, and I'm simultaneously exhausted and unable to sleep.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "I opened my laptop to do homework but ended up doom-scrolling for two hours because at least that doesn't require me to make any decisions.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "Everything feels urgent and important and impossible all at once, so my brain has decided we're just not doing anything today.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  },
+  {
+    "sentence": "I can feel the anxiety building about everything I'm not doing, which makes it even harder to do any of it.",
+    "label": "overwhelmed",
+    "source": "general_overwhelmed"
+  }
+]

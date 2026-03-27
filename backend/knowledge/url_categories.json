@@ -57,6 +57,8 @@
     "jira.atlassian.com": "productivity",
     "confluence.atlassian.com": "productivity",
     "calendar.google.com": "productivity",
+    "drive.google.com": "productivity",
+    "onedrive.live.com": "productivity",
     "evernote.com": "productivity",
     "obsidian.md": "productivity",
     "coda.io": "productivity",
@@ -194,5 +196,12 @@
     "wise.com": "finance",
     "paypal.com": "finance",
     "revolut.com": "finance",
-    "bankofamerica.com": "finance"
+    "bankofamerica.com": "finance",
+
+    "weather.com": "other",
+    "maps.google.com": "other",
+    "chatgpt.com": "other",
+    "chat.openai.com": "other",
+
+    "buzzfeed.com": "news"
 }

@@ -306,7 +306,11 @@ class TestAPIResilience:
         # Should still return a valid result with defaults
         assert isinstance(result, SenticNetResult)
         assert result.safety.level == "normal"  # defaults
-        assert result.emotion.primary_emotion == "unknown"
+        # SetFit overrides SenticNet's emotion label, so even with API failure
+        # the emotion should be a valid SetFit label (not "unknown")
+        assert result.emotion.primary_emotion in {
+            "joyful", "focused", "frustrated", "anxious", "disengaged", "overwhelmed",
+        }
 
 
 # ═══════════════════════════════════════════════════════════════════

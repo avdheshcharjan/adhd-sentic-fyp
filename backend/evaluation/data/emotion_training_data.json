@@ -1,0 +1,842 @@
+[
+  {
+    "sentence": "I actually completed everything on my to-do list for the first time in months!",
+    "label": "joyful"
+  },
+  {
+    "sentence": "Got a promotion at work today! All those late nights finally paid off.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "My friend surprised me with a birthday party. I feel so loved right now.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I woke up feeling refreshed and ready to tackle the day. That's rare for me.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "The sunset was absolutely gorgeous today and I actually stopped to appreciate it.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I organized my entire desk and it feels like I organized my brain too.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "My medication is working really well today, everything feels clearer.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I had the best conversation with my mom in ages. We really connected.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I ran 5K today and beat my personal best! Endorphins are incredible.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "The feedback on my project was overwhelmingly positive. I'm on cloud nine.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I laughed so hard today my stomach hurts. Good times with good people.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I cooked a new recipe and it turned out amazing on the first try.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I just got accepted into the program I applied to. Dreams do come true!",
+    "label": "joyful"
+  },
+  {
+    "sentence": "My dog learned a new trick today and I feel like the proudest parent.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I saved up enough money to buy the thing I've been wanting for months.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "Today was one of those rare days where everything just fell into place perfectly.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I reconnected with an old friend and it was like no time had passed at all.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I got through a full day without losing anything or forgetting an appointment.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "The gratitude journal is actually working. I notice more good things now.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I helped someone today and seeing their smile made my whole week.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "My therapist told me she's proud of my progress. That meant the world to me.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I finished reading a book for the first time in a year. Cover to cover!",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I'm dancing around my kitchen to my favorite song. Life is good right now.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "My plants are thriving and it makes me feel like I can take care of things.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I started a new hobby and I'm actually sticking with it this time.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "Everyone said I nailed the presentation. The preparation actually worked!",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I cleaned my entire apartment and it feels like a weight has been lifted.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "Today I realized how far I've come. A year ago I couldn't do half of this.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I made it through the whole meeting without zoning out. That's real progress.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "The weather is perfect and I feel genuinely happy for no specific reason.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I submitted my assignment a whole day before the deadline. Who even am I?",
+    "label": "joyful"
+  },
+  {
+    "sentence": "My workout routine is becoming a habit finally. Three weeks straight!",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I feel grateful for the people in my life who understand my ADHD.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I found the perfect planner system that actually works with my brain.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "Everything clicked during the study session. I actually understand this material now.",
+    "label": "joyful"
+  },
+  {
+    "sentence": "I've been coding nonstop for hours and I don't want to stop. The solution is so close.",
+    "label": "focused"
+  },
+  {
+    "sentence": "My brain latched onto this puzzle and I can't think about anything else.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I'm completely absorbed in this book. The pages are flying by.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I set a 25 minute timer and ended up working for two hours straight without noticing.",
+    "label": "focused"
+  },
+  {
+    "sentence": "The music is perfect, the coffee is hot, and my brain is firing on all cylinders.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I can see exactly how all the pieces fit together. This architecture makes perfect sense.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I blocked all notifications and my productivity tripled. Deep work mode engaged.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I'm working through this problem methodically and each step is building on the last.",
+    "label": "focused"
+  },
+  {
+    "sentence": "My hyperfocus kicked in at the perfect time. This essay is writing itself.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I can feel the flow state. Everything else has faded away and it's just me and the work.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I found the perfect study environment and my brain is just eating up information.",
+    "label": "focused"
+  },
+  {
+    "sentence": "The debugging session is going so well. I'm tracking down each bug systematically.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I'm in the zone with this design project. Every element is coming together beautifully.",
+    "label": "focused"
+  },
+  {
+    "sentence": "Three pomodoro cycles done and I barely noticed the breaks. Deep concentration.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I'm reading this research paper and every paragraph is connecting to what I already know.",
+    "label": "focused"
+  },
+  {
+    "sentence": "My mind is sharp and clear. I'm processing information faster than usual today.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I found my rhythm with this project. The creative ideas are flowing naturally.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I've been in this study session for 4 hours and I actually want to keep going.",
+    "label": "focused"
+  },
+  {
+    "sentence": "Nothing can distract me right now. I'm locked in and making incredible progress.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I figured out the math problem that's been bugging me all week. Pure concentration paid off.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I'm writing code and each function just flows into the next. No friction at all.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I set up my workspace perfectly and now I'm cranking through tasks one by one.",
+    "label": "focused"
+  },
+  {
+    "sentence": "My ADHD brain is laser-locked on this project. Hyperfocus is my secret weapon today.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I'm planning out the entire project timeline and everything is crystallizing clearly.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I've been reading for hours and I remember everything. This focus is rare and precious.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I started this task and now I'm three levels deep. But it's productive depth, not distraction.",
+    "label": "focused"
+  },
+  {
+    "sentence": "The experiment is running perfectly and I'm analyzing results in real time.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I'm completely immersed in this programming challenge. Time has lost all meaning.",
+    "label": "focused"
+  },
+  {
+    "sentence": "Every edit I make is improving the essay. I can see the argument getting sharper.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I'm building this spreadsheet model and each formula connects perfectly. System design at its finest.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I just realized I've been researching this topic for three hours without checking my phone once.",
+    "label": "focused"
+  },
+  {
+    "sentence": "My brain won't let me stop working on this project. Everything else can wait.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I'm in peak focus mode. The words are coming out perfectly formed.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I'm dissecting this codebase and understanding every layer. Deep focus is incredible.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I've found my groove with this assignment. Each section is better than the last.",
+    "label": "focused"
+  },
+  {
+    "sentence": "I spent the entire day trying to fix one stupid bug. I want to punch my screen.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "My brain refuses to cooperate. I know what I need to do but I physically can't start.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "This is the third time I've started over from scratch. Nothing is working.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "Everyone else finished in half the time. Why does everything take me so much longer?",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "The instructions are contradictory and the professor won't respond to emails.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I had a whole plan for today and then one interruption derailed everything.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "My roommate keeps making noise and I can't concentrate on anything.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I wrote down the wrong deadline and now I'm scrambling. Classic ADHD moment.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "The software keeps crashing every time I try to save. I've lost my work twice now.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I forgot to take my meds this morning and now everything is falling apart.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "People keep changing the requirements and I have to redo everything again.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I studied for weeks and still failed the test. What's the point of even trying?",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "My internet keeps cutting out during the most important parts of the lecture.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I feel like I'm running in circles. Same mistakes, same problems, every single day.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I locked myself out of my account again. Password requirements are insane.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "The group project is falling apart because nobody is communicating.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I tried to explain my ADHD to my boss and they completely dismissed it.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "My alarm went off three times and I still overslept. I'm so angry at myself.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "The library is too noisy to study in but my apartment is too quiet. I can't win.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I prepared everything the night before and still managed to forget my lunch.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "The meeting went on for two hours and accomplished absolutely nothing.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I lost my train of thought mid-sentence and now I look stupid in front of everyone.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I keep getting distracted by my phone even though I know I shouldn't check it.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "The app just deleted all my notes. Hours of work, gone in a second.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I set five reminders and I still missed the appointment. I'm so done with myself.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "My code worked yesterday and now it's broken and nothing changed. How is that possible?",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I'm sick of apologizing for being late. It's not like I do it on purpose.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "Everyone in the class got it immediately and I'm still confused. I feel so stupid.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "The printer jammed right when I needed to submit my assignment. Of course it did.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I tried three different study methods and none of them helped me retain anything.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "My body is fidgeting nonstop and I can't make it stop. It's driving me insane.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I finally sat down to work and then realized I left everything I need at home.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I had the perfect idea but by the time I found paper to write it down, I forgot it.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "The autocorrect keeps changing my words and it's making me irrationally angry.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I'm tired of people saying 'just try harder' as if I haven't been trying my whole life.",
+    "label": "frustrated"
+  },
+  {
+    "sentence": "I have three exams next week and I haven't started studying for any of them.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "Every time my phone buzzes I feel a wave of dread. It could be bad news.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I'm lying awake at 3am worrying about things I can't control right now.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "The job interview is tomorrow and I keep rehearsing disaster scenarios in my head.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I feel like everyone is judging me for being behind on the project.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "My heart is racing and my palms are sweaty. The meeting starts in 10 minutes.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I'm afraid to open my bank account because I know the balance will upset me.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "What if they realize I have no idea what I'm doing? The imposter syndrome is real.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I keep checking and rechecking my work because I'm terrified of making a mistake.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "The more I think about the deadline the faster my breathing gets.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I'm worried that my ADHD symptoms are going to get worse over time.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I can't stop thinking about what I said in the conversation yesterday. Did I mess up?",
+    "label": "anxious"
+  },
+  {
+    "sentence": "Every small task feels like it has enormous consequences if I get it wrong.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I keep replaying the presentation in my head, finding all the things I could have done better.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I'm dreading the social event tonight. What if I say something weird?",
+    "label": "anxious"
+  },
+  {
+    "sentence": "My chest feels tight and I can't pinpoint why. Everything just feels wrong.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I need to make an important phone call and I've been putting it off for three days.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I'm scared that if I start the assignment I'll realize I can't do it at all.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "The uncertainty of not knowing my test results is eating me alive.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I feel like I'm always one mistake away from everything falling apart.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I agreed to too many things and now I'm panicking about how to fit it all in.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "What if my medication stops working? What will I do then?",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I keep imagining worst-case scenarios for every decision I need to make.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I feel on edge all the time like something bad is about to happen.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I'm overthinking every word in this email before I send it. It's been 45 minutes.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "My stomach is in knots thinking about the confrontation I need to have.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I'm paralyzed by the fear of choosing the wrong option. Both feel risky.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I woke up with anxiety and I have no idea what triggered it this time.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "Everyone else seems so calm and collected. Am I the only one falling apart?",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I'm counting down the minutes until the appointment and my anxiety keeps building.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I'm afraid of disappointing the people who are counting on me.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "The thought of public speaking makes me feel physically ill.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I keep catastrophizing about minor setbacks. My brain won't let me see the small picture.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I'm nervous about starting the new job. What if I can't keep up with everyone?",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I have this constant feeling of unease like I've forgotten something important.",
+    "label": "anxious"
+  },
+  {
+    "sentence": "I've been scrolling for an hour and I can't even remember what I was looking for.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I physically cannot make myself care about this assignment anymore.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "Everything feels monotonous. Wake up, go through motions, sleep, repeat.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I'm sitting in the lecture but my mind is a million miles away.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I used to love this hobby but now I just stare at the supplies and feel nothing.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "My brain is buffering. Like a loading screen that never finishes.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I've been staring at this blank document for 30 minutes. Zero ideas.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I opened Netflix, browsed for 20 minutes, then closed it without watching anything.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "The conversation is happening around me but I'm not part of it. I'm just present.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I tried to read the chapter but my eyes just slid over every word without absorbing anything.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "Nothing sounds appealing right now. Not food, not TV, not friends, nothing.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I'm just going through the motions. There's no passion or drive behind anything.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I feel like I'm on autopilot. My body is doing things but my mind is elsewhere.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "The meeting ended 20 minutes ago and I can't recall a single thing that was discussed.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I'm watching the clock, waiting for the day to end. That's all I'm doing.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I have free time and zero desire to do anything with it.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "My motivation vanished somewhere between waking up and making coffee.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I keep switching between apps without actually doing anything productive on any of them.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I feel completely disconnected from the project. It doesn't feel like mine anymore.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "Someone asked me what I did today and I genuinely couldn't think of a single thing.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "The task is right in front of me but it feels like it's behind a glass wall.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I don't have the energy to pretend to be interested in this anymore.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "Even my usual coping strategies aren't working today. Just complete mental flatness.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I spent the whole afternoon in a fog. Not sad, not happy, just... existing.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I had plans to be productive but instead I lay on the couch doing absolutely nothing.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "My brain feels like it's wrapped in cotton wool. Everything is muffled and distant.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I know I should care about this deadline but I genuinely don't feel anything about it.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I've been sitting here for an hour and I haven't accomplished a single thing.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "The world is moving around me but I feel like I'm standing still.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I tried to start the assignment but after two sentences I just stopped. No reason, just stopped.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "My interests that used to excite me now just feel like obligations.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I don't even have the energy to decide what to do next.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I looked at my task list and felt absolutely nothing. No urgency, no interest, no guilt.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I'm physically present but mentally I've checked out completely.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "Everything feels beige and flat. Like the color has drained out of the day.",
+    "label": "disengaged"
+  },
+  {
+    "sentence": "I have so many things to do that I've completely frozen and can't start any of them.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "Everything is crashing down at once. Work, school, personal life \u2014 all collapsing.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "The sensory input is too much right now. Lights too bright, sounds too loud.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I tried to make a to-do list but it was so long I had to stop because I started crying.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I'm drowning in responsibilities and nobody seems to notice or care.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "Every time I finish one thing, three more appear. It never ends.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I'm having a meltdown because there's too much information to process at once.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "The amount of work ahead of me is physically making me nauseous.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I feel like I'm trapped under a mountain of obligations with no way out.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "My brain is short-circuiting from trying to hold too many things at once.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I broke down crying in the bathroom because I literally cannot handle everything right now.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "The demands keep piling up and I don't have the capacity to meet any of them.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I feel like I'm being pulled in ten different directions simultaneously.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "My workload doubled overnight and I was already struggling with what I had.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I can't think straight because there are too many urgent things competing for attention.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "The sheer volume of emails, messages, and tasks has paralyzed me completely.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I'm failing at everything because I'm trying to do everything at once.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I need help but I don't even know how to explain what I need help with.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "The semester, my job, and my personal issues all exploded at the same time.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I tried to prioritize but everything feels equally urgent and important.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "My brain is screaming at me to do everything and as a result I'm doing nothing.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I had a panic attack because the number of things I need to do is impossible.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I'm supposed to be studying but my mind keeps jumping between all the other things I need to do.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I feel crushed under the weight of expectations from everyone around me.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "There are so many decisions to make and each one feels like it could ruin everything.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I'm exhausted from the constant mental juggling. My brain never gets to rest.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "The project scope keeps expanding and I'm already stretched impossibly thin.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I can hear my own heartbeat and my thoughts are racing faster than I can process them.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I want to ask for an extension but I'm too overwhelmed to even write the email.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "Every notification adds to the pile. I want to throw my phone into the ocean.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I'm so far behind that catching up feels like climbing Everest with no gear.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "The combination of ADHD and all these deadlines is making me physically sick.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I feel like a computer with 100 browser tabs open and not enough RAM.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I'm barely holding it together. One more thing goes wrong and I'll break.",
+    "label": "overwhelmed"
+  },
+  {
+    "sentence": "I need everything to stop for just five minutes so I can breathe and think clearly.",
+    "label": "overwhelmed"
+  }
+]

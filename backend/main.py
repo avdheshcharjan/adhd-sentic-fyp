@@ -36,6 +36,12 @@ try:
 except ImportError:
     mlx_inference = None
 
+try:
+    from services.setfit_service import setfit_classifier
+    logging.getLogger("adhd-brain").info("SetFit emotion classifier loaded at startup")
+except Exception as e:
+    logging.getLogger("adhd-brain").error(f"Failed to load SetFit classifier: {e}")
+
 settings = get_settings()
 
 # ── Logging ─────────────────────────────────────────────────────────

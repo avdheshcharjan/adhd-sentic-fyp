@@ -1,0 +1,118 @@
+{
+  "title": "Emotion Classifier Comparison Report",
+  "timestamp": "20260325",
+  "test_size": 50,
+  "baseline": {
+    "senticnet_word_level": {
+      "accuracy": 0.28,
+      "description": "Current SenticNet word-level emotion detection (13 cloud APIs)"
+    }
+  },
+  "approaches": {
+    "A_hybrid_embedding_only": {
+      "approach": "Hybrid: all-MiniLM-L6-v2 embeddings (384-dim) + LogisticRegression",
+      "config": "logistic, skip_senticnet=true",
+      "train_size": 210,
+      "accuracy": 0.74,
+      "macro_f1": 0.7322,
+      "weighted_f1": 0.7351,
+      "avg_confidence": 0.8097,
+      "train_time_s": 5.80,
+      "eval_time_ms_per_sample": 10.2,
+      "n_errors": 13,
+      "model_size_mb": "~80 (shared embedding model)"
+    },
+    "A_hybrid_with_senticnet": {
+      "approach": "Hybrid: all-MiniLM-L6-v2 embeddings (384-dim) + 8 SenticNet features (392-dim) + LogisticRegression",
+      "config": "logistic, skip_senticnet=false",
+      "train_size": 210,
+      "accuracy": 0.70,
+      "macro_f1": 0.6875,
+      "weighted_f1": 0.6905,
+      "avg_confidence": 0.8075,
+      "train_time_s": 7.76,
+      "eval_time_ms_per_sample": 17.0,
+      "n_errors": 15,
+      "note": "SenticNet features HURT accuracy by 4%"
+    },
+    "B_contrastive_setfit": {
+      "approach": "Contrastive fine-tuned all-MiniLM-L6-v2 + LogisticRegression (SetFit-style)",
+      "config": "2 epochs, 30 iterations, batch_size=16",
+      "train_size": 210,
+      "accuracy": 0.80,
+      "macro_f1": 0.8033,
+      "weighted_f1": 0.8019,
+      "avg_confidence": 0.3310,
+      "train_time_s": 7.08,
+      "eval_time_ms_per_sample": 8.6,
+      "n_errors": 10,
+      "model_size_mb": "~80"
+    },
+    "C_distilbert_no_augment": {
+      "approach": "Fine-tuned DistilBERT (distilbert-base-uncased)",
+      "config": "10 epochs, lr=2e-5, no augmentation",
+      "train_size": 210,
+      "accuracy": 0.62,
+      "macro_f1": 0.5680,
+      "weighted_f1": 0.5579,
+      "avg_confidence": 0.3292,
+      "train_time_s": 49.43,
+      "eval_time_ms_per_sample": 5.6,
+      "n_errors": 19,
+      "model_size_mb": "~250",
+      "note": "Massively underfits with only 210 samples. 0% F1 on frustrated class."
+    },
+    "C_distilbert_augmented": {
+      "approach": "Fine-tuned DistilBERT (distilbert-base-uncased) with HuggingFace emotion augmentation",
+      "config": "10 epochs, lr=2e-5, augmented with dair-ai/emotion dataset",
+      "train_size": 1210,
+      "accuracy": 0.72,
+      "macro_f1": 0.7272,
+      "weighted_f1": 0.7241,
+      "avg_confidence": 0.8275,
+      "train_time_s": 225.55,
+      "eval_time_ms_per_sample": 5.5,
+      "n_errors": 14,
+      "model_size_mb": "~250",
+      "note": "Augmentation helped significantly (+10% over non-augmented)"
+    }
+  },
+  "ranking": [
+    {"rank": 1, "approach": "B: Contrastive/SetFit (e2_i30)", "accuracy": 0.80, "macro_f1": 0.8033},
+    {"rank": 2, "approach": "A: Hybrid embedding-only (logistic)", "accuracy": 0.74, "macro_f1": 0.7322},
+    {"rank": 3, "approach": "C: DistilBERT augmented (10ep)", "accuracy": 0.72, "macro_f1": 0.7272},
+    {"rank": 4, "approach": "A: Hybrid with SenticNet (logistic)", "accuracy": 0.70, "macro_f1": 0.6875},
+    {"rank": 5, "approach": "A: Hybrid MLP (embedding-only)", "accuracy": 0.64, "macro_f1": 0.6295},
+    {"rank": 6, "approach": "C: DistilBERT no augment (10ep)", "accuracy": 0.62, "macro_f1": 0.5680},
+    {"rank": 7, "approach": "C: DistilBERT no augment (5ep)", "accuracy": 0.52, "macro_f1": 0.4554},
+    {"rank": 8, "approach": "Baseline: SenticNet word-level", "accuracy": 0.28, "macro_f1": 0.264}
+  ],
+  "per_class_analysis_best_approach_B": {
+    "joyful":     {"precision": 0.80, "recall": 1.00, "f1": 0.89, "support": 8},
+    "focused":    {"precision": 0.86, "recall": 0.75, "f1": 0.80, "support": 8},
+    "frustrated": {"precision": 0.70, "recall": 0.78, "f1": 0.74, "support": 9},
+    "anxious":    {"precision": 1.00, "recall": 0.67, "f1": 0.80, "support": 9},
+    "disengaged": {"precision": 1.00, "recall": 0.75, "f1": 0.86, "support": 8},
+    "overwhelmed":{"precision": 0.64, "recall": 0.88, "f1": 0.74, "support": 8}
+  },
+  "common_error_patterns": [
+    "anxious ↔ overwhelmed confusion (3 errors in best model): Both involve stress/distress signals",
+    "frustrated ↔ overwhelmed confusion (2 errors): Both express negative high-arousal states",
+    "disengaged → joyful/overwhelmed (2 errors): Disengaged is semantically subtle, easy to confuse",
+    "focused → frustrated (1 error): 'locked into this problem' interpreted as frustration"
+  ],
+  "recommendation": {
+    "winner": "Approach B: Contrastive/SetFit-style (e2_i30 config)",
+    "reasons": [
+      "Highest accuracy: 80% (vs 74% for A, 72% for C augmented)",
+      "Highest macro-F1: 0.803 (best balanced across all 6 classes)",
+      "Fast training: 7.1s (vs 225s for augmented DistilBERT)",
+      "Small model: ~80MB shared with existing embedding model",
+      "Fast inference: 8.6ms/sample",
+      "Works with small dataset: 210 samples are sufficient",
+      "No external data dependency: Doesn't need HuggingFace dataset augmentation",
+      "Reuses existing all-MiniLM-L6-v2 model (already loaded for activity classification)"
+    ],
+    "for_coaching_quality": "Replacing current SenticNet word-level emotion detection (28%) with Approach B (80%) would provide 2.86x improvement in emotion accuracy. This directly impacts coaching quality since emotion-appropriate responses depend on correct emotion classification."
+  }
+}

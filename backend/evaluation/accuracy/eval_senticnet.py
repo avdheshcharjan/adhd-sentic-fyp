@@ -48,7 +48,7 @@ EMOTION_TO_CATEGORY = {
     "excitement": "joyful",
     "bliss": "joyful",
     "elation": "joyful",
-    "enthusiasm": "joyful",
+    "enthusiasm": "focused",  # SenticNet emits this for flow/hyperfocus text
     "relief": "joyful",
     "satisfaction": "joyful",
     "pride": "joyful",
@@ -129,9 +129,16 @@ EMOTION_TO_CATEGORY = {
 }
 
 
-def map_emotion_to_category(primary_emotion: str) -> str:
-    """Map a SenticNet primary emotion to one of 6 ADHD categories."""
-    return EMOTION_TO_CATEGORY.get(primary_emotion.lower(), "disengaged")
+def map_emotion_to_category(primary_emotion: str, engagement: float = 0.0) -> str:
+    """Map a SenticNet primary emotion to one of 6 ADHD categories.
+
+    Engagement-based override: high engagement + joyful → focused.
+    """
+    category = EMOTION_TO_CATEGORY.get(primary_emotion.lower(), "disengaged")
+    # High engagement with joyful emotion signals focus/flow, not pure joy
+    if category == "joyful" and engagement > 60:
+        return "focused"
+    return category
 
 
 def direction_to_numeric(direction: str) -> float:
@@ -178,7 +185,8 @@ async def run_evaluation():
 
             # Extract primary emotion
             primary_emotion = result.emotion.primary_emotion
-            predicted_category = map_emotion_to_category(primary_emotion)
+            engagement = result.adhd_signals.engagement_score if result.adhd_signals else 0.0
+            predicted_category = map_emotion_to_category(primary_emotion, engagement)
 
             # Extract Hourglass dimensions
             hourglass_values = {

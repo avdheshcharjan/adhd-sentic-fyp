@@ -1,0 +1,888 @@
+[
+  {
+    "prompt_id": "overwhelm_01",
+    "scenario": "overwhelm",
+    "user_message": "I have 6 things due this week and I haven't started any of them. I just keep opening and closing the same tabs.",
+    "expected_emotion": "overwhelmed",
+    "response_with_sentic": "I hear you feeling overwhelmed and stuck in a cycle of opening and closing tabs. It\u2019s really hard to get started when everything feels so scattered. Try this: take 3 deep breaths to calm your nervous system, then pick one small task to begin with. You don\u2019t have to do all six\u2014just one is a start.",
+    "response_without_sentic": "I hear how frustrating and overwhelming that feels. It\u2019s really hard to get started when everything seems so big. Maybe try breaking one task into smaller steps, and start with the easiest one first. Would you like help prioritizing your tasks or finding a quiet space to focus?",
+    "senticnet_context": {
+      "primary_emotion": "anxious",
+      "introspection": -99.9,
+      "temper": -74.9,
+      "attitude": 0.0,
+      "sensitivity": 0.0,
+      "polarity_score": 87.0,
+      "intensity_score": 87.0,
+      "engagement_score": -33.33,
+      "wellbeing_score": -66.67,
+      "safety_level": "normal",
+      "concepts": [
+        "tab",
+        "closing",
+        "open"
+      ],
+      "primary_adhd_state": "anxiety_comorbid"
+    },
+    "latency_with_ms": 11374.30820800364,
+    "latency_without_ms": 2315.7424579840153
+  },
+  {
+    "prompt_id": "overwhelm_02",
+    "scenario": "overwhelm",
+    "user_message": "I literally cannot make myself open this document. I've been sitting here for an hour doing nothing. My brain just won't engage.",
+    "expected_emotion": "overwhelmed",
+    "response_with_sentic": "I hear you \u2014 it\u2019s really tough to feel like your brain isn\u2019t even trying. Boredom can feel like a deadweight, and it\u2019s not your fault. Try opening the document in a new window or with a different app. Let your fingers do the work while your mind rests. Would you like to try a 3-min reset or switch to something more engaging?",
+    "response_without_sentic": "I hear how frustrating and exhausting this feels. It\u2019s totally normal for your brain to feel stuck sometimes. Let\u2019s try a 3-min reset: deep breaths, stretch, or walk for 2 minutes. Then come back to the document when you\u2019re ready. What\u2019s one small step you could take now?",
+    "senticnet_context": {
+      "primary_emotion": "disengaged",
+      "introspection": 0.0,
+      "temper": 0.0,
+      "attitude": -25.05,
+      "sensitivity": -96.4,
+      "polarity_score": 60.0,
+      "intensity_score": 60.0,
+      "engagement_score": -100.0,
+      "wellbeing_score": -50.0,
+      "safety_level": "normal",
+      "concepts": [
+        "open",
+        "literal",
+        "nothing",
+        "\u00ac 'engage"
+      ],
+      "primary_adhd_state": "boredom_disengagement"
+    },
+    "latency_with_ms": 8933.54866700247,
+    "latency_without_ms": 2491.37158296071
+  },
+  {
+    "prompt_id": "overwhelm_03",
+    "scenario": "overwhelm",
+    "user_message": "Everything is piling up. Emails, assignments, dishes, laundry. I feel like I'm drowning and I can't even pick which thing to start with because they all feel equally urgent.",
+    "expected_emotion": "overwhelmed",
+    "response_with_sentic": "I hear you feeling overwhelmed and stuck in a sea of tasks. It\u2019s so hard to start when everything feels urgent. Let\u2019s try a simple reset: take 3 deep breaths, then move your body for 1 min (walk, stretch, or shake hands). This can help calm your nervous system and give you a clearer start.",
+    "response_without_sentic": "I hear how overwhelming this all feels \u2014 it\u2019s so hard to keep up when everything seems to demand your attention. You\u2019re not alone in this.  \n\nTry starting with the smallest task first, like sorting laundry or doing one email. That 3-min reset helps 72% of the time.  \n\nWould you like help breaking it down into smaller steps, or maybe a quick breathing exercise to calm your mind?",
+    "senticnet_context": {
+      "primary_emotion": "overwhelmed",
+      "introspection": 21.8,
+      "temper": 30.7,
+      "attitude": 77.7,
+      "sensitivity": 73.45,
+      "polarity_score": 50.0,
+      "intensity_score": 50.0,
+      "engagement_score": 50.0,
+      "wellbeing_score": 33.33,
+      "safety_level": "normal",
+      "concepts": [
+        "pile up",
+        "ail",
+        "assignment",
+        "urgent",
+        "\u00ac 'pick"
+      ],
+      "primary_adhd_state": "emotional_dysregulation"
+    },
+    "latency_with_ms": 8971.155167091638,
+    "latency_without_ms": 3021.0308749228716
+  },
+  {
+    "prompt_id": "overwhelm_04",
+    "scenario": "overwhelm",
+    "user_message": "I just want to sleep. Not because I'm tired, but because being awake means I have to deal with all the things I'm behind on. Is that bad?",
+    "expected_emotion": "overwhelmed",
+    "response_with_sentic": "I hear you \u2014 it\u2019s totally normal to feel like being awake is a burden. You\u2019re not alone in this. If you\u2019re feeling overwhelmed, it\u2019s okay to prioritize rest. Try this:  \n1. Set a 10-minute timer to help you wind down.  \n2. Write down 3 things you can do tomorrow to ease the pressure.  \nSleep is a gift, not a weakness. \ud83d\udca4",
+    "response_without_sentic": "I hear you \u2014 it\u2019s totally normal to feel overwhelmed by all the things you need to do. It\u2019s okay to want to sleep when you\u2019re feeling so much pressure. Try setting a 15-minute timer to focus on one thing first, then rest. Your brain needs a break, and even a short pause can help you feel better. Would you like to try that?",
+    "senticnet_context": {
+      "primary_emotion": "overwhelmed",
+      "introspection": -94.1,
+      "temper": -56.25,
+      "attitude": -65.9,
+      "sensitivity": 0.0,
+      "polarity_score": 72.0,
+      "intensity_score": 72.0,
+      "engagement_score": -33.33,
+      "wellbeing_score": -33.33,
+      "safety_level": "moderate",
+      "concepts": [
+        "deal with",
+        "bad",
+        "awake",
+        "tire",
+        "sleep"
+      ],
+      "primary_adhd_state": "emotional_dysregulation"
+    },
+    "latency_with_ms": 8303.406083025038,
+    "latency_without_ms": 2949.2187909781933
+  },
+  {
+    "prompt_id": "overwhelm_05",
+    "scenario": "overwhelm",
+    "user_message": "Help. I have a presentation tomorrow that I haven't even started on, two overdue assignments, and my group project members are messaging me. What do I even do first?",
+    "expected_emotion": "overwhelmed",
+    "response_with_sentic": "I hear you - feeling overwhelmed with so much to do. Anxiety_comorbid can make things feel even harder. Let's start small. Try these: 1) Do a 5-minute breathing exercise to calm your nervous system, or 2) List 3 things you can do today that feel manageable. Both help reset your focus.",
+    "response_without_sentic": "I hear how overwhelmed you feel with so much to do. It\u2019s totally normal to feel stuck when there\u2019s a lot on your plate. Let\u2019s start small. Would you try these options: 1) focus on one assignment first, or 2) set up a 15-minute timer to tackle the presentation? Both can help you get moving without feeling like you have to do everything at once.",
+    "senticnet_context": {
+      "primary_emotion": "anxious",
+      "introspection": 92.0,
+      "temper": 30.7,
+      "attitude": 66.17,
+      "sensitivity": 65.9,
+      "polarity_score": 63.0,
+      "intensity_score": 63.0,
+      "engagement_score": 33.33,
+      "wellbeing_score": 50.0,
+      "safety_level": "normal",
+      "concepts": [
+        "present",
+        "member",
+        "assignment",
+        "due++",
+        "help"
+      ],
+      "primary_adhd_state": "anxiety_comorbid"
+    },
+    "latency_with_ms": 9090.576166054234,
+    "latency_without_ms": 3407.0105419959873
+  },
+  {
+    "prompt_id": "distracted_01",
+    "scenario": "distracted",
+    "user_message": "I've opened YouTube 'just for a second' four times in the last 30 minutes and I don't know how to stop. My essay is right there but my brain refuses to look at it.",
+    "expected_emotion": "frustrated",
+    "response_with_sentic": "I hear you feeling stuck and frustrated with the cycle of opening YouTube and not being able to focus on your essay. It\u2019s tough when your brain keeps pulling you away. Try this: take a 3-min break by moving your body or doing a few deep breaths. Then, return to your essay with a fresh mind. Would you like help brainstorming a way to refocus?",
+    "response_without_sentic": "I hear how frustrating it is to feel stuck between the temptation of YouTube and the work you need to do. It\u2019s so easy to get sucked into the distraction loop.  \n\nTry this:  \n1. Set a 3-min timer to focus on your essay.  \n2. Use a \"focus app\" that blocks YouTube during that time.  \n3. Take a 2-minute walk to reset your brain.  \n\nYou\u2019re not alone in this\u2014many people struggle with the same thing. Let me know what works best for you.",
+    "senticnet_context": {
+      "primary_emotion": "frustrated",
+      "introspection": -99.1,
+      "temper": -76.7,
+      "attitude": -74.4,
+      "sensitivity": -93.8,
+      "polarity_score": 86.0,
+      "intensity_score": 86.0,
+      "engagement_score": 0.0,
+      "wellbeing_score": -50.0,
+      "safety_level": "normal",
+      "concepts": [
+        "\u00ac 'know how",
+        "essay",
+        "stop",
+        "correct",
+        "open"
+      ],
+      "primary_adhd_state": "frustration_spiral"
+    },
+    "latency_with_ms": 9608.287000097334,
+    "latency_without_ms": 4222.244790988043
+  },
+  {
+    "prompt_id": "distracted_02",
+    "scenario": "distracted",
+    "user_message": "I started working on my code, then I googled one thing, somehow ended up reading about the history of submarines, and now it's been 2 hours. What even happened.",
+    "expected_emotion": "disengaged",
+    "response_with_sentic": "I hear you \u2014 it\u2019s totally normal for ADHD brains to get sidetracked. You\u2019re not alone in this.  \n\nTry this: Take a 3-min break to move your body (like a stretch or a walk), then return to your code with fresh focus. Or, if you\u2019re curious, dive into the submarine history \u2014 sometimes weird detours help us connect better.",
+    "response_without_sentic": "I hear you - it's totally normal to get side-tracked, especially with ADHD. It's like the brain is curious and full of energy. Try this: take a 3-min reset with your eyes closed, then go back to your code. Or, if you want to explore the submarine history, set a timer for 10 minutes and then refocus. Both are okay - your brain is just exploring!",
+    "senticnet_context": {
+      "primary_emotion": "focused",
+      "introspection": 0.0,
+      "temper": 0.0,
+      "attitude": -74.8,
+      "sensitivity": -86.4,
+      "polarity_score": 80.0,
+      "intensity_score": 80.0,
+      "engagement_score": -66.67,
+      "wellbeing_score": -83.33,
+      "safety_level": "normal",
+      "concepts": [
+        "work on",
+        "what happen",
+        "reading",
+        "google",
+        "code"
+      ],
+      "primary_adhd_state": "productive_flow"
+    },
+    "latency_with_ms": 9897.721499903128,
+    "latency_without_ms": 3365.383750060573
+  },
+  {
+    "prompt_id": "distracted_03",
+    "scenario": "distracted",
+    "user_message": "Every notification pulls me away. I turned off my phone but now I keep checking my laptop notifications instead. It's like my brain is actively looking for distractions.",
+    "expected_emotion": "frustrated",
+    "response_with_sentic": "I hear you \u2014 it\u2019s really hard to stay focused when your brain is hunting for distractions. Your ADHD makes it feel like you\u2019re constantly on alert for anything that might take your mind off track.  \n\nTry closing your laptop\u2019s notification settings or using a focus app to block distractions. Also, take a 3-min break to stretch or breathe deeply to reset your nervous system.",
+    "response_without_sentic": "I hear how frustrating it is when your brain keeps seeking out distractions, even when you try to focus. It\u2019s really hard to quiet the inner voice that\u2019s always looking for something to engage with.  \n\nTry setting a 3-min reset timer for your laptop notifications, and use a focus app that blocks distracting sites. Both have helped people stay on track without the constant pull of new stimuli.",
+    "senticnet_context": {
+      "primary_emotion": "overwhelmed",
+      "introspection": 23.0,
+      "temper": 0.0,
+      "attitude": 0.0,
+      "sensitivity": 32.9,
+      "polarity_score": 27.0,
+      "intensity_score": 27.0,
+      "engagement_score": 50.0,
+      "wellbeing_score": 16.67,
+      "safety_level": "normal",
+      "concepts": [
+        "turn off",
+        "act",
+        "phone",
+        "laptop",
+        "notify"
+      ],
+      "primary_adhd_state": "emotional_dysregulation"
+    },
+    "latency_with_ms": 9028.650750173256,
+    "latency_without_ms": 3116.191165987402
+  },
+  {
+    "prompt_id": "distracted_04",
+    "scenario": "distracted",
+    "user_message": "I keep task-switching. Code for 3 minutes, check Slack, code for 2 minutes, check email, code for 1 minute, check phone. I know I'm doing it but I can't stop.",
+    "expected_emotion": "anxious",
+    "response_with_sentic": "I hear you \u2014 it\u2019s really tough to stay on task when your brain is switching so much. You\u2019re doing the best you can with this pattern. Try setting a 3-min reset help 72% of the time. Would you like to try a 5-minute focused block first, then a 2-minute check-in? Or maybe start with a 10-minute deep dive into code?",
+    "response_without_sentic": "I hear how frustrating and exhausting that must feel \u2014 it\u2019s so hard to stay focused when your brain keeps asking for tiny distractions. You\u2019re not alone in this. Try setting a 3-min reset timer for coding sessions. When the timer goes off, take 2 minutes to check your phone or email, then return to coding. It\u2019s a small shift that can help you regain focus without the full cycle of switching. Would you like to try that? Or maybe set a specific time each hour for checking messages?",
+    "senticnet_context": {
+      "primary_emotion": "focused",
+      "introspection": 95.0,
+      "temper": 20.1,
+      "attitude": 44.8,
+      "sensitivity": 0.0,
+      "polarity_score": 53.0,
+      "intensity_score": 53.0,
+      "engagement_score": 66.67,
+      "wellbeing_score": 0.0,
+      "safety_level": "normal",
+      "concepts": [
+        "switching",
+        "slack",
+        "code",
+        "ail",
+        "task"
+      ],
+      "primary_adhd_state": "productive_flow"
+    },
+    "latency_with_ms": 9055.084999883547,
+    "latency_without_ms": 3691.3784579373896
+  },
+  {
+    "prompt_id": "distracted_05",
+    "scenario": "distracted",
+    "user_message": "Why can't I just focus on one thing? My roommate can study for hours straight. I can barely do 10 minutes before I'm on my phone again. Is something wrong with me?",
+    "expected_emotion": "frustrated",
+    "response_with_sentic": "I hear you \u2014 it\u2019s really hard to focus when your brain feels like it\u2019s pulling in a million directions. It\u2019s not that you\u2019re broken, it\u2019s just that your brain works differently.  \nTry starting with 5 minutes of deep focus, then take a 2-minute break. Let your brain reset with a quick walk or stretch.  \nYou don\u2019t need to do it \u201cperfectly\u201d \u2014 just give your brain a chance to refocus.",
+    "response_without_sentic": "I hear you feeling frustrated and maybe even a little stuck. It\u2019s hard to focus when your brain is used to switching gears. You\u2019re not wrong \u2014 focus is tough for many people with ADHD. Try setting a 10-minute timer for your task, then take a 3-min reset to stretch or breathe. It\u2019s okay to need breaks \u2014 your brain is working hard!",
+    "senticnet_context": {
+      "primary_emotion": "frustrated",
+      "introspection": 0.0,
+      "temper": 0.0,
+      "attitude": -98.7,
+      "sensitivity": -25.9,
+      "polarity_score": 62.0,
+      "intensity_score": 62.0,
+      "engagement_score": 0.0,
+      "wellbeing_score": -83.33,
+      "safety_level": "normal",
+      "concepts": [
+        "focus",
+        "room",
+        "bare",
+        "straight",
+        "phone"
+      ],
+      "primary_adhd_state": "frustration_spiral"
+    },
+    "latency_with_ms": 9763.38587491773,
+    "latency_without_ms": 2917.4771669786423
+  },
+  {
+    "prompt_id": "emotional_01",
+    "scenario": "emotional_dysregulation",
+    "user_message": "My supervisor gave me feedback and I know it was fine but I feel like I'm going to cry and I can't calm down. I hate that I react like this to normal things.",
+    "expected_emotion": "frustrated",
+    "response_with_sentic": "I hear that the feedback was fine, but it\u2019s really hard for you to stay calm. It\u2019s normal for ADHD brains to feel this way. Let\u2019s try a quick reset to help you feel more grounded. Would you like to do a 3-min breathing exercise or take a short walk to move your energy?",
+    "response_without_sentic": "I hear that feedback made you feel overwhelmed and scared. It\u2019s okay to feel this way \u2014 your body reacts when you\u2019re really stressed, even if the situation isn\u2019t that bad. Try deep breathing for 30 seconds, then take a short walk. Both help calm the nervous system.",
+    "senticnet_context": {
+      "primary_emotion": "anxious",
+      "introspection": 88.4,
+      "temper": 50.9,
+      "attitude": 65.75,
+      "sensitivity": 60.45,
+      "polarity_score": 66.0,
+      "intensity_score": 66.0,
+      "engagement_score": 33.33,
+      "wellbeing_score": 33.33,
+      "safety_level": "normal",
+      "concepts": [
+        "\u00ac 'calm down",
+        "cry",
+        "fine",
+        "hate",
+        "supervisory"
+      ],
+      "primary_adhd_state": "anxiety_comorbid"
+    },
+    "latency_with_ms": 8678.748874925077,
+    "latency_without_ms": 2473.697417182848
+  },
+  {
+    "prompt_id": "emotional_02",
+    "scenario": "emotional_dysregulation",
+    "user_message": "Someone made a joke about me being late again and now I'm irrationally angry. I know it was just a joke but it feels like they think I'm lazy and incompetent.",
+    "expected_emotion": "frustrated",
+    "response_with_sentic": "I hear that the joke felt like a personal attack, and that\u2019s really frustrating. It\u2019s hard to stay calm when others\u2019 words feel like they\u2019re judging you. Try taking 3 deep breaths to reset your nervous system\u2014this helps 72% of the time. Then, choose one: 1) write down what you want to say, or 2) take a 2-minute walk to clear your head. You\u2019re not lazy, and that\u2019s not your fault.",
+    "response_without_sentic": "I hear that joke making you feel attacked, even though it was meant to be lighthearted. It\u2019s really hard when people\u2019s comments feel like a criticism. Maybe try pausing for a few breaths to calm the anger, then respond with something that clarifies your situation. Would you like help with that? Option 1: Take 3 deep breaths to reset. Option 2: Write down a few facts about why you\u2019re late. Option 3: Say something like, \u201cI know you meant it lightly, but I feel like I need to clarify\u2026\u201d",
+    "senticnet_context": {
+      "primary_emotion": "frustrated",
+      "introspection": 0.0,
+      "temper": 65.9,
+      "attitude": 0.0,
+      "sensitivity": -15.9,
+      "polarity_score": 65.0,
+      "intensity_score": 65.0,
+      "engagement_score": 66.67,
+      "wellbeing_score": 83.33,
+      "safety_level": "normal",
+      "concepts": [
+        "joke",
+        "laze",
+        "\u00ac 'competent",
+        "angry",
+        "late"
+      ],
+      "primary_adhd_state": "frustration_spiral"
+    },
+    "latency_with_ms": 10174.058459000662,
+    "latency_without_ms": 4161.762416828424
+  },
+  {
+    "prompt_id": "emotional_03",
+    "scenario": "emotional_dysregulation",
+    "user_message": "I just snapped at my partner for asking what's for dinner. It wasn't about dinner at all. I was already overwhelmed and that one small question broke me. I feel terrible.",
+    "expected_emotion": "overwhelmed",
+    "response_with_sentic": "I hear you - it's really tough to stay calm when you're already overwhelmed. The small question triggered a big reaction, and that's completely normal.  \nTry this: Take 3 deep breaths together, then move your body for 1 minute (stretch, walk, or shake out your hands).  \nYou\u2019re doing your best, and that\u2019s enough.",
+    "response_without_sentic": "I hear you feeling overwhelmed and frustrated, and it's okay to feel that way. The tiny question about dinner was just the last straw. Let\u2019s take 3 minutes to reset\u2014maybe a deep breath or a quick walk. Then, we can talk about how to handle the next time. Would you like to try that?",
+    "senticnet_context": {
+      "primary_emotion": "frustrated",
+      "introspection": 0.0,
+      "temper": -45.95,
+      "attitude": -44.95,
+      "sensitivity": -47.7,
+      "polarity_score": 46.0,
+      "intensity_score": 46.0,
+      "engagement_score": -66.67,
+      "wellbeing_score": -33.33,
+      "safety_level": "moderate",
+      "concepts": [
+        "quest",
+        "snap",
+        "broke",
+        "whelmed++",
+        "small"
+      ],
+      "primary_adhd_state": "frustration_spiral"
+    },
+    "latency_with_ms": 8026.027624960989,
+    "latency_without_ms": 2764.7481251042336
+  },
+  {
+    "prompt_id": "emotional_04",
+    "scenario": "emotional_dysregulation",
+    "user_message": "I got a B+ and I should be happy but I'm not. I studied really hard and I feel like it doesn't matter. Everyone else seemed to find it easy. Maybe I'm just not smart enough.",
+    "expected_emotion": "frustrated",
+    "response_with_sentic": "I hear that you're feeling frustrated and maybe even a little ashamed. It's hard to feel like your effort doesn\u2019t matter, especially when others seem to breeze through things. Let\u2019s try a quick 3-min reset to help you refocus. Would you like to do a few deep breaths or take a short walk?",
+    "response_without_sentic": "I hear you feeling frustrated and unsure about your performance. It\u2019s tough when effort doesn\u2019t feel like it\u2019s paying off.  \nTry this:  \n1. Write down 3 things you did well during the exam.  \n2. Focus on one small step you can take next to feel more in control.  \n3. Celebrate the fact that you pushed through the challenge.",
+    "senticnet_context": {
+      "primary_emotion": "frustrated",
+      "introspection": -95.4,
+      "temper": -20.7,
+      "attitude": -79.9,
+      "sensitivity": 0.0,
+      "polarity_score": 65.0,
+      "intensity_score": 65.0,
+      "engagement_score": -50.0,
+      "wellbeing_score": -50.0,
+      "safety_level": "moderate",
+      "concepts": [
+        "happy",
+        "study",
+        "hard",
+        "ease",
+        "\u00ac 'smart"
+      ],
+      "primary_adhd_state": "frustration_spiral"
+    },
+    "latency_with_ms": 8200.621166964993,
+    "latency_without_ms": 2891.797084128484
+  },
+  {
+    "prompt_id": "emotional_05",
+    "scenario": "emotional_dysregulation",
+    "user_message": "I feel so ashamed. I promised myself I'd finish this today and it's midnight and I've done nothing. Again. I don't know how to stop this cycle of letting myself down.",
+    "expected_emotion": "overwhelmed",
+    "response_with_sentic": "I hear you feeling ashamed and overwhelmed. This cycle of letting yourself down is really tough. Try this: take 3 deep breaths to reset, then start with the smallest task possible. You\u2019re not alone in this.",
+    "response_without_sentic": "I hear you feeling ashamed and let down. It\u2019s really hard to stick to promises, especially when ADHD makes it tough to focus. Maybe try a 3-min reset with a quick walk or deep breaths to refocus, and then set a tiny, achievable goal for tomorrow. You\u2019re not alone in this, and progress takes time.",
+    "senticnet_context": {
+      "primary_emotion": "frustrated",
+      "introspection": -99.1,
+      "temper": -76.7,
+      "attitude": -45.18,
+      "sensitivity": -79.6,
+      "polarity_score": 75.0,
+      "intensity_score": 75.0,
+      "engagement_score": -66.67,
+      "wellbeing_score": -50.0,
+      "safety_level": "moderate",
+      "concepts": [
+        "\u00ac 'know how",
+        "nothing",
+        "finish",
+        "stop",
+        "ashame"
+      ],
+      "primary_adhd_state": "frustration_spiral"
+    },
+    "latency_with_ms": 7266.232250025496,
+    "latency_without_ms": 2825.051583116874
+  },
+  {
+    "prompt_id": "timeblind_01",
+    "scenario": "time_blindness",
+    "user_message": "It's 2am and the assignment is due at 9am and I'm only on the introduction. How did I let this happen again. I thought I had so much time.",
+    "expected_emotion": "anxious",
+    "response_with_sentic": "I hear you feeling frustrated and overwhelmed right now. It\u2019s okay to feel like this when things don\u2019t go as planned. Let\u2019s focus on what you can do next. Try breaking the assignment into smaller steps and starting with the introduction. You\u2019ve got this.",
+    "response_without_sentic": "I hear how frustrating and overwhelming this feels. It\u2019s really hard to stay on track when everything seems to slide away. Let\u2019s try a 3-min reset to refocus\u2014maybe a quick walk or deep breaths? Then, start with the easiest part first, like the introduction. You\u2019ve got this.",
+    "senticnet_context": {
+      "primary_emotion": "frustrated",
+      "introspection": 0.0,
+      "temper": 30.7,
+      "attitude": 65.9,
+      "sensitivity": 65.9,
+      "polarity_score": 54.0,
+      "intensity_score": 54.0,
+      "engagement_score": 66.67,
+      "wellbeing_score": 16.67,
+      "safety_level": "normal",
+      "concepts": [
+        "assignment",
+        "thought"
+      ],
+      "primary_adhd_state": "frustration_spiral"
+    },
+    "latency_with_ms": 8230.422625085339,
+    "latency_without_ms": 2561.8467919994146
+  },
+  {
+    "prompt_id": "timeblind_02",
+    "scenario": "time_blindness",
+    "user_message": "I looked at the clock and somehow 4 hours disappeared. I was supposed to leave for my appointment 30 minutes ago. This keeps happening and people think I don't care.",
+    "expected_emotion": "anxious",
+    "response_with_sentic": "I hear you feeling frustrated and worried about missing your appointment. It\u2019s hard to track time when your mind feels like it\u2019s slipping away. Try doing a 3-min reset by deep breathing or stretching to get back on track. Would you like help with a quick plan to get ready?",
+    "response_without_sentic": "I hear how frustrating and confusing that must feel \u2014 time slipping away like that is so hard to track.  \nTry using a timer for 10-minute chunks to help reset your focus, and set a quick reminder 15 minutes before your appointment.  \nYou\u2019re not disorganized \u2014 you\u2019re just processing differently. Let me know if you need help creating a simple schedule.",
+    "senticnet_context": {
+      "primary_emotion": "frustrated",
+      "introspection": -90.75,
+      "temper": 0.0,
+      "attitude": -9.2,
+      "sensitivity": 7.05,
+      "polarity_score": 49.0,
+      "intensity_score": 49.0,
+      "engagement_score": -66.67,
+      "wellbeing_score": -50.0,
+      "safety_level": "normal",
+      "concepts": [
+        "supposed",
+        "\u00ac 'care",
+        "disappear",
+        "appoint"
+      ],
+      "primary_adhd_state": "frustration_spiral"
+    },
+    "latency_with_ms": 7964.172666892409,
+    "latency_without_ms": 2873.0172500945628
+  },
+  {
+    "prompt_id": "timeblind_03",
+    "scenario": "time_blindness",
+    "user_message": "I missed the deadline. By two whole days. I didn't even realize it had passed. My professor is going to think I'm irresponsible but I genuinely lost track.",
+    "expected_emotion": "anxious",
+    "response_with_sentic": "I hear you feeling frustrated and overwhelmed. Missing the deadline is really tough, especially when you didn\u2019t realize it was past. Let\u2019s try a 3-min reset to calm the mind and regroup. Would you like to:  \n1. Do a quick breathing exercise to refocus?  \n2. Write down what\u2019s next to feel more in control?",
+    "response_without_sentic": "I hear how frustrating and disappointing that must feel. Missing a deadline by two days is really hard to handle, especially when you didn\u2019t even realize it was past.  \n\nYou\u2019re not alone in feeling this way. It\u2019s okay to feel guilty or worried. Maybe try reaching out to your professor to explain what happened. They might understand.  \n\nWould you like to talk through how to approach that, or maybe try a 3-min reset to calm down and regroup?",
+    "senticnet_context": {
+      "primary_emotion": "frustrated",
+      "introspection": -69.2,
+      "temper": 0.0,
+      "attitude": -3.45,
+      "sensitivity": -38.0,
+      "polarity_score": 36.0,
+      "intensity_score": 36.0,
+      "engagement_score": -83.33,
+      "wellbeing_score": -33.33,
+      "safety_level": "normal",
+      "concepts": [
+        "\u00ac 'response",
+        "lose",
+        "genuine",
+        "miss",
+        "professor"
+      ],
+      "primary_adhd_state": "frustration_spiral"
+    },
+    "latency_with_ms": 8757.234333083034,
+    "latency_without_ms": 3361.602374818176
+  },
+  {
+    "prompt_id": "timeblind_04",
+    "scenario": "time_blindness",
+    "user_message": "I started the project thinking I had a week. Turns out it's due in 2 days. How do I salvage this? Is there even enough time to produce something decent?",
+    "expected_emotion": "anxious",
+    "response_with_sentic": "I hear how frustrating this feels \u2014 suddenly shifting from a week to two days is really hard. It\u2019s okay to feel overwhelmed. Let\u2019s focus on what you can do right now.  \n\nFirst, break the task into 1-2 key steps. Then, set a 3-min reset timer to refocus. You\u2019ve got what it takes to make something decent \u2014 just start small.",
+    "response_without_sentic": "I hear how frustrating this feels \u2014 losing track of time and getting overwhelmed. It\u2019s hard to stay focused when things don\u2019t go as planned.  \n\nYou\u2019ve got 48 hours. That\u2019s enough time to start over, focus on one task at a time, and give yourself permission to do your best.  \n\nTry breaking it into 30-minute chunks, focusing on one part at a time, and taking short breaks in between. You\u2019ve got this.",
+    "senticnet_context": {
+      "primary_emotion": "frustrated",
+      "introspection": 0.0,
+      "temper": 83.0,
+      "attitude": 54.15,
+      "sensitivity": 0.0,
+      "polarity_score": 68.0,
+      "intensity_score": 68.0,
+      "engagement_score": 33.33,
+      "wellbeing_score": 50.0,
+      "safety_level": "normal",
+      "concepts": [
+        "decent",
+        "salvage"
+      ],
+      "primary_adhd_state": "frustration_spiral"
+    },
+    "latency_with_ms": 13628.124999813735,
+    "latency_without_ms": 3395.9650408942252
+  },
+  {
+    "prompt_id": "timeblind_05",
+    "scenario": "time_blindness",
+    "user_message": "I keep telling myself '10 more minutes' on Reddit and then an hour goes by. I know it's happening while it's happening but I still can't stop. It's like time isn't real to my brain.",
+    "expected_emotion": "frustrated",
+    "response_with_sentic": "I hear you \u2014 it\u2019s so hard to feel time pass when your brain is stuck in a loop. Your brain is trying to help, but it\u2019s getting stuck in a cycle. Let\u2019s try a 3-min reset to bring your focus back. Would you like to:  \n1. Do a 3-min breathing exercise to calm your nervous system?  \n2. Take a short walk to reset your energy and focus?",
+    "response_without_sentic": "I hear how frustrating it is when time feels stretched or broken. It\u2019s so hard to stay on track when your brain gets caught in the loop of \"10 more minutes.\"  \n\nTry setting a timer for 10 minutes and saying it out loud. When it beeps, take a 3-min reset break\u2014stretch, breathe, or do something simple.  \n\nOr, use the \"5-minute rule\": commit to just 5 more minutes, then take a break. Your brain can handle small, focused bursts.",
+    "senticnet_context": {
+      "primary_emotion": "overwhelmed",
+      "introspection": -97.8,
+      "temper": 0.0,
+      "attitude": -5.45,
+      "sensitivity": 0.0,
+      "polarity_score": 51.0,
+      "intensity_score": 51.0,
+      "engagement_score": -50.0,
+      "wellbeing_score": -50.0,
+      "safety_level": "normal",
+      "concepts": [
+        "\u00ac 'real",
+        "\u00ac 'stop",
+        "reddit"
+      ],
+      "primary_adhd_state": "emotional_dysregulation"
+    },
+    "latency_with_ms": 11212.429959094152,
+    "latency_without_ms": 3674.7377919964492
+  },
+  {
+    "prompt_id": "decomp_01",
+    "scenario": "task_decomposition",
+    "user_message": "I need to write a 3000 word essay. I've written the title. That's it. I don't know what comes next. The blank page is just staring at me.",
+    "expected_emotion": "overwhelmed",
+    "response_with_sentic": "I hear you \u2014 that blank page can feel overwhelming. You\u2019re not alone in this. Let\u2019s start small. Try writing the first paragraph of your introduction, even if it\u2019s just one sentence. It\u2019s okay to begin with something simple. Would you like to brainstorm a few topic ideas to get you started?",
+    "response_without_sentic": "I hear how overwhelming that feels\u2014staring at a blank page when you need to start writing. It\u2019s totally normal to feel stuck when you\u2019re trying to get started. Here\u2019s what you can try:  \n1. Start with a sentence that\u2019s just one idea, not the whole essay.  \n2. Use a timer for 10 minutes to write anything, even if it\u2019s just a few sentences.  \n3. Write the outline first, then fill in the details.  \n\nYou\u2019re not alone in this. Many people find it hard to start, and that\u2019s okay. Let me know if you want help brainstorming ideas or breaking it down into smaller steps.",
+    "senticnet_context": {
+      "primary_emotion": "disengaged",
+      "introspection": 0.0,
+      "temper": 0.0,
+      "attitude": -28.2,
+      "sensitivity": 0.0,
+      "polarity_score": 28.0,
+      "intensity_score": 28.0,
+      "engagement_score": -50.0,
+      "wellbeing_score": -66.67,
+      "safety_level": "normal",
+      "concepts": [
+        "stare at",
+        "write",
+        "essay",
+        "blank",
+        "page"
+      ],
+      "primary_adhd_state": "boredom_disengagement"
+    },
+    "latency_with_ms": 9253.549707820639,
+    "latency_without_ms": 4620.586083037779
+  },
+  {
+    "prompt_id": "decomp_02",
+    "scenario": "task_decomposition",
+    "user_message": "My FYP is this massive thing and every time I try to work on it, I don't know which part to touch. It all feels connected and I can't isolate a single starting point.",
+    "expected_emotion": "overwhelmed",
+    "response_with_sentic": "I hear you feeling overwhelmed and stuck with your FYP. It's normal to feel like everything is connected when projects get big. Let's try a simple reset: take 3 deep breaths, then move your body for 2 minutes. This helps calm the nervous system so you can start again. Would you like to try that?",
+    "response_without_sentic": "I hear how overwhelming and tangled this feels. It\u2019s completely normal for big projects to feel like a maze. Try breaking it down into one small action\u2014like outlining just one section or drafting the first sentence. You don\u2019t need to start at the beginning. What\u2019s one tiny step you could take to get moving?",
+    "senticnet_context": {
+      "primary_emotion": "overwhelmed",
+      "introspection": 97.3,
+      "temper": 79.7,
+      "attitude": 81.0,
+      "sensitivity": 87.3,
+      "polarity_score": 86.0,
+      "intensity_score": 86.0,
+      "engagement_score": 0.0,
+      "wellbeing_score": 83.33,
+      "safety_level": "normal",
+      "concepts": [
+        "work on",
+        "connect",
+        "touch",
+        "\u00ac 'isolate",
+        "massive"
+      ],
+      "primary_adhd_state": "emotional_dysregulation"
+    },
+    "latency_with_ms": 11268.233583075926,
+    "latency_without_ms": 2523.8973749801517
+  },
+  {
+    "prompt_id": "decomp_03",
+    "scenario": "task_decomposition",
+    "user_message": "I need to 'study for finals' but that means 8 subjects and hundreds of pages of notes. Can you help me figure out where to even begin? I have 5 days.",
+    "expected_emotion": "anxious",
+    "response_with_sentic": "I hear you feeling overwhelmed trying to tackle so much work. It\u2019s totally normal with so many subjects and pages. Let\u2019s start small \u2014 maybe focus on one subject at a time. Here\u2019s what you could try:  \n1. Pick the subject you\u2019re most comfortable with first.  \n2. Set a 15-minute timer to dive into that area.  \n3. Take a 5-minute break after each 15 minutes.  \nWould you like to try this approach?",
+    "response_without_sentic": "I hear how overwhelming that feels \u2014 8 subjects and 5 days is a lot to unpack. Let\u2019s start small. Would you like to try one of these?  \n1. Pick 1-2 subjects to focus on first, then take a 10-minute break.  \n2. Use a timer to study in 25-minute bursts with 5-minute breaks.  \n3. Write down just 1 key idea from each subject to get started.  \nWhat feels doable right now?",
+    "senticnet_context": {
+      "primary_emotion": "overwhelmed",
+      "introspection": -91.5,
+      "temper": 0.0,
+      "attitude": 0.0,
+      "sensitivity": -81.2,
+      "polarity_score": 86.0,
+      "intensity_score": 86.0,
+      "engagement_score": -50.0,
+      "wellbeing_score": 0.0,
+      "safety_level": "normal",
+      "concepts": [
+        "figure out",
+        "need help",
+        "study",
+        "final",
+        "page"
+      ],
+      "primary_adhd_state": "emotional_dysregulation"
+    },
+    "latency_with_ms": 11290.354209020734,
+    "latency_without_ms": 3661.7067500483245
+  },
+  {
+    "prompt_id": "decomp_04",
+    "scenario": "task_decomposition",
+    "user_message": "I made a to-do list with 47 items on it and now I'm more overwhelmed than before. I think the list itself is part of the problem. How do I simplify this?",
+    "expected_emotion": "overwhelmed",
+    "response_with_sentic": "I hear you feeling overwhelmed and that the to-do list is adding to the stress. It\u2019s common for ADHD to feel like lists make things harder. Here\u2019s what you could try:  \n\n1. **Pick one task to start with** \u2013 even the smallest thing can help you feel less stuck.  \n2. **Break the list into smaller groups** \u2013 maybe 5-7 items at a time, and tackle them one group at a time.  \n\nYou\u2019re not alone in this, and it\u2019s okay to feel this way. Let me know if you need help starting small.",
+    "response_without_sentic": "I hear how overwhelming that list feels \u2014 47 items is a lot to start with. It\u2019s normal to feel stuck when you\u2019re trying to tackle so much at once. Let\u2019s try a simple fix: pick 3-5 key tasks that feel most urgent or important, and focus on those first. Then, you can revisit the rest later. Would you like help prioritizing the most important items?",
+    "senticnet_context": {
+      "primary_emotion": "overwhelmed",
+      "introspection": 97.0,
+      "temper": 0.0,
+      "attitude": 0.0,
+      "sensitivity": 74.9,
+      "polarity_score": 85.0,
+      "intensity_score": 85.0,
+      "engagement_score": 16.67,
+      "wellbeing_score": 16.67,
+      "safety_level": "normal",
+      "concepts": [
+        "problem",
+        "whelmed++",
+        "simple"
+      ],
+      "primary_adhd_state": "emotional_dysregulation"
+    },
+    "latency_with_ms": 19246.458749985322,
+    "latency_without_ms": 3146.410666173324
+  },
+  {
+    "prompt_id": "decomp_05",
+    "scenario": "task_decomposition",
+    "user_message": "I have to 'set up the project infrastructure'. I know what the end result should look like but the gap between where I am and where I need to be feels impossibly wide.",
+    "expected_emotion": "overwhelmed",
+    "response_with_sentic": "I hear you feeling overwhelmed and disconnected from the task. It\u2019s hard to bridge that gap when it feels so wide. Try starting with one small step to build momentum. Would you like to:  \n1. Break the setup into smaller, manageable parts?  \n2. Focus on one part of the infrastructure first?",
+    "response_without_sentic": "I hear how overwhelming that feels \u2014 the gap between where you are and where you need to be can feel huge. It\u2019s normal to feel stuck when the end goal seems far off.  \n\nTry breaking it into 3 small steps today: 1) list the 1 thing you can do right now, 2) write it down, 3) take a 3-min break. Your brain will refresh and you\u2019ll be surprised how much you can get done.",
+    "senticnet_context": {
+      "primary_emotion": "overwhelmed",
+      "introspection": -53.75,
+      "temper": -20.3,
+      "attitude": -31.35,
+      "sensitivity": 0.0,
+      "polarity_score": 35.0,
+      "intensity_score": 35.0,
+      "engagement_score": -16.67,
+      "wellbeing_score": -33.33,
+      "safety_level": "normal",
+      "concepts": [
+        "set up",
+        "end result",
+        "infrastructure",
+        "wide",
+        "\u00ac 'possible"
+      ],
+      "primary_adhd_state": "emotional_dysregulation"
+    },
+    "latency_with_ms": 10446.213207906112,
+    "latency_without_ms": 3389.440042199567
+  },
+  {
+    "prompt_id": "positive_01",
+    "scenario": "positive",
+    "user_message": "I actually finished two whole tasks before lunch! I don't want to jinx it but what should I do next to keep this momentum going?",
+    "expected_emotion": "joyful",
+    "response_with_sentic": "I hear you \u2014 finishing two tasks is a big win! That momentum is real and worth celebrating. To keep it going, try these two options:  \n\n1. **Do one more task** that feels easy but still keeps your brain engaged.  \n2. **Take a 3-min reset** with movement or deep breathing to refill your energy.  \n\nBoth help keep the momentum alive without burnout.",
+    "response_without_sentic": "I hear you \u2014 finishing two tasks is a big win and deserves celebration! To keep the momentum, try setting a 3-min reset with a quick stretch or deep breath, then pick one more task that feels achievable. And if you\u2019re feeling stuck, just list three options in front of you \u2014 your brain will thank you later. \ud83c\udf1f",
+    "senticnet_context": {
+      "primary_emotion": "joyful",
+      "introspection": 89.35,
+      "temper": 51.5,
+      "attitude": 43.8,
+      "sensitivity": 77.3,
+      "polarity_score": 65.0,
+      "intensity_score": 65.0,
+      "engagement_score": 50.0,
+      "wellbeing_score": 33.33,
+      "safety_level": "normal",
+      "concepts": [
+        "momentum",
+        "\u00ac 'jinx",
+        "finish",
+        "lunch",
+        "task"
+      ],
+      "primary_adhd_state": "productive_flow"
+    },
+    "latency_with_ms": 10550.452791154385,
+    "latency_without_ms": 2728.2826248556376
+  },
+  {
+    "prompt_id": "positive_02",
+    "scenario": "positive",
+    "user_message": "I just had the most productive 3 hours of my entire semester. Everything clicked, the code worked, I actually understood what I was doing. Is this what flow state feels like??",
+    "expected_emotion": "joyful",
+    "response_with_sentic": "I hear you \u2014 that\u2019s exactly what flow feels like! You\u2019re fully engaged, losing track of time, and everything just clicks. That 3-hour burst is a huge win for you. Would you like to take 5 minutes to reflect on what worked so well, or maybe plan how to keep that momentum going?",
+    "response_without_sentic": "I hear you \u2014 that\u2019s such a powerful feeling! Flow state is exactly what you\u2019re describing: when you\u2019re so focused, so lost in the moment, that time just flies. You\u2019re in that zone where everything feels possible. Keep nurturing that \u2014 it\u2019s a gift. Would you like to try a 3-min reset to keep the momentum going, or maybe take a short walk to recharge?",
+    "senticnet_context": {
+      "primary_emotion": "joyful",
+      "introspection": 56.12,
+      "temper": 65.67,
+      "attitude": 43.95,
+      "sensitivity": 10.1,
+      "polarity_score": 43.0,
+      "intensity_score": 43.0,
+      "engagement_score": 16.67,
+      "wellbeing_score": 33.33,
+      "safety_level": "normal",
+      "concepts": [
+        "understand",
+        "clicked",
+        "code",
+        "flow",
+        "productive"
+      ],
+      "primary_adhd_state": "productive_flow"
+    },
+    "latency_with_ms": 10609.038915950805,
+    "latency_without_ms": 3102.0472501404583
+  },
+  {
+    "prompt_id": "positive_03",
+    "scenario": "positive",
+    "user_message": "I submitted my assignment a full day before the deadline. I'm honestly shocked at myself. I used that timer technique you suggested and it actually worked.",
+    "expected_emotion": "joyful",
+    "response_with_sentic": "I hear you feeling proud and surprised at your own progress. That timer technique really helped you stay focused! Here\u2019s what you might try next:  \n1. Use the same timer for future tasks to build momentum.  \n2. Reward yourself with a short break after completing a task.  \nYou\u2019re doing great\u2014this momentum can help you stay on track!",
+    "response_without_sentic": "I hear you \u2014 it\u2019s really hard to stay focused, but you did something amazing. The timer technique helped you stay on track, and that\u2019s a huge win. Would you like to try a 3-min reset to recharge, or maybe reflect on what worked best for you?",
+    "senticnet_context": {
+      "primary_emotion": "joyful",
+      "introspection": 88.2,
+      "temper": 54.35,
+      "attitude": 54.2,
+      "sensitivity": 94.3,
+      "polarity_score": 72.0,
+      "intensity_score": 72.0,
+      "engagement_score": 0.0,
+      "wellbeing_score": 33.33,
+      "safety_level": "normal",
+      "concepts": [
+        "full",
+        "work",
+        "suggest",
+        "submit",
+        "shock"
+      ],
+      "primary_adhd_state": "productive_flow"
+    },
+    "latency_with_ms": 16306.461124913767,
+    "latency_without_ms": 2358.3951669279486
+  },
+  {
+    "prompt_id": "positive_04",
+    "scenario": "positive",
+    "user_message": "Having a surprisingly good focus day. I'm a bit worried because these never last, but for now I want to make the most of it. What's the best way to ride this wave?",
+    "expected_emotion": "focused",
+    "response_with_sentic": "I hear you \u2014 it\u2019s great you\u2019re feeling focused and excited to make the most of it. Riding this wave is all about staying present and keeping the momentum going. Try these two options:  \n\n1. **Tackle one small, clear task** that aligns with your goals \u2014 it helps keep the energy flowing.  \n2. **Take a 3-min reset** to refresh your mind, like a short walk or deep breaths \u2014 it helps you stay sharp and focused.  \n\nYou\u2019re doing well, and it\u2019s okay that it doesn\u2019t last forever. The key is to lean into the moment and stay flexible.",
+    "response_without_sentic": "I hear you \u2014 it\u2019s really hard to hold onto focus, but you\u2019re doing great right now. The best way to ride this wave is to take 3 short breaks every 45 minutes to recharge, and then dive back in with fresh energy. Would you like to try a 3-min reset or a 10-min focus burst?",
+    "senticnet_context": {
+      "primary_emotion": "joyful",
+      "introspection": 92.9,
+      "temper": 78.0,
+      "attitude": 73.15,
+      "sensitivity": 65.9,
+      "polarity_score": 77.0,
+      "intensity_score": 77.0,
+      "engagement_score": 33.33,
+      "wellbeing_score": 83.33,
+      "safety_level": "normal",
+      "concepts": [
+        "make full use",
+        "ride wave",
+        "best",
+        "worry",
+        "good"
+      ],
+      "primary_adhd_state": "productive_flow"
+    },
+    "latency_with_ms": 11963.675166945904,
+    "latency_without_ms": 2757.1087919641286
+  },
+  {
+    "prompt_id": "positive_05",
+    "scenario": "positive",
+    "user_message": "I finally cleaned my desk and organized my notes. It took all morning but I feel so much better. Now I actually want to start working. That never happens!",
+    "expected_emotion": "joyful",
+    "response_with_sentic": "I hear you \u2014 cleaning and organizing can really shift your energy. That\u2019s such a great start! Now that your space feels better, maybe try breaking your task into small steps. What\u2019s the first thing you\u2019d like to work on? And maybe take a 3-min reset to keep the momentum going.",
+    "response_without_sentic": "I hear you - it\u2019s so tough to get started after all that cleaning. You did a huge job and it\u2019s really helping you feel more focused. Maybe try starting with just 5 minutes of work? That small step can build the momentum you need. Would you like to try a 3-min reset to refocus, or maybe set a tiny goal like writing one sentence?",
+    "senticnet_context": {
+      "primary_emotion": "joyful",
+      "introspection": 88.2,
+      "temper": 79.4,
+      "attitude": 77.5,
+      "sensitivity": 94.5,
+      "polarity_score": 84.0,
+      "intensity_score": 84.0,
+      "engagement_score": 83.33,
+      "wellbeing_score": 100.0,
+      "safety_level": "normal",
+      "concepts": [
+        "better",
+        "work",
+        "organize",
+        "final",
+        "clean"
+      ],
+      "primary_adhd_state": "productive_flow"
+    },
+    "latency_with_ms": 11985.071457922459,
+    "latency_without_ms": 2946.6862499248236
+  }
+]

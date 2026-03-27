@@ -23,6 +23,7 @@ from models.senticnet_result import (
     SenticNetResult,
 )
 from services.senticnet_client import SenticNetClient
+from services.setfit_service import setfit_classifier, SETFIT_TO_ADHD_STATE
 
 logger = logging.getLogger("adhd-brain")
 
@@ -67,13 +68,22 @@ class SenticNetPipeline:
         result.safety = safety
 
         if safety.is_critical:
-            logger.warning(f"🔴 CRITICAL safety flag for: {text[:50]}...")
+            logger.warning(f"CRITICAL safety flag for: {text[:50]}...")
             # Emergency exit — skip remaining tiers
             return result
 
         # TIER 2: Emotion
         emotion = await self._tier2_emotion(text)
         result.emotion = emotion
+
+        # Fix 2.2: Use secondary emotion when it's stronger than primary
+        if emotion.emotion_details:
+            parsed = SenticNetClient.parse_emotion_string(emotion.emotion_details)
+            primary_score = parsed.get("primary_score", 0.0)
+            secondary_emotion = parsed.get("secondary", "")
+            secondary_score = parsed.get("secondary_score", 0.0)
+            if secondary_score > primary_score and secondary_emotion:
+                result.emotion.primary_emotion = secondary_emotion
 
         # TIER 3: ADHD Signals
         adhd = await self._tier3_adhd(text, intensity=safety.intensity_score)
@@ -92,30 +102,39 @@ class SenticNetPipeline:
             result.emotion.sensitivity = self._parse_float(ensemble_dict.get("sensitivity"))
             result.emotion.polarity_score = self._parse_float(ensemble_dict.get("intensity"))
 
-        # Map Hourglass dimensions to ADHD state
-        hourglass = {
-            "introspection": result.emotion.introspection,
-            "temper": result.emotion.temper,
-            "attitude": result.emotion.attitude,
-            "sensitivity": result.emotion.sensitivity,
-        }
-        adhd_mapping = self.map_hourglass_to_adhd_state(hourglass)
-        result.primary_adhd_state = adhd_mapping["primary_adhd_state"]
+            # Fix 2.7: Extract depression/toxicity/engagement/wellbeing from ensemble
+            # These supplement Tier 1/3 signals and are used for veto gates below
+            ensemble_depression = self._parse_percentage(ensemble_dict.get("depression"))
+            ensemble_toxicity = self._parse_percentage(ensemble_dict.get("toxicity"))
+            ensemble_engagement = self._parse_percentage(ensemble_dict.get("engagement"))
+            ensemble_wellbeing = self._parse_percentage(ensemble_dict.get("wellbeing"))
 
-        # Fix 3a: Polarity-based emotion correction
-        # If polarity is negative but primary_emotion maps to a positive category,
-        # flag it as uncertain — word-level emotion may contradict sentence-level polarity
-        _POSITIVE_EMOTIONS = {
-            "joy", "happiness", "ecstasy", "delight", "cheerfulness", "excitement",
-            "bliss", "elation", "enthusiasm", "relief", "satisfaction", "pride",
-            "admiration", "gratitude", "love", "serenity", "amusement", "contentment",
-            "hope", "optimism", "pleasantness", "calmness",
-        }
-        if result.emotion.polarity == "negative":
-            if result.emotion.primary_emotion.lower() in _POSITIVE_EMOTIONS:
-                result.emotion.primary_emotion = "uncertain_" + result.emotion.primary_emotion
+            # Use ensemble values to supplement safety/adhd scores if available
+            if ensemble_depression and result.safety.depression_score == 0.0:
+                result.safety.depression_score = ensemble_depression
+            if ensemble_toxicity and result.safety.toxicity_score == 0.0:
+                result.safety.toxicity_score = ensemble_toxicity
+            if ensemble_engagement and result.adhd_signals.engagement_score == 0.0:
+                result.adhd_signals.engagement_score = ensemble_engagement
+            if ensemble_wellbeing and result.adhd_signals.wellbeing_score == 0.0:
+                result.adhd_signals.wellbeing_score = ensemble_wellbeing
+
+        # SetFit override: replace SenticNet emotion label with 86%-accurate classifier
+        setfit_label, setfit_confidence = setfit_classifier.predict(text)
+        result.emotion.primary_emotion = setfit_label
+        result.primary_adhd_state = SETFIT_TO_ADHD_STATE[setfit_label]
 
         return result
+
+    @staticmethod
+    def _parse_percentage(value: str | None) -> float:
+        """Parse a percentage string like '33.33%' → 33.33."""
+        if value is None:
+            return 0.0
+        try:
+            return float(str(value).strip().rstrip("%"))
+        except (ValueError, TypeError):
+            return 0.0
 
     @staticmethod
     def _parse_float(value: str | float | None) -> float:
@@ -167,6 +186,11 @@ class SenticNetPipeline:
             intensity_score=intensity,
             **ADHDRelevantSignals.derive_flags(engagement, 0.0, intensity),
         )
+
+        # SetFit override: replace SenticNet emotion label with 86%-accurate classifier
+        setfit_label, setfit_confidence = setfit_classifier.predict(text)
+        result.emotion.primary_emotion = setfit_label
+        result.primary_adhd_state = SETFIT_TO_ADHD_STATE[setfit_label]
 
         return result
 
@@ -266,10 +290,11 @@ class SenticNetPipeline:
         engagement = float(engagement_raw) if isinstance(engagement_raw, (int, float)) else 0.0
         wellbeing = float(wellbeing_raw) if isinstance(wellbeing_raw, (int, float)) else 0.0
 
-        # Parse concepts
-        concepts = []
+        # Parse concepts (Fix 3.5: strip Python repr artifacts)
+        concepts: list[str] = []
         if isinstance(concepts_raw, str) and concepts_raw:
-            concepts = [c.strip() for c in concepts_raw.split(",") if c.strip()]
+            cleaned = concepts_raw.strip("[]'\"")
+            concepts = [c.strip().strip("'\"") for c in cleaned.split(",") if c.strip()]
 
         # Parse aspects
         aspects = ""

@@ -1,0 +1,2078 @@
+{
+  "timestamp": "20260324T184951Z",
+  "total_profiles": 20,
+  "total_queries": 100,
+  "aggregate_metrics": {
+    "hit_at_1": 0.0,
+    "hit_at_3": 0.0,
+    "hit_at_5": 0.0,
+    "ndcg_at_3": 0.0,
+    "mean_latency_ms": 268.29539959318936,
+    "median_latency_ms": 225.67339602392167,
+    "p95_latency_ms": 432.9820330254731
+  },
+  "misses": [
+    {
+      "profile": "user_001",
+      "query": "How should I approach this long paper I need to read?",
+      "expected_id": "mem_001_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_001",
+      "query": "When is the best time for me to work on hard problems?",
+      "expected_id": "mem_001_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_001",
+      "query": "What should I know about my medication schedule?",
+      "expected_id": "mem_001_03",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_001",
+      "query": "What helps me concentrate when reading?",
+      "expected_id": "mem_001_04",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_001",
+      "query": "Where should I go to study effectively?",
+      "expected_id": "mem_001_08",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_002",
+      "query": "How should I handle my overflowing inbox?",
+      "expected_id": "mem_002_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_002",
+      "query": "I keep getting distracted by notifications. What did I try before?",
+      "expected_id": "mem_002_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_002",
+      "query": "What's my weekly planning routine?",
+      "expected_id": "mem_002_04",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_002",
+      "query": "Which day of the week is hardest for me?",
+      "expected_id": "mem_002_05",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_002",
+      "query": "What type of note-taking works best for me?",
+      "expected_id": "mem_002_10",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_003",
+      "query": "How long should my work sessions be?",
+      "expected_id": "mem_003_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_003",
+      "query": "I'm feeling emotional about client feedback. What helps me?",
+      "expected_id": "mem_003_05",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_003",
+      "query": "When am I most creative?",
+      "expected_id": "mem_003_07",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_003",
+      "query": "How should I estimate project deadlines?",
+      "expected_id": "mem_003_08",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_003",
+      "query": "What's my biggest source of distraction?",
+      "expected_id": "mem_003_10",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_004",
+      "query": "What study technique works for me?",
+      "expected_id": "mem_004_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_004",
+      "query": "I can't sleep before my exam. Has this happened before?",
+      "expected_id": "mem_004_03",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_004",
+      "query": "Where should I go to study?",
+      "expected_id": "mem_004_05",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_004",
+      "query": "Why do I always wait until the last minute?",
+      "expected_id": "mem_004_07",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_004",
+      "query": "I'm nervous about presenting. What do I usually experience?",
+      "expected_id": "mem_004_10",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_005",
+      "query": "What tool do I use for task management?",
+      "expected_id": "mem_005_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_005",
+      "query": "What happens to my focus during stressful weeks?",
+      "expected_id": "mem_005_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_005",
+      "query": "How does my sleep affect my medication?",
+      "expected_id": "mem_005_03",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_005",
+      "query": "What kind of work tasks am I best at?",
+      "expected_id": "mem_005_04",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_005",
+      "query": "What do I do before starting deep work?",
+      "expected_id": "mem_005_09",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_006",
+      "query": "Where do I write best?",
+      "expected_id": "mem_006_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_006",
+      "query": "I'm stuck on my literature review. What's my usual blocker?",
+      "expected_id": "mem_006_03",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_006",
+      "query": "When does my medication stop working?",
+      "expected_id": "mem_006_04",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_006",
+      "query": "How do I manage my references?",
+      "expected_id": "mem_006_06",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_006",
+      "query": "What parts of research do I find hardest?",
+      "expected_id": "mem_006_10",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_007",
+      "query": "What's my biggest work challenge?",
+      "expected_id": "mem_007_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_007",
+      "query": "How do I get through grading efficiently?",
+      "expected_id": "mem_007_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_007",
+      "query": "When do I lose energy during the day?",
+      "expected_id": "mem_007_04",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_007",
+      "query": "When do I prepare my lesson plans?",
+      "expected_id": "mem_007_05",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_007",
+      "query": "What happens when I forget to eat?",
+      "expected_id": "mem_007_07",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_008",
+      "query": "What do I do to manage my energy?",
+      "expected_id": "mem_008_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_008",
+      "query": "When am I most creative?",
+      "expected_id": "mem_008_03",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_008",
+      "query": "I keep starting new projects. Is this a pattern?",
+      "expected_id": "mem_008_08",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_008",
+      "query": "What design tool do I use for sketching?",
+      "expected_id": "mem_008_07",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_008",
+      "query": "Do I work better alone or with others?",
+      "expected_id": "mem_008_06",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_009",
+      "query": "When are my best windows for focused work?",
+      "expected_id": "mem_009_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_009",
+      "query": "How do I keep track of family appointments?",
+      "expected_id": "mem_009_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_009",
+      "query": "What helps reduce my decision fatigue?",
+      "expected_id": "mem_009_04",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_009",
+      "query": "What do I always forget to do?",
+      "expected_id": "mem_009_07",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_009",
+      "query": "How do I learn best?",
+      "expected_id": "mem_009_10",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_010",
+      "query": "Why do I lose interest in projects midway through?",
+      "expected_id": "mem_010_04",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_010",
+      "query": "When should I schedule important meetings?",
+      "expected_id": "mem_010_03",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_010",
+      "query": "How do I capture ideas before I forget them?",
+      "expected_id": "mem_010_08",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_010",
+      "query": "When should I avoid making big decisions?",
+      "expected_id": "mem_010_07",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_010",
+      "query": "What's my medication schedule?",
+      "expected_id": "mem_010_09",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_011",
+      "query": "I keep making mistakes in my reports. What helps?",
+      "expected_id": "mem_011_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_011",
+      "query": "What kind of work do I find most engaging?",
+      "expected_id": "mem_011_05",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_011",
+      "query": "How do I handle random ideas during focused work?",
+      "expected_id": "mem_011_06",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_011",
+      "query": "Why are Mondays always so hard?",
+      "expected_id": "mem_011_09",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_011",
+      "query": "What improves my afternoon work?",
+      "expected_id": "mem_011_10",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_012",
+      "query": "How do I organize my studying across subjects?",
+      "expected_id": "mem_012_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_012",
+      "query": "What type of learning environment suits me best?",
+      "expected_id": "mem_012_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_012",
+      "query": "What situations make me freeze up?",
+      "expected_id": "mem_012_05",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_012",
+      "query": "How does lack of sleep affect my performance?",
+      "expected_id": "mem_012_08",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_012",
+      "query": "How do I keep track of tasks during shifts?",
+      "expected_id": "mem_012_09",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_013",
+      "query": "What planning system works best for me?",
+      "expected_id": "mem_013_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_013",
+      "query": "How do I avoid errors in my work?",
+      "expected_id": "mem_013_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_013",
+      "query": "How do I handle tax season stress?",
+      "expected_id": "mem_013_03",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_013",
+      "query": "What's my morning routine?",
+      "expected_id": "mem_013_06",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_013",
+      "query": "How do I deal with office noise?",
+      "expected_id": "mem_013_07",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_014",
+      "query": "Why do I never finish my tracks?",
+      "expected_id": "mem_014_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_014",
+      "query": "How do I handle my invoicing problems?",
+      "expected_id": "mem_014_03",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_014",
+      "query": "What kind of deadlines motivate me?",
+      "expected_id": "mem_014_04",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_014",
+      "query": "When am I most productive for creative work?",
+      "expected_id": "mem_014_05",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_014",
+      "query": "How do I deal with criticism of my work?",
+      "expected_id": "mem_014_08",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_015",
+      "query": "How do I get through long legal readings?",
+      "expected_id": "mem_015_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_015",
+      "query": "What's my strategy for case briefing?",
+      "expected_id": "mem_015_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_015",
+      "query": "Where should I study?",
+      "expected_id": "mem_015_04",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_015",
+      "query": "When should I do my heavy reading?",
+      "expected_id": "mem_015_06",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_015",
+      "query": "How do I organize research for essays?",
+      "expected_id": "mem_015_08",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_016",
+      "query": "Why is civilian life harder than military for me?",
+      "expected_id": "mem_016_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_016",
+      "query": "What kind of task structure do I need?",
+      "expected_id": "mem_016_03",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_016",
+      "query": "What am I good at under pressure?",
+      "expected_id": "mem_016_06",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_016",
+      "query": "How do I stay organized?",
+      "expected_id": "mem_016_07",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_016",
+      "query": "What career am I working toward?",
+      "expected_id": "mem_016_10",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_017",
+      "query": "When is the best time for me to study?",
+      "expected_id": "mem_017_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_017",
+      "query": "How often do I need breaks while studying?",
+      "expected_id": "mem_017_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_017",
+      "query": "Where do I study best?",
+      "expected_id": "mem_017_06",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_017",
+      "query": "What am I most worried about academically?",
+      "expected_id": "mem_017_09",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_017",
+      "query": "How do I handle writing assignments?",
+      "expected_id": "mem_017_10",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_018",
+      "query": "How do I write my best work?",
+      "expected_id": "mem_018_01",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_018",
+      "query": "What happens after I finish a big deadline?",
+      "expected_id": "mem_018_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_018",
+      "query": "What's my first draft process?",
+      "expected_id": "mem_018_03",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_018",
+      "query": "Where do I work best?",
+      "expected_id": "mem_018_09",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_018",
+      "query": "Why do I go through unproductive phases?",
+      "expected_id": "mem_018_10",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_019",
+      "query": "Why do I keep quitting online courses?",
+      "expected_id": "mem_019_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_019",
+      "query": "What's my best learning style?",
+      "expected_id": "mem_019_04",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_019",
+      "query": "Why is the job search so hard for me?",
+      "expected_id": "mem_019_05",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_019",
+      "query": "When is my best time to study?",
+      "expected_id": "mem_019_07",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_019",
+      "query": "What helps me feel better about myself?",
+      "expected_id": "mem_019_10",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_020",
+      "query": "How do I take care of myself during long coding sessions?",
+      "expected_id": "mem_020_02",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_020",
+      "query": "What kind of programming do I enjoy most?",
+      "expected_id": "mem_020_03",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_020",
+      "query": "How does my sleep affect my focus?",
+      "expected_id": "mem_020_05",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_020",
+      "query": "Why don't I finish personal projects?",
+      "expected_id": "mem_020_07",
+      "expected_content": "",
+      "retrieved": []
+    },
+    {
+      "profile": "user_020",
+      "query": "What helps me work better on tasks?",
+      "expected_id": "mem_020_10",
+      "expected_content": "",
+      "retrieved": []
+    }
+  ],
+  "per_profile_results": [
+    {
+      "profile_id": "user_001",
+      "description": "Graduate student in CS, combined ADHD, struggles with long reading tasks",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How should I approach this long paper I need to read?",
+          "expected_memory_id": "mem_001_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 262.9975830204785
+        },
+        {
+          "query": "When is the best time for me to work on hard problems?",
+          "expected_memory_id": "mem_001_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 227.85770893096924
+        },
+        {
+          "query": "What should I know about my medication schedule?",
+          "expected_memory_id": "mem_001_03",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 170.12599995359778
+        },
+        {
+          "query": "What helps me concentrate when reading?",
+          "expected_memory_id": "mem_001_04",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 181.59095803275704
+        },
+        {
+          "query": "Where should I go to study effectively?",
+          "expected_memory_id": "mem_001_08",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 324.9544589780271
+        }
+      ]
+    },
+    {
+      "profile_id": "user_002",
+      "description": "Marketing professional, inattentive ADHD, struggles with email management",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How should I handle my overflowing inbox?",
+          "expected_memory_id": "mem_002_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 209.29245790466666
+        },
+        {
+          "query": "I keep getting distracted by notifications. What did I try before?",
+          "expected_memory_id": "mem_002_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 356.96341609582305
+        },
+        {
+          "query": "What's my weekly planning routine?",
+          "expected_memory_id": "mem_002_04",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 191.28887495025992
+        },
+        {
+          "query": "Which day of the week is hardest for me?",
+          "expected_memory_id": "mem_002_05",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 401.56516688875854
+        },
+        {
+          "query": "What type of note-taking works best for me?",
+          "expected_memory_id": "mem_002_10",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 323.7690411042422
+        }
+      ]
+    },
+    {
+      "profile_id": "user_003",
+      "description": "Freelance designer, hyperactive-impulsive ADHD, high emotional reactivity",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How long should my work sessions be?",
+          "expected_memory_id": "mem_003_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 340.18945787101984
+        },
+        {
+          "query": "I'm feeling emotional about client feedback. What helps me?",
+          "expected_memory_id": "mem_003_05",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 212.35837507992983
+        },
+        {
+          "query": "When am I most creative?",
+          "expected_memory_id": "mem_003_07",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 173.7446249462664
+        },
+        {
+          "query": "How should I estimate project deadlines?",
+          "expected_memory_id": "mem_003_08",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 341.60345792770386
+        },
+        {
+          "query": "What's my biggest source of distraction?",
+          "expected_memory_id": "mem_003_10",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 312.46270914562047
+        }
+      ]
+    },
+    {
+      "profile_id": "user_004",
+      "description": "First-year university student, suspected undiagnosed ADHD, anxious about academics",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "What study technique works for me?",
+          "expected_memory_id": "mem_004_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 225.79624992795289
+        },
+        {
+          "query": "I can't sleep before my exam. Has this happened before?",
+          "expected_memory_id": "mem_004_03",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 311.83316581882536
+        },
+        {
+          "query": "Where should I go to study?",
+          "expected_memory_id": "mem_004_05",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 422.3795828875154
+        },
+        {
+          "query": "Why do I always wait until the last minute?",
+          "expected_memory_id": "mem_004_07",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 310.1389999501407
+        },
+        {
+          "query": "I'm nervous about presenting. What do I usually experience?",
+          "expected_memory_id": "mem_004_10",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 178.24424989521503
+        }
+      ]
+    },
+    {
+      "profile_id": "user_005",
+      "description": "Software engineer, combined ADHD, medicated, manages well most days",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "What tool do I use for task management?",
+          "expected_memory_id": "mem_005_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 215.02300002612174
+        },
+        {
+          "query": "What happens to my focus during stressful weeks?",
+          "expected_memory_id": "mem_005_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 178.61999990418553
+        },
+        {
+          "query": "How does my sleep affect my medication?",
+          "expected_memory_id": "mem_005_03",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 387.5052500516176
+        },
+        {
+          "query": "What kind of work tasks am I best at?",
+          "expected_memory_id": "mem_005_04",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 309.4812920317054
+        },
+        {
+          "query": "What do I do before starting deep work?",
+          "expected_memory_id": "mem_005_09",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 648.1660408899188
+        }
+      ]
+    },
+    {
+      "profile_id": "user_006",
+      "description": "PhD researcher in psychology, inattentive ADHD, diagnosed in grad school",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "Where do I write best?",
+          "expected_memory_id": "mem_006_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 225.22595804184675
+        },
+        {
+          "query": "I'm stuck on my literature review. What's my usual blocker?",
+          "expected_memory_id": "mem_006_03",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 211.47933299653232
+        },
+        {
+          "query": "When does my medication stop working?",
+          "expected_memory_id": "mem_006_04",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 195.08033408783376
+        },
+        {
+          "query": "How do I manage my references?",
+          "expected_memory_id": "mem_006_06",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 184.61570795625448
+        },
+        {
+          "query": "What parts of research do I find hardest?",
+          "expected_memory_id": "mem_006_10",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 167.58520901203156
+        }
+      ]
+    },
+    {
+      "profile_id": "user_007",
+      "description": "High school teacher, combined ADHD, recently started medication",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "What's my biggest work challenge?",
+          "expected_memory_id": "mem_007_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 245.9633748512715
+        },
+        {
+          "query": "How do I get through grading efficiently?",
+          "expected_memory_id": "mem_007_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 707.4852909427136
+        },
+        {
+          "query": "When do I lose energy during the day?",
+          "expected_memory_id": "mem_007_04",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 190.6386250630021
+        },
+        {
+          "query": "When do I prepare my lesson plans?",
+          "expected_memory_id": "mem_007_05",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 297.1348750870675
+        },
+        {
+          "query": "What happens when I forget to eat?",
+          "expected_memory_id": "mem_007_07",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 178.39941708371043
+        }
+      ]
+    },
+    {
+      "profile_id": "user_008",
+      "description": "Graphic design student, hyperactive ADHD, unmedicated, uses exercise as primary coping",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "What do I do to manage my energy?",
+          "expected_memory_id": "mem_008_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 337.196416920051
+        },
+        {
+          "query": "When am I most creative?",
+          "expected_memory_id": "mem_008_03",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 298.1998750474304
+        },
+        {
+          "query": "I keep starting new projects. Is this a pattern?",
+          "expected_memory_id": "mem_008_08",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 184.29662520065904
+        },
+        {
+          "query": "What design tool do I use for sketching?",
+          "expected_memory_id": "mem_008_07",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 176.67420906946063
+        },
+        {
+          "query": "Do I work better alone or with others?",
+          "expected_memory_id": "mem_008_06",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 179.02691685594618
+        }
+      ]
+    },
+    {
+      "profile_id": "user_009",
+      "description": "Working mother, inattentive ADHD, juggles remote work and childcare",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "When are my best windows for focused work?",
+          "expected_memory_id": "mem_009_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 700.3308751154691
+        },
+        {
+          "query": "How do I keep track of family appointments?",
+          "expected_memory_id": "mem_009_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 197.6570829283446
+        },
+        {
+          "query": "What helps reduce my decision fatigue?",
+          "expected_memory_id": "mem_009_04",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 323.8603339996189
+        },
+        {
+          "query": "What do I always forget to do?",
+          "expected_memory_id": "mem_009_07",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 183.26541711576283
+        },
+        {
+          "query": "How do I learn best?",
+          "expected_memory_id": "mem_009_10",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 336.55579201877117
+        }
+      ]
+    },
+    {
+      "profile_id": "user_010",
+      "description": "Entrepreneur, combined ADHD, thrives on novelty but struggles with operations",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "Why do I lose interest in projects midway through?",
+          "expected_memory_id": "mem_010_04",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 217.4589589703828
+        },
+        {
+          "query": "When should I schedule important meetings?",
+          "expected_memory_id": "mem_010_03",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 170.75258400291204
+        },
+        {
+          "query": "How do I capture ideas before I forget them?",
+          "expected_memory_id": "mem_010_08",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 181.58562504686415
+        },
+        {
+          "query": "When should I avoid making big decisions?",
+          "expected_memory_id": "mem_010_07",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 296.8033328652382
+        },
+        {
+          "query": "What's my medication schedule?",
+          "expected_memory_id": "mem_010_09",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 211.62729198113084
+        }
+      ]
+    },
+    {
+      "profile_id": "user_011",
+      "description": "Data analyst, inattentive ADHD, struggles with detail-oriented reports",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "I keep making mistakes in my reports. What helps?",
+          "expected_memory_id": "mem_011_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 270.75933292508125
+        },
+        {
+          "query": "What kind of work do I find most engaging?",
+          "expected_memory_id": "mem_011_05",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 178.90054103918374
+        },
+        {
+          "query": "How do I handle random ideas during focused work?",
+          "expected_memory_id": "mem_011_06",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 181.8170000333339
+        },
+        {
+          "query": "Why are Mondays always so hard?",
+          "expected_memory_id": "mem_011_09",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 359.81162497773767
+        },
+        {
+          "query": "What improves my afternoon work?",
+          "expected_memory_id": "mem_011_10",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 325.5317499861121
+        }
+      ]
+    },
+    {
+      "profile_id": "user_012",
+      "description": "Nursing student, combined ADHD, struggles with clinical rotations schedule",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How do I organize my studying across subjects?",
+          "expected_memory_id": "mem_012_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 200.1942079514265
+        },
+        {
+          "query": "What type of learning environment suits me best?",
+          "expected_memory_id": "mem_012_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 611.4053749479353
+        },
+        {
+          "query": "What situations make me freeze up?",
+          "expected_memory_id": "mem_012_05",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 251.4992079231888
+        },
+        {
+          "query": "How does lack of sleep affect my performance?",
+          "expected_memory_id": "mem_012_08",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 171.86683299951255
+        },
+        {
+          "query": "How do I keep track of tasks during shifts?",
+          "expected_memory_id": "mem_012_09",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 168.96704211831093
+        }
+      ]
+    },
+    {
+      "profile_id": "user_013",
+      "description": "Accountant, inattentive ADHD, late diagnosis at age 45, coping mechanisms established",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "What planning system works best for me?",
+          "expected_memory_id": "mem_013_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 223.18225004710257
+        },
+        {
+          "query": "How do I avoid errors in my work?",
+          "expected_memory_id": "mem_013_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 177.1476250141859
+        },
+        {
+          "query": "How do I handle tax season stress?",
+          "expected_memory_id": "mem_013_03",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 316.7270829435438
+        },
+        {
+          "query": "What's my morning routine?",
+          "expected_memory_id": "mem_013_06",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 314.13375004194677
+        },
+        {
+          "query": "How do I deal with office noise?",
+          "expected_memory_id": "mem_013_07",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 187.1311250142753
+        }
+      ]
+    },
+    {
+      "profile_id": "user_014",
+      "description": "Music producer, combined ADHD, hyperfocuses on creative work but neglects admin",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "Why do I never finish my tracks?",
+          "expected_memory_id": "mem_014_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 297.62833286076784
+        },
+        {
+          "query": "How do I handle my invoicing problems?",
+          "expected_memory_id": "mem_014_03",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 303.5163751337677
+        },
+        {
+          "query": "What kind of deadlines motivate me?",
+          "expected_memory_id": "mem_014_04",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 219.31450022384524
+        },
+        {
+          "query": "When am I most productive for creative work?",
+          "expected_memory_id": "mem_014_05",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 163.37112500332296
+        },
+        {
+          "query": "How do I deal with criticism of my work?",
+          "expected_memory_id": "mem_014_08",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 190.03050005994737
+        }
+      ]
+    },
+    {
+      "profile_id": "user_015",
+      "description": "Law student, inattentive ADHD, overwhelmed by reading volume",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How do I get through long legal readings?",
+          "expected_memory_id": "mem_015_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 349.53487501479685
+        },
+        {
+          "query": "What's my strategy for case briefing?",
+          "expected_memory_id": "mem_015_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 317.7830839995295
+        },
+        {
+          "query": "Where should I study?",
+          "expected_memory_id": "mem_015_04",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 216.57479205168784
+        },
+        {
+          "query": "When should I do my heavy reading?",
+          "expected_memory_id": "mem_015_06",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 394.22958297654986
+        },
+        {
+          "query": "How do I organize research for essays?",
+          "expected_memory_id": "mem_015_08",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 235.38995790295303
+        }
+      ]
+    },
+    {
+      "profile_id": "user_016",
+      "description": "Retired military, combined ADHD, transitioning to civilian career",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "Why is civilian life harder than military for me?",
+          "expected_memory_id": "mem_016_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 428.220208035782
+        },
+        {
+          "query": "What kind of task structure do I need?",
+          "expected_memory_id": "mem_016_03",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 225.55054211989045
+        },
+        {
+          "query": "What am I good at under pressure?",
+          "expected_memory_id": "mem_016_06",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 176.35216703638434
+        },
+        {
+          "query": "How do I stay organized?",
+          "expected_memory_id": "mem_016_07",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 248.74354084022343
+        },
+        {
+          "query": "What career am I working toward?",
+          "expected_memory_id": "mem_016_10",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 294.99837500043213
+        }
+      ]
+    },
+    {
+      "profile_id": "user_017",
+      "description": "College athlete, hyperactive ADHD, balances sport with academics",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "When is the best time for me to study?",
+          "expected_memory_id": "mem_017_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 207.33929192647338
+        },
+        {
+          "query": "How often do I need breaks while studying?",
+          "expected_memory_id": "mem_017_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 310.17724983394146
+        },
+        {
+          "query": "Where do I study best?",
+          "expected_memory_id": "mem_017_06",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 305.7671249844134
+        },
+        {
+          "query": "What am I most worried about academically?",
+          "expected_memory_id": "mem_017_09",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 181.72245798632503
+        },
+        {
+          "query": "How do I handle writing assignments?",
+          "expected_memory_id": "mem_017_10",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 287.3587920330465
+        }
+      ]
+    },
+    {
+      "profile_id": "user_018",
+      "description": "Journalist, combined ADHD, thrives on deadlines but crashes after",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How do I write my best work?",
+          "expected_memory_id": "mem_018_01",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 523.4567078296095
+        },
+        {
+          "query": "What happens after I finish a big deadline?",
+          "expected_memory_id": "mem_018_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 187.23933398723602
+        },
+        {
+          "query": "What's my first draft process?",
+          "expected_memory_id": "mem_018_03",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 307.5916247908026
+        },
+        {
+          "query": "Where do I work best?",
+          "expected_memory_id": "mem_018_09",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 311.0926249064505
+        },
+        {
+          "query": "Why do I go through unproductive phases?",
+          "expected_memory_id": "mem_018_10",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 217.55545889027417
+        }
+      ]
+    },
+    {
+      "profile_id": "user_019",
+      "description": "Stay-at-home parent returning to workforce, inattentive ADHD, rebuilding confidence",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "Why do I keep quitting online courses?",
+          "expected_memory_id": "mem_019_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 220.74291692115366
+        },
+        {
+          "query": "What's my best learning style?",
+          "expected_memory_id": "mem_019_04",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 330.0189170986414
+        },
+        {
+          "query": "Why is the job search so hard for me?",
+          "expected_memory_id": "mem_019_05",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 170.78208411112428
+        },
+        {
+          "query": "When is my best time to study?",
+          "expected_memory_id": "mem_019_07",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 226.7335830256343
+        },
+        {
+          "query": "What helps me feel better about myself?",
+          "expected_memory_id": "mem_019_10",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 183.0999159719795
+        }
+      ]
+    },
+    {
+      "profile_id": "user_020",
+      "description": "Game developer, combined ADHD, hyperfocuses on code but neglects health",
+      "memories_stored": 0,
+      "queries_run": 5,
+      "query_results": [
+        {
+          "query": "How do I take care of myself during long coding sessions?",
+          "expected_memory_id": "mem_020_02",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 206.41075004823506
+        },
+        {
+          "query": "What kind of programming do I enjoy most?",
+          "expected_memory_id": "mem_020_03",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 165.7641250640154
+        },
+        {
+          "query": "How does my sleep affect my focus?",
+          "expected_memory_id": "mem_020_05",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 303.2327080145478
+        },
+        {
+          "query": "Why don't I finish personal projects?",
+          "expected_memory_id": "mem_020_07",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 173.02833404392004
+        },
+        {
+          "query": "What helps me work better on tasks?",
+          "expected_memory_id": "mem_020_10",
+          "expected_content": "",
+          "retrieved_ids": [],
+          "retrieved_contents": [],
+          "hit_at_1": 0.0,
+          "hit_at_3": 0.0,
+          "hit_at_5": 0.0,
+          "ndcg_at_3": 0.0,
+          "latency_ms": 193.26166715472937
+        }
+      ]
+    }
+  ]
+}

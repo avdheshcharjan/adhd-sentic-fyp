@@ -1,0 +1,376 @@
+{
+  "approach": "B_setfit_improved",
+  "timestamp": "20260325T192806Z",
+  "train_size": 498,
+  "test_size": 50,
+  "results": {
+    "setfit_e1_C1.0_lbfgs": {
+      "accuracy": 0.82,
+      "macro_f1": 0.8139798969520332,
+      "weighted_f1": 0.8108712505245012,
+      "per_class_report": {
+        "joyful": {
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1-score": 0.9333333333333333,
+          "support": 8.0
+        },
+        "focused": {
+          "precision": 0.8888888888888888,
+          "recall": 1.0,
+          "f1-score": 0.9411764705882353,
+          "support": 8.0
+        },
+        "frustrated": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1-score": 0.8571428571428571,
+          "support": 9.0
+        },
+        "anxious": {
+          "precision": 1.0,
+          "recall": 0.4444444444444444,
+          "f1-score": 0.6153846153846154,
+          "support": 9.0
+        },
+        "disengaged": {
+          "precision": 0.8571428571428571,
+          "recall": 0.75,
+          "f1-score": 0.8,
+          "support": 8.0
+        },
+        "overwhelmed": {
+          "precision": 0.6363636363636364,
+          "recall": 0.875,
+          "f1-score": 0.7368421052631579,
+          "support": 8.0
+        },
+        "accuracy": 0.82,
+        "macro avg": {
+          "precision": 0.8553992303992305,
+          "recall": 0.8240740740740741,
+          "f1-score": 0.8139798969520332,
+          "support": 50.0
+        },
+        "weighted avg": {
+          "precision": 0.8561832611832613,
+          "recall": 0.82,
+          "f1-score": 0.8108712505245012,
+          "support": 50.0
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "joyful",
+          "focused",
+          "frustrated",
+          "anxious",
+          "disengaged",
+          "overwhelmed"
+        ],
+        "matrix": [
+          [
+            7,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            9,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            4,
+            1,
+            3
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            6,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            7
+          ]
+        ]
+      },
+      "train_accuracy": 1.0,
+      "avg_confidence": 0.8961129550689475,
+      "n_errors": 9,
+      "errors": [
+        {
+          "sentence": "I managed to cook a proper meal and clean up after myself without getting distracted once.",
+          "expected": "joyful",
+          "predicted": "focused",
+          "confidence": 0.5550052215623968
+        },
+        {
+          "sentence": "The deadline is in 4 hours and I have way too much left to do. My heart is pounding.",
+          "expected": "anxious",
+          "predicted": "overwhelmed",
+          "confidence": 0.5513125500710514
+        },
+        {
+          "sentence": "I have to give a presentation to 50 people and just thinking about it makes me feel sick.",
+          "expected": "anxious",
+          "predicted": "overwhelmed",
+          "confidence": 0.5860065753763971
+        },
+        {
+          "sentence": "Everyone seems to know what they're doing except me. I feel like a fraud who somehow got into this program.",
+          "expected": "anxious",
+          "predicted": "frustrated",
+          "confidence": 0.8418624397679605
+        },
+        {
+          "sentence": "I'm procrastinating on even checking what I need to do because the list will make me panic.",
+          "expected": "anxious",
+          "predicted": "overwhelmed",
+          "confidence": 0.639589684400515
+        },
+        {
+          "sentence": "I know I should be worried about this deadline but honestly I just don't care anymore. I've given up.",
+          "expected": "anxious",
+          "predicted": "disengaged",
+          "confidence": 0.937605653252139
+        },
+        {
+          "sentence": "This lecture is so boring I physically cannot make myself pay attention. My mind keeps drifting away.",
+          "expected": "disengaged",
+          "predicted": "frustrated",
+          "confidence": 0.690347846457079
+        },
+        {
+          "sentence": "My to-do list has 30 items and every single one makes me feel exhausted just looking at it.",
+          "expected": "disengaged",
+          "predicted": "overwhelmed",
+          "confidence": 0.9651403889372014
+        },
+        {
+          "sentence": "The semester is ending and I have incomplete grades in four classes. I don't know how to fix this.",
+          "expected": "overwhelmed",
+          "predicted": "frustrated",
+          "confidence": 0.8648836379726659
+        }
+      ],
+      "lr_C": 1.0,
+      "lr_solver": "lbfgs",
+      "train_time_s": 9916.115647333907,
+      "config": {
+        "num_epochs": 1,
+        "batch_size": 16,
+        "lr_C": 1.0,
+        "lr_solver": "lbfgs"
+      }
+    },
+    "setfit_e1_C10.0_lbfgs": {
+      "accuracy": 0.82,
+      "macro_f1": 0.8139798969520332,
+      "weighted_f1": 0.8108712505245012,
+      "per_class_report": {
+        "joyful": {
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1-score": 0.9333333333333333,
+          "support": 8.0
+        },
+        "focused": {
+          "precision": 0.8888888888888888,
+          "recall": 1.0,
+          "f1-score": 0.9411764705882353,
+          "support": 8.0
+        },
+        "frustrated": {
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1-score": 0.8571428571428571,
+          "support": 9.0
+        },
+        "anxious": {
+          "precision": 1.0,
+          "recall": 0.4444444444444444,
+          "f1-score": 0.6153846153846154,
+          "support": 9.0
+        },
+        "disengaged": {
+          "precision": 0.8571428571428571,
+          "recall": 0.75,
+          "f1-score": 0.8,
+          "support": 8.0
+        },
+        "overwhelmed": {
+          "precision": 0.6363636363636364,
+          "recall": 0.875,
+          "f1-score": 0.7368421052631579,
+          "support": 8.0
+        },
+        "accuracy": 0.82,
+        "macro avg": {
+          "precision": 0.8553992303992305,
+          "recall": 0.8240740740740741,
+          "f1-score": 0.8139798969520332,
+          "support": 50.0
+        },
+        "weighted avg": {
+          "precision": 0.8561832611832613,
+          "recall": 0.82,
+          "f1-score": 0.8108712505245012,
+          "support": 50.0
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "joyful",
+          "focused",
+          "frustrated",
+          "anxious",
+          "disengaged",
+          "overwhelmed"
+        ],
+        "matrix": [
+          [
+            7,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            9,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            4,
+            1,
+            3
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            6,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            7
+          ]
+        ]
+      },
+      "train_accuracy": 1.0,
+      "avg_confidence": 0.9475278511625592,
+      "n_errors": 9,
+      "errors": [
+        {
+          "sentence": "I managed to cook a proper meal and clean up after myself without getting distracted once.",
+          "expected": "joyful",
+          "predicted": "focused",
+          "confidence": 0.6148098695821306
+        },
+        {
+          "sentence": "The deadline is in 4 hours and I have way too much left to do. My heart is pounding.",
+          "expected": "anxious",
+          "predicted": "overwhelmed",
+          "confidence": 0.6096636664176592
+        },
+        {
+          "sentence": "I have to give a presentation to 50 people and just thinking about it makes me feel sick.",
+          "expected": "anxious",
+          "predicted": "overwhelmed",
+          "confidence": 0.6599457808903997
+        },
+        {
+          "sentence": "Everyone seems to know what they're doing except me. I feel like a fraud who somehow got into this program.",
+          "expected": "anxious",
+          "predicted": "frustrated",
+          "confidence": 0.9315248473144642
+        },
+        {
+          "sentence": "I'm procrastinating on even checking what I need to do because the list will make me panic.",
+          "expected": "anxious",
+          "predicted": "overwhelmed",
+          "confidence": 0.7282780832326594
+        },
+        {
+          "sentence": "I know I should be worried about this deadline but honestly I just don't care anymore. I've given up.",
+          "expected": "anxious",
+          "predicted": "disengaged",
+          "confidence": 0.9869483396848413
+        },
+        {
+          "sentence": "This lecture is so boring I physically cannot make myself pay attention. My mind keeps drifting away.",
+          "expected": "disengaged",
+          "predicted": "frustrated",
+          "confidence": 0.782895796612247
+        },
+        {
+          "sentence": "My to-do list has 30 items and every single one makes me feel exhausted just looking at it.",
+          "expected": "disengaged",
+          "predicted": "overwhelmed",
+          "confidence": 0.9952990626014095
+        },
+        {
+          "sentence": "The semester is ending and I have incomplete grades in four classes. I don't know how to fix this.",
+          "expected": "overwhelmed",
+          "predicted": "frustrated",
+          "confidence": 0.9524301470402826
+        }
+      ],
+      "lr_C": 10.0,
+      "lr_solver": "lbfgs",
+      "train_time_s": 9916.115647333907,
+      "config": {
+        "num_epochs": 1,
+        "batch_size": 16,
+        "lr_C": 10.0,
+        "lr_solver": "lbfgs"
+      }
+    }
+  }
+}

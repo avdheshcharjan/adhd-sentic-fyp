@@ -1,0 +1,489 @@
+{
+  "approach": "C_finetune",
+  "timestamp": "20260324T202200Z",
+  "train_size": 1210,
+  "test_size": 50,
+  "augmented": true,
+  "results": {
+    "distilbert_5ep": {
+      "accuracy": 0.54,
+      "macro_f1": 0.48267954267954266,
+      "weighted_f1": 0.48285288045288044,
+      "per_class_report": {
+        "joyful": {
+          "precision": 0.8,
+          "recall": 0.5,
+          "f1-score": 0.6153846153846154,
+          "support": 8.0
+        },
+        "focused": {
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1-score": 0.6666666666666666,
+          "support": 8.0
+        },
+        "frustrated": {
+          "precision": 0.46153846153846156,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.5454545454545454,
+          "support": 9.0
+        },
+        "anxious": {
+          "precision": 0.6,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.42857142857142855,
+          "support": 9.0
+        },
+        "disengaged": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 8.0
+        },
+        "overwhelmed": {
+          "precision": 0.47058823529411764,
+          "recall": 1.0,
+          "f1-score": 0.64,
+          "support": 8.0
+        },
+        "accuracy": 0.54,
+        "macro avg": {
+          "precision": 0.4886877828054299,
+          "recall": 0.5416666666666666,
+          "f1-score": 0.48267954267954266,
+          "support": 50.0
+        },
+        "weighted avg": {
+          "precision": 0.49037104072398185,
+          "recall": 0.54,
+          "f1-score": 0.48285288045288044,
+          "support": 50.0
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "joyful",
+          "focused",
+          "frustrated",
+          "anxious",
+          "disengaged",
+          "overwhelmed"
+        ],
+        "matrix": [
+          [
+            4,
+            1,
+            2,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            6,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            3,
+            3,
+            0,
+            3
+          ],
+          [
+            0,
+            3,
+            2,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            8
+          ]
+        ]
+      },
+      "train_accuracy": 0.8818181818181818,
+      "train_time_s": 118.98211312503554,
+      "eval_time_s": 1.2651976668275893,
+      "avg_confidence": 0.5272291678190232,
+      "n_errors": 23,
+      "errors": [
+        {
+          "sentence": "I finally finished the hardest section of my report!",
+          "expected": "joyful",
+          "predicted": "frustrated",
+          "confidence": 0.4168824851512909
+        },
+        {
+          "sentence": "I actually got an A on the exam I was dreading. I can't believe it!",
+          "expected": "joyful",
+          "predicted": "anxious",
+          "confidence": 0.5261481404304504
+        },
+        {
+          "sentence": "I managed to cook a proper meal and clean up after myself without getting distracted once.",
+          "expected": "joyful",
+          "predicted": "frustrated",
+          "confidence": 0.5099093914031982
+        },
+        {
+          "sentence": "I just realized I've been working for two straight hours without checking my phone. Small wins!",
+          "expected": "joyful",
+          "predicted": "focused",
+          "confidence": 0.5205812454223633
+        },
+        {
+          "sentence": "The world faded away while I was writing. I looked up and three hours had passed. But productive hours this time.",
+          "expected": "focused",
+          "predicted": "joyful",
+          "confidence": 0.44847360253334045
+        },
+        {
+          "sentence": "I've got my noise-cancelling headphones on and I'm completely locked into this problem. Don't disturb me.",
+          "expected": "focused",
+          "predicted": "anxious",
+          "confidence": 0.31000909209251404
+        },
+        {
+          "sentence": "The build keeps failing with the same cryptic error and Google has no answers. I'm losing my mind.",
+          "expected": "frustrated",
+          "predicted": "overwhelmed",
+          "confidence": 0.4472186863422394
+        },
+        {
+          "sentence": "I can't believe I forgot about the meeting. Again. My team must think I'm completely unreliable.",
+          "expected": "frustrated",
+          "predicted": "overwhelmed",
+          "confidence": 0.4676762521266937
+        },
+        {
+          "sentence": "I've rewritten this paragraph five times and it still sounds terrible. I can't get the words right.",
+          "expected": "frustrated",
+          "predicted": "overwhelmed",
+          "confidence": 0.6599270105361938
+        },
+        {
+          "sentence": "The deadline is in 4 hours and I have way too much left to do. My heart is pounding.",
+          "expected": "anxious",
+          "predicted": "frustrated",
+          "confidence": 0.3461763262748718
+        },
+        {
+          "sentence": "What if my supervisor asks me a question I can't answer during the defense? What if I freeze up?",
+          "expected": "anxious",
+          "predicted": "frustrated",
+          "confidence": 0.3804335296154022
+        },
+        {
+          "sentence": "I have to give a presentation to 50 people and just thinking about it makes me feel sick.",
+          "expected": "anxious",
+          "predicted": "overwhelmed",
+          "confidence": 0.5049201846122742
+        },
+        {
+          "sentence": "Everyone seems to know what they're doing except me. I feel like a fraud who somehow got into this program.",
+          "expected": "anxious",
+          "predicted": "frustrated",
+          "confidence": 0.39296212792396545
+        },
+        {
+          "sentence": "My stomach drops every time I get an email notification. It might be bad news about my overdue work.",
+          "expected": "anxious",
+          "predicted": "overwhelmed",
+          "confidence": 0.5315335392951965
+        },
+        {
+          "sentence": "I know I should be worried about this deadline but honestly I just don't care anymore. I've given up.",
+          "expected": "anxious",
+          "predicted": "overwhelmed",
+          "confidence": 0.49895456433296204
+        },
+        {
+          "sentence": "I'm staring at the screen and the words just blur together. Nothing registers. My brain is offline.",
+          "expected": "disengaged",
+          "predicted": "frustrated",
+          "confidence": 0.24505147337913513
+        },
+        {
+          "sentence": "This lecture is so boring I physically cannot make myself pay attention. My mind keeps drifting away.",
+          "expected": "disengaged",
+          "predicted": "overwhelmed",
+          "confidence": 0.4664801359176636
+        },
+        {
+          "sentence": "I'm going through the motions but I'm not actually absorbing anything. I've read this page three times.",
+          "expected": "disengaged",
+          "predicted": "focused",
+          "confidence": 0.6161782741546631
+        },
+        {
+          "sentence": "I opened my laptop, stared at the screen for 20 minutes, and then closed it. Zero motivation.",
+          "expected": "disengaged",
+          "predicted": "frustrated",
+          "confidence": 0.46055102348327637
+        },
+        {
+          "sentence": "I used to be interested in this project but now it just feels like a chore. Where did the excitement go?",
+          "expected": "disengaged",
+          "predicted": "focused",
+          "confidence": 0.7551695704460144
+        },
+        {
+          "sentence": "Nothing excites me right now. Not work, not hobbies, not food. Everything feels flat and gray.",
+          "expected": "disengaged",
+          "predicted": "overwhelmed",
+          "confidence": 0.23687037825584412
+        },
+        {
+          "sentence": "I keep scrolling through my phone not because I enjoy it, but because I don't have the energy to do anything else.",
+          "expected": "disengaged",
+          "predicted": "focused",
+          "confidence": 0.27819550037384033
+        },
+        {
+          "sentence": "My to-do list has 30 items and every single one makes me feel exhausted just looking at it.",
+          "expected": "disengaged",
+          "predicted": "overwhelmed",
+          "confidence": 0.6537727117538452
+        }
+      ],
+      "config": {
+        "num_epochs": 5,
+        "batch_size": 16,
+        "learning_rate": 2e-05
+      },
+      "augmented": true
+    },
+    "distilbert_10ep": {
+      "accuracy": 0.72,
+      "macro_f1": 0.72718809286315,
+      "weighted_f1": 0.7240654814293259,
+      "per_class_report": {
+        "joyful": {
+          "precision": 0.8571428571428571,
+          "recall": 0.75,
+          "f1-score": 0.8,
+          "support": 8.0
+        },
+        "focused": {
+          "precision": 0.8571428571428571,
+          "recall": 0.75,
+          "f1-score": 0.8,
+          "support": 8.0
+        },
+        "frustrated": {
+          "precision": 0.8333333333333334,
+          "recall": 0.5555555555555556,
+          "f1-score": 0.6666666666666666,
+          "support": 9.0
+        },
+        "anxious": {
+          "precision": 0.6,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.631578947368421,
+          "support": 9.0
+        },
+        "disengaged": {
+          "precision": 1.0,
+          "recall": 0.625,
+          "f1-score": 0.7692307692307693,
+          "support": 8.0
+        },
+        "overwhelmed": {
+          "precision": 0.5333333333333333,
+          "recall": 1.0,
+          "f1-score": 0.6956521739130435,
+          "support": 8.0
+        },
+        "accuracy": 0.72,
+        "macro avg": {
+          "precision": 0.78015873015873,
+          "recall": 0.7245370370370369,
+          "f1-score": 0.72718809286315,
+          "support": 50.0
+        },
+        "weighted avg": {
+          "precision": 0.7776190476190475,
+          "recall": 0.72,
+          "f1-score": 0.7240654814293259,
+          "support": 50.0
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "joyful",
+          "focused",
+          "frustrated",
+          "anxious",
+          "disengaged",
+          "overwhelmed"
+        ],
+        "matrix": [
+          [
+            6,
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            6,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            5,
+            2,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            6,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            5,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            8
+          ]
+        ]
+      },
+      "train_accuracy": 0.9760330578512396,
+      "train_time_s": 225.55054579209536,
+      "eval_time_s": 0.2742858328856528,
+      "avg_confidence": 0.8275419813394547,
+      "n_errors": 14,
+      "errors": [
+        {
+          "sentence": "I finally finished the hardest section of my report!",
+          "expected": "joyful",
+          "predicted": "overwhelmed",
+          "confidence": 0.9147893190383911
+        },
+        {
+          "sentence": "I actually got an A on the exam I was dreading. I can't believe it!",
+          "expected": "joyful",
+          "predicted": "anxious",
+          "confidence": 0.9680573344230652
+        },
+        {
+          "sentence": "The world faded away while I was writing. I looked up and three hours had passed. But productive hours this time.",
+          "expected": "focused",
+          "predicted": "joyful",
+          "confidence": 0.45277559757232666
+        },
+        {
+          "sentence": "I've got my noise-cancelling headphones on and I'm completely locked into this problem. Don't disturb me.",
+          "expected": "focused",
+          "predicted": "anxious",
+          "confidence": 0.8610708117485046
+        },
+        {
+          "sentence": "The build keeps failing with the same cryptic error and Google has no answers. I'm losing my mind.",
+          "expected": "frustrated",
+          "predicted": "overwhelmed",
+          "confidence": 0.6640105247497559
+        },
+        {
+          "sentence": "I can't believe I forgot about the meeting. Again. My team must think I'm completely unreliable.",
+          "expected": "frustrated",
+          "predicted": "anxious",
+          "confidence": 0.4978981018066406
+        },
+        {
+          "sentence": "I've rewritten this paragraph five times and it still sounds terrible. I can't get the words right.",
+          "expected": "frustrated",
+          "predicted": "overwhelmed",
+          "confidence": 0.9822437167167664
+        },
+        {
+          "sentence": "Everyone in my group already finished their parts and I haven't even started. They're waiting on me.",
+          "expected": "frustrated",
+          "predicted": "anxious",
+          "confidence": 0.4707905948162079
+        },
+        {
+          "sentence": "The deadline is in 4 hours and I have way too much left to do. My heart is pounding.",
+          "expected": "anxious",
+          "predicted": "overwhelmed",
+          "confidence": 0.8534440398216248
+        },
+        {
+          "sentence": "I have to give a presentation to 50 people and just thinking about it makes me feel sick.",
+          "expected": "anxious",
+          "predicted": "overwhelmed",
+          "confidence": 0.6941730380058289
+        },
+        {
+          "sentence": "Everyone seems to know what they're doing except me. I feel like a fraud who somehow got into this program.",
+          "expected": "anxious",
+          "predicted": "frustrated",
+          "confidence": 0.6027424335479736
+        },
+        {
+          "sentence": "This lecture is so boring I physically cannot make myself pay attention. My mind keeps drifting away.",
+          "expected": "disengaged",
+          "predicted": "overwhelmed",
+          "confidence": 0.8102754950523376
+        },
+        {
+          "sentence": "I used to be interested in this project but now it just feels like a chore. Where did the excitement go?",
+          "expected": "disengaged",
+          "predicted": "focused",
+          "confidence": 0.9835086464881897
+        },
+        {
+          "sentence": "My to-do list has 30 items and every single one makes me feel exhausted just looking at it.",
+          "expected": "disengaged",
+          "predicted": "overwhelmed",
+          "confidence": 0.9866682291030884
+        }
+      ],
+      "config": {
+        "num_epochs": 10,
+        "batch_size": 16,
+        "learning_rate": 2e-05
+      },
+      "augmented": true
+    }
+  }
+}

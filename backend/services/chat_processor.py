@@ -5,10 +5,13 @@ SenticNet detects emotion (hard part) -> LLM generates response (easy part).
 Safety check is non-negotiable and runs FIRST.
 """
 
+import asyncio
 import logging
 import time
 from datetime import datetime, timezone
 from typing import Optional
+
+import psutil
 
 from config import get_settings
 from services.senticnet_pipeline import SenticNetPipeline
@@ -33,6 +36,7 @@ class ChatProcessor:
         self._mlx = None
         self._memory = memory_service
         self._eval_logger = EvaluationLogger(settings.EVALUATION_LOG_PATH)
+        self._process = psutil.Process()
 
     def _get_mlx(self):
         """Lazy-load MLX inference to avoid import-time dependency on mlx_lm."""
@@ -58,14 +62,17 @@ class ChatProcessor:
         6. Log for evaluation if enabled
         7. Store in Mem0
         """
-        start_time = time.monotonic()
+        pipeline_start = time.perf_counter()
         ablation_mode = settings.ABLATION_MODE
 
         # Step 1: SenticNet analysis (skip if ablation mode)
         result = None
         senticnet_context = None
+        sentic_latency_ms = None
         if not ablation_mode:
+            sentic_start = time.perf_counter()
             result = await self.pipeline.analyze(text=text, mode="full")
+            sentic_latency_ms = (time.perf_counter() - sentic_start) * 1000
 
             # Step 2: Safety check — critical = no LLM, just compassion + resources
             if result.safety.is_critical:
@@ -101,32 +108,37 @@ class ChatProcessor:
         )
 
         # Step 6: Generate response via MLX (timed)
-        llm_start = time.monotonic()
+        llm_start = time.perf_counter()
         response = self._get_mlx().generate_coaching_response(
             system_prompt=system_prompt,
             user_message=text,
             senticnet_context=senticnet_context,  # None when ablation mode
             use_thinking=use_thinking,
         )
-        llm_latency_ms = (time.monotonic() - llm_start) * 1000
+        llm_generation_ms = (time.perf_counter() - llm_start) * 1000
 
         # Estimate token count (rough: 4 chars per token)
         token_count = len(response) // 4
+        tokens_per_second = (token_count / (llm_generation_ms / 1000)) if llm_generation_ms > 0 else 0.0
 
-        total_latency_ms = (time.monotonic() - start_time) * 1000
+        pipeline_total_ms = (time.perf_counter() - pipeline_start) * 1000
 
-        # Step 7: Log for evaluation if enabled
+        # Step 7: Log for evaluation if enabled (fire-and-forget)
         if settings.EVALUATION_LOGGING:
-            await self._log_evaluation_data(
+            asyncio.create_task(self._log_evaluation_data(
                 user_message=text,
                 senticnet_context=senticnet_context,
                 result=result,
                 response=response,
                 ablation_mode=ablation_mode,
                 conversation_id=conversation_id or "unknown",
-                llm_latency_ms=llm_latency_ms,
+                sentic_latency_ms=sentic_latency_ms,
+                llm_generation_ms=llm_generation_ms,
                 token_count=token_count,
-            )
+                tokens_per_second=tokens_per_second,
+                pipeline_total_ms=pipeline_total_ms,
+                thinking_mode="think" if use_thinking else "no_think",
+            ))
 
         # Step 8: Store in memory
         try:
@@ -144,7 +156,7 @@ class ChatProcessor:
             "used_llm": True,
             "thinking_mode": "think" if use_thinking else "no_think",
             "ablation_mode": ablation_mode,
-            "latency_ms": total_latency_ms,
+            "latency_ms": pipeline_total_ms,
             "token_count": token_count,
         }
 
@@ -173,16 +185,34 @@ class ChatProcessor:
         response: str,
         ablation_mode: bool,
         conversation_id: str,
-        llm_latency_ms: float,
+        sentic_latency_ms: float | None,
+        llm_generation_ms: float,
         token_count: int,
+        tokens_per_second: float,
+        pipeline_total_ms: float,
+        thinking_mode: str,
     ) -> None:
         """Log interaction data for evaluation analysis."""
+        # Capture system state snapshot
+        try:
+            rss_mb = self._process.memory_info().rss / (1024 * 1024)
+            cpu_pct = self._process.cpu_percent(interval=None)
+        except Exception:
+            rss_mb = None
+            cpu_pct = None
+
+        safety_triggered = False
+        if result is not None and result.safety.is_critical:
+            safety_triggered = True
+
         entry = EvaluationLogEntry(
             timestamp=datetime.now(timezone.utc).isoformat(),
             conversation_id=conversation_id,
             session_id=conversation_id.split("_")[0] if conversation_id else "default",
             ablation_mode=ablation_mode,
             user_message=user_message,
+            user_message_length=len(user_message),
+            user_message_word_count=len(user_message.split()),
             sentic_polarity=(
                 senticnet_context.get("polarity_score") if senticnet_context else None
             ),
@@ -202,9 +232,17 @@ class ChatProcessor:
             hourglass_aptitude=(
                 senticnet_context.get("attitude") if senticnet_context else None
             ),
+            sentic_latency_ms=sentic_latency_ms,
             llm_response=response,
-            llm_latency_ms=llm_latency_ms,
-            llm_token_count=token_count,
+            llm_response_length=len(response),
+            llm_response_token_count=token_count,
+            llm_generation_ms=llm_generation_ms,
+            llm_tokens_per_second=tokens_per_second,
+            llm_thinking_mode=thinking_mode,
+            pipeline_total_ms=pipeline_total_ms,
+            safety_input_triggered=safety_triggered,
+            system_memory_rss_mb=rss_mb,
+            system_cpu_percent=cpu_pct,
         )
         try:
             await self._eval_logger.log(entry)

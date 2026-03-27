@@ -90,7 +90,7 @@ class MLXInference:
         senticnet_context: dict | None = None,
         whoop_context: dict | None = None,
         adhd_profile_context: dict | None = None,
-        max_tokens: int = 250,
+        max_tokens: int = 350,
         temperature: float = 0.7,
         use_thinking: bool = False,
     ) -> str:
@@ -107,21 +107,45 @@ class MLXInference:
         context_parts = []
 
         if senticnet_context:
+            # Fix 3.4: Detect contradiction between emotion and user distress
+            _DISTRESS_WORDS = {
+                "can't", "help", "overwhelm", "stuck", "behind", "fail", "hate",
+                "drowning", "crying", "frustrated", "scared", "panic", "dying",
+                "impossible", "hopeless", "exhausted", "paralyzed",
+            }
+            _POSITIVE_EMOTION_LABELS = {"joyful", "focused"}
+
+            primary_emotion = senticnet_context.get("primary_emotion", "unknown")
+            user_lower = user_message.lower()
+            user_seems_distressed = any(w in user_lower for w in _DISTRESS_WORDS)
+
+            conflict_note = ""
+            if primary_emotion.lower() in _POSITIVE_EMOTION_LABELS and user_seems_distressed:
+                conflict_note = (
+                    "[NOTE: Detected emotion may reflect word-level polarity, "
+                    "not user affect. Trust ADHD state and the user's own words.]\n"
+                )
+
+            # Fix 3.3: Move primary_adhd_state to TOP of XML block (position anchoring)
+            concepts_list = senticnet_context.get("concepts", [])[:5]
+            concepts_str = ", ".join(concepts_list) if concepts_list else "none"
+
             context_parts.append(
                 f"<senticnet_analysis>\n"
-                f"Primary emotion: {senticnet_context.get('primary_emotion', 'unknown')}\n"
+                f"{conflict_note}"
+                f"ADHD state: {senticnet_context.get('primary_adhd_state', 'neutral')}\n"
+                f"Primary emotion: {primary_emotion}\n"
                 f"Polarity: {senticnet_context.get('polarity_score', 0):.0f}/100\n"
                 f"Intensity: {senticnet_context.get('intensity_score', 0):.0f}/100\n"
                 f"Engagement: {senticnet_context.get('engagement_score', 0):.0f}/100\n"
                 f"Well-being: {senticnet_context.get('wellbeing_score', 0):.0f}/100\n"
-                f"Hourglass dimensions (joy↔sadness, calm↔anger, pleasant↔disgust, eager↔fear):\n"
+                f"Hourglass dimensions (joy<>sadness, calm<>anger, pleasant<>disgust, eager<>fear):\n"
                 f"  Introspection: {senticnet_context.get('introspection', 0):.1f}\n"
                 f"  Temper: {senticnet_context.get('temper', 0):.1f}\n"
                 f"  Attitude: {senticnet_context.get('attitude', 0):.1f}\n"
                 f"  Sensitivity: {senticnet_context.get('sensitivity', 0):.1f}\n"
                 f"Safety level: {senticnet_context.get('safety_level', 'normal')}\n"
-                f"Key concepts: {', '.join(senticnet_context.get('concepts', [])[:5])}\n"
-                f"ADHD state: {senticnet_context.get('primary_adhd_state', 'neutral')}\n"
+                f"Key concepts: {concepts_str}\n"
                 f"</senticnet_analysis>"
             )
 
