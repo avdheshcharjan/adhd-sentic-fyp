@@ -1,0 +1,637 @@
+% =============================================================================
+% Chapter 3: System Design and Architecture
+% =============================================================================
+\chapter{System Design and Architecture}
+\label{ch:system_design}
+
+This chapter presents the design and architecture of the ADHD Second Brain, an on-device assistant combining affective computing, local large language model inference, and just-in-time adaptive interventions for individuals with ADHD. The system is designed around three principles: (1) privacy-first on-device processing, (2) real-time responsiveness, and (3) interpretable emotional intelligence grounded in established psychological frameworks.
+
+% =============================================================================
+\section{Overall System Architecture}
+\label{sec:overall_architecture}
+% =============================================================================
+
+The system adopts a three-layer architecture comprising a User Layer, a Backend Layer, and a Data Layer. All three layers execute locally, with external calls made only when strictly necessary and never for sensitive screen-capture data. \Cref{fig:system_architecture} provides a high-level overview.
+
+% --- MERMAID BACKUP ---
+% flowchart TB
+%   subgraph User["User Layer"]
+%     A[SwiftUI Menu Bar<br>~25MB RAM]
+%     B[React Dashboard<br>Vite]
+%     C[OpenClaw<br>Telegram/WhatsApp]
+%   end
+%   subgraph Backend["Backend Layer - FastAPI :8420"]
+%     D[SenticNet Pipeline]
+%     E[JITAI Engine]
+%     F[MLX Inference<br>Qwen3-4B]
+%     G[Memory<br>Mem0 + PG]
+%     H[XAI Explainer]
+%     I[Whoop Service]
+%   end
+%   subgraph Data["Data Layer"]
+%     J[PostgreSQL + pgvector]
+%     K[SQLite Cache]
+%   end
+%   subgraph External["External Services"]
+%     L[SenticNet Cloud]
+%     M[Whoop API v2]
+%     N[Claude Sonnet]
+%     O[GPT-4o-mini]
+%   end
+%   A --> Backend
+%   B --> Backend
+%   C --> Backend
+%   Backend --> Data
+%   Backend --> External
+% --- END MERMAID ---
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.6cm and 0.5cm,
+    every node/.style={font=\small},
+    component/.style={
+      rectangle, rounded corners=3pt, draw, thick,
+      minimum width=2.6cm, minimum height=0.9cm,
+      align=center, font=\small\sffamily
+    },
+    usercomp/.style={component, fill=blue!12, draw=blue!50!black},
+    backcomp/.style={component, fill=green!10, draw=green!50!black},
+    datacomp/.style={component, fill=orange!12, draw=orange!60!black},
+    extcomp/.style={component, fill=gray!12, draw=gray!60},
+    layerlabel/.style={font=\small\sffamily\bfseries, rotate=90, anchor=south},
+    arr/.style={-{Stealth[length=5pt]}, thick, gray!70!black}
+  ]
+    % ── User Layer ──
+    \node[usercomp] (swift) {SwiftUI Menu Bar\\[-1pt]{\tiny$\sim$25\,MB RAM}};
+    \node[usercomp, right=0.6cm of swift] (react) {React Dashboard\\[-1pt]{\tiny Vite}};
+    \node[usercomp, right=0.6cm of react] (openclaw) {OpenClaw\\[-1pt]{\tiny Telegram / WhatsApp}};
+
+    % ── Backend Layer ──
+    \node[backcomp, below=1.4cm of swift] (senticpipe) {SenticNet\\Pipeline};
+    \node[backcomp, right=0.5cm of senticpipe] (jitai) {JITAI\\Engine};
+    \node[backcomp, right=0.5cm of jitai] (mlx) {MLX Inference\\[-1pt]{\tiny Qwen3-4B}};
+    \node[backcomp, below=0.6cm of senticpipe] (memory) {Memory\\[-1pt]{\tiny Mem0 + PG}};
+    \node[backcomp, right=0.5cm of memory] (xai) {XAI\\Explainer};
+    \node[backcomp, right=0.5cm of xai] (whoop) {Whoop\\Service};
+
+    % ── Data Layer ──
+    \node[datacomp, below=1.4cm of memory, xshift=0.5cm] (pg) {PostgreSQL\\+ pgvector};
+    \node[datacomp, right=1.2cm of pg] (sqlite) {SQLite\\Cache};
+
+    % ── External Services ──
+    \node[extcomp, right=1.4cm of mlx, yshift=-0.6cm] (senticcloud) {SenticNet\\Cloud};
+    \node[extcomp, below=0.5cm of senticcloud] (whoopapi) {Whoop API v2};
+    \node[extcomp, below=0.5cm of whoopapi] (claude) {Claude Sonnet};
+    \node[extcomp, below=0.5cm of claude] (gpt) {GPT-4o-mini};
+
+    % ── Fit nodes for layer backgrounds ──
+    \begin{scope}[on background layer]
+      \node[fit=(swift)(react)(openclaw),
+            fill=blue!5, draw=blue!30, rounded corners=6pt,
+            inner sep=10pt, label={[layerlabel, blue!60!black]left:User Layer}] (userlayer) {};
+      \node[fit=(senticpipe)(jitai)(mlx)(memory)(xai)(whoop),
+            fill=green!4, draw=green!30, rounded corners=6pt,
+            inner sep=10pt, label={[layerlabel, green!50!black]left:Backend Layer}] (backlayer) {};
+      \node[fit=(pg)(sqlite),
+            fill=orange!5, draw=orange!30, rounded corners=6pt,
+            inner sep=10pt, label={[layerlabel, orange!60!black]left:Data Layer}] (datalayer) {};
+      \node[fit=(senticcloud)(whoopapi)(claude)(gpt),
+            fill=gray!5, draw=gray!30, rounded corners=6pt, dashed,
+            inner sep=10pt, label={[font=\small\sffamily\bfseries, gray!60!black]above:External Services}] (extlayer) {};
+    \end{scope}
+
+    % ── Arrows: User -> Backend ──
+    \draw[arr] (swift.south) -- ++(0,-0.35) -| (senticpipe.north);
+    \draw[arr] (react.south) -- ++(0,-0.35) -| (jitai.north);
+    \draw[arr] (openclaw.south) -- ++(0,-0.35) -| (mlx.north);
+
+    % ── Arrows: Backend -> Data ──
+    \draw[arr] (memory.south) -- (pg.north);
+    \draw[arr] (whoop.south) -- ++(0,-0.45) -| (sqlite.north);
+
+    % ── Arrows: Backend -> External ──
+    \draw[arr, dashed] (senticpipe.east) -- ++(0.3,0) |- (senticcloud.west);
+    \draw[arr, dashed] (whoop.east) -- ++(0.3,0) |- (whoopapi.west);
+    \draw[arr, dashed] (mlx.east) -- ++(0.3,0) |- (claude.west);
+    \draw[arr, dashed] (mlx.east) -- ++(0.3,0) |- (gpt.west);
+
+  \end{tikzpicture}
+  \caption{Three-layer system architecture of the ADHD Second Brain. The User Layer comprises a SwiftUI menu bar application, a React dashboard, and the OpenClaw interface. The Backend Layer hosts the FastAPI server (\texttt{localhost:8420}) with its constituent modules (${\sim}500$\,MB RAM $+$ ${\sim}2.3$\,GB GPU). The Data Layer combines PostgreSQL with pgvector and SQLite for persistent and vector-indexed storage. Dashed arrows indicate external service calls.}
+  \label{fig:system_architecture}
+\end{figure}
+
+\textbf{User Layer.} The primary interface is a native macOS menu bar application built in SwiftUI ($\sim$25\,MB RAM), which polls screen metadata via the Accessibility API every two to three seconds and forwards it to the Backend Layer over local HTTP. A React dashboard (Vite) provides historical analytics and emotional trend visualisations, while OpenClaw offers a conversational interface for venting, task planning, and reflective journaling.
+
+\textbf{Backend Layer.} Implemented as a FastAPI application on \texttt{localhost:8420}, the backend comprises six modules: (1)~the SenticNet Pipeline for affective analysis across thirteen APIs~\cite{cambria2024}; (2)~the JITAI Engine, evaluating behavioural metrics against Barkley's five executive function domains~\cite{barkley2010}; (3)~the Whoop Service for physiological data via OAuth~2.0; (4)~the MLX Inference module hosting Qwen3-4B at 4-bit precision on Apple Silicon; (5)~the Memory module coordinating Mem0 and PostgreSQL for semantic retrieval; and (6)~the XAI Explainer using a Concept Bottleneck Model for interpretable explanations. At steady state, the backend consumes $\sim$500\,MB RAM plus $\sim$2.3\,GB GPU memory.
+
+\textbf{Data Layer.} PostgreSQL with pgvector provides combined relational and vector storage. Activity logs, emotional analyses, and conversation histories are stored relationally, while Mem0-generated embeddings are indexed via pgvector for sub-second semantic search. A lightweight SQLite database caches configuration state and transient metadata.
+
+\textbf{External Services.} Four external services are used selectively: SenticNet Cloud (thirteen affective computing APIs)~\cite{cambria2024}, Whoop API~v2 (physiological metrics), Claude Sonnet (complex reasoning), and GPT-4o-mini (high-frequency classification and summarisation). A routing heuristic governs external LLM selection based on query complexity and latency requirements.
+
+\textbf{Data Flows.} The architecture supports two data flows with distinct latency targets. The \emph{Hot Path} handles screen monitoring events within 100\,ms (activity classification, metric computation, intervention evaluation). The \emph{Warm Path} handles conversational interactions within 3\,s (affective analysis, LLM generation, memory persistence). These are detailed in \Cref{sec:screen_monitoring} and \Cref{sec:affective_computing}; \Cref{fig:data_flows} illustrates both flows.
+
+% --- MERMAID BACKUP ---
+% flowchart LR
+%   subgraph HotPath["Hot Path (<100ms)"]
+%     direction TB
+%     H1[Swift App] --> H2[Activity Classifier]
+%     H2 --> H3[ADHD Metrics Engine]
+%     H3 --> H4[JITAI Engine]
+%     H4 --> H5[Persist to PG]
+%   end
+%   subgraph WarmPath["Warm Path (<3s)"]
+%     direction TB
+%     W1[User Message] --> W2[Safety Check]
+%     W2 --> W3[Emotion Analysis]
+%     W3 --> W4[ADHD Signals]
+%     W4 --> W5[LLM Generation]
+%     W5 --> W6[Memory Store]
+%   end
+% --- END MERMAID ---
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.85cm,
+    every node/.style={font=\small\sffamily},
+    hotbox/.style={
+      rectangle, rounded corners=3pt, draw=blue!60!black, thick,
+      fill=blue!8, minimum width=3.4cm, minimum height=0.75cm, align=center
+    },
+    warmbox/.style={
+      rectangle, rounded corners=3pt, draw=orange!60!black, thick,
+      fill=orange!8, minimum width=3.4cm, minimum height=0.75cm, align=center
+    },
+    hotarr/.style={-{Stealth[length=5pt]}, thick, blue!60!black},
+    warmarr/.style={-{Stealth[length=5pt]}, thick, orange!60!black, dashed}
+  ]
+    % ── Hot Path (left column) ──
+    \node[hotbox] (h1) {Swift App};
+    \node[hotbox, below=of h1] (h2) {Activity Classifier};
+    \node[hotbox, below=of h2] (h3) {ADHD Metrics Engine};
+    \node[hotbox, below=of h3] (h4) {JITAI Engine};
+    \node[hotbox, below=of h4] (h5) {Persist to PG};
+
+    \draw[hotarr] (h1) -- (h2);
+    \draw[hotarr] (h2) -- (h3);
+    \draw[hotarr] (h3) -- (h4);
+    \draw[hotarr] (h4) -- (h5);
+
+    % ── Warm Path (right column) ──
+    \node[warmbox, right=2.8cm of h1] (w1) {User Message};
+    \node[warmbox, below=of w1] (w2) {Safety Check};
+    \node[warmbox, below=of w2] (w3) {Emotion Analysis};
+    \node[warmbox, below=of w3] (w4) {ADHD Signal Extraction};
+    \node[warmbox, below=of w4] (w5) {LLM Generation};
+    \node[warmbox, below=of w5] (w6) {Memory Store};
+
+    \draw[warmarr] (w1) -- (w2);
+    \draw[warmarr] (w2) -- (w3);
+    \draw[warmarr] (w3) -- (w4);
+    \draw[warmarr] (w4) -- (w5);
+    \draw[warmarr] (w5) -- (w6);
+
+    % ── Path labels ──
+    \node[above=0.4cm of h1, font=\small\sffamily\bfseries, blue!60!black]
+      {Hot Path ($<$100\,ms)};
+    \node[above=0.4cm of w1, font=\small\sffamily\bfseries, orange!60!black]
+      {Warm Path ($<$3\,s)};
+
+  \end{tikzpicture}
+  \caption{Hot Path and Warm Path data flows. The Hot Path (solid arrows) processes screen monitoring events through activity classification, ADHD metrics computation, and JITAI evaluation within a 100\,ms budget. The Warm Path (dashed arrows) processes conversational input through safety checking, emotion analysis, LLM generation, and memory storage within a 3\,s budget.}
+  \label{fig:data_flows}
+\end{figure}
+
+
+% =============================================================================
+\section{Design Methodology}
+\label{sec:design_methodology}
+% =============================================================================
+
+Development followed an agile, iterative methodology across nine implementation phases. This approach was selected because the system's reliance on multiple ML models demanded rapid prototyping cycles, and the interdependencies between affective computing accuracy, intervention timing, and user experience necessitated continuous cross-module integration testing. The phases established foundational infrastructure first (backend scaffolding, database schema), then layered intelligence progressively: screen monitoring, SenticNet integration, JITAI engine, on-device LLM inference, memory system, UI refinement, and end-to-end evaluation.
+
+Four design principles governed all architectural decisions:
+
+\begin{enumerate}[leftmargin=*, itemsep=4pt]
+  \item \emph{Privacy by architecture}: raw screen captures and transcripts never leave the local machine; only anonymised metadata is sent externally when enrichment is required.
+  \item \emph{Fail-fast over fail-safe}: components throw errors immediately rather than degrading silently---a deliberate choice for a pre-production system.
+  \item \emph{Interpretability}: every decision is traceable to named concepts and explainable via the XAI module.
+  \item \emph{Resource consciousness}: peak AI memory is constrained to 2.5\,GB with load-on-demand model instantiation for consumer Apple Silicon hardware.
+\end{enumerate}
+
+Each phase concluded with evaluation against predefined acceptance criteria: minimum accuracy thresholds for ML modules (e.g., 80\% weighted F1 for emotion classification) and latency percentile targets for real-time modules (e.g., p99~$<$~100\,ms for the Hot Path).
+
+
+% =============================================================================
+\section{On-Device LLM Module}
+\label{sec:llm_module}
+% =============================================================================
+
+The On-Device LLM Module provides natural language understanding and generation without persistent cloud connectivity, ensuring that sensitive emotional disclosures remain on-device.
+
+\textbf{Model Selection.} The module employs Qwen3-4B~\cite{yang2025}, selected after evaluating candidates against four criteria: parameter count compatible with consumer Apple Silicon, availability of 4-bit quantised weights, strong instruction-following performance relative to size, and MLX framework support. Qwen3-4B outperformed similarly-sized alternatives including Phi-3-mini and Llama-3.2-3B on the system's internal ADHD-relevant evaluation suite.
+
+\textbf{Quantisation and Inference.} The model is quantised to 4-bit precision (GPTQ) via the MLX ecosystem~\cite{hannun2023}, reducing memory from $\sim$8\,GB (FP16) to $\sim$2.3\,GB while preserving over 95\% of full-precision accuracy. MLX exploits Apple Silicon's unified memory for zero-copy CPU--GPU data sharing, achieving 37.1 tokens/s on M-series chips. The model is memory-mapped on first use and evicted after a configurable idle timeout (default: 15~minutes), keeping the idle backend at $\sim$500\,MB. \Cref{tab:llm_performance} summarises performance characteristics.
+
+\begin{table}[htbp]
+  \centering
+  \caption{On-device LLM performance characteristics for Qwen3-4B (4-bit quantised) on Apple Silicon via MLX.}
+  \label{tab:llm_performance}
+  \begin{tabular}{ll}
+    \toprule
+    \textbf{Metric} & \textbf{Value} \\
+    \midrule
+    Parameter count        & 4 billion \\
+    Quantisation           & 4-bit (GPTQ) \\
+    GPU memory footprint   & $\sim$2.3\,GB \\
+    Inference throughput   & 37.1 tokens/s \\
+    Time to first token    & $\sim$180\,ms \\
+    Framework              & Apple MLX \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Context Injection.} Before each invocation, the module constructs a structured prompt incorporating: (1)~the user's current emotional state from the SenticNet pipeline (\Cref{sec:affective_computing}), including classified emotion, polarity, and sarcasm detection; (2)~relevant long-term memories retrieved via Mem0 semantic search (\Cref{sec:memory_module}); and (3)~current screen activity context (active application, focus score, distraction ratio). This transforms the general-purpose model into an ADHD-aware agent that references historical patterns, current emotion, and task context.
+
+
+% =============================================================================
+\section{Affective Computing Module}
+\label{sec:affective_computing}
+% =============================================================================
+
+The Affective Computing Module combines lexicon-based sentiment analysis with contrastive learning to understand the user's emotional state from text, operating along two axes: a multi-tier SenticNet orchestration pipeline and a custom SetFit-based emotion classifier.
+
+\textbf{SenticNet Pipeline.} SenticNet~\cite{cambria2024} provides semantics-aware sentiment analysis grounded in the Hourglass of Emotions model~\cite{cambria2016}. The system orchestrates thirteen Cloud APIs in a four-tier cascade. Tier~1 (Safety) invokes depression detection, toxicity classification, and intensity estimation---if thresholds are exceeded, an emergency pathway is triggered immediately. Tier~2 (Core Emotional) performs emotion recognition, polarity detection, subjectivity analysis, and sarcasm detection. Tier~3 (ADHD Signals) extracts engagement, wellbeing, conceptual associations, and aspect-level sentiment. Tier~4 (Deep Analysis) performs personality profiling and ensemble aggregation, invoked only when preceding tiers yield conflicting signals. \Cref{fig:senticnet_pipeline} illustrates this cascade.
+
+% --- MERMAID BACKUP ---
+% flowchart TB
+%   T1[Tier 1: Safety<br>Depression + Toxicity + Intensity] -->|Pass| T2
+%   T1 -->|Threshold exceeded| EM[Emergency Response]
+%   T2[Tier 2: Core Emotional<br>Emotion + Polarity + Subjectivity + Sarcasm] --> T3
+%   T3[Tier 3: ADHD Signals<br>Engagement + Wellbeing + Concepts + Aspects] --> T4
+%   T4[Tier 4: Deep Analysis<br>Personality + Ensemble]
+%   style T1 fill:#fee,stroke:#c00
+%   style T2 fill:#ffe,stroke:#c80
+%   style T3 fill:#efe,stroke:#080
+%   style T4 fill:#eef,stroke:#008
+%   style EM fill:#fcc,stroke:#c00
+% --- END MERMAID ---
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    node distance=1.0cm,
+    every node/.style={font=\small\sffamily},
+    tierbox/.style={
+      rectangle, rounded corners=4pt, draw, thick,
+      minimum width=7cm, minimum height=1.2cm, align=center
+    },
+    tier1/.style={tierbox, fill=red!8, draw=red!50!black},
+    tier2/.style={tierbox, fill=yellow!10, draw=yellow!60!black},
+    tier3/.style={tierbox, fill=green!8, draw=green!50!black},
+    tier4/.style={tierbox, fill=blue!8, draw=blue!50!black},
+    emergency/.style={
+      rectangle, rounded corners=4pt, draw=red!70!black, thick,
+      fill=red!15, minimum width=2.6cm, minimum height=0.9cm, align=center
+    },
+    downarr/.style={-{Stealth[length=5pt]}, thick, gray!70!black},
+    emergarr/.style={-{Stealth[length=5pt]}, thick, red!60!black}
+  ]
+    \node[tier1] (t1) {%
+      \textbf{Tier 1: Safety}\\[-2pt]
+      {\footnotesize Depression $\cdot$ Toxicity $\cdot$ Intensity}};
+    \node[tier2, below=of t1] (t2) {%
+      \textbf{Tier 2: Core Emotional}\\[-2pt]
+      {\footnotesize Emotion $\cdot$ Polarity $\cdot$ Subjectivity $\cdot$ Sarcasm}};
+    \node[tier3, below=of t2] (t3) {%
+      \textbf{Tier 3: ADHD Signals}\\[-2pt]
+      {\footnotesize Engagement $\cdot$ Wellbeing $\cdot$ Concepts $\cdot$ Aspects}};
+    \node[tier4, below=of t3] (t4) {%
+      \textbf{Tier 4: Deep Analysis}\\[-2pt]
+      {\footnotesize Personality $\cdot$ Ensemble} {\scriptsize (conditional)}};
+
+    % Emergency branch
+    \node[emergency, right=2.8cm of t1] (emerg) {\textbf{Emergency}\\[-2pt]Response};
+
+    % Vertical arrows
+    \draw[downarr] (t1.south) -- node[left, font=\scriptsize\sffamily, text=gray!70!black]{Pass} (t2.north);
+    \draw[downarr] (t2.south) -- (t3.north);
+    \draw[downarr] (t3.south) -- node[left, font=\scriptsize\sffamily, text=gray!70!black]{Ambiguous?} (t4.north);
+
+    % Emergency arrow
+    \draw[emergarr] (t1.east) -- node[above, font=\scriptsize\sffamily, text=red!60!black]{Threshold exceeded} (emerg.west);
+
+    % Conditional annotation for Tier 4
+    \draw[decorate, decoration={brace, amplitude=5pt, mirror}, thick, blue!40!black]
+      ([xshift=-3.8cm]t4.south west) -- ([xshift=-3.8cm]t3.south west)
+      node[midway, left=6pt, font=\scriptsize\sffamily, text=blue!50!black, align=right]
+      {Invoked only if\\signals conflict};
+
+  \end{tikzpicture}
+  \caption{Four-tier SenticNet orchestration pipeline. Each tier is evaluated sequentially; Tier~1 may short-circuit to an emergency pathway if safety thresholds are exceeded. Tier~4 is invoked conditionally based on signal ambiguity in Tiers~2 and~3.}
+  \label{fig:senticnet_pipeline}
+\end{figure}
+
+\textbf{Emotion Taxonomy.} Rather than adopting a general-purpose taxonomy such as Ekman's six basic emotions, the system defines six ADHD-specific categories: \emph{joyful}, \emph{focused}, \emph{frustrated}, \emph{anxious}, \emph{disengaged}, and \emph{overwhelmed}. This taxonomy was developed from ADHD literature~\cite{barkley2010, diamond2013} and reflects emotional states most salient to executive function regulation. \emph{Focused} and \emph{disengaged} correspond to attentional states central to ADHD symptomatology, while \emph{overwhelmed} captures executive overload preceding task abandonment.
+
+\textbf{SetFit Emotion Classifier.} The classifier employs a contrastive learning framework inspired by SetFit~\cite{reimers2019}, implemented manually due to library incompatibilities with the project's transformer versions. The base encoder is \texttt{all-mpnet-base-v2}~\cite{wang2020}, a 110M-parameter sentence transformer. Training uses CoSENT loss over all unique pairs including hard negatives from adjacent categories (e.g., \emph{anxious}--\emph{overwhelmed}). With 210 manually curated sentences, a single epoch achieves 86\% weighted F1---superior to two epochs (84\%), indicating overfitting. Augmenting with 288 LLM-generated sentences degraded performance to 82\% due to distributional shift and class imbalance. \Cref{tab:emotion_classifiers} summarises results.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Emotion classifier accuracy comparison across approaches. Weighted F1 scores are reported on a held-out test set of 50 manually labelled sentences.}
+  \label{tab:emotion_classifiers}
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Approach} & \textbf{Training Data} & \textbf{Weighted F1} \\
+    \midrule
+    Baseline SenticNet             & ---              & 0.28 \\
+    Hybrid (Embedding + SenticNet) & 210 sentences    & 0.74 \\
+    DistilBERT fine-tuned          & 210 sentences    & 0.62 \\
+    DistilBERT fine-tuned          & 1,200 augmented  & 0.72 \\
+    SetFit (CoSENT, 1 epoch)       & 210 sentences    & \textbf{0.86} \\
+    SetFit (CoSENT, 1 epoch)       & 498 sentences    & 0.82 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Concept Bottleneck Model for Explainability.} The emotion classifier is wrapped in a Concept Bottleneck Model (CBM)~\cite{koh2020} to satisfy the interpretability principle. The CBM first predicts intermediate human-interpretable concepts---such as ``frustration with task switching'' or ``anxiety about deadlines''---then derives the emotion label from these concepts. This enables explanations of the form: ``You appear \emph{overwhelmed} because the system detected high task-switching frequency and negative polarity toward the current assignment.'' Such explanations support metacognitive awareness, a known protective factor in ADHD self-regulation~\cite{diamond2013}.
+
+
+% =============================================================================
+\section{Memory and Context Module}
+\label{sec:memory_module}
+% =============================================================================
+
+The Memory and Context Module provides longitudinal awareness of the user's behavioural patterns, emotional history, and conversational context, transforming the system from stateless to personalised.
+
+\textbf{Mem0 Integration.} Mem0~\cite{chhikara2025} serves as the primary memory abstraction, automatically extracting salient facts from conversations and storing them as structured entries with metadata. In evaluation, Mem0 demonstrated a 26\% improvement in retrieval relevance over the OpenAI memory baseline, as measured by Mean Reciprocal Rank on ADHD-specific recall queries. This advantage stems from Mem0's graph-based memory organisation capturing relational structure.
+
+\textbf{PostgreSQL + pgvector.} Memory embeddings are persisted via the pgvector extension for approximate nearest-neighbour search. The embedding model is \texttt{all-mpnet-base-v2}---shared with the emotion classifier for representational consistency. At query time, cosine similarity search retrieves the top-$k$ relevant memories for injection into the LLM prompt (\Cref{sec:llm_module}).
+
+\textbf{Semantic Retrieval Pipeline.} The retrieval pipeline comprises three stages: (1)~encoding the user input via the shared sentence transformer, (2)~pgvector cosine similarity search over the memory index, and (3)~re-ranking by temporal recency and contextual relevance. \Cref{fig:memory_pipeline} illustrates this pipeline.
+
+% --- MERMAID BACKUP ---
+% flowchart LR
+%   A[User Input] --> B[Encode<br>all-mpnet-base-v2]
+%   B --> C[pgvector Search<br>Cosine Similarity]
+%   C --> D[Re-rank<br>Temporal + Context]
+%   D --> E[Inject into<br>LLM Prompt]
+% --- END MERMAID ---
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.4cm,
+    every node/.style={font=\small\sffamily},
+    pipebox/.style={
+      rectangle, rounded corners=6pt, draw=violet!60!black, thick,
+      fill=violet!6, minimum width=2.4cm, minimum height=1.2cm, align=center,
+      text width=2.2cm
+    },
+    arr/.style={-{Stealth[length=5pt]}, thick, violet!50!black}
+  ]
+    \node[pipebox] (input) {User\\Input};
+    \node[pipebox, right=of input] (encode) {Encode\\[-2pt]{\scriptsize all-mpnet-\\base-v2}};
+    \node[pipebox, right=of encode] (search) {pgvector\\Search\\[-2pt]{\scriptsize Cosine Sim.}};
+    \node[pipebox, right=of search] (rerank) {Re-rank\\[-2pt]{\scriptsize Temporal +\\Context}};
+    \node[pipebox, right=of rerank] (inject) {Inject into\\LLM Prompt};
+
+    \draw[arr] (input) -- (encode);
+    \draw[arr] (encode) -- (search);
+    \draw[arr] (search) -- (rerank);
+    \draw[arr] (rerank) -- (inject);
+  \end{tikzpicture}
+  \caption{Semantic memory retrieval pipeline. User input is encoded via the shared sentence transformer, matched against the pgvector index by cosine similarity, and re-ranked by temporal recency and activity context before injection into the LLM prompt.}
+  \label{fig:memory_pipeline}
+\end{figure}
+
+
+% =============================================================================
+\section{Screen Monitoring Module}
+\label{sec:screen_monitoring}
+% =============================================================================
+
+The Screen Monitoring Module implements the Hot Path, continuously observing desktop activity and computing real-time ADHD-relevant behavioural metrics to trigger just-in-time interventions.
+
+\textbf{Screen Capture.} The SwiftUI application polls active window metadata every two to three seconds via the macOS Accessibility API, capturing the application name, window title, and browser tab URL where available. Only metadata is captured---not pixel-level screenshots---preserving privacy while providing sufficient signal for classification.
+
+\textbf{Activity Classifier.} A four-level hierarchical rule-based classifier resolves activity categories with minimal cost, resorting to expensive methods only when simpler levels fail. Level~1 matches the application name against a curated dictionary; Level~2 matches browser URL domains; Level~3 applies keyword matching to window titles; Level~4 routes unresolved metadata to the on-device embedding model. Levels~1--3 execute in under 5\,ms and resolve 78\% of events; Level~4 ($\sim$8\,ms) handles the remaining 22\%. \Cref{fig:activity_classifier} illustrates this cascade.
+
+% --- MERMAID BACKUP ---
+% flowchart TB
+%   IN[Screen Event] --> L1{L1: App Name?}
+%   L1 -->|56.5% resolved| OUT[Classification Result]
+%   L1 -->|No match| L2{L2: URL Domain?}
+%   L2 -->|Match| OUT
+%   L2 -->|No match| L3{L3: Title Keywords?}
+%   L3 -->|21.5% resolved| OUT
+%   L3 -->|No match| L4{L4: Embedding}
+%   L4 -->|22% resolved| OUT
+% --- END MERMAID ---
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.9cm,
+    every node/.style={font=\small\sffamily},
+    levelbox/.style={
+      rectangle, rounded corners=4pt, draw=teal!60!black, thick,
+      fill=teal!8, minimum width=4.2cm, minimum height=0.85cm, align=center
+    },
+    resultbox/.style={
+      rectangle, rounded corners=4pt, draw=gray!60, thick,
+      fill=gray!8, minimum width=2.8cm, minimum height=0.75cm, align=center
+    },
+    inputbox/.style={
+      rectangle, rounded corners=4pt, draw=teal!80!black, thick,
+      fill=teal!15, minimum width=3.0cm, minimum height=0.75cm, align=center
+    },
+    downarr/.style={-{Stealth[length=5pt]}, thick, teal!60!black},
+    resarr/.style={-{Stealth[length=5pt]}, thick, gray!60}
+  ]
+    \node[inputbox] (input) {Screen Event};
+    \node[levelbox, below=of input] (l1) {\textbf{L1:} App Name Lookup\\[-2pt]{\scriptsize $<$5\,ms}};
+    \node[levelbox, below=of l1] (l2) {\textbf{L2:} URL Domain Match\\[-2pt]{\scriptsize $<$5\,ms}};
+    \node[levelbox, below=of l2] (l3) {\textbf{L3:} Title Keywords\\[-2pt]{\scriptsize $<$5\,ms}};
+    \node[levelbox, below=of l3] (l4) {\textbf{L4:} Embedding Classifier\\[-2pt]{\scriptsize $\sim$8\,ms}};
+
+    % Result node
+    \node[resultbox, right=2.2cm of l2] (result) {Classification\\Result};
+
+    % Vertical flow
+    \draw[downarr] (input) -- (l1);
+    \draw[downarr] (l1) -- node[left, font=\scriptsize, text=gray!70!black]{No match} (l2);
+    \draw[downarr] (l2) -- node[left, font=\scriptsize, text=gray!70!black]{No match} (l3);
+    \draw[downarr] (l3) -- node[left, font=\scriptsize, text=gray!70!black]{No match} (l4);
+
+    % Resolution arrows with labels
+    \draw[resarr] (l1.east) -- node[above, font=\scriptsize, text=gray!70!black]{56.5\%} (result.west |- l1.east);
+    \draw[resarr] (l2.east) -- node[above, font=\scriptsize, text=gray!70!black]{} (result.west |- l2.east);
+    \draw[resarr] (l3.east) -- node[above, font=\scriptsize, text=gray!70!black]{21.5\%} (result.west |- l3.east);
+    \draw[resarr] (l4.east) -- node[above, font=\scriptsize, text=gray!70!black]{22\%} (result.west |- l4.east);
+
+    % Brace for rule-based
+    \draw[decorate, decoration={brace, amplitude=6pt}, thick, teal!50!black]
+      ([xshift=-0.5cm]l1.north west) -- ([xshift=-0.5cm]l3.south west)
+      node[midway, left=8pt, font=\scriptsize\sffamily, text=teal!60!black, align=right]
+      {Rule-based\\78\% total};
+
+  \end{tikzpicture}
+  \caption{Four-level hierarchical activity classifier. Each level is attempted in sequence; classification terminates at the first level that produces a confident result. Levels~1--3 are rule-based and resolve 78\% of events in under 5\,ms. Level~4 (embedding fallback) is invoked for the remaining 22\%.}
+  \label{fig:activity_classifier}
+\end{figure}
+
+\textbf{ADHD Metrics Engine.} Classified events feed into an in-memory metrics engine computing four real-time indicators: (1)~\emph{context switch rate} (application transitions per unit time), (2)~\emph{focus score} (sustained engagement with a task-relevant application), (3)~\emph{distraction ratio} (proportion of time in non-task-relevant applications within a sliding window), and (4)~\emph{streak} (uninterrupted focus duration). Each update requires less than 1\,ms.
+
+
+% =============================================================================
+\section{Intervention System Design}
+\label{sec:intervention_system}
+% =============================================================================
+
+The Intervention System implements a Just-In-Time Adaptive Intervention (JITAI) framework grounded in Barkley's five executive function domains: inhibition, working memory, emotional self-regulation, self-motivation, and planning/problem-solving~\cite{barkley2010}. Informed by Diamond's EF development framework~\cite{diamond2013}, the system delivers targeted micro-interventions at moments of detected executive dysfunction.
+
+\textbf{JITAI Engine.} The engine consumes real-time metrics from the ADHD Metrics Engine (\Cref{sec:screen_monitoring}) and emotional state from the Affective Computing Module (\Cref{sec:affective_computing}), evaluating intervention rules associated with each EF domain in under 2\,ms.
+
+\textbf{Thompson Sampling for Personalisation.} Because ADHD symptom profiles are heterogeneous, the engine employs Thompson Sampling---a Bayesian bandit algorithm---to learn which intervention types are most effective per user. Each type maintains a Beta distribution updated by observed successes and failures, converging over time to preferentially select high-efficacy interventions. \Cref{fig:jitai_loop} illustrates the complete evaluation and personalisation loop.
+
+% --- MERMAID BACKUP ---
+% flowchart TB
+%   A[Real-Time Metrics<br>Context switches, Focus, Distraction] --> B[EF Domain Evaluation<br>5 Barkley domains]
+%   C[Emotional State<br>From SenticNet Pipeline] --> B
+%   B --> D{Intervention<br>Warranted?}
+%   D -->|No| E[Continue Monitoring]
+%   D -->|Yes| F[Thompson Sampling<br>Sample Beta distributions]
+%   F --> G[Select Intervention Type]
+%   G --> H[Deliver via Tier 1-4]
+%   H --> I[Observe User Response]
+%   I --> J[Update Beta Parameters]
+%   J --> F
+% --- END MERMAID ---
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.8cm and 0.8cm,
+    every node/.style={font=\small\sffamily},
+    procbox/.style={
+      rectangle, rounded corners=4pt, draw=purple!60!black, thick,
+      fill=purple!6, minimum width=3.6cm, minimum height=0.8cm, align=center
+    },
+    inputbox/.style={
+      rectangle, rounded corners=4pt, draw=blue!60!black, thick,
+      fill=blue!8, minimum width=3.2cm, minimum height=0.8cm, align=center
+    },
+    decbox/.style={
+      diamond, draw=purple!60!black, thick, fill=purple!10,
+      minimum width=2.2cm, minimum height=1.4cm, align=center,
+      inner sep=1pt, aspect=1.8
+    },
+    arr/.style={-{Stealth[length=5pt]}, thick, purple!50!black}
+  ]
+    % Inputs
+    \node[inputbox] (metrics) {Real-Time Metrics\\[-2pt]{\scriptsize Focus, Switches, Distraction}};
+    \node[inputbox, right=1.6cm of metrics] (emotion) {Emotional State\\[-2pt]{\scriptsize SenticNet Pipeline}};
+
+    % EF Evaluation
+    \node[procbox, below=0.9cm of $(metrics)!0.5!(emotion)$] (eval) {EF Domain Evaluation\\[-2pt]{\scriptsize 5 Barkley domains, $<$2\,ms}};
+
+    % Decision
+    \node[decbox, below=0.9cm of eval] (decide) {Intervene?};
+
+    % No branch
+    \node[procbox, left=1.8cm of decide, minimum width=2.8cm] (cont) {Continue\\Monitoring};
+
+    % Thompson Sampling branch
+    \node[procbox, below=0.9cm of decide] (thompson) {Thompson Sampling\\[-2pt]{\scriptsize Sample Beta($\alpha$,$\beta$)}};
+    \node[procbox, below=0.7cm of thompson] (deliver) {Deliver Intervention\\[-2pt]{\scriptsize Tiers 1--4}};
+    \node[procbox, below=0.7cm of deliver] (observe) {Observe Response\\[-2pt]{\scriptsize Success / Failure}};
+    \node[procbox, below=0.7cm of observe] (update) {Update Beta Params\\[-2pt]{\scriptsize $\alpha{+}{+}$ or $\beta{+}{+}$}};
+
+    % Arrows from inputs to EF evaluation
+    \draw[arr] (metrics.south) -- ++(0,-0.3) -| ([xshift=-0.8cm]eval.north);
+    \draw[arr] (emotion.south) -- ++(0,-0.3) -| ([xshift=0.8cm]eval.north);
+    \draw[arr] (eval) -- (decide);
+    \draw[arr] (decide.west) -- node[above, font=\scriptsize]{No} (cont.east);
+    \draw[arr] (decide.south) -- node[right, font=\scriptsize]{Yes} (thompson.north);
+    \draw[arr] (thompson) -- (deliver);
+    \draw[arr] (deliver) -- (observe);
+    \draw[arr] (observe) -- (update);
+
+    % Feedback loop
+    \draw[arr] (update.west) -- ++(-1.8,0) |- (thompson.west);
+
+  \end{tikzpicture}
+  \caption{JITAI evaluation and personalisation loop. Real-time metrics and emotional state feed into the five-domain executive function evaluation. When intervention is warranted, Thompson Sampling selects the intervention type, and user responses update the Beta distribution parameters for subsequent decisions.}
+  \label{fig:jitai_loop}
+\end{figure}
+
+\textbf{Multi-Tier Intervention Delivery.} Interventions follow a four-tier escalation ladder (\Cref{tab:intervention_tiers}), proceeding to higher tiers only if lower ones fail to restore focus within a configurable observation window.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Multi-tier intervention escalation ladder with triggering conditions and delivery mechanisms.}
+  \label{tab:intervention_tiers}
+  \begin{tabular}{llll}
+    \toprule
+    \textbf{Tier} & \textbf{Type} & \textbf{Trigger Condition} & \textbf{Delivery Mechanism} \\
+    \midrule
+    1 & Nudge   & Mild metric deviation       & Menu bar indicator \\
+    2 & Popup   & Sustained metric deviation   & macOS notification \\
+    3 & Overlay & Escalation from Tier~2       & Semi-transparent overlay \\
+    4 & Block   & Escalation from Tier~3       & Application restriction \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+% =============================================================================
+\section{UI/UX Design}
+\label{sec:uiux_design}
+% =============================================================================
+
+The user interface comprises two complementary surfaces. The SwiftUI menu bar application provides an always-available, minimal-footprint entry point displaying current focus score, emotional state, and streak duration, with access to the OpenClaw conversational interface. It follows macOS Human Interface Guidelines to minimise cognitive overhead---critical for users with ADHD, who are disproportionately affected by interface complexity~\cite{beattie2025}.
+
+The React dashboard provides a richer analytical interface for historical trends, emotional trajectories, and intervention efficacy over configurable time windows. Both interfaces employ ADHD-informed design: minimal visual clutter, high-contrast colour coding (green/amber/red for focus states), and progressive disclosure. Intervention notifications are non-punitive and action-oriented, framed positively to avoid triggering rejection-sensitive dysphoria.
+
+
+% =============================================================================
+\section{Technology Stack Selection}
+\label{sec:tech_stack}
+% =============================================================================
+
+\Cref{tab:tech_stack} presents the technology stack with selection justifications, governed by on-device deployment compatibility, Python ML ecosystem integration, and Apple Silicon real-time processing suitability.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Technology stack selection with justifications.}
+  \label{tab:tech_stack}
+  \begin{tabular}{p{2.8cm}p{3.8cm}p{7cm}}
+    \toprule
+    \textbf{Component} & \textbf{Technology} & \textbf{Justification} \\
+    \midrule
+    Backend framework & FastAPI (Python~3.11) & Native async support; direct access to the Python ML ecosystem (PyTorch, Transformers, scikit-learn); automatic OpenAPI documentation generation \\
+    \addlinespace
+    Database & PostgreSQL + pgvector & Combined relational and vector storage eliminates the need for a separate vector database; mature ACID guarantees for activity logs; pgvector supports IVFFlat and HNSW indexing for sub-millisecond ANN search \\
+    \addlinespace
+    On-device LLM & Qwen3-4B via MLX & 4-bit quantisation fits within 2.5\,GB GPU budget; MLX exploits Apple Silicon unified memory for zero-copy inference; 37.1\,tok/s throughput enables interactive conversation \\
+    \addlinespace
+    Affective computing & SenticNet + SetFit & SenticNet provides interpretable, multi-dimensional affective features grounded in the Hourglass of Emotions~\cite{cambria2016}; SetFit achieves 86\% F1 with only 210 training sentences via contrastive learning \\
+    \addlinespace
+    Sentence encoder & all-mpnet-base-v2 & State-of-the-art sentence embeddings on STS benchmarks~\cite{reimers2019}; shared across emotion classification and memory retrieval for representational consistency \\
+    \addlinespace
+    Memory & Mem0 & 26\% retrieval relevance improvement over OpenAI memory baseline~\cite{chhikara2025}; graph-based memory organisation captures relational structure \\
+    \addlinespace
+    Desktop client & SwiftUI & Native macOS integration; direct access to Accessibility API for screen metadata capture; minimal resource footprint ($\sim$25\,MB RAM) \\
+    \addlinespace
+    Dashboard & React + Vite & Component-based architecture suits modular analytics views; Vite provides sub-second hot module replacement during development \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+FastAPI was selected over Flask and Django for its native asynchronous request handling, essential for concurrent screen monitoring and conversational requests. Python~3.11 was chosen for compatibility with required ML packages (Transformers~5.3.0, sentence-transformers~5.2.3, PyTorch~2.10.0, scikit-learn~1.7.2). LoRA~\cite{hu2022} and QLoRA~\cite{dettmers2023} were evaluated for future model adaptation but not employed, as Qwen3-4B with prompt engineering proved sufficient. Emerging agentic RAG work~\cite{lin2025, xu2024} informed the memory retrieval design, though the current implementation uses a simpler three-stage pipeline.
+
+\bigskip
+
+This concludes the system design chapter. The three-layer architecture, dual data-flow model, and modular decomposition provide the structural foundation for implementation (Chapter~4) and evaluation (Chapter~5).

@@ -1,0 +1,34 @@
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {1.1}{\ignorespaces Summary of project objectives, targets, and achieved results.}}{6}{table.caption.10}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces Comparative analysis of existing ADHD applications against eight capability criteria. {\fontfamily {pzd}\fontencoding {U}\fontseries {m}\fontshape {n}\selectfont \char 51}{} = fully supported, {\fontfamily {pzd}\fontencoding {U}\fontseries {m}\fontshape {n}\selectfont \char 55}{} = not supported. ADHD Brain is the system proposed in this work.}}{19}{table.caption.11}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces On-device LLM performance characteristics for Qwen3-4B (4-bit quantised) on Apple Silicon via MLX.}}{27}{table.caption.14}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Emotion classifier accuracy comparison across approaches. Weighted F1 scores are reported on a held-out test set of 50 manually labelled sentences.}}{29}{table.caption.16}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Multi-tier intervention escalation ladder with triggering conditions and delivery mechanisms.}}{33}{table.caption.20}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces Technology stack selection with justifications.}}{34}{table.caption.21}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Per-class F1 scores for the production emotion classifier (Approach B).}}{42}{table.caption.22}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Comparison of emotion classifier approaches across training configurations.}}{43}{table.caption.24}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Summary of implementation challenges and their resolutions.}}{47}{table.caption.25}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Emotion classification results across all approaches and configurations.}}{49}{table.caption.26}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Per-class F1 scores for the production SetFit model.}}{50}{table.caption.27}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces LLM inference performance metrics (consolidated across two runs, seed 42).}}{52}{table.caption.29}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces SenticNet pipeline latency by input length.}}{53}{table.caption.30}%
+\contentsline {table}{\numberline {5.5}{\ignorespaces System integration performance summary.}}{54}{table.caption.31}%
+\contentsline {table}{\numberline {5.6}{\ignorespaces Energy consumption per pipeline execution by hardware component.}}{55}{table.caption.33}%
+\contentsline {table}{\numberline {5.7}{\ignorespaces Battery life projections under representative usage scenarios.}}{56}{table.caption.35}%
+\contentsline {table}{\numberline {5.8}{\ignorespaces Reproducibility tier classification of evaluation metrics.}}{57}{table.caption.36}%
+\contentsline {table}{\numberline {5.9}{\ignorespaces Objective-to-result traceability matrix.}}{58}{table.caption.37}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {B.1}{\ignorespaces Detailed LLM inference benchmark results (Qwen3-4B, 4-bit, MLX).}}{76}{table.caption.44}%
+\contentsline {table}{\numberline {B.2}{\ignorespaces SenticNet pipeline latency by input length (13 API calls per execution).}}{77}{table.caption.45}%
+\contentsline {table}{\numberline {B.3}{\ignorespaces Confusion matrix for the SetFit production model (rows: true labels, columns: predicted labels).}}{77}{table.caption.46}%
+\contentsline {table}{\numberline {B.4}{\ignorespaces Confusion matrix for the hybrid embedding-only model.}}{77}{table.caption.47}%
+\contentsline {table}{\numberline {B.5}{\ignorespaces Raw energy measurements across two benchmark runs (seed 42).}}{78}{table.caption.48}%
+\contentsline {table}{\numberline {B.6}{\ignorespaces Idle power consumption with the application loaded but no inference running.}}{78}{table.caption.49}%
+\contentsline {table}{\numberline {B.7}{\ignorespaces Synthetic ADHD persona definitions used in system evaluation.}}{78}{table.caption.50}%
+\addvspace {10\p@ }

@@ -1,0 +1,106 @@
+% =============================================================================
+% Chapter 1 — Introduction
+% =============================================================================
+\chapter{Introduction}
+\label{ch:introduction}
+
+Attention-Deficit/Hyperactivity Disorder (ADHD) is among the most prevalent neurodevelopmental conditions worldwide, yet digital interventions for adults with ADHD remain remarkably underdeveloped. This chapter motivates the need for an integrated, privacy-preserving desktop application that combines on-device language modelling, affective computing, screen activity monitoring, and persistent memory to support adults with ADHD in knowledge work. The chapter articulates the specific problem, defines measurable objectives, delineates scope and limitations, and summarises the contributions of this work.
+
+% -----------------------------------------------------------------------------
+\section{Background and Motivation}
+\label{sec:background}
+
+\subsection{ADHD Prevalence and the Executive Function Deficit}
+\label{subsec:adhd-prevalence}
+
+Attention-Deficit/Hyperactivity Disorder is a neurodevelopmental condition characterised not merely by difficulties sustaining attention, but by pervasive impairments in executive function---the set of cognitive processes that enable goal-directed behaviour, working memory, inhibitory control, and cognitive flexibility \cite{diamond2013}. Meta-analytic estimates place the global adult prevalence of ADHD between 2.58\% and 6.76\% \cite{faraone2021, song2021}, translating to over 200 million adults worldwide who navigate daily life with executive function profiles that diverge substantially from the neurotypical baseline upon which most productivity tools and digital interfaces are designed. ADHD in adults is associated with reduced occupational attainment, higher rates of job turnover, and elevated risk of comorbid anxiety and mood disorders, yet the technology ecosystem has been slow to develop tools that accommodate this specific cognitive profile.
+
+\subsection{Economic Impact and the Knowledge Worker Gap}
+\label{subsec:economic-impact}
+
+The economic burden of adult ADHD is substantial. Barkley and Murphy estimated the excess annual cost at \$4,336 per worker per year, attributable to reduced productivity, increased absenteeism, and elevated error rates \cite{barkley2010}. In the knowledge economy, where the desktop computer is the primary instrument of production, this cost accrues overwhelmingly at the human-computer interface. Adults with ADHD spend most of their working hours interacting with desktop applications---email clients, web browsers, code editors---yet these applications assume intact working memory, sustained attention, and consistent self-regulation. An application that could reduce even a fraction of this productivity loss would need to understand what the user is doing, how the user is feeling, and what the user has done before, all without sending sensitive data to external servers.
+
+\subsection{The Digital Distraction Paradox}
+\label{subsec:digital-distraction}
+
+A particularly vexing challenge is the digital distraction paradox: ADHD predisposes individuals to distraction by digital stimuli, while excessive digital engagement exacerbates attentional difficulties \cite{thorell2022, dontre2021}. The desktop computer is simultaneously the primary workspace and the primary distraction vector. Existing approaches---website blockers, application timers, focus modes---treat the symptom rather than the cause, imposing external constraints without understanding the cognitive or affective state that precipitated the distraction. Despite growing interest in digital mental health interventions, the evidence base for ADHD-specific applications remains thin, with a recent meta-analysis finding only a modest effect size of Hedges' $g = -0.32$ \cite{garciaperal2025}. Among ADHD-specific tools, Brain.fm is one of the very few with peer-reviewed evidence \cite{woods2024}; the broader landscape consists overwhelmingly of static task managers and timers that lack adaptive intelligence, affective awareness, or personalised coaching. A more effective intervention would monitor screen activity in real time, detect drift from productive work, and intervene with context-aware coaching that accounts for the user's emotional state and historical patterns.
+
+\subsection{Emotion Dysregulation as a Core Symptom}
+\label{subsec:emotion-dysregulation}
+
+Recent clinical research has increasingly recognised emotion dysregulation not as a mere comorbidity, but as a fourth core symptom of ADHD alongside inattention, hyperactivity, and impulsivity \cite{beattie2025}. Adults with ADHD frequently experience rapid, intense emotional responses---frustration when tasks prove difficult, anxiety when deadlines loom, and overwhelming cognitive overload when demands exceed executive capacity. These affective states are primary drivers of task abandonment, not incidental to it. Any comprehensive support system must therefore incorporate affective awareness: an application that detects frustration or anxiety and responds with appropriately timed, empathetic coaching has the potential to interrupt the emotion--distraction--guilt cycle that characterises much of the ADHD experience in knowledge work.
+
+\subsection{The Second Brain Paradigm and the Privacy Imperative}
+\label{subsec:second-brain-privacy}
+
+The ``Second Brain'' paradigm, popularised by Forte \cite{forte2022}, advocates for the systematic externalisation of knowledge into a persistent digital system that augments human memory. This paradigm is especially relevant for adults with ADHD, whose working memory deficits mean that valuable insights and contextual knowledge are routinely lost between sessions. However, the tools most commonly associated with this paradigm---Notion, Obsidian, Roam Research---require precisely the executive functions that ADHD impairs: consistent categorisation, regular review, and disciplined capture habits. A truly ADHD-appropriate Second Brain must automate the capture and organisation process, requiring minimal executive overhead from the user.
+
+Such a system produces data of extraordinary sensitivity---screen content, emotional states, conversational transcripts---creating unacceptable privacy risks if transmitted to cloud servers. Recent advances in edge AI have made on-device processing a viable alternative. The MLX framework, developed by Apple Machine Learning Research, enables efficient neural network inference on Apple Silicon hardware \cite{hannun2023}, and models such as Qwen3-4B \cite{yang2025} achieve competitive performance while fitting within the memory constraints of consumer hardware. Together, these technologies make it feasible to run a capable language model, an emotion classifier, and a memory system entirely on the user's device.
+
+% -----------------------------------------------------------------------------
+\section{Problem Statement}
+\label{sec:problem-statement}
+
+Adults with ADHD who work primarily on desktop computers face a fragmented landscape of support tools, typically requiring three to five separate applications: a task manager, a focus timer, a note-taking system, a calendar, and possibly a mood tracker. Each operates in isolation, unaware of the user's activity in other applications, emotional state, or historical patterns. This fragmentation is itself an ADHD tax---the cognitive overhead of switching between tools actively undermines the executive functions the tools are ostensibly designed to support.
+
+From a technical standpoint, no existing application integrates on-device large language model coaching, real-time affective computing, continuous screen activity monitoring, and persistent conversational memory within a single desktop application. Cloud-based solutions exist for individual components but introduce latency, require network connectivity, and create the privacy vulnerabilities discussed in \cref{subsec:second-brain-privacy}. The technical challenge is to unify these capabilities into a coherent, responsive, and private desktop application that runs entirely on consumer hardware.
+
+% -----------------------------------------------------------------------------
+\section{Project Objectives}
+\label{sec:objectives}
+
+This project aims to design, implement, and evaluate a desktop application---the ADHD Second Brain---that provides integrated, privacy-preserving cognitive support for adults with ADHD. The application targets macOS on Apple Silicon hardware, leveraging the MLX framework for on-device inference. Five specific, measurable objectives guide the project.
+
+\textbf{Objective 1: On-Device LLM Coaching.} The application shall provide real-time conversational coaching through Qwen3-4B on the MLX framework, targeting at least 30 tokens per second. The achieved throughput of 37.1 tok/s exceeds the target by 23.7\%.
+
+\textbf{Objective 2: Emotion Classification.} The application shall classify user-expressed emotion into six ADHD-relevant categories with at least 80\% accuracy. The achieved accuracy of 86\% (macro-F1 0.862), trained on only 210 sentences, demonstrates that few-shot contrastive learning yields clinically useful classifiers.
+
+\textbf{Objective 3: Screen Activity Classification.} The application shall classify active window titles in real time. The achieved throughput of 549 titles per second, with 78\% resolved by deterministic rules, ensures negligible computational overhead.
+
+\textbf{Objective 4: Persistent Conversational Memory.} The application shall maintain persistent memory using the Mem0 framework, targeting at least 90\% top-1 relevance. The achieved 95\% top-1 hit rate ensures contextually grounded coaching responses.
+
+\textbf{Objective 5: Privacy-Preserving, Energy-Efficient Architecture.} All sensitive data shall be processed on-device. The achieved energy consumption of approximately 1.4\% battery per hour and peak AI memory below 2.5 GB confirm suitability for sustained daily use.
+
+\Cref{tab:objectives-summary} summarises the quantitative targets and achieved results for each objective.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Summary of project objectives, targets, and achieved results.}
+  \label{tab:objectives-summary}
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    \textbf{Objective}          & \textbf{Target}         & \textbf{Achieved}      \\
+    \midrule
+    LLM throughput              & $\geq$30 tok/s          & 37.1 tok/s             \\
+    Emotion accuracy            & $\geq$80\%              & 86\%                   \\
+    Screen classification       & Real-time               & 549 titles/s           \\
+    Memory relevance            & $\geq$90\% top-1        & 95\% top-1             \\
+    Energy consumption          & $<$2\% battery/hr       & $\sim$1.4\% battery/hr \\
+    Peak AI memory              & $<$3 GB                 & $<$2.5 GB              \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% -----------------------------------------------------------------------------
+\section{Project Scope and Limitations}
+\label{sec:scope}
+
+The scope of this project encompasses the design, implementation, and evaluation of a single-user macOS desktop application targeting Apple Silicon M-series processors. The application is implemented in Python with a Swift-based menu bar interface and comprises five core modules: an on-device LLM coaching engine, an emotion classification pipeline, a screen activity monitor and classifier, a persistent memory system, and a just-in-time adaptive intervention (JITAI) orchestrator. The implementation is accompanied by a comprehensive test suite of over 200 unit, integration, and end-to-end tests. All natural language processing is conducted in English, and the system is designed for individual rather than collaborative use.
+
+Several deliberate limitations bound the project. First, the application targets macOS exclusively, as the MLX framework and Apple Silicon GPU acceleration are platform-specific. Second, emotion detection relies solely on text-based classification of user chat messages; multimodal signals are not incorporated. Third, the project does not include an IRB-approved clinical trial with ADHD-diagnosed participants; evaluation is conducted through automated benchmarks and system-level performance metrics. Fourth, the on-device LLM uses prompt engineering rather than parameter-efficient fine-tuning. Fifth, the emotion classifier is trained on expert-labelled synthetic data rather than clinical data collected from individuals with diagnosed ADHD.
+
+% -----------------------------------------------------------------------------
+\section{Contributions and Significance}
+\label{sec:contributions}
+
+The primary contribution of this project is the design and implementation of the first integrated desktop application that combines on-device large language model coaching, real-time affective computing, continuous screen activity monitoring, and persistent conversational memory for adults with ADHD. While individual components exist as separate tools or cloud services, no prior work has unified these capabilities into a single, privacy-preserving desktop application optimised for the ADHD cognitive profile. This integration is a clinical necessity, as the fragmentation of support tools imposes precisely the executive overhead that adults with ADHD can least afford.
+
+The project makes four specific technical contributions. First, a four-tier SenticNet integration pipeline that combines API-based affective knowledge with local caching to enrich coaching responses with validated emotional context. Second, a few-shot emotion classification system achieving 86\% accuracy across six ADHD-relevant categories using only 210 labelled sentences, demonstrating that contrastive learning with sentence transformers \cite{reimers2019} can yield clinically useful classifiers without large-scale annotation. Third, a hybrid screen activity classification system processing 549 titles per second, resolving 78\% through deterministic rules and falling back to a 14-class ML classifier with 96.5\% accuracy. Fourth, a persistent memory system achieving 95\% top-1 retrieval relevance. A systematic analysis of nine existing ADHD and productivity applications identifies eight distinct capability gaps that the ADHD Second Brain addresses, positioning it as a fundamentally different category of application.
+
+The broader significance lies in demonstrating that edge AI is viable for mental health applications. By running a 4-billion-parameter language model, an emotion classifier, and a memory system on a consumer laptop with less than 2.5 GB peak AI memory and approximately 1.4\% battery drain per hour, the project establishes that privacy-preserving, always-on cognitive support is technically feasible on current hardware, providing a reference point for any application seeking to deploy sensitive AI capabilities on-device.
+
+% -----------------------------------------------------------------------------
+\section{Report Organisation}
+\label{sec:report-organisation}
+
+The remainder of this report is organised as follows. \Cref{ch:litrev} reviews the relevant literature on ADHD, digital interventions, affective computing, on-device language models, and memory-augmented AI systems, establishing the theoretical and technical foundations for the system design. \Cref{ch:system_design} presents the system architecture, detailing the design of each module and the rationale for key architectural decisions. \Cref{ch:implementation} describes the implementation of each component, including the emotion classification pipeline, the LLM integration, the screen monitoring system, and the memory framework. \Cref{ch:testing-evaluation} reports the testing methodology and evaluation results, covering unit and integration testing, benchmark performance, and comparative analysis against project objectives. \Cref{ch:conclusion} concludes the report with a summary of achievements, a discussion of limitations, directions for future work, and lessons learned during development.

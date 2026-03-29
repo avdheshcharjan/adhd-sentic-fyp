@@ -1,0 +1,414 @@
+% =============================================================================
+% Chapter 4 — Implementation
+% =============================================================================
+\chapter{Implementation}
+\label{ch:implementation}
+
+This chapter presents the implementation of each module in the ADHD Second Brain system, organised bottom-up: development environment (\cref{sec:dev-environment}), LLM inference (\cref{sec:llm-pipeline}), emotion classification (\cref{sec:emotion-pipeline}), SenticNet affective computing (\cref{sec:senticnet-pipeline}), persistent memory (\cref{sec:memory-system}), screen monitoring (\cref{sec:screen-monitoring}), the intervention engine (\cref{sec:intervention-engine}), client applications (\cref{sec:client-applications}), and implementation challenges (\cref{sec:implementation-challenges}).
+
+% -----------------------------------------------------------------------------
+\section{Development Environment and Tools}
+\label{sec:dev-environment}
+
+% .............................................................................
+\subsection{Hardware and Runtime Environment}
+\label{subsec:hardware-runtime}
+
+All development, training, and evaluation were conducted on a MacBook Pro with the Apple M4 chip and 16\,GB of unified memory. The M4's unified memory architecture allows the GPU and CPU to share physical memory without explicit transfers, which the MLX framework \cite{hannun2023} exploits to dispatch LLM inference kernels to the GPU without host-to-device copy overhead. The 16\,GB budget imposes a hard constraint: the quantised LLM (2.3\,GB), sentence transformer (420\,MB), SenticNet cache, pgvector index, and Python runtime must coexist within this envelope, motivating the load-on-demand architecture described in \cref{subsec:model-selection}.
+
+% .............................................................................
+\subsection{Core Libraries and Frameworks}
+\label{subsec:core-libraries}
+
+The Python runtime was pinned to version 3.11 after Python 3.14 introduced breaking \texttt{importlib} changes that caused failures in \texttt{torch}, \texttt{transformers}, and \texttt{sentence-transformers}. The core ML stack comprises \texttt{transformers} 5.3.0 \cite{yang2025}, \texttt{sentence-transformers} 5.2.3 \cite{reimers2019}, PyTorch 2.10.0, and scikit-learn 1.7.2. The \texttt{setfit} library was rejected due to a broken dependency on \texttt{default\_logdir} removed in \texttt{transformers} 5.x; the contrastive training loop was instead implemented manually using \texttt{sentence-transformers} and PyTorch, as detailed in \cref{subsec:approach-b}.
+
+% .............................................................................
+\subsection{Data Infrastructure and Build Automation}
+\label{subsec:data-infrastructure}
+
+The data layer runs PostgreSQL 16 with the \texttt{pgvector} extension via Docker Compose, providing vector similarity search with cosine distance for the Mem0 memory framework \cite{chhikara2025}. Build automation uses a Makefile: \texttt{make test} runs the full suite of over 200 tests, \texttt{make bench} executes performance benchmarks, and \texttt{make all-eval} runs all evaluation pipelines including the comparative analysis reported in \cref{ch:testing-evaluation}.
+
+% .............................................................................
+\subsection{Version Control and Dependency Management}
+\label{subsec:version-control}
+
+Dependencies are pinned in \texttt{requirements.txt} with exact version specifiers. The technology stack spans Python 3.11 (AI/ML backend via FastAPI), Swift 5.9 (native macOS menu bar application and screen monitoring), and TypeScript (React web dashboard). Integration between Swift and Python occurs via HTTP at localhost, with JSON payloads defined by shared schema specifications.
+
+% -----------------------------------------------------------------------------
+\section{LLM Inference Pipeline}
+\label{sec:llm-pipeline}
+
+% .............................................................................
+\subsection{On-Device Model Selection and Quantisation}
+\label{subsec:model-selection}
+
+After evaluating Phi-3-mini (3.8B), Llama-3.2-3B, and Gemma-2-2B, Qwen3-4B \cite{yang2025} was selected for its native dual-mode generation (\texttt{/think} and \texttt{/no\_think}). Applying 4-bit GPTQ quantisation via MLX reduces memory from 8\,GB (FP16) to 2.3\,GB, a 71\% reduction, following the principles of Dettmers et al.\ \cite{dettmers2023}. The pre-quantised model is obtained from the MLX Community repository on Hugging Face Hub.
+
+The model uses a load-on-demand pattern with a weak reference cache. When a coaching response is requested, the system checks whether the model is resident via \texttt{weakref.ref}; if garbage-collected, it is reloaded from disk in 0.94 seconds. This ensures the LLM does not permanently occupy 2.3\,GB during idle periods while avoiding redundant loads during conversational bursts.
+
+\begin{lstlisting}[language=Python, caption={Load-on-demand LLM pattern with weak reference cache (abbreviated).}, label={lst:llm-load}]
+import weakref
+from mlx_lm import load, generate
+
+class LLMEngine:
+    _model_ref: weakref.ref | None = None
+    _tokenizer = None
+
+    def _ensure_loaded(self):
+        model = self._model_ref() if self._model_ref else None
+        if model is None:
+            model, self._tokenizer = load(
+                "mlx-community/Qwen3-4B-4bit"
+            )
+            self._model_ref = weakref.ref(model)
+        return model, self._tokenizer
+
+    def generate(self, prompt: str, **kwargs) -> str:
+        model, tokenizer = self._ensure_loaded()
+        # ... generation logic ...
+\end{lstlisting}
+
+The achieved throughput of 37.1 tokens per second exceeds the 30 tok/s target, measured as the median across 50 generation runs. This throughput is memory-bandwidth-bound, as is typical for autoregressive transformer inference on edge devices \cite{lin2025, xu2024}.
+
+% .............................................................................
+\subsection{Dual-Mode Generation}
+\label{subsec:dual-mode}
+
+In \texttt{/think} mode, Qwen3-4B generates an internal chain-of-thought trace before producing its visible response (average 4.7s, 212 tokens). In \texttt{/no\_think} mode, it responds directly (average 2.0s, 77 tokens). Mode selection is driven by the emotion classifier: \emph{frustrated}, \emph{anxious}, or \emph{overwhelmed} users receive \texttt{/no\_think} for rapid, concise responses; \emph{focused} or \emph{joyful} users receive \texttt{/think} for more considered coaching. This avoids requiring an executive function decision from the user at the moment when executive function is most impaired.
+
+% .............................................................................
+\subsection{System Prompt Engineering for ADHD Coaching}
+\label{subsec:system-prompt}
+
+The system prompt encodes Barkley's five domains of executive function \cite{barkley2010} as explicit coaching directives:
+
+\begin{itemize}[nosep]
+  \item \textbf{Self-regulation of affect:} Acknowledge the user's emotional state before offering task-oriented advice.
+  \item \textbf{Self-directed attention:} Provide specific, concrete focus targets rather than abstract goals.
+  \item \textbf{Non-verbal working memory:} Reference stored memories from past interactions.
+  \item \textbf{Verbal working memory:} Use short, structured sentences; limit advice to three items per response.
+  \item \textbf{Planning/problem-solving:} Decompose actions into steps of no more than five minutes each \cite{diamond2013}.
+\end{itemize}
+
+\noindent Responses are constrained to be concise (3--5 sentences for \texttt{/no\_think}, up to 8 for \texttt{/think}), action-oriented, and emotionally attuned.
+
+% .............................................................................
+\subsection{Context Injection from Affective Analysis}
+\label{subsec:context-injection}
+
+Each coaching prompt is augmented with the emotion classification, SenticNet affective dimensions, relevant memories from Mem0, and the current screen activity classification. This context is injected as structured key-value pairs so the LLM need not infer information the system already knows.
+
+\begin{lstlisting}[language=Python, caption={Context injection into the LLM prompt (abbreviated).}, label={lst:context-injection}]
+def build_prompt(
+    user_message: str,
+    emotion: EmotionResult,
+    senticnet: SenticNetResult,
+    memories: list[Memory],
+    screen: ScreenContext,
+) -> str:
+    context_block = (
+        f"[Emotion: {emotion.label} ({emotion.confidence:.2f})]\n"
+        f"[Sentic: P={senticnet.pleasantness:.2f} "
+        f"A={senticnet.attention:.2f}]\n"
+        f"[Screen: {screen.app} - {screen.category}]\n"
+        f"[Memories: {format_memories(memories)}]\n"
+    )
+    return SYSTEM_PROMPT + context_block + user_message
+\end{lstlisting}
+
+Memory injection is bounded to the three most relevant memories to prevent context window overflow. Screen context enables situationally appropriate coaching---e.g., suggesting a break from coding specifically when the user has been in Xcode for 90 minutes.
+
+% -----------------------------------------------------------------------------
+\section{Emotion Classification Pipeline}
+\label{sec:emotion-pipeline}
+
+% .............................................................................
+\subsection{Problem Formulation}
+\label{subsec:emotion-formulation}
+
+The task is six-class single-label classification over: \emph{joyful}, \emph{focused}, \emph{frustrated}, \emph{anxious}, \emph{disengaged}, and \emph{overwhelmed}---derived from the ADHD emotion dysregulation literature \cite{beattie2025, barkley2010}. These categories target the affective states most likely to trigger task abandonment or productive engagement in adults with ADHD. The training dataset comprises 210 expert-labelled sentences spanning formal and informal registers, approximately balanced at 35 per category. The test set is 50 held-out sentences.
+
+% .............................................................................
+\subsection{Approach A: Hybrid Embedding Classifier}
+\label{subsec:approach-a}
+
+The first approach concatenated 384-dimensional embeddings from \texttt{all-MiniLM-L6-v2} \cite{wang2020} with a 4-dimensional SenticNet hourglass vector \cite{cambria2016}, yielding a 388-dimensional feature vector for logistic regression. The embedding-only baseline achieved 74\% accuracy. Incorporating SenticNet features \emph{reduced} accuracy to 70\% because the API returned zero vectors for informal expressions (``ugh'', ``gonna'') absent from SenticNet's commonsense knowledge base, introducing noise on precisely the input distribution the production system must handle.
+
+% .............................................................................
+\subsection{Approach B: Contrastive Learning (Production)}
+\label{subsec:approach-b}
+
+The production classifier employs a contrastive learning approach inspired by SetFit \cite{reimers2019} but implemented manually due to library incompatibility (\cref{subsec:core-libraries}). The approach consists of two phases: contrastive fine-tuning of a sentence transformer, followed by a lightweight classification head.
+
+\subsubsection{Base Model and Pair Generation}
+
+The base encoder is \texttt{all-mpnet-base-v2} \cite{reimers2019}, producing 768-dimensional embeddings---selected over the 384-dimensional \texttt{all-MiniLM-L6-v2} based on empirical evaluation. Exhaustive pair generation via \texttt{itertools.combinations} produces $\binom{210}{2} = 21{,}945$ unique pairs, each labelled positive (same emotion) or negative (different), yielding 66{,}150 training pairs. Hard negative mining oversamples \emph{anxious}--\emph{overwhelmed} and \emph{frustrated}--\emph{overwhelmed} pairs by $2\times$ to address the most confusable boundaries.
+
+\subsubsection{Loss Function: CoSENTLoss}
+
+The contrastive fine-tuning uses CoSENTLoss, a ranking-based loss that optimises relative ordering of cosine similarities:
+
+\begin{equation}
+\mathcal{L} = \log \left(1 + \sum_{(i,j) \in P} \sum_{(k,l) \in N} e^{\lambda(\cos(\mathbf{u}_k, \mathbf{u}_l) - \cos(\mathbf{u}_i, \mathbf{u}_j))}\right)
+\label{eq:cosent}
+\end{equation}
+
+\noindent where $P$ is the set of positive pairs, $N$ the negative pairs, $\mathbf{u}$ the sentence embedding, and $\lambda = 20$. CoSENTLoss directly optimises the ranking property that downstream logistic regression relies upon, yielding a 4\% accuracy improvement over standard contrastive loss (86\% vs 82\%).
+
+\subsubsection{Training Configuration and Overfitting Analysis}
+
+Fine-tuning uses AdamW ($\text{lr} = 2 \times 10^{-5}$, weight decay 0.01, batch size 16) for a single epoch (22 minutes on M4). Training for two epochs reduces accuracy from 86\% to 84\%: the small dataset (210 sentences) provides sufficient pairwise signal in one pass, and additional passes overfit to idiosyncratic features. A learning rate sweep across $\{1 \times 10^{-5}, 2 \times 10^{-5}, 5 \times 10^{-5}, 1 \times 10^{-4}\}$ showed all rates produce 86\% at one epoch---the single epoch provides insufficient steps for the learning rate to cause divergence.
+
+\subsubsection{Classification Head}
+
+After fine-tuning, the 210 training sentences are re-encoded and a logistic regression classifier (L-BFGS, $C = 1.0$) is trained on the 768-dimensional embeddings. The fine-tuned embeddings are linearly separable, making logistic regression optimal: a random forest achieved 84\%, a neural network achieved 86\% with higher variance. Inference latency is approximately 15\,ms per sentence.
+
+\subsubsection{Performance}
+
+The production classifier achieves 86\% accuracy with mean confidence 0.76 (vs 0.33 in Approach A). Per-class F1 scores are reported in \cref{tab:per-class-f1}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Per-class F1 scores for the production emotion classifier (Approach B).}
+  \label{tab:per-class-f1}
+  \begin{tabular}{@{}lc@{}}
+    \toprule
+    \textbf{Category} & \textbf{F1 Score} \\
+    \midrule
+    Joyful       & 0.89 \\
+    Focused      & 0.80 \\
+    Frustrated   & 0.74 \\
+    Anxious      & 0.80 \\
+    Disengaged   & 0.86 \\
+    Overwhelmed  & 0.74 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The lowest-performing categories (\emph{frustrated} and \emph{overwhelmed}, both F1 = 0.74) share semantic overlap in expressions of negative valence and high task difficulty. The 0.76 mean confidence enables threshold-based decision-making in the intervention engine.
+
+% ── Figure 4.1: SetFit Pipeline ──────────────────────────────────────────────
+
+% --- MERMAID BACKUP ---
+% graph LR
+%   subgraph Training
+%     A[210 Sentences] --> B[Pair Generation<br>66,150 pairs]
+%     B --> C[CoSENT Contrastive<br>Fine-tuning]
+%     C --> D[Fine-tuned<br>Embeddings]
+%     D --> E[Logistic<br>Regression]
+%   end
+%   subgraph Inference
+%     F[Input Text] --> G[Fine-tuned<br>Encoder]
+%     G --> H[768-dim<br>Embedding]
+%     H --> I[Logistic<br>Regression]
+%     I --> J[Emotion Label]
+%   end
+% --- END MERMAID ---
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[
+    node distance=0.8cm and 0.9cm,
+    box/.style={
+      draw, rounded corners=3pt, minimum height=0.9cm,
+      minimum width=1.9cm, align=center, font=\small,
+      fill=white
+    },
+    phase/.style={
+      draw, dashed, rounded corners=6pt, inner sep=8pt,
+      fill=gray!5
+    },
+    arr/.style={-{Stealth[length=5pt]}, thick}
+  ]
+    % Phase 1: Training
+    \node[box] (sentences) {210\\Sentences};
+    \node[box, right=of sentences] (pairs) {Pair Generation\\66{,}150 pairs};
+    \node[box, right=of pairs] (cosent) {CoSENT\\Fine-tuning};
+    \node[box, right=of cosent] (embeds) {Fine-tuned\\Embeddings};
+    \node[box, right=of embeds] (lr1) {Logistic\\Regression};
+
+    \draw[arr] (sentences) -- (pairs);
+    \draw[arr] (pairs) -- (cosent);
+    \draw[arr] (cosent) -- (embeds);
+    \draw[arr] (embeds) -- (lr1);
+
+    \begin{scope}[on background layer]
+      \node[phase, fit=(sentences)(pairs)(cosent)(embeds)(lr1),
+            label={[font=\small\bfseries]above:Phase 1: Training}] {};
+    \end{scope}
+
+    % Phase 2: Inference
+    \node[box, below=2.0cm of sentences] (input) {Input\\Text};
+    \node[box, right=of input] (encoder) {Fine-tuned\\Encoder};
+    \node[box, right=of encoder] (emb768) {768-dim\\Embedding};
+    \node[box, right=of emb768] (lr2) {Logistic\\Regression};
+    \node[box, right=of lr2] (label) {Emotion\\Label};
+
+    \draw[arr] (input) -- (encoder);
+    \draw[arr] (encoder) -- (emb768);
+    \draw[arr] (emb768) -- (lr2);
+    \draw[arr] (lr2) -- (label);
+
+    \begin{scope}[on background layer]
+      \node[phase, fit=(input)(encoder)(emb768)(lr2)(label),
+            label={[font=\small\bfseries]above:Phase 2: Inference}] {};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{SetFit-inspired contrastive learning pipeline for emotion classification. Phase 1 fine-tunes the sentence encoder using exhaustive pair generation and CoSENTLoss. Phase 2 classifies new input using the fine-tuned encoder and a logistic regression head.}
+  \label{fig:setfit-pipeline}
+\end{figure}
+
+% .............................................................................
+\subsection{Approach C: DistilBERT Fine-Tuning}
+\label{subsec:approach-c}
+
+DistilBERT fine-tuned with cross-entropy loss achieved only 62\% accuracy on 210 sentences---24 points below Approach B. Contrastive learning transforms $n$ examples into $O(n^2)$ training pairs, amplifying signal by $184\times$, whereas supervised fine-tuning provides only $O(n)$ gradient updates per epoch. Data augmentation (synonym replacement, back-translation) expanded the set to 1{,}200 sentences, improving to 72\%. A further expansion using 30{,}000 external sentences (GoEmotions, ISEAR, DailyDialog) proved catastrophically mismatched---these datasets use general-purpose emotion categories and formal registers, yielding only 32\% accuracy. \Cref{tab:classifier-comparison} summarises all approaches.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Comparison of emotion classifier approaches across training configurations.}
+  \label{tab:classifier-comparison}
+  \begin{tabular}{@{}llr@{}}
+    \toprule
+    \textbf{Approach} & \textbf{Training Data} & \textbf{Accuracy} \\
+    \midrule
+    A: Hybrid (embedding only)     & 210 sentences     & 74\% \\
+    A: Hybrid (+ SenticNet)        & 210 sentences     & 70\% \\
+    B: SetFit / Contrastive        & 210 sentences     & \textbf{86\%} \\
+    C: DistilBERT                  & 210 sentences     & 62\% \\
+    C: DistilBERT (augmented)      & 1{,}200 sentences & 72\% \\
+    C: DistilBERT (30K external)   & 30{,}000 sentences & 32\% \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% .............................................................................
+\subsection{Data Quality Lessons}
+\label{subsec:data-quality}
+
+An attempt to expand Approach B's training set with 288 LLM-generated sentences regressed accuracy from 86\% to 82\%. The \emph{anxious} category suffered the most severe degradation (F1: 0.80 $\rightarrow$ 0.62) due to two factors: class imbalance (\emph{frustrated} and \emph{overwhelmed} received 98 generated sentences each, \emph{anxious} only 83) and stylistic monotony in the generated text, which diluted the semantic diversity of the original clusters. The production system therefore retains the original 210 curated sentences, reinforcing that for contrastive learning with small datasets, quality and diversity of examples matter more than quantity \cite{reimers2019}.
+
+% -----------------------------------------------------------------------------
+\section{SenticNet Affective Computing Pipeline}
+\label{sec:senticnet-pipeline}
+
+The SenticNet pipeline \cite{cambria2024, cambria2016} provides a complementary affective analysis channel, enriching coaching responses with continuous-valued dimensions (pleasantness, attention, sensitivity, aptitude) and semantic associations from commonsense knowledge. The implementation interfaces with 13 API endpoints organised into a four-tier cascade:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Safety tier}: Polarity and semantics (always executed; early termination if safety threshold triggered).
+  \item \textbf{Emotion tier}: Hourglass model dimensions and emotion labels.
+  \item \textbf{ADHD tier}: Concept parsing and moodtags for executive-function-related patterns.
+  \item \textbf{Personality tier}: Long-term trait-level indicators (lowest priority).
+\end{enumerate}
+
+\begin{lstlisting}[language=Python, caption={SenticNet four-tier cascade with async dispatch and early termination (abbreviated).}, label={lst:senticnet-cascade}]
+async def analyse(self, text: str) -> SenticNetResult:
+    concepts = self._extract_concepts(text)
+
+    # Tier 1: Safety (always executed)
+    safety = await self._dispatch_tier(
+        concepts, SAFETY_ENDPOINTS, timeout=3.0
+    )
+    if safety.requires_intervention:
+        return SenticNetResult(safety=safety)
+
+    # Tier 2: Emotion
+    emotion = await self._dispatch_tier(
+        concepts, EMOTION_ENDPOINTS, timeout=3.0
+    )
+
+    # Tier 3: ADHD concepts
+    adhd = await self._dispatch_tier(
+        concepts, ADHD_ENDPOINTS, timeout=3.0
+    )
+
+    # Tier 4: Personality (low priority)
+    personality = await self._dispatch_tier(
+        concepts, PERSONALITY_ENDPOINTS, timeout=3.0
+    )
+
+    return SenticNetResult(
+        safety=safety, emotion=emotion,
+        adhd=adhd, personality=personality,
+    )
+\end{lstlisting}
+
+All API calls within a tier are dispatched concurrently using \texttt{httpx.AsyncClient} with a 3-second per-call timeout, reducing worst-case latency from 39 seconds (sequential) to approximately 2.1 seconds (median). An LRU cache with one-hour TTL eliminates redundant calls for recurring concepts, reducing API calls per message by approximately 40\% after the first few interactions. If individual calls fail, the corresponding dimension is marked unavailable rather than blocking the entire analysis.
+
+% -----------------------------------------------------------------------------
+\section{Memory System Implementation}
+\label{sec:memory-system}
+
+The persistent memory system uses Mem0 \cite{chhikara2025} backed by PostgreSQL with \texttt{pgvector}. It stores episodic memories from coaching interactions and emotion-state transitions, and maintains an evolving user profile via exponential moving averages ($\alpha = 0.1$). Each memory is encoded into a 768-dimensional embedding using \texttt{all-mpnet-base-v2} \cite{reimers2019}---the same model used by the emotion classifier---and stored with metadata including timestamp, emotion classification, and a relevance decay factor (30-day half-life). Retrieval uses cosine similarity via \texttt{pgvector}'s \texttt{<=>} operator, returning the top-3 most relevant memories for context injection (\cref{subsec:context-injection}). Evaluation on a benchmark of 100 query-memory pairs shows 95\% top-1 relevance.
+
+% -----------------------------------------------------------------------------
+\section{Screen Monitoring and Activity Classification}
+\label{sec:screen-monitoring}
+
+The screen monitor is a Swift-based service within the macOS menu bar application that polls the active window's application name and title via \texttt{NSWorkspace} every 2 seconds. For browsers, it extracts the active tab URL via AppleScript. A \texttt{TransitionDetector} suppresses transient switches lasting under 2 seconds, reducing the transition event rate by approximately 60\%.
+
+Activity classification uses a four-layer cascade:
+
+\begin{enumerate}[nosep]
+  \item \textbf{Application name matching}: Lookup table of 150+ applications $\rightarrow$ resolves 56.5\% of classifications.
+  \item \textbf{URL domain matching}: Curated productive/distracting domain lists (user-configurable).
+  \item \textbf{Title keyword matching}: Regex patterns for productivity-relevant and distraction keywords.
+  \item \textbf{Embedding-based classification}: Sentence transformer with a 14-category model trained on 2{,}000 labelled window titles; 96.5\% accuracy on the 22\% of titles reaching this layer.
+\end{enumerate}
+
+Layers 2 and 3 resolve an additional 21.5\%. The cascade achieves 549 titles/second in batch mode. If the ML model fails to load, Layers 1--3 continue to resolve 78\% of classifications deterministically.
+
+% -----------------------------------------------------------------------------
+\section{Intervention Engine}
+\label{sec:intervention-engine}
+
+The intervention engine implements a Just-In-Time Adaptive Intervention (JITAI) framework. Decision points are triggered by the screen monitor detecting distraction; tailoring variables are the user's emotional state, distraction duration, and historical success rate; intervention options follow a four-tier escalation: \emph{nudge} (subtle menu bar animation), \emph{popup} (non-blocking notification with coaching message), \emph{overlay} (semi-transparent screen overlay with current task), and \emph{block} (opt-in temporary application restriction).
+
+Intervention selection uses Thompson Sampling with Beta-distributed priors ($\alpha_0 = \beta_0 = 1$) to balance exploitation of effective interventions with exploration of underused strategies. Each intervention type is modelled as a Bernoulli bandit arm, where success is defined as the user returning to productive activity within five minutes. Emotional context modulates tone: frustrated users receive empathetic nudges, disengaged users receive energetic prompts. The Thompson Sampling state is persisted to PostgreSQL between sessions, reaching consistent selections after approximately 20 interventions.
+
+For explainability, the engine uses a Concept Bottleneck Model (CBM) architecture \cite{koh2020} routing decisions through interpretable concepts (\emph{time on distraction}, \emph{emotional valence}, \emph{task urgency}, \emph{historical success rate}), enabling counterfactual explanations such as ``This nudge was triggered because you have spent 8 minutes on social media while your scheduled task is due in 45 minutes.''
+
+% -----------------------------------------------------------------------------
+\section{macOS Application and Web Dashboard}
+\label{sec:client-applications}
+
+The native macOS menu bar application (SwiftUI, approximately 25\,MB resident) provides real-time coaching access. It communicates with the Python backend via HTTP on localhost, handles screen monitoring natively using Swift 5.9 concurrency (\texttt{async}/\texttt{await}), and supports streaming token display via server-sent events for immediate visual feedback during LLM generation. The menu bar form factor is a deliberate ADHD-informed decision: always accessible with a single click, no screen real estate competition, no cognitive overhead of managing windows.
+
+The React web dashboard provides a complementary analytical interface: emotion timelines, productivity metrics, and a memory explorer with full-text search and one-click deletion. The dashboard supports metacognitive review---helping users recognise recurring patterns \cite{diamond2013}---and exposes a settings panel for configuring intervention thresholds, polling intervals, and application classifications. The local-only architecture (backend bound to \texttt{127.0.0.1}) ensures no data is exposed to the network.
+
+% -----------------------------------------------------------------------------
+\section{Implementation Challenges and Solutions}
+\label{sec:implementation-challenges}
+
+\Cref{tab:challenges} summarises the most significant challenges encountered during development.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Summary of implementation challenges and their resolutions.}
+  \label{tab:challenges}
+  \begin{tabularx}{\textwidth}{@{}lXX@{}}
+    \toprule
+    \textbf{Challenge} & \textbf{Root Cause} & \textbf{Solution} \\
+    \midrule
+    SetFit library failure &
+      Missing \texttt{default\_logdir} in \texttt{transformers} 5.x; library not updated for breaking API change &
+      Manual contrastive learning implementation using \texttt{sentence-transformers} and PyTorch directly \\
+    \addlinespace
+    LLM data degradation &
+      Class imbalance and semantic dilution from bulk LLM-generated training sentences &
+      Reverted to original 210 curated sentences; future expansion restricted to manually authored examples \\
+    \addlinespace
+    SenticNet latency &
+      13 sequential API calls with variable network latency per call &
+      Four-tier cascade with async concurrent dispatch, 3s per-call timeout, and LRU caching with 1hr TTL \\
+    \addlinespace
+    Memory constraints &
+      16\,GB unified memory shared across LLM, embeddings, database, and OS &
+      Load-on-demand LLM with weak reference cache; peak AI memory below 2.5\,GB \\
+    \addlinespace
+    Python 3.14 breakage &
+      \texttt{importlib} module restructuring broke transitive dependencies in ML stack &
+      Pinned runtime to Python 3.11; documented version requirement in project setup \\
+    \bottomrule
+  \end{tabularx}
+\end{table}

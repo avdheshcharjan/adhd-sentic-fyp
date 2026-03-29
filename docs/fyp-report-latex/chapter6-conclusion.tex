@@ -1,0 +1,75 @@
+% =============================================================================
+% Chapter 6 — Conclusion and Future Work
+% =============================================================================
+\chapter{Conclusion and Future Work}
+\label{ch:conclusion}
+
+This chapter summarises the achievements of the ADHD Second Brain project, discusses its limitations, outlines directions for future work, and reflects on lessons learned during the design, implementation, and evaluation process.
+
+% -----------------------------------------------------------------------------
+\section{Summary of Achievements}
+\label{sec:summary-achievements}
+
+This project set out to design, implement, and evaluate a privacy-preserving desktop application that integrates on-device language model coaching, real-time emotion classification, continuous screen activity monitoring, and persistent conversational memory to support adults with ADHD in knowledge work. The resulting system---the ADHD Second Brain---achieves or exceeds all five quantitative objectives established at the outset.
+
+The emotion classifier achieves 86\% accuracy (macro-F1 0.862) across six ADHD-relevant categories trained on only 210 expert-labelled sentences using contrastive learning with sentence transformers \cite{reimers2019}. The on-device Qwen3-4B model \cite{hannun2023, yang2025} delivers 37.1 tokens per second with 0.94-second cold start and approximately 2.3 GB GPU memory, offering both a deliberative mode (4.7s per response) and a rapid mode (2.0s per response). The hybrid screen classifier processes 549 titles per second, resolving 78\% through deterministic rules and achieving 96.5\% ML accuracy on the remainder. The Mem0-based memory system achieves 95\% top-1 retrieval relevance with 274ms median retrieval latency. The complete end-to-end pipeline executes in 13,961ms at 21,314 mJ per execution---approximately 1.4\% battery drain per hour---with peak AI memory below 2.5 GB, confirming suitability for sustained daily use. The system is accompanied by over 200 tests spanning unit, integration, and end-to-end coverage.
+
+% -----------------------------------------------------------------------------
+\section{Limitations}
+\label{sec:limitations}
+
+Despite achieving all quantitative objectives, the ADHD Second Brain has several limitations that bound the generalisability and clinical applicability of the current implementation.
+
+\begin{itemize}
+    \item \textbf{No clinical user study.} The absence of an IRB-approved study with ADHD-diagnosed participants means the system's actual impact on productivity and emotional regulation remains unevaluated. The 50-sentence test set, while yielding a clear accuracy signal, limits statistical power for fine-grained per-class confidence intervals.
+
+    \item \textbf{macOS-only.} The dependency on the MLX framework and Apple Silicon GPU acceleration restricts the application to macOS, excluding the majority of the desktop computing market (Windows and Linux).
+
+    \item \textbf{External API dependencies.} The SenticNet integration depends on external API endpoints that account for 51.7\% of SenticNet-related latency. Cloud APIs (Mem0 cloud storage and SenticNet) collectively account for 68.7\% of the total 13,961ms end-to-end latency, meaning perceived responsiveness is dominated by network round-trips.
+
+    \item \textbf{MLX Metal thread-safety.} The MLX Metal backend is not thread-safe, requiring serialised GPU access and preventing parallel execution of the LLM with other GPU-accelerated components. Additionally, RSS measurements do not capture Metal GPU buffer allocations, potentially underestimating actual memory pressure.
+
+    \item \textbf{English-only and text-only.} The system operates exclusively in English. Emotion detection relies solely on text-based classification of chat messages, excluding multimodal signals such as facial expression, voice prosody, or physiological indicators.
+
+    \item \textbf{Whoop subscription requirement.} The Whoop integration for physiological data requires a paid subscription, limiting accessibility.
+\end{itemize}
+
+% -----------------------------------------------------------------------------
+\section{Future Work}
+\label{sec:future-work}
+
+The limitations identified above motivate a structured programme of future work spanning clinical validation, platform expansion, performance optimisation, and capability extension.
+
+\begin{enumerate}
+    \item \textbf{Clinical validation.} Conduct an IRB-approved longitudinal user study with 20--30 ADHD-diagnosed adults over 8--12 weeks, combining quantitative productivity metrics with qualitative interviews and validated ADHD symptom scales.
+
+    \item \textbf{Platform expansion.} Develop an iOS companion application with memory synchronisation, port to Linux via llama.cpp, and package the macOS application for App Store distribution.
+
+    \item \textbf{Asynchronous memory operations.} Implement fire-and-forget memory storage to eliminate the 5,884ms Mem0 write latency from the user's perceived response time, reducing perceived latency by approximately 39\%.
+
+    \item \textbf{SenticNet local caching.} Mitigate the external API dependency through aggressive local caching and, longer term, distillation of the SenticNet knowledge base into a local embedding-based lookup.
+
+    \item \textbf{Parallel pipeline execution.} Investigate concurrent execution of SenticNet API calls (CPU/network-bound) alongside LLM inference (GPU-bound) by isolating Metal access to a dedicated thread.
+
+    \item \textbf{Clinical training data.} Retrain the emotion classifier on data collected from ADHD-diagnosed individuals in naturalistic settings, prioritising curation and class balance over quantity, given the observed regression from 86\% to 82\% when bulk LLM-generated data was added.
+
+    \item \textbf{Federated learning.} Enable collaborative model improvement across multiple users by sharing only gradient aggregates rather than raw text, preserving privacy while allowing classifiers to improve over time.
+
+    \item \textbf{Multi-language support and physiological integration.} Replace the monolingual sentence transformer with a multilingual variant and integrate Apple HealthKit data (heart rate variability, sleep quality) as additional inputs to the JITAI orchestrator.
+\end{enumerate}
+
+% -----------------------------------------------------------------------------
+\section{Lessons Learned}
+\label{sec:lessons-learned}
+
+The development of the ADHD Second Brain yielded several insights valuable to practitioners working at the intersection of edge AI, affective computing, and mental health applications.
+
+\textbf{Data quality dominates quantity in few-shot learning.} The emotion classifier achieved its best accuracy of 86\% on 210 curated sentences. Expanding to 498 sentences with 288 LLM-generated examples caused regression to 82\%, with the anxious class F1 dropping from 0.80 to 0.62 due to class imbalance and signal dilution. Bulk synthetic data generation without careful curation is counterproductive.
+
+\textbf{On-device constraints drive creative design.} Working within limited memory, single-threaded GPU access, and battery targets produced solutions that would not have emerged in a cloud-first architecture: the hybrid screen classifier that resolves 78\% of titles deterministically before invoking ML, and the dual LLM inference modes (\texttt{/think} vs \texttt{/no\_think}) that balance quality against latency.
+
+\textbf{Modularity enables rigorous evaluation.} Clearly defined interfaces between modules allowed each to be benchmarked, profiled, and improved in isolation, with regressions immediately detectable without running the full pipeline.
+
+\textbf{Right tool for the right purpose.} SenticNet excels at structured affective knowledge for context enrichment, but using its features as classifier inputs degraded accuracy from 74\% to 70\%. Sentence transformer embeddings dominate for classification; structured knowledge bases are better suited for response generation.
+
+\textbf{Embedding quality outweighs classifier tuning.} Upgrading to \texttt{all-mpnet-base-v2} yielded the largest single accuracy improvement. Hyperparameter tuning of the classification head produced marginal gains once the embedding model was fixed. Practitioners should invest effort in embedding model selection rather than extensive head tuning.

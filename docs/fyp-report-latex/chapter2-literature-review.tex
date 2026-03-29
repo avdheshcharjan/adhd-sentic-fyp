@@ -1,0 +1,196 @@
+% =============================================================================
+% Chapter 2: Literature Review
+% =============================================================================
+\chapter{Literature Review}
+\label{ch:litrev}
+
+This chapter critically examines the existing body of research across the multidisciplinary domains that inform the design of ADHD Brain, an on-device AI-powered macOS application for ADHD productivity and wellbeing. The review is organised thematically, beginning with the clinical foundations of ADHD and executive dysfunction in digital environments, proceeding through technology-based interventions and AI-driven mental health tools, and culminating in an analysis of existing ADHD applications and the identification of research gaps that this project addresses.
+
+% -----------------------------------------------------------------------------
+\section{ADHD and Executive Function in Digital Environments}
+\label{sec:litrev_adhd_ef}
+% -----------------------------------------------------------------------------
+
+\subsection{Prevalence and Clinical Significance of Adult ADHD}
+\label{sec:litrev_prevalence}
+
+Attention-Deficit/Hyperactivity Disorder (ADHD) is among the most extensively studied neurodevelopmental conditions, yet its prevalence in adulthood remains widely underappreciated. The World Federation of ADHD International Consensus Statement, authored by Faraone et al.~\cite{faraone2021} and endorsed by over 80 leading researchers, established that ADHD persists into adulthood at rates ranging from 2.58\% (narrow, persistent diagnostic criteria) to 6.76\% (symptomatic but potentially sub-threshold), thereby dispelling the long-held misconception that ADHD is exclusively a childhood disorder. This finding is corroborated by Song et al.~\cite{song2021}, whose global meta-analysis estimated that between 139 million and 366 million adults worldwide live with ADHD, depending on the diagnostic threshold applied. The paediatric literature further contextualises the developmental trajectory: Salari et al.~\cite{salari2023} reported a pooled prevalence of approximately 7.6\% among children and adolescents, a substantial proportion of whom will carry clinically significant symptoms into adulthood. Taken together, these epidemiological findings underscore that any productivity or wellbeing tool targeting adult populations must account for the high base rate of ADHD and the heterogeneity of its presentation across the lifespan.
+
+\subsection{Executive Function Deficits as the Core Mechanism}
+\label{sec:litrev_ef_deficits}
+
+The functional impairments associated with ADHD are best understood through the lens of executive function (EF) theory. Diamond~\cite{diamond2013} identified three core executive functions---inhibitory control (including self-regulation), working memory, and cognitive flexibility---and demonstrated that these foundational capacities underpin higher-order skills such as planning, reasoning, and problem-solving. In the context of ADHD, deficits in inhibitory control manifest as difficulty resisting distractions, working memory impairments result in the loss of task-relevant information mid-activity, and reduced cognitive flexibility hinders the ability to shift between tasks adaptively. These deficits carry substantial economic consequences: Barkley and Fischer~\cite{barkley2010} estimated an occupational impairment cost of \$4,336 per worker per year attributable to ADHD-related productivity losses, encompassing absenteeism, presenteeism, and elevated turnover. This economic dimension provides a compelling justification for tools that directly scaffold executive function rather than merely providing generic productivity features.
+
+\subsection{Digital Environments as Amplifiers of ADHD Symptoms}
+\label{sec:litrev_digital_amplifiers}
+
+The proliferation of digital devices and always-connected workflows introduces unique challenges for individuals with executive function deficits. Thorell et al.~\cite{thorell2022} conducted a longitudinal investigation into the association between digital media use and ADHD symptoms, finding that the relationship is bidirectional: ADHD predisposes individuals to excessive and poorly regulated digital media consumption, while prolonged digital engagement further exacerbates attentional difficulties. Dontre~\cite{dontre2021} extended this line of inquiry to academic contexts, demonstrating that technology-mediated distraction significantly impairs learning outcomes, with the magnitude of impairment modulated by individual differences in self-regulation capacity---precisely the capacity that is diminished in ADHD.
+
+Most critically for the present work, Beattie~\cite{beattie2025} investigated the phenomenon of digital disconnection in adults with ADHD and proposed that emotion dysregulation should be recognised as a ``fourth core symptom'' alongside inattention, hyperactivity, and impulsivity. This reconceptualisation is significant because it implies that effective ADHD tools must address not only cognitive scaffolding (task management, distraction blocking) but also affective monitoring and regulation. The design of ADHD Brain directly incorporates this insight through its emotion classification pipeline and adaptive intervention system, which together aim to detect and respond to emotional states that precede productivity collapse.
+
+% -----------------------------------------------------------------------------
+\section{Technology-Based ADHD Interventions}
+\label{sec:litrev_tech_interventions}
+% -----------------------------------------------------------------------------
+
+\subsection{Evidence Base for Digital ADHD Interventions}
+\label{sec:litrev_evidence_base}
+
+The efficacy of technology-based interventions for ADHD has been the subject of increasing systematic scrutiny. Garcia-Peral et al.~\cite{garciaperal2025} conducted an umbrella review synthesising 26 systematic reviews encompassing 34,442 participants, representing the most comprehensive meta-analytic assessment of digital ADHD interventions to date. The pooled effect size of Hedges' $g = -0.32$ indicates a small-to-moderate treatment effect, which, while statistically significant, falls considerably short of the effect sizes reported for pharmacological interventions. This modest aggregate effect conceals substantial heterogeneity, however: interventions that were personalised, multi-component, and sustained over time consistently outperformed static, one-size-fits-all approaches. This finding directly informs the architectural decision in ADHD Brain to employ adaptive, multi-tier interventions that escalate in intensity based on real-time affective and behavioural signals rather than relying on fixed schedules or user-initiated triggers.
+
+\subsection{Population-Specific Evidence and Gaps}
+\label{sec:litrev_population_evidence}
+
+The evidence base is unevenly distributed across age groups and intervention modalities. Shou et al.~\cite{shou2023} conducted a digital therapy meta-analysis focused specifically on children with ADHD, finding promising effects for gamified cognitive training but limited evidence for sustained transfer to real-world executive function. Wong et al.~\cite{wong2023} performed a randomised controlled trial (RCT) meta-analysis restricted to school-age populations, confirming moderate effects on attention but negligible effects on hyperactivity-impulsivity, suggesting that digital interventions may differentially address specific symptom clusters. For adults---the target population of the present work---the evidence is notably thinner. Elbe et al.~\cite{elbe2023} reviewed computerised cognitive interventions for adults with ADHD and concluded that while some promise exists, the field suffers from small sample sizes, short follow-up periods, and inconsistent outcome measures. The authors called for interventions that integrate into daily workflows rather than requiring dedicated training sessions, a principle that ADHD Brain operationalises through its ambient monitoring approach.
+
+\subsection{Design Principles for Digital Mental Health Interventions}
+\label{sec:litrev_design_principles}
+
+Beyond efficacy data, the design of digital interventions is itself an active area of research. Storetvedt et al.~\cite{storetvedt2024} proposed a framework for digital mental health intervention design that emphasises user agency, contextual sensitivity, and iterative personalisation. Their framework highlights the tension between automation (which reduces the executive function burden on users) and user control (which preserves autonomy and reduces reactance). This tension is particularly acute for ADHD users, who simultaneously need more automation due to executive function deficits and are more sensitive to perceived loss of control. The design of ADHD Brain navigates this tension by providing automated detection and suggestion while preserving user veto authority at every intervention tier, a design philosophy that draws directly from Storetvedt et al.'s recommendations.
+
+% -----------------------------------------------------------------------------
+\section{AI and LLM-Powered Mental Health Applications}
+\label{sec:litrev_ai_mental_health}
+% -----------------------------------------------------------------------------
+
+\subsection{Conversational AI: Foundational Evidence}
+\label{sec:litrev_conversational_ai}
+
+The deployment of artificial intelligence in mental health contexts has evolved rapidly from rule-based chatbots to sophisticated large language model (LLM) systems. Fitzpatrick et al.~\cite{fitzpatrick2017} provided early and rigorous evidence for the efficacy of conversational AI through their RCT of Woebot, a cognitive-behavioural therapy (CBT) chatbot. Participants in the Woebot condition demonstrated significantly reduced depression symptoms compared to an information-only control group ($F = 6.47$, $P = .01$), with engagement rates exceeding those typical of digital mental health tools. This study established that automated conversational agents could deliver therapeutic content with measurable clinical benefit, though it also highlighted that Woebot's rule-based architecture limited its ability to handle off-script interactions---a limitation that LLM-based systems aim to overcome.
+
+\subsection{The LLM Revolution in Mental Health Chatbots}
+\label{sec:litrev_llm_revolution}
+
+The advent of large language models has fundamentally expanded the capabilities of mental health chatbots. Yuan et al.~\cite{yuan2025} conducted a comprehensive review identifying over 50 mental health chatbot systems, of which 22 employed LLM architectures. The authors observed that LLM-based systems demonstrated superior naturalistic conversation, reduced user frustration with scripted responses, and enabled more flexible therapeutic dialogue. However, they also identified critical risks, including hallucination of clinical information, inconsistent adherence to therapeutic protocols, and the absence of robust safety guardrails. Amin et al.~\cite{amin2024} corroborated these findings in a scoping review of AI chatbots for mental health, noting that while user satisfaction was generally high, clinical validation remained sparse and regulatory frameworks were virtually nonexistent. The convergence of strong user demand with inadequate safety infrastructure presents both an opportunity and a responsibility for systems such as ADHD Brain, which must balance conversational capability with principled clinical boundaries.
+
+\subsection{Prompt Engineering and Safety Frameworks}
+\label{sec:litrev_prompt_safety}
+
+The risks identified in the chatbot literature have catalysed research into safety-oriented prompt engineering. Boit et al.~\cite{boit2025} proposed the MIND-SAFE framework, a structured approach to prompt engineering for mental health LLM applications that enforces clinical boundaries, escalation protocols, and harm-reduction principles at the prompt level rather than relying solely on model fine-tuning. This approach is particularly relevant for on-device deployments where smaller models may exhibit less reliable safety behaviour than their larger cloud-based counterparts. Sharma et al.~\cite{sharma2024} complemented this work by studying user experiences with LLM chatbots in mental health contexts, finding that users valued empathetic tone, contextual memory, and the ability to revisit previous conversations---features that informed the memory architecture of ADHD Brain. The present system incorporates structured prompt engineering with safety boundaries while leveraging Mem0-based memory to provide the conversational continuity that users identify as critical to therapeutic alliance.
+
+% -----------------------------------------------------------------------------
+\section{Affective Computing and SenticNet}
+\label{sec:litrev_affective}
+% -----------------------------------------------------------------------------
+
+\subsection{The Evolution of SenticNet}
+\label{sec:litrev_senticnet_evolution}
+
+Affective computing---the computational detection, interpretation, and simulation of human emotion---represents a critical enabling technology for any system that aims to respond to user emotional states. The SenticNet knowledge base, developed by Cambria and colleagues over nearly 15 years~\cite{cambria2010, cambria2016, cambria2020, cambria2022, cambria2024}, represents one of the most sustained efforts to build a computationally tractable representation of common-sense affective knowledge. From its inception as a semantic network mapping concepts to affective valence (SenticNet~1), the system has evolved through successive versions to incorporate polarity detection (SenticNet~2), conceptual primitives (SenticNet~3), an affective algebra (SenticNet~4), a multidimensional sentiment analysis framework (SenticNet~5), top-down and bottom-up attention mechanisms (SenticNet~6), neurosymbolic reasoning (SenticNet~7), and most recently, large-scale integration with transformer architectures (SenticNet~8).
+
+The theoretical foundation underpinning SenticNet is the Hourglass of Emotions model, which decomposes affective states into four independent dimensions---pleasantness, attention, sensitivity, and aptitude---each modelled as a continuous value between $-1$ and $+1$. Cambria~\cite{cambria2016} situated this progression within the broader discipline of affective computing and sentiment analysis, arguing that robust affect detection requires the fusion of statistical learning with structured common-sense knowledge. The institutional connection to Nanyang Technological University, where Cambria's research group is based, provides a natural point of intersection with the present work, and the initial design of ADHD Brain drew heavily on SenticNet as an affective feature source.
+
+\subsection{SenticNet in the Context of ADHD Emotion Classification}
+\label{sec:litrev_senticnet_adhd}
+
+The application of SenticNet to ADHD-specific emotion classification presents both opportunities and challenges that were empirically investigated during the development of ADHD Brain. The initial design hypothesis was that SenticNet's concept-level affective features could augment embedding-based classifiers by providing structured affective priors. Specifically, the hybrid approach (Approach~A in the system's classifier evaluation) combined sentence embeddings from pre-trained transformer models~\cite{reimers2019, wang2020} with SenticNet-derived features including pleasantness, attention, sensitivity, and aptitude dimensions. However, empirical evaluation revealed that SenticNet features did not improve classification accuracy for the ADHD-specific emotion taxonomy (six categories: joyful, focused, frustrated, anxious, disengaged, overwhelmed). The embedding-only variant achieved 74\% accuracy while the hybrid variant incorporating SenticNet features achieved only 70\%, indicating that SenticNet's general-purpose affective dimensions introduced noise when applied to a domain-specific affective taxonomy. This finding aligns with the broader critique of general-purpose sentiment lexicons: while SenticNet excels at binary sentiment classification and dimensional affect modelling, its concept-level granularity does not naturally map to the nuanced, context-dependent emotional states characteristic of ADHD---for example, the distinction between ``anxious'' and ``overwhelmed,'' which share similar valence and arousal profiles but differ in their functional implications for intervention design.
+
+\subsection{Beyond SenticNet: Contrastive and Interpretable Approaches}
+\label{sec:litrev_beyond_senticnet}
+
+The limitations of SenticNet-augmented classification motivated exploration of alternative approaches that could achieve higher accuracy with limited labelled data while maintaining interpretability. The contrastive learning approach (Approach~B), inspired by the SetFit methodology but implemented independently due to library incompatibilities with current transformer versions, achieved 86\% accuracy using CoSENT loss with the all-mpnet-base-v2 sentence transformer~\cite{reimers2019}. This result demonstrates that for domain-specific affective classification with limited training data (210 curated sentences), contrastive representation learning substantially outperforms both lexicon-augmented and standard fine-tuning approaches. To address the interpretability requirements of an affective computing system---particularly one operating in a mental health-adjacent context---the system additionally draws on the concept bottleneck model (CBM) paradigm~\cite{koh2020, yuksekgonul2023} and Testing with Concept Activation Vectors (TCAV)~\cite{kim2018}. These interpretability frameworks enable the system to provide human-understandable explanations for emotion classifications, a critical property for user trust and for enabling users to correct misclassifications that would otherwise lead to inappropriate interventions.
+
+% -----------------------------------------------------------------------------
+\section{Second Brain and Personal Knowledge Management}
+\label{sec:litrev_second_brain}
+% -----------------------------------------------------------------------------
+
+\subsection{The Second Brain Paradigm}
+\label{sec:litrev_second_brain_paradigm}
+
+The ``second brain'' concept, popularised by Forte~\cite{forte2022}, proposes a systematic approach to personal knowledge management (PKM) built on two complementary frameworks: the PARA organisational system (Projects, Areas, Resources, Archives) and the CODE methodology (Capture, Organise, Distil, Express). The central argument is that externalising knowledge into a trusted, searchable system frees cognitive resources for creative and analytical work---a proposition with particular resonance for individuals with ADHD, whose working memory deficits make internal knowledge retention unreliable. The act of capture alone reduces the cognitive load associated with maintaining mental inventories of tasks, ideas, and commitments, which is precisely the type of sustained working memory operation that individuals with ADHD find most taxing~\cite{diamond2013}. However, Forte's framework assumes a level of sustained organisational effort that is itself dependent on the executive functions impaired in ADHD, creating a fundamental paradox: those who would benefit most from a second brain are least equipped to maintain one manually. This paradox motivates the integration of AI-assisted automation into the knowledge management pipeline, a design decision that is central to ADHD Brain.
+
+\subsection{PKM in Practice and the Role of AI}
+\label{sec:litrev_pkm_ai}
+
+Empirical research on PKM practices illuminates both the promise and the pitfalls of the second brain approach. Da Silva et al.~\cite{dasilva2024} investigated the relationship between PKM and self-directed learning, finding that effective PKM correlates with improved learning outcomes but requires metacognitive skills that are unevenly distributed in the population. Ferreira et al.~\cite{ferreira2025} conducted a qualitative study of how people actually manage knowledge in second brain systems, revealing that most users struggle with the ``organise'' and ``distil'' phases, leading to knowledge graveyards of captured but never-processed information. Razmerita et al.~\cite{razmerita2009} provided an earlier theoretical grounding for PKM in the context of Web~2.0 technologies, arguing that social and technological affordances must align with individual cognitive styles. Most recently, the ACM Group~\cite{acmgroup2025} explored the emerging role of AI companions in PKM systems, finding that AI-assisted capture, tagging, and retrieval substantially reduced the organisational burden that constitutes the primary barrier to sustained PKM practice. ADHD Brain operationalises this insight by automating the capture and organisation phases through AI-powered processing of user inputs, thereby reducing the executive function demands that cause conventional second brain systems to fail for ADHD users.
+
+% -----------------------------------------------------------------------------
+\section{On-Device AI and Privacy-Preserving Inference}
+\label{sec:litrev_ondevice}
+% -----------------------------------------------------------------------------
+
+\subsection{The Case for Edge Deployment}
+\label{sec:litrev_edge_deployment}
+
+The deployment of LLMs on edge devices, rather than via cloud APIs, represents a critical architectural decision with implications for privacy, latency, cost, and accessibility. Lin et al.~\cite{lin2025} provided a comprehensive survey of edge LLM deployment in \textit{ACM Computing Surveys}, cataloguing the technical challenges---memory constraints, thermal throttling, energy consumption---and the emerging solutions---quantisation, pruning, knowledge distillation, and speculative decoding---that make local inference increasingly viable. Xu et al.~\cite{xu2024} surveyed the broader mobile edge intelligence landscape, situating LLM deployment within a continuum of on-device AI capabilities and arguing that the convergence of model compression techniques and hardware acceleration is approaching a tipping point at which meaningful language model inference becomes feasible on consumer devices. For mental health applications, the privacy implications of edge deployment are particularly salient: users are far more willing to disclose sensitive emotional and behavioural information to a system that processes data locally than to one that transmits data to cloud servers~\cite{sharma2024}. This privacy advantage is not merely a matter of user preference but carries clinical significance, as willingness to disclose directly affects the quality and completeness of the data available to the system for personalisation.
+
+\subsection{Apple Silicon as an Inference Platform}
+\label{sec:litrev_apple_silicon}
+
+The Apple Silicon architecture, with its unified memory design and dedicated Neural Engine, has emerged as a particularly capable platform for on-device LLM inference. Hannun et al.~\cite{hannun2023} introduced MLX, Apple's open-source machine learning framework optimised for Apple Silicon, which provides a NumPy-like API with automatic differentiation and GPU acceleration via the Metal backend. Ajayi et al.~\cite{ajayi2025} benchmarked LLM inference performance on Apple Silicon, demonstrating that M-series chips achieve competitive throughput relative to discrete GPUs for models up to approximately 8 billion parameters, with the unified memory architecture eliminating the CPU-GPU transfer bottleneck that constrains traditional inference pipelines. Barrios et al.~\cite{barrios2025} extended this analysis to native LLM inference workloads, confirming that quantised models (4-bit and 8-bit) running on Apple Silicon can achieve interactive token generation rates ($>$20 tokens/second) for models in the 3B--8B parameter range. Apple's own technical report on Apple Intelligence~\cite{apple2024} described the foundation models deployed across iPhone, iPad, and Mac, demonstrating the company's investment in on-device AI infrastructure. Cai et al.~\cite{cai2026} provided the most recent analysis of efficient inference techniques for edge LLMs, cataloguing advances in KV-cache compression, speculative decoding, and mixed-precision execution that collectively push the frontier of what is achievable on consumer hardware. The convergence of these developments establishes Apple Silicon as a viable deployment target for the interactive, privacy-preserving LLM inference that ADHD Brain requires.
+
+\subsection{Model Selection for On-Device ADHD Support}
+\label{sec:litrev_model_selection}
+
+The choice of base model for on-device deployment involves navigating trade-offs between capability, latency, and memory footprint. Yang et al.~\cite{yang2025} introduced the Qwen3 model family, which spans dense architectures from 0.6B to 32B parameters and mixture-of-experts (MoE) architectures from 30B to 235B parameters. For the on-device deployment context of ADHD Brain, the smaller dense variants (0.6B--8B) are most relevant, as they fit within the memory constraints of consumer Mac hardware while still demonstrating strong performance on reasoning, instruction-following, and conversational tasks. To further adapt these models to the ADHD domain, parameter-efficient fine-tuning techniques such as LoRA~\cite{hu2022} and QLoRA~\cite{dettmers2023} enable domain adaptation without the prohibitive memory and compute requirements of full fine-tuning. LoRA achieves this by decomposing weight updates into low-rank matrices, reducing the number of trainable parameters by several orders of magnitude while preserving model quality, and QLoRA extends this approach by operating on quantised base weights, further reducing the memory footprint during fine-tuning. Chhikara et al.~\cite{chhikara2025} demonstrated that memory-augmented LLM systems using Mem0 achieve a 26\% improvement over baseline OpenAI models with 91\% lower latency and 90\% token savings, providing strong empirical support for the memory architecture adopted in ADHD Brain. The combination of a compact, quantised base model with parameter-efficient fine-tuning and memory augmentation constitutes the inference stack that enables ADHD Brain to deliver personalised, context-aware conversational support entirely on-device.
+
+% -----------------------------------------------------------------------------
+\section{Review of Existing ADHD Applications}
+\label{sec:litrev_existing_apps}
+% -----------------------------------------------------------------------------
+
+\subsection{The Current Application Landscape}
+\label{sec:litrev_app_landscape}
+
+The market for ADHD-oriented productivity and wellbeing applications has grown substantially in recent years, yet the landscape remains fragmented, with individual applications addressing narrow slices of the ADHD experience. To contextualise the contribution of ADHD Brain, a systematic competitive analysis was conducted across nine representative applications spanning four functional categories: focus enhancement (Focusmate, Brain.fm), distraction management (Freedom, Cold Turkey), task and routine management (Tiimo, Structured, Routinery), and ADHD-specific support (Inflow, Goblin Tools). The analysis evaluated each application against eight criteria derived from the literature review: integrated macOS support, on-device LLM capability, affective computing, automated distraction detection, personalised memory, multi-tier intervention, academic validation, and cross-functional integration. These criteria were selected because each corresponds to a capability that the literature identifies as important for effective ADHD support but that remains unaddressed or only partially addressed by existing tools.
+
+\subsection{Comparative Analysis}
+\label{sec:litrev_comparative}
+
+\Cref{tab:adhd_apps} presents the results of the competitive analysis across all nine applications and the proposed ADHD Brain system. The table reveals a striking pattern: no existing application satisfies more than two of the eight evaluation criteria, and the majority satisfy none. This finding is consistent across all four functional categories, indicating that the gap is not specific to any one type of application but rather reflects a systemic failure to integrate capabilities that the literature identifies as jointly necessary for effective ADHD support.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparative analysis of existing ADHD applications against eight capability criteria. \cmark{} = fully supported, \xmark{} = not supported. ADHD Brain is the system proposed in this work.}
+\label{tab:adhd_apps}
+\small
+\begin{tabularx}{\textwidth}{l *{8}{>{\centering\arraybackslash}X}}
+\toprule
+\textbf{Application} & \textbf{macOS} & \textbf{On-Device LLM} & \textbf{Affective} & \textbf{Auto-Detect} & \textbf{Memory} & \textbf{Multi-Tier} & \textbf{Validated} & \textbf{Integrated} \\
+\midrule
+Focusmate     & Web    & \xmark & \xmark & \xmark  & \xmark   & \xmark   & \xmark & \xmark \\
+Freedom       & \cmark & \xmark & \xmark & Manual  & \xmark   & \xmark   & \xmark & \xmark \\
+Cold Turkey   & \cmark & \xmark & \xmark & Manual  & \xmark   & \xmark   & \xmark & \xmark \\
+Brain.fm      & \cmark & \xmark & \xmark & \xmark  & \xmark   & \xmark   & \cmark & \xmark \\
+Inflow        & Mobile & \xmark & \xmark & \xmark  & Partial  & Partial  & \xmark & \xmark \\
+Tiimo         & Mobile & \xmark & \xmark & \xmark  & \xmark   & \xmark   & \xmark & \xmark \\
+Structured    & \cmark & \xmark & \xmark & \xmark  & \xmark   & \xmark   & \xmark & \xmark \\
+Goblin Tools  & Web    & Cloud  & \xmark & \xmark  & \xmark   & \xmark   & \xmark & \xmark \\
+Routinery     & Mobile & \xmark & \xmark & \xmark  & \xmark   & \xmark   & \xmark & \xmark \\
+\midrule
+\textbf{ADHD Brain} & \textbf{\cmark} & \textbf{\cmark} & \textbf{\cmark} & \textbf{Auto} & \textbf{\cmark} & \textbf{\cmark} & \textbf{In Prog.} & \textbf{\cmark} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Critical Analysis of Gaps}
+\label{sec:litrev_gaps}
+
+The competitive analysis reveals eight significant gaps in the existing landscape that collectively define the opportunity space for ADHD Brain.
+
+First, no current application provides a fully integrated macOS-native solution that combines productivity tools with wellbeing support; users must cobble together multiple applications (e.g., Freedom for distraction blocking, Tiimo for routines, Inflow for psychoeducation), incurring fragmentation overhead that is itself an executive function burden~\cite{diamond2013}. Second, no existing application employs on-device LLM inference; Goblin Tools utilises cloud-based language models but transmits user data to external servers, which is problematic for sensitive mental health and productivity data. Third, affective computing is entirely absent from the competitive landscape---no application monitors or responds to user emotional states, despite the strong evidence that emotion dysregulation is a core component of ADHD~\cite{beattie2025}. Fourth, distraction detection in existing applications (Freedom, Cold Turkey) is exclusively manual, requiring users to predefine blocked sites and applications, which fails to account for context-dependent distraction patterns and imposes the very executive function demands it purports to alleviate.
+
+Fifth, personalised memory---the ability to learn from and adapt to individual user patterns over time---is at best partially implemented (Inflow offers some personalisation of psychoeducational content) but nowhere approaches the semantic memory capabilities enabled by embedding-based retrieval systems. Sixth, multi-tier intervention---the graduated escalation from gentle nudges to assertive interruptions based on real-time assessment---is absent, with existing applications offering only binary states (blocked/unblocked, on-task/off-task). Seventh, with the sole exception of Brain.fm, which Woods et al.~\cite{woods2024} validated in a peer-reviewed study published in \textit{Communications Biology}, none of the reviewed applications have undergone rigorous academic evaluation, raising questions about the evidence base on which users are making adoption decisions.
+
+Eighth, and perhaps most consequentially, the requirement to use multiple disconnected applications imposes a coordination cost that disproportionately burdens individuals with ADHD. Each additional application in a user's productivity stack introduces its own interface conventions, notification systems, and configuration requirements, collectively creating an executive function tax that scales with the number of tools employed. The irony is acute: the population that most needs integrated support is forced to perform the most cognitively demanding integration work. ADHD Brain addresses this gap by consolidating distraction management, affective monitoring, conversational AI support, knowledge management, and adaptive intervention into a single, unified application.
+
+\subsection{Digital Wellbeing Tool Effectiveness}
+\label{sec:litrev_wellbeing_effectiveness}
+
+The broader digital wellbeing literature provides additional context for evaluating existing ADHD applications and for informing the design of new ones. Monge Roffarello and De Russis~\cite{mongeroffarello2023} conducted a meta-analysis of Digital Self-Control Tools (DSCTs), finding small-to-medium effects on reducing digital device usage, with blocking and removal interventions outperforming self-tracking and goal-setting approaches. However, the authors noted that effect sizes diminished over time, suggesting habituation, and that tools imposing rigid restrictions often triggered user circumvention---a finding with particular relevance for ADHD populations, who may experience restriction as aversive and who are predisposed to seek immediate rewards over delayed benefits. Parry et al.~\cite{parry2022} investigated the adoption patterns of digital wellbeing applications, finding that sustained use was predicted by perceived autonomy and personalisation rather than by feature richness, reinforcing the importance of adaptive, user-responsive design over the accumulation of capabilities. Almansoori et al.~\cite{almansoori2023} proposed design principles for digital wellbeing applications, emphasising the need for contextual awareness, non-judgmental framing, and graduated intervention---principles that are instantiated in the ADHD Brain intervention pipeline, which escalates from ambient environmental adjustments through conversational check-ins to structured break protocols based on real-time assessment of user state.
+
+% -----------------------------------------------------------------------------
+\section{Research Gap and Positioning}
+\label{sec:litrev_gap}
+% -----------------------------------------------------------------------------
+
+\subsection{Synthesis and Identified Gap}
+\label{sec:litrev_synthesis}
+
+The preceding review reveals a convergence of mature research streams---ADHD executive function theory, digital intervention design, LLM-based mental health support, affective computing, personal knowledge management, and on-device AI---that have, to date, developed largely in isolation. The clinical literature establishes that adult ADHD is prevalent, costly, and exacerbated by digital environments~\cite{faraone2021, barkley2010, thorell2022}, with emotion dysregulation increasingly recognised as a core symptom~\cite{beattie2025}. The intervention literature demonstrates that digital tools can produce meaningful effects, but only when personalised, adaptive, and integrated into daily workflows~\cite{garciaperal2025, elbe2023, storetvedt2024}. The AI mental health literature shows that LLM-based systems offer superior conversational capabilities but require robust safety frameworks and contextual memory to be effective~\cite{yuan2025, boit2025, sharma2024}. The affective computing literature reveals that while general-purpose sentiment lexicons such as SenticNet provide valuable theoretical foundations, domain-specific classification requires specialised training approaches such as contrastive learning. The PKM literature identifies a paradox whereby the individuals who most need externalised knowledge systems are least equipped to maintain them without AI assistance~\cite{forte2022, ferreira2025}. The on-device AI literature confirms that consumer Apple Silicon hardware can support interactive LLM inference for models in the 3B--8B parameter range~\cite{ajayi2025, barrios2025, cai2026}. Yet no existing system synthesises these capabilities into a unified, privacy-preserving, affectively aware productivity and wellbeing tool for adults with ADHD.
+
+\subsection{Positioning of ADHD Brain}
+\label{sec:litrev_positioning}
+
+ADHD Brain is positioned at the intersection of these research streams, contributing an integrated architecture that combines five capabilities that the literature identifies as individually important but that no existing system delivers jointly: (1)~on-device LLM inference via quantised models on Apple Silicon for privacy-preserving conversational support; (2)~a contrastive-learning-based emotion classifier trained on ADHD-specific affective categories; (3)~a Mem0-augmented memory system for personalised, context-aware interactions; (4)~a multi-tier adaptive intervention pipeline informed by real-time affective and behavioural signals; and (5)~a second brain knowledge management system with AI-automated capture and organisation. The competitive analysis presented in \Cref{tab:adhd_apps} confirms that no existing application addresses more than two of these capabilities simultaneously, establishing a clear and substantive gap that the present work aims to fill. The following chapter details the system architecture and methodology through which these capabilities are realised.

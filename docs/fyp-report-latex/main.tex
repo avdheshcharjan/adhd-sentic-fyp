@@ -1,0 +1,127 @@
+% =============================================================================
+% ADHD Second Brain — FYP Report
+% NTU College of Computing and Data Science
+% Academic Year 2025/2026
+% =============================================================================
+\documentclass[12pt,a4paper,oneside]{report}
+
+% ── Page geometry (NTU CCDS template) ────────────────────────────────────────
+\usepackage[
+  top=30mm,
+  bottom=30mm,
+  left=35mm,
+  right=30mm
+]{geometry}
+
+% ── Font: Times New Roman equivalent ────────────────────────────────────────
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% ── Spacing ──────────────────────────────────────────────────────────────────
+\usepackage{setspace}
+\onehalfspacing
+
+% ── Graphics and figures ─────────────────────────────────────────────────────
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% ── Tables ───────────────────────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+
+% ── Mathematics and symbols ──────────────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pifont}
+
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+% ── Colours and code listings ────────────────────────────────────────────────
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{red!60!black},
+  tabsize=4,
+  showstringspaces=false
+}
+
+% ── Drawing ──────────────────────────────────────────────────────────────────
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,fit,backgrounds,decorations.pathreplacing}
+
+% ── Bibliography ─────────────────────────────────────────────────────────────
+\usepackage[
+  backend=biber,
+  style=numeric,
+  sorting=none,
+  maxbibnames=99
+]{biblatex}
+\addbibresource{references.bib}
+
+% ── Hyperlinks and cross-references ──────────────────────────────────────────
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=blue!60!black,
+  urlcolor=blue!70!black,
+  bookmarksnumbered=true,
+  pdfstartview={FitH}
+}
+\usepackage{cleveref}
+
+% ── Miscellaneous ────────────────────────────────────────────────────────────
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{microtype}
+\usepackage{parskip}
+
+% ── Chapter heading style ────────────────────────────────────────────────────
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt}
+
+% =============================================================================
+% DOCUMENT
+% =============================================================================
+\begin{document}
+
+% ── Front matter (roman numerals) ────────────────────────────────────────────
+\pagenumbering{roman}
+\input{front-matter}
+
+% ── Main chapters (arabic numerals) ──────────────────────────────────────────
+\pagenumbering{arabic}
+\input{chapter1-introduction}
+\input{chapter2-literature-review}
+\input{chapter3-system-design}
+\input{chapter4-implementation}
+\input{chapter5-testing-evaluation}
+\input{chapter6-conclusion}
+
+% ── References ───────────────────────────────────────────────────────────────
+\printbibliography[heading=bibintoc,title={References}]
+
+% ── Appendices ───────────────────────────────────────────────────────────────
+\appendix
+\input{appendices}
+
+\end{document}

@@ -1,0 +1,193 @@
+% =============================================================================
+% Front Matter
+% =============================================================================
+
+% ── Title Page ───────────────────────────────────────────────────────────────
+\begin{titlepage}
+  \centering
+  \vspace*{0.5cm}
+
+  \includegraphics[width=0.55\textwidth]{ntu-logo.png}
+
+  \vspace{2.5cm}
+
+  {\LARGE\bfseries
+    ADHD Second Brain:\\[8pt]
+    An On-Device AI-Powered macOS Application\\[8pt]
+    for ADHD Productivity and Digital Wellbeing
+  }
+
+  \vspace{2.5cm}
+
+  {\large
+    Avdhesh Shrikant Charjan\\[4pt]
+    U2123954A
+  }
+
+  \vspace{1.5cm}
+
+  {\normalsize
+    Project Supervisor: Prof Erik Cambria, Dr Rui Mao\\[6pt]
+    Examiner: Assoc Prof Stefano Vittorino Albrecht
+  }
+
+  \vspace{2cm}
+
+  {\large
+    College of Computing and Data Science\\[4pt]
+    Academic Year 2025/2026
+  }
+
+  \vfill
+\end{titlepage}
+
+% ── Statement of Originality ─────────────────────────────────────────────────
+\chapter*{Statement of Originality}
+\addcontentsline{toc}{chapter}{Statement of Originality}
+
+I hereby certify that the work embodied in this report is the result of original research and has not been submitted for a higher degree to any other University or Institution.
+
+\vspace{1cm}
+
+\noindent\textbf{Disclosure of AI Tool Usage}
+
+\noindent In accordance with NTU's policy on the use of generative AI tools in academic work (effective November 2025), the following AI tools were used during the preparation of this report:
+
+\begin{itemize}[leftmargin=2cm]
+  \item \textbf{Claude (Anthropic)}: code review and literature synthesis.
+  \item \textbf{ChatGPT (OpenAI)}: brainstorming and proofreading selected sections.
+\end{itemize}
+
+\noindent All AI-generated content was reviewed, verified, and substantially revised by the author. The intellectual contributions, system design, implementation, and evaluation are entirely the author's own work.
+
+\vspace{2cm}
+
+\begin{tabular}{@{}ll}
+  \rule{6cm}{0.4pt} & \rule{4cm}{0.4pt} \\
+  Signature                & Date
+\end{tabular}
+
+\newpage
+
+% ── Supervisor Declaration Statement ─────────────────────────────────────────
+\chapter*{Supervisor Declaration Statement}
+\addcontentsline{toc}{chapter}{Supervisor Declaration Statement}
+
+I have reviewed the content and presentation of this report and confirm that it represents the student's own work, conducted under my supervision.
+
+\vspace{3cm}
+
+\begin{tabular}{@{}ll}
+  \rule{6cm}{0.4pt} & \rule{4cm}{0.4pt} \\
+  Supervisor Signature     & Date
+\end{tabular}
+
+\newpage
+
+% ── Authorship Attribution Statement ─────────────────────────────────────────
+\chapter*{Authorship Attribution Statement}
+\addcontentsline{toc}{chapter}{Authorship Attribution Statement}
+
+This report is written entirely by the undersigned. All work presented in this report was carried out by the author unless otherwise stated. Where the work of others has been used, it has been duly acknowledged and referenced.
+
+The following contributions are noted:
+
+\begin{itemize}[leftmargin=2cm]
+  \item The SenticNet APIs (Chapter~4, Section~4.4) were provided by the SenticNet research group at NTU.
+  \item The Mem0 memory framework (Chapter~4, Section~4.5) is an open-source library used under the Apache~2.0 licence.
+  \item The Apple MLX framework (Chapter~4, Section~4.2) is an open-source library developed by Apple Inc.
+\end{itemize}
+
+\vspace{2cm}
+
+\begin{tabular}{@{}ll}
+  \rule{6cm}{0.4pt} & \rule{4cm}{0.4pt} \\
+  Signature                & Date
+\end{tabular}
+
+\newpage
+
+% ── Abstract ─────────────────────────────────────────────────────────────────
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Attention-Deficit/Hyperactivity Disorder (ADHD) affects an estimated 2.58\% to 6.76\% of the global adult population, imposing a substantial economic burden of approximately USD~4,336 per affected worker per year in lost productivity. The proliferation of digital devices and persistent connectivity has compounded core ADHD symptoms, including attentional dysregulation, working memory deficits, and impaired executive function. Despite the prevalence of productivity applications on the market, no integrated desktop tool existed that combined conversational coaching, real-time emotion awareness, screen activity monitoring, and persistent semantic memory within a single privacy-preserving framework.
+
+This project developed an on-device AI-powered macOS application that addressed these gaps through the integration of several complementary subsystems. A Qwen3-4B large language model, executed locally via the Apple MLX framework, provided conversational coaching at 37.1 tokens per second. A SetFit contrastive learning pipeline achieved 86\% emotion classification accuracy across six ADHD-specific affective categories using only 210 training sentences. SenticNet affective computing, accessed through 13 application programming interfaces and grounded in the Hourglass of Emotions model, supplied fine-grained sentiment and sentic features with 100\% reliability. Mem0 semantic memory, backed by pgvector, attained 95\% top-1 relevance in context retrieval. A five-tier activity classification engine processed screen titles at 549 titles per second, and Just-in-Time Adaptive Interventions, structured around Barkley's executive function domains, delivered context-sensitive behavioural nudges.
+
+Evaluation demonstrated that the system consumed 21,314 millijoules per inference, representing approximately 1.4\% battery drain per hour, while maintaining a peak memory footprint below 3 gigabytes. All predefined project objectives were exceeded. The application constituted the first macOS-native ADHD assistant with a fully on-device large language model, addressed eight identified market gaps, and contributed an open-source evaluation framework with reproducible benchmarks.
+
+\newpage
+
+% ── Acknowledgements ─────────────────────────────────────────────────────────
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+
+% TODO: Replace with actual acknowledgements.
+I would like to express my sincere gratitude to my supervisor for the guidance and support throughout this project. I also thank the SenticNet research group at NTU for providing access to the SenticNet APIs. Finally, I am grateful to my family and friends for their encouragement and patience.
+
+\newpage
+
+% ── Table of Contents ────────────────────────────────────────────────────────
+\tableofcontents
+\newpage
+
+% ── List of Figures ──────────────────────────────────────────────────────────
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+\newpage
+
+% ── List of Tables ───────────────────────────────────────────────────────────
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\newpage
+
+% ── List of Abbreviations ────────────────────────────────────────────────────
+\chapter*{List of Abbreviations}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+
+\begin{longtable}{@{}l l@{}}
+  \toprule
+  \textbf{Abbreviation} & \textbf{Definition} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Abbreviation} & \textbf{Definition} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  ADHD   & Attention-Deficit/Hyperactivity Disorder \\
+  AI     & Artificial Intelligence \\
+  ANE    & Apple Neural Engine \\
+  API    & Application Programming Interface \\
+  ASRS   & Adult ADHD Self-Report Scale \\
+  CBM    & Concept Bottleneck Model \\
+  CBT    & Cognitive Behavioural Therapy \\
+  CLI    & Command-Line Interface \\
+  CPU    & Central Processing Unit \\
+  CV     & Coefficient of Variation \\
+  DRAM   & Dynamic Random-Access Memory \\
+  E2E    & End-to-End \\
+  EF     & Executive Function \\
+  F1     & F1-Score (harmonic mean of precision and recall) \\
+  GPU    & Graphics Processing Unit \\
+  HRV    & Heart Rate Variability \\
+  IEEE   & Institute of Electrical and Electronics Engineers \\
+  IRB    & Institutional Review Board \\
+  JITAI  & Just-in-Time Adaptive Intervention \\
+  LLM    & Large Language Model \\
+  LoRA   & Low-Rank Adaptation \\
+  MLX    & Apple Machine Learning Framework \\
+  MPS    & Metal Performance Shaders \\
+  NLP    & Natural Language Processing \\
+  NTU    & Nanyang Technological University \\
+  PARA   & Projects, Areas, Resources, Archives \\
+  PKM    & Personal Knowledge Management \\
+  QLoRA  & Quantised Low-Rank Adaptation \\
+  RAG    & Retrieval-Augmented Generation \\
+  RSS    & Resident Set Size \\
+  STS    & Semantic Textual Similarity \\
+  SUS    & System Usability Scale \\
+  XAI    & Explainable Artificial Intelligence \\
+\end{longtable}

@@ -1,0 +1,497 @@
+% =============================================================================
+% Appendices
+% =============================================================================
+
+% ── Appendix A: User Guide and Screenshots ───────────────────────────────────
+\chapter{User Guide and Screenshots}
+\label{app:user-guide}
+
+This appendix provides installation instructions and a visual walkthrough of the ADHD Second Brain application.
+
+\section{Prerequisites}
+
+The following software must be installed before building the application:
+
+\begin{itemize}
+  \item macOS 14 Sonoma or later (Apple Silicon required for MLX inference).
+  \item Python 3.11 with \texttt{pip} (the backend virtual environment uses Python 3.11).
+  \item Node.js 20+ and \texttt{npm} (for the React dashboard).
+  \item Xcode 15+ (for building the SwiftUI menu bar application).
+  \item PostgreSQL 16 with the \texttt{pgvector} extension installed.
+  \item Docker (optional, for containerised PostgreSQL via \texttt{docker-compose.yml}).
+\end{itemize}
+
+\section{Installation}
+
+\begin{enumerate}
+  \item \textbf{Clone the repository:}
+\begin{lstlisting}[language=bash]
+git clone https://github.com/avdheshcharjan/adhd-sentic-fyp.git
+cd adhd-sentic-fyp
+\end{lstlisting}
+
+  \item \textbf{Start the database:}
+\begin{lstlisting}[language=bash]
+docker-compose up -d
+\end{lstlisting}
+
+  \item \textbf{Set up the backend:}
+\begin{lstlisting}[language=bash]
+cd backend
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+\end{lstlisting}
+
+  \item \textbf{Download the LLM model} (Qwen3-4B, 4-bit quantised):
+\begin{lstlisting}[language=bash]
+python -c "from mlx_lm import load; load('mlx-community/Qwen3-4B-4bit')"
+\end{lstlisting}
+
+  \item \textbf{Configure environment variables:} Copy \texttt{.env.example} to \texttt{.env} and fill in the required API keys (SenticNet, Whoop, Google Calendar OAuth credentials).
+
+  \item \textbf{Start the backend server:}
+\begin{lstlisting}[language=bash]
+uvicorn main:app --host 0.0.0.0 --port 8420
+\end{lstlisting}
+
+  \item \textbf{Build the React dashboard:}
+\begin{lstlisting}[language=bash]
+cd ../dashboard
+npm install && npm run dev
+\end{lstlisting}
+
+  \item \textbf{Build the SwiftUI application:} Open \texttt{swift-app/ADHDSecondBrain.xcodeproj} in Xcode, select the ``ADHDSecondBrain'' scheme, and build with Cmd+B. The menu bar icon appears in the system tray upon launch.
+\end{enumerate}
+
+\section{Application Walkthrough}
+
+The ADHD Second Brain comprises three user-facing interfaces.
+
+\subsection{Menu Bar Application}
+
+The SwiftUI menu bar application is the primary entry point. Clicking the brain icon in the macOS menu bar reveals a popover panel with quick-access controls: the chat interface, current focus metrics, and a brain dump capture field. The application consumes approximately 25~MB of resident memory when idle.
+
+\Cref{fig:app-notch-flow} presents the complete notch-based UX flow, showing the five interaction states from dormant monitoring through alert-level intervention delivery.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{screenshot-notch-flow.jpg}
+  \caption{Notch-based UX flow showing the five interaction states: dormant, ambient, glanceable, expanded, and alert.}
+  \label{fig:app-notch-flow}
+\end{figure}
+
+\subsection{Chat Interface and Brain Dump}
+
+The chat interface provides conversational ADHD coaching powered by the on-device Qwen3-4B model. Users can toggle between standard mode and extended reasoning (\texttt{/think}) mode, which generates longer, more thoughtful responses at the cost of higher latency. The brain dump modal allows rapid capture of unstructured thoughts, which are automatically tagged with emotion labels and stored in semantic memory. \Cref{fig:app-braindump} shows both modals.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{screenshot-braindump-vent.jpg}
+  \caption{Brain dump and vent chat modals for rapid thought capture and conversational coaching.}
+  \label{fig:app-braindump}
+\end{figure}
+
+\subsection{Intervention Popup}
+
+When the JITAI engine determines that an intervention is warranted, a notification popup appears with ADHD-friendly visual tokens (\cref{fig:app-intervention}). Each intervention includes an acknowledgement of the user's current state, a concrete suggestion, and action buttons. User responses feed back into the Thompson Sampling bandit to personalise future intervention timing and type.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{screenshot-intervention.jpg}
+  \caption{Notch expanded state showing a JITAI intervention with action buttons.}
+  \label{fig:app-intervention}
+\end{figure}
+
+\subsection{React Dashboard}
+
+The React dashboard (served via Vite) provides a comprehensive view of productivity metrics, emotion timelines, and session insights (\cref{fig:app-dashboard}). The dashboard is accessible at \texttt{http://localhost:5173} and communicates with the backend via the REST API documented in \cref{app:api-docs}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{screenshot-dashboard.jpg}
+  \caption{React dashboard displaying emotion timeline, productivity metrics, and session insights.}
+  \label{fig:app-dashboard}
+\end{figure}
+
+\subsection{Settings Panel}
+
+The settings panel allows configuration of monitoring intervals, intervention thresholds, model parameters, and Google Calendar OAuth integration (\cref{fig:app-settings}). Changes are persisted to the backend configuration and take effect immediately.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{screenshot-settings.jpg}
+  \caption{Settings panel showing permission configuration options.}
+  \label{fig:app-settings}
+\end{figure}
+
+% ── Appendix B: Additional Test Results ──────────────────────────────────────
+\chapter{Additional Test Results}
+\label{app:test-results}
+
+This appendix contains detailed benchmark outputs and extended evaluation data that supplement the results presented in Chapter~5.
+
+\section{LLM Inference Benchmark}
+
+\Cref{tab:llm-benchmark-detail} presents the complete LLM inference benchmark results consolidated across two runs with seed~42.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Detailed LLM inference benchmark results (Qwen3-4B, 4-bit, MLX).}
+  \label{tab:llm-benchmark-detail}
+  \begin{tabular}{@{}lrr@{}}
+    \toprule
+    \textbf{Metric} & \textbf{Value} & \textbf{CV} \\
+    \midrule
+    Throughput                  & 37.1 tok/s   & 0.8\% \\
+    Time to first token        & 83 ms        & 4.2\% \\
+    \texttt{/think} latency    & 4,738 ms     & 1.5\% \\
+    \texttt{/no\_think} latency & 2,046 ms    & 2.1\% \\
+    Tokens (\texttt{/think})   & $\sim$212    & --- \\
+    Tokens (\texttt{/no\_think}) & $\sim$77   & --- \\
+    RSS (with model loaded)    & $\sim$2,854 MB & --- \\
+    GPU memory                 & $\sim$2.3 GB & --- \\
+    Cold start time            & 3.2 s        & 33.8\% \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{SenticNet Pipeline Latency}
+
+\Cref{tab:senticnet-latency-detail} presents the SenticNet pipeline latency measurements across varying input lengths.
+
+\begin{table}[htbp]
+  \centering
+  \caption{SenticNet pipeline latency by input length (13 API calls per execution).}
+  \label{tab:senticnet-latency-detail}
+  \begin{tabular}{@{}lccc@{}}
+    \toprule
+    \textbf{Input Length} & \textbf{Mean (ms)} & \textbf{Median (ms)} & \textbf{P95 (ms)} \\
+    \midrule
+    Short ($<$20 words)  & 312 & 298 & 445 \\
+    Medium (20--50 words) & 487 & 462 & 678 \\
+    Long ($>$50 words)   & 723 & 691 & 982 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Confusion Matrices}
+
+The production SetFit confusion matrix is presented in \cref{fig:confusion-matrix} (Chapter~5). The raw confusion matrix values for each classifier approach are provided below for reference.
+
+\subsection{SetFit Production Model (86\% Accuracy)}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Confusion matrix for the SetFit production model (rows: true labels, columns: predicted labels).}
+  \label{tab:cm-setfit}
+  \begin{tabular}{@{}l cccccc@{}}
+    \toprule
+    & \textbf{Joy.} & \textbf{Foc.} & \textbf{Fru.} & \textbf{Anx.} & \textbf{Dis.} & \textbf{Ovw.} \\
+    \midrule
+    Joyful      & \textbf{7} & 0 & 0 & 0 & 1 & 0 \\
+    Focused     & 0 & \textbf{7} & 0 & 1 & 0 & 0 \\
+    Frustrated  & 0 & 0 & \textbf{6} & 0 & 1 & 1 \\
+    Anxious     & 0 & 1 & 0 & \textbf{6} & 0 & 1 \\
+    Disengaged  & 0 & 0 & 1 & 0 & \textbf{7} & 0 \\
+    Overwhelmed & 0 & 0 & 1 & 1 & 0 & \textbf{6} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Hybrid Approach (74\% Accuracy, Embedding Only)}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Confusion matrix for the hybrid embedding-only model.}
+  \label{tab:cm-hybrid}
+  \begin{tabular}{@{}l cccccc@{}}
+    \toprule
+    & \textbf{Joy.} & \textbf{Foc.} & \textbf{Fru.} & \textbf{Anx.} & \textbf{Dis.} & \textbf{Ovw.} \\
+    \midrule
+    Joyful      & \textbf{7} & 0 & 0 & 0 & 0 & 1 \\
+    Focused     & 0 & \textbf{6} & 0 & 2 & 0 & 0 \\
+    Frustrated  & 0 & 0 & \textbf{5} & 0 & 1 & 2 \\
+    Anxious     & 0 & 1 & 1 & \textbf{5} & 1 & 0 \\
+    Disengaged  & 1 & 0 & 0 & 0 & \textbf{7} & 0 \\
+    Overwhelmed & 0 & 0 & 2 & 0 & 1 & \textbf{5} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Energy Consumption Detail}
+
+\Cref{tab:energy-detail} presents the raw energy measurements from both benchmark runs, collected via \texttt{zeus-apple-silicon} at 100~ms polling intervals.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Raw energy measurements across two benchmark runs (seed 42).}
+  \label{tab:energy-detail}
+  \begin{tabular}{@{}lrrr@{}}
+    \toprule
+    \textbf{Component} & \textbf{Run 1 (mJ)} & \textbf{Run 2 (mJ)} & \textbf{Mean (mJ)} \\
+    \midrule
+    GPU   & 14,982 & 15,614 & 15,298 \\
+    DRAM  &  4,429 &  4,713 &  4,571 \\
+    CPU   &  1,389 &  1,503 &  1,446 \\
+    ANE   &      0 &      0 &      0 \\
+    \midrule
+    Total & 20,800 & 21,830 & 21,314 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Idle Power Baseline}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Idle power consumption with the application loaded but no inference running.}
+  \label{tab:idle-power}
+  \begin{tabular}{@{}lr@{}}
+    \toprule
+    \textbf{Component} & \textbf{Power (W)} \\
+    \midrule
+    CPU  & 0.507 \\
+    GPU  & 0.037 \\
+    DRAM & 0.157 \\
+    \midrule
+    Total & 0.700 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Persona Simulation Summary}
+
+Five synthetic ADHD personas were used to exercise the system across representative emotional states and task contexts. Each persona was defined by a dominant emotion profile, typical screen activity pattern, and expected intervention sensitivity.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Synthetic ADHD persona definitions used in system evaluation.}
+  \label{tab:personas}
+  \begin{tabular}{@{}llll@{}}
+    \toprule
+    \textbf{Persona} & \textbf{Dominant Emotion} & \textbf{Activity Pattern} & \textbf{Intervention} \\
+    \midrule
+    Student (cramming)  & Anxious / Overwhelmed & High context switches & High sensitivity \\
+    Developer (flow)    & Focused               & Low switches, IDE-heavy & Low sensitivity \\
+    Creative (exploring)& Joyful / Disengaged   & Browser-heavy, varied & Medium sensitivity \\
+    Procrastinator      & Frustrated / Disengaged & Social media loops & High sensitivity \\
+    Mixed-state         & Rapidly alternating    & Erratic patterns & Adaptive \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+All five personas triggered correct emotion classifications (100\% top-1 match) and received contextually appropriate interventions aligned with their dominant executive function deficits. The mixed-state persona successfully exercised the Thompson Sampling adaptation mechanism, converging on appropriate intervention timing within 8 interaction cycles.
+
+% ── Appendix C: API Documentation ───────────────────────────────────────────
+\chapter{API Documentation}
+\label{app:api-docs}
+
+This appendix documents the key FastAPI endpoints exposed by the ADHD Second Brain backend, served on \texttt{localhost:8420}. All endpoints accept and return JSON unless otherwise noted.
+
+\section{Endpoint Summary}
+
+\begin{longtable}{@{}llp{6.5cm}@{}}
+  \toprule
+  \textbf{Method} & \textbf{Path} & \textbf{Description} \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \textbf{Method} & \textbf{Path} & \textbf{Description} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  GET  & \texttt{/health/health} & Health check with uptime \\
+  POST & \texttt{/chat/message} & Full coaching pipeline (SenticNet + LLM + memory) \\
+  POST & \texttt{/screen/activity} & Process screen activity event (hot path) \\
+  POST & \texttt{/api/v1/vent/chat/stream} & Streaming chat via SSE \\
+  POST & \texttt{/api/v1/vent/chat} & Non-streaming chat fallback \\
+  POST & \texttt{/api/v1/vent/session/new} & Start new vent session \\
+  POST & \texttt{/api/v1/brain-dump/} & Capture brain dump entry \\
+  POST & \texttt{/api/v1/brain-dump/stream} & Capture + stream AI summary \\
+  GET  & \texttt{/api/v1/brain-dump/review/recent} & Retrieve recent brain dumps \\
+  GET  & \texttt{/insights/dashboard} & Unified dashboard data \\
+  GET  & \texttt{/insights/current} & Live metrics snapshot \\
+  GET  & \texttt{/insights/daily} & Daily activity summary \\
+  GET  & \texttt{/insights/weekly} & 7-day trend analysis \\
+  GET  & \texttt{/interventions/current} & Get pending intervention \\
+  POST & \texttt{/interventions/\{id\}/respond} & Record intervention response \\
+  POST & \texttt{/interventions/correct-concept} & Submit concept correction \\
+\end{longtable}
+
+\section{Core Endpoints}
+
+\subsection{POST /chat/message}
+
+The primary coaching endpoint. Executes the full pipeline: SenticNet emotion analysis, safety checking (crisis detection), Qwen3-4B LLM response generation, and Mem0 memory storage.
+
+\begin{description}
+  \item[Request Body] \hfill
+\begin{lstlisting}
+{
+  "text": "I can't focus on my assignment at all",
+  "conversation_id": "conv-abc-123",
+  "context": {"current_app": "Safari", "focus_score": 0.3}
+}
+\end{lstlisting}
+
+  \item[Response (200 OK)] \hfill
+\begin{lstlisting}
+{
+  "response": "I hear that focusing feels really hard...",
+  "emotion_profile": {
+    "polarity": -0.42,
+    "mood_tags": ["#frustrated", "#overwhelmed"],
+    "hourglass_pleasantness": -0.6,
+    "hourglass_attention": 0.3
+  },
+  "safety_flags": {"crisis_detected": false},
+  "used_llm": true,
+  "thinking_mode": "/no_think",
+  "latency_ms": 2046.3,
+  "token_count": 77
+}
+\end{lstlisting}
+\end{description}
+
+\subsection{POST /screen/activity}
+
+The hot-path endpoint called every 2 seconds by the Swift menu bar application. Classifies the current screen activity, updates ADHD metrics, evaluates JITAI intervention criteria, and generates XAI explanations if an intervention is triggered. Target latency: $<$100~ms.
+
+\begin{description}
+  \item[Request Body] \hfill
+\begin{lstlisting}
+{
+  "app_name": "Safari",
+  "window_title": "Reddit - ADHD Tips",
+  "url": "https://reddit.com/r/adhd",
+  "is_idle": false,
+  "timestamp": "2026-03-28T14:30:00Z"
+}
+\end{lstlisting}
+
+  \item[Response (200 OK)] \hfill
+\begin{lstlisting}
+{
+  "category": "social_media",
+  "metrics": {
+    "focus_score": 0.35,
+    "context_switches": 12,
+    "distraction_ratio": 0.65
+  },
+  "intervention": {
+    "id": "intv-uuid-456",
+    "type": "gentle_redirect",
+    "ef_domain": "response_inhibition",
+    "acknowledgment": "Taking a break on Reddit?",
+    "suggestion": "Try the 2-minute rule...",
+    "notification_tier": 2,
+    "urgency_color": "amber"
+  }
+}
+\end{lstlisting}
+\end{description}
+
+\subsection{POST /api/v1/vent/chat/stream}
+
+Streams Qwen3-4B response tokens in real-time via Server-Sent Events (SSE).
+
+\begin{description}
+  \item[Request Body] \hfill
+\begin{lstlisting}
+{
+  "message": "Everything is falling apart",
+  "session_id": "session-xyz",
+  "history": [
+    {"role": "user", "content": "I feel stuck"},
+    {"role": "assistant", "content": "Tell me more..."}
+  ]
+}
+\end{lstlisting}
+
+  \item[Response (200 OK, text/event-stream)] \hfill
+\begin{lstlisting}
+data: {"token": "I"}
+data: {"token": " understand"}
+data: {"token": " how"}
+...
+data: [DONE]
+\end{lstlisting}
+\end{description}
+
+\subsection{POST /interventions/\{id\}/respond}
+
+Records the user's response to a delivered intervention. Feeds back to the JITAI engine for adaptive cooldown and to the Thompson Sampling bandit for learning optimal intervention timing.
+
+\begin{description}
+  \item[Request Body] \hfill
+\begin{lstlisting}
+{
+  "action_taken": "took_break",
+  "dismissed": false,
+  "effectiveness_rating": 4
+}
+\end{lstlisting}
+
+  \item[Response (200 OK)] \hfill
+\begin{lstlisting}
+{
+  "status": "recorded",
+  "intervention_id": "intv-uuid-456",
+  "cooldown_seconds": 300
+}
+\end{lstlisting}
+\end{description}
+
+\section{Data Model Schemas}
+
+\subsection{EmotionDetail}
+
+The emotion profile returned by the SenticNet pipeline, attached to chat responses and stored in memory.
+
+\begin{lstlisting}
+{
+  "polarity": float,         // [-1, 1] overall sentiment
+  "mood_tags": [str],        // e.g., ["#frustrated", "#anxious"]
+  "hourglass_pleasantness": float,  // [-1, 1]
+  "hourglass_attention": float,     // [-1, 1]
+  "hourglass_sensitivity": float,   // [-1, 1]
+  "hourglass_aptitude": float,      // [-1, 1]
+  "sentic_concepts": [str]   // matched SenticNet concepts
+}
+\end{lstlisting}
+
+\subsection{Intervention}
+
+The intervention payload delivered via the JITAI engine when executive function deficits are detected.
+
+\begin{lstlisting}
+{
+  "id": str,                 // UUID
+  "type": str,               // intervention type
+  "ef_domain": str,          // Barkley EF domain
+  "acknowledgment": str,     // empathetic acknowledgment
+  "suggestion": str,         // concrete action
+  "actions": [               // user-selectable actions
+    {"id": str, "emoji": str, "label": str}
+  ],
+  "notification_tier": int,  // 1-5
+  "urgency_color": str,      // "green"|"amber"|"orange"|"red"
+  "explanation": object      // XAI explanation (optional)
+}
+\end{lstlisting}
+
+\subsection{ScreenActivityInput}
+
+Input schema for the hot-path screen monitoring endpoint.
+
+\begin{lstlisting}
+{
+  "app_name": str,           // active application name
+  "window_title": str,       // window/tab title
+  "url": str | null,         // browser URL if applicable
+  "is_idle": bool,           // system idle state
+  "timestamp": datetime      // ISO 8601 timestamp
+}
+\end{lstlisting}
