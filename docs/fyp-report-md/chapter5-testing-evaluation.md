@@ -8,7 +8,7 @@
 This paragraph introduces the rationale for a comprehensive, multi-layered testing strategy. It argues that validating an on-device AI system required testing at multiple granularities — from individual function correctness to full pipeline integration — because failures at any layer could degrade the user experience for individuals with ADHD, a population particularly sensitive to latency and unreliable behaviour \cite{barkley2010}. The testing strategy comprised five complementary layers: unit testing, integration testing, benchmark testing, accuracy evaluation, and persona-based simulation. Each layer targeted a distinct class of defect: logical errors, interface mismatches, performance regressions, model quality degradation, and ecological validity gaps, respectively.
 
 **Paragraph 2 — Unit and integration testing infrastructure.**
-The unit testing suite comprised over 200 individual test cases distributed across 24 test files, organised by module (emotion classification, LLM inference, SenticNet pipeline, memory system, screen monitoring, and UI components). All tests were authored using the pytest framework and executed via a unified Makefile target (`make test`). Integration tests validated end-to-end pipeline behaviour by issuing a natural-language user message and asserting that the system produced a well-formed coaching response incorporating emotion classification, SenticNet analysis, memory retrieval, and LLM generation. These integration tests exercised the same code paths as production, differing only in the use of shorter prompts to reduce execution time.
+The unit testing suite comprised over 220 individual test cases distributed across 25 test files, organised by module (emotion classification, LLM inference, SenticNet pipeline, memory system, screen monitoring, UI components, and SetFit wiring verification). A dedicated SetFit wiring verification suite (20 tests) validates the end-to-end integration between emotion classification, PASE radar mapping, confidence gating, and JITAI intervention triggering. All tests were authored using the pytest framework and executed via a unified Makefile target (`make test`). Integration tests validated end-to-end pipeline behaviour by issuing a natural-language user message and asserting that the system produced a well-formed coaching response incorporating emotion classification, SenticNet analysis, memory retrieval, and LLM generation. These integration tests exercised the same code paths as production, differing only in the use of shorter prompts to reduce execution time.
 
 **Paragraph 3 — Benchmark testing and reproducibility protocol.**
 Benchmark testing measured four performance dimensions: latency (response time), throughput (tokens per second), memory consumption (resident set size), and energy consumption (millijoules per inference). All benchmarks were automated via Makefile targets (`make bench`, `make eval`, `make all-eval`) to eliminate manual execution variability. A two-run reproducibility protocol was adopted: every benchmark was executed twice under identical conditions, with deterministic seeding applied at the start of each run (`random.seed(42)`, `numpy.random.seed(42)`) to control for stochastic variation in model inference and data sampling. Results were reported as means with coefficients of variation (CV) to quantify reproducibility. All experiments were conducted on a MacBook Pro M4 equipped with a 10-core CPU, 10-core GPU, and 16 GB of unified memory — representative of the target deployment hardware. Energy measurements were collected using the zeus-apple-silicon framework, which provided per-component power readings (CPU, GPU, DRAM, ANE) via Apple's IOKit power reporting interface.
@@ -127,7 +127,30 @@ The SenticNet Hourglass of Emotions model \cite{cambria2016} maps concepts to fo
 
 ---
 
-## 5.5 Memory System Evaluation
+## 5.5 SetFit Wiring Verification
+
+A dedicated test suite of 20 tests validates the end-to-end integration between the SetFit emotion classifier, the PASE radar mapping, the confidence-gated JITAI rules, and the dashboard pipeline. All 20 tests passed.
+
+**Emotion Radar PASE Mapping (6 tests).** Six tests verified the `blend_pase` function: (1) all six SetFit labels have valid PASE mappings with all four keys present; (2) high confidence (>0.9) produces profiles within 0.05 of the canonical values; (3) low confidence (<0.1) produces profiles within 0.1 of neutral (0.5); (4) zero confidence produces exactly neutral profiles; (5) all PASE values remain within [0, 1] across all labels and confidence levels; and (6) unknown labels fall back to the *disengaged* profile.
+
+**SetFit Classifier Output (4 tests).** Four tests exercised the SetFit classifier singleton: (1) predictions return valid labels present in both `SETFIT_TO_PASE` and `SETFIT_TO_ADHD_STATE`; (2) confidence scores are bounded in [0, 1]; (3) negatively-valenced text (frustration, bugs) returns a valid label with non-zero confidence; and (4) positively-valenced text (success, joy) returns a valid label.
+
+**JITAI Emotion Rule Verification (8 tests).** Eight tests validated the four emotion-aware JITAI rules (4a–4d), each tested for both activation and non-activation:
+
+- **Rule 4a** (emotional escalation): Fires when `emotional_dysregulation` is set; does not fire without emotion context.
+- **Rule 4b** (frustration spiral): Fires when `frustration_detected` and context switches > 8; does not fire with switches ≤ 3.
+- **Rule 4c** (anxiety distraction): Fires when `anxiety_detected` and distraction ratio > 0.4; does not fire with ratio ≤ 0.2.
+- **Rule 4d** (emotion disengagement): Fires when `disengaged_detected` and streak > 10 min; does not fire under 5 min.
+
+A sweep test confirmed that all new intervention types produce at most three action choices (anti-pattern #8).
+
+**Confidence Gating (1 test).** One integration test simulated the `screen.py` emotion context construction with a confidence of 0.4 (below all thresholds). All four emotion flags (`emotional_dysregulation`, `frustration_detected`, `anxiety_detected`, `disengaged_detected`) were verified to be `False`, and the JITAI engine confirmed that no emotion-based intervention was triggered. This validates that low-confidence SetFit predictions do not produce spurious interruptions.
+
+**Max Actions Constraint (1 test).** A sweep across all four emotion-triggered intervention types confirmed that each produces at most 3 action choices, enforcing anti-pattern #8 from the ADHD intervention literature.
+
+---
+
+## 5.6 Memory System Evaluation
 
 **Paragraph 1 — Store and retrieval latency.**
 The conversational memory system, built on the Mem0 framework \cite{mem0} with PostgreSQL and pgvector for semantic search, was evaluated for store and retrieval latency. The store operation exhibited a mean latency of 5,884 ms with an 11.2% coefficient of variation, dominated by the OpenAI gpt-4o-mini API call for memory fact extraction and embedding generation. Retrieval was substantially faster at 274 ms mean (median: 259 ms) with 22.6% CV, as it required only an embedding call plus a pgvector cosine similarity search. The retrieval median closely matched Mem0's officially published benchmark of 200 ms median retrieval latency on the LOCOMO dataset \cite{mem0}, confirming that the system's pgvector deployment achieved expected performance.
@@ -137,7 +160,7 @@ Retrieval relevance was assessed via top-1 hit rate across two evaluation runs o
 
 ---
 
-## 5.6 System Integration and Performance
+## 5.7 System Integration and Performance
 
 **Paragraph 1 — End-to-end pipeline latency and bottleneck analysis.**
 The complete coaching pipeline — from receiving a user message to delivering a formatted response — averaged 13,961 ms across the two-run protocol. A bottleneck decomposition revealed that Mem0 store operations accounted for 38.8% of total latency, followed by SenticNet analysis at 29.9%, LLM generation at 28.7%, and Mem0 retrieval at 2.6%. Cloud-dependent API calls collectively accounted for 68.7% of end-to-end latency, while the on-device LLM contributed less than one-third. This validated the architectural decision to run the LLM on-device, as the on-device component was already the most optimised stage; the primary optimisation opportunities lay in reducing cloud API dependency.
@@ -170,7 +193,7 @@ Peak RSS across all system components remained below 3 GB, well under the 6 GB d
 
 ---
 
-## 5.7 Energy Consumption
+## 5.8 Energy Consumption
 
 **Paragraph 1 — Idle and per-inference energy measurement.**
 Energy consumption was measured using the zeus-apple-silicon framework, which provided per-component power readings at millisecond granularity. The system's idle power draw was 0.70 W, composed of CPU (0.507 W), GPU (0.037 W), DRAM (0.157 W), and ANE (0.000 W). The ANE's zero power draw confirmed that neither MLX nor any other pipeline component utilised the Neural Engine, consistent with MLX's Metal-based GPU execution strategy. Energy per inference was 21,314 mJ with a coefficient of variation of 2.8%, making it the most reproducible benchmark in the entire evaluation suite.
@@ -198,7 +221,7 @@ Battery life projections were computed for two usage scenarios on the MacBook Pr
 
 ---
 
-## 5.8 Reproducibility Assessment
+## 5.9 Reproducibility Assessment
 
 **Paragraph 1 — Two-run reproducibility classification.**
 A systematic reproducibility assessment classified all measured metrics into five tiers based on their coefficient of variation across the two-run protocol. Deterministic metrics (0% CV) included classification tier coverage and SenticNet hourglass dimension values — both computed via fixed algorithms with no randomness. Very high stability metrics (CV < 5%) included LLM throughput (0.8% CV), energy per inference (2.8% CV), warm LLM latency (1.2% CV), and batch classification throughput (2.7% CV); these metrics involved GPU computation with minimal external dependencies and benefited from MLX's deterministic execution model on the Metal backend.
@@ -218,7 +241,7 @@ High stability metrics (5–15% CV) included LLM generation time and SenticNet s
 
 ---
 
-## 5.9 Evaluation Against Objectives
+## 5.10 Evaluation Against Objectives
 
 **Paragraph 1 — Objective traceability overview.**
 This section maps each of the five project objectives defined in Chapter 1 to the measured results presented throughout this chapter, providing a formal traceability matrix that demonstrates objective fulfilment. All five objectives were met or exceeded, with quantitative evidence drawn from the benchmark, accuracy, and energy evaluation results.
@@ -233,7 +256,7 @@ The second objective required ≥80% accuracy on six ADHD-specific emotion categ
 The third objective required SenticNet integration with Concept Bottleneck Models for explainable affective analysis. The SenticNet pipeline achieved 100% reliability across 200 API calls and produced hourglass dimension values with sufficient dynamic range (standard deviations of 48–67 on [-100, +100]) to differentiate meaningfully between emotional states. The deterministic nature of the computation (0% CV) ensured reproducible and explainable coaching behaviour.
 
 **Paragraph 5 — Objective 4: Screen monitoring and JITAI.**
-The fourth objective required real-time screen monitoring and adaptive interventions. The five-tier classification cascade processed 549 titles per second with 78% of classifications resolved by deterministic rule-based tiers before any ML inference was required — nearly double the ≥40% design target. The JITAI engine, grounded in Barkley's five executive function domains \cite{barkley2010}, triggered interventions based on activity classification, emotion state, and temporal patterns.
+The fourth objective required real-time screen monitoring and adaptive interventions. The five-tier classification cascade processed 549 titles per second with 78% of classifications resolved by deterministic rule-based tiers before any ML inference was required — nearly double the ≥40% design target. The JITAI engine, grounded in Barkley's five executive function domains \cite{barkley2010}, evaluates seven intervention rules including four emotion-aware rules (4a–4d) driven by confidence-gated SetFit predictions wired through the screen activity hot path. All 20 dedicated wiring verification tests passed, confirming correct integration between SetFit, the PASE radar mapping, and the JITAI engine.
 
 **Paragraph 6 — Objective 5: Resource efficiency.**
 The fifth objective required the system to operate as an always-on macOS application with minimal resource impact. The system consumed 21,314 mJ per inference with peak RSS below 3 GB and approximately 1.4% battery drain per hour under active use — confirming that the application could run continuously throughout a workday without meaningful impact on battery life or system responsiveness.
@@ -245,7 +268,7 @@ The fifth objective required the system to operate as an always-on macOS applica
 | Obj 1: On-device LLM | Interactive response speed | 37.1 tok/s, 1.4–2.7 s latency | **Achieved** |
 | Obj 2: Emotion classification | ≥ 80% accuracy | 86% accuracy, 0.862 macro-F1 | **Exceeded (1.08x)** |
 | Obj 3: SenticNet + CBM explainability | Meaningful differentiation, reliable API | 100% reliability, stdev 48–67 | **Achieved** |
-| Obj 4: Screen monitoring + JITAI | Real-time classification | 549 titles/s, 78% rule coverage | **Exceeded (5.5x throughput)** |
+| Obj 4: Screen monitoring + JITAI | Real-time classification | 549 titles/s, 7 rules (4 emotion), 20 wiring tests | **Exceeded (5.5x throughput)** |
 | Obj 5: Resource efficiency | Minimal battery, < 6 GB RSS | 21,314 mJ, < 3 GB RSS, ~1.4%/hr | **Exceeded (2x RSS margin)** |
 
 **Paragraph 7 — Summary.**

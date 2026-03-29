@@ -24,7 +24,11 @@ class BackendBridge {
     var dailyProgress = DailyProgress(
         tasksCompleted: 0, focusSessions: 0, totalFocusMinutes: 0
     )
-
+    // Google Calendar auth status
+    var isCalendarConnected: Bool = false
+    // Off-task detection
+    var isOffTask: Bool = false
+    
     init(client: BackendClient = BackendClient()) {
         self.client = client
         let urlString = UserDefaults.standard.string(forKey: "backendURL").map({ "http://\($0)" }) ?? "http://localhost:8420"
@@ -32,7 +36,7 @@ class BackendBridge {
             fatalError("BackendBridge: malformed base URL: \(urlString)")
         }
         self.baseURL = url
-
+        isCalendarConnected=true
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 5
         config.timeoutIntervalForResource = 10
@@ -65,8 +69,10 @@ class BackendBridge {
     // MARK: - Fast Poll (5s): Emotion + Interventions
 
     private func pollFast() async {
+        await checkCalendarStatus()
         await fetchEmotionState()
         await fetchPendingIntervention()
+        await fetchOffTaskStatus()
     }
 
     // MARK: - Slow Poll (30s): Tasks + Calendar + Progress
@@ -76,7 +82,7 @@ class BackendBridge {
         await fetchFocusSession()
         await fetchUpcomingEvents()
         await fetchDailyProgress()
-        await checkCalendarStatus()
+        
     }
 
     // MARK: - Fetchers (silent failure)
@@ -90,7 +96,9 @@ class BackendBridge {
     @MainActor
     private func fetchFocusSession() async {
         guard let data = await get("api/v1/focus/session") else { return }
-        focusSession = try? decoder.decode(FocusSession.self, from: data)
+        guard var session = try? decoder.decode(FocusSession.self, from: data) else { return }
+        session.fetchedAt = Date()
+        focusSession = session
     }
 
     @MainActor
@@ -122,6 +130,20 @@ class BackendBridge {
     }
 
     @MainActor
+    private func fetchOffTaskStatus() async {
+        guard let data = await get("api/v1/focus/off-task") else { return }
+        struct OffTaskResponse: Decodable {
+            let offTask: Bool
+            enum CodingKeys: String, CodingKey {
+                case offTask = "off_task"
+            }
+        }
+        if let response = try? decoder.decode(OffTaskResponse.self, from: data) {
+            isOffTask = response.offTask
+        }
+    }
+
+    @MainActor
     private func fetchDailyProgress() async {
         guard let data = await get("api/v1/progress/today") else { return }
         if let progress = try? decoder.decode(DailyProgress.self, from: data) {
@@ -129,8 +151,7 @@ class BackendBridge {
         }
     }
 
-    // Google Calendar auth status
-    var isCalendarConnected: Bool = false
+
 
     // MARK: - Actions
 
@@ -154,7 +175,14 @@ class BackendBridge {
     }
 
     func acknowledgeIntervention(_ id: String) async {
-        await post("interventions/\(id)/respond", body: ["action_taken": "acknowledged", "dismissed": "false"])
+        struct InterventionResponse: Encodable {
+            let action_taken: String
+            let dismissed: Bool
+        }
+        await post(
+            "interventions/\(id)/respond",
+            body: InterventionResponse(action_taken: "acknowledged", dismissed: false)
+        )
     }
 
     func toggleFocusSession() async {
@@ -163,6 +191,32 @@ class BackendBridge {
 
     func completeTask(_ id: String) async {
         await post("api/v1/tasks/\(id)/complete", body: [:] as [String: String])
+    }
+
+    /// Create a new task and start a focus session.
+    /// Returns the created TaskItem if the backend responds with one.
+    @MainActor
+    func createTaskAndStartFocus(name: String, durationSeconds: Int) async -> TaskItem? {
+        struct CreateTaskRequest: Encodable {
+            let name: String
+            let duration_seconds: Int
+            let start_focus: Bool
+        }
+        let body = CreateTaskRequest(
+            name: name,
+            duration_seconds: durationSeconds,
+            start_focus: true
+        )
+        guard let data = await postReturning("api/v1/tasks/create", body: body) else {
+            return nil
+        }
+        let task = try? decoder.decode(TaskItem.self, from: data)
+        if let task {
+            currentTask = task
+        }
+        // Immediately refresh focus session
+        await fetchFocusSession()
+        return task
     }
 
     // MARK: - HTTP Helpers
@@ -190,5 +244,25 @@ class BackendBridge {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? encoder.encode(body)
         _ = try? await session.data(for: request)
+    }
+
+    private func postReturning<T: Encodable>(
+        _ path: String, body: T
+    ) async -> Data? {
+        let url = baseURL.appendingPathComponent(path)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? encoder.encode(body)
+        do {
+            let (data, response) = try await session.data(for: request)
+            guard let http = response as? HTTPURLResponse,
+                  (200...299).contains(http.statusCode) else {
+                return nil
+            }
+            return data
+        } catch {
+            return nil
+        }
     }
 }

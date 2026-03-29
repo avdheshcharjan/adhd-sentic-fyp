@@ -10,7 +10,7 @@ This chapter presents the systematic evaluation of the ADHD Second Brain applica
 \section{Testing Strategy and Methodology}
 \label{sec:testing-strategy}
 
-The evaluation framework comprises over 200 automated tests distributed across 24 test files, executed through the pytest framework. Tests span four levels of granularity: unit tests validating individual functions in isolation, integration tests verifying inter-module communication, end-to-end pipeline tests exercising the complete inference chain, and benchmark tests measuring quantitative performance metrics under controlled conditions. Five synthetic ADHD personas---covering the full spectrum of six emotion categories and diverse screen activity patterns---were used to exercise the system across representative emotional states and task contexts.
+The evaluation framework comprises over 220 automated tests distributed across 25 test files, executed through the pytest framework. Tests span four levels of granularity: unit tests validating individual functions in isolation, integration tests verifying inter-module communication, end-to-end pipeline tests exercising the complete inference chain, and benchmark tests measuring quantitative performance metrics under controlled conditions. A dedicated SetFit wiring verification suite (20~tests) validates the end-to-end integration between emotion classification, PASE radar mapping, confidence gating, and JITAI intervention triggering. Five synthetic ADHD personas---covering the full spectrum of six emotion categories and diverse screen activity patterns---were used to exercise the system across representative emotional states and task contexts.
 
 All benchmarks were executed on a MacBook Pro with the Apple M4 system-on-chip, 16~GB of unified memory, and macOS~15 Sequoia. A two-run protocol with a fixed random seed of 42 was adopted for all stochastic benchmarks, with consolidated results computed as the arithmetic mean and the coefficient of variation (CV) reported for each metric. Energy measurements were collected using \texttt{zeus-apple-silicon}, reading Apple Silicon power telemetry registers at 100~ms intervals with idle power subtracted.
 
@@ -272,6 +272,41 @@ The RSS with the model loaded was approximately 2,854~MB, of which 2.3~GB was at
 The single SenticNet API call exhibited a median latency of 521~ms (CV 3\%) with 100\% reliability over 100 consecutive calls. The Hourglass of Emotions values were fully deterministic across runs---identical values for identical input concepts---simplifying testing and ensuring reproducible affective enrichment \cite{cambria2024, cambria2016}.
 
 % -----------------------------------------------------------------------------
+\section{SetFit Wiring Verification}
+\label{sec:setfit-wiring-evaluation}
+
+A dedicated test suite of 20~tests validates the end-to-end integration between the SetFit emotion classifier, the PASE radar mapping, the confidence-gated JITAI rules, and the dashboard pipeline. All 20~tests passed.
+
+\subsection{Emotion Radar PASE Mapping}
+\label{subsec:pase-tests}
+
+Six tests verified the \texttt{blend\_pase} function: (1)~all six SetFit labels have valid PASE mappings with all four keys present; (2)~high confidence ($>$0.9) produces profiles within 0.05 of the canonical values; (3)~low confidence ($<$0.1) produces profiles within 0.1 of neutral (0.5); (4)~zero confidence produces exactly neutral profiles; (5)~all PASE values remain within $[0, 1]$ across all labels and confidence levels; and (6)~unknown labels fall back to the \emph{disengaged} profile.
+
+\subsection{SetFit Classifier Output}
+\label{subsec:setfit-output-tests}
+
+Four tests exercised the SetFit classifier singleton: (1)~predictions return valid labels present in both \texttt{SETFIT\_TO\_PASE} and \texttt{SETFIT\_TO\_ADHD\_STATE}; (2)~confidence scores are bounded in $[0, 1]$; (3)~negatively-valenced text (frustration, bugs) returns a valid label with non-zero confidence; and (4)~positively-valenced text (success, joy) returns a valid label.
+
+\subsection{JITAI Emotion Rule Verification}
+\label{subsec:jitai-emotion-tests}
+
+Eight tests validated the four emotion-aware JITAI rules (4a--4d), each tested for both activation and non-activation:
+
+\begin{itemize}[nosep]
+  \item \textbf{Rule 4a} (emotional escalation): Fires when \texttt{emotional\_dysregulation} is set; does not fire without emotion context.
+  \item \textbf{Rule 4b} (frustration spiral): Fires when \texttt{frustration\_detected} and context switches $>$ 8; does not fire with switches $\leq$ 3.
+  \item \textbf{Rule 4c} (anxiety distraction): Fires when \texttt{anxiety\_detected} and distraction ratio $>$ 0.4; does not fire with ratio $\leq$ 0.2.
+  \item \textbf{Rule 4d} (emotion disengagement): Fires when \texttt{disengaged\_detected} and streak $>$ 10~min; does not fire under 5~min.
+\end{itemize}
+
+A sweep test confirmed that all new intervention types produce at most three action choices (anti-pattern~\#8).
+
+\subsection{Confidence Gating}
+\label{subsec:confidence-gating-tests}
+
+One integration test simulated the \texttt{screen.py} emotion context construction with a confidence of 0.4 (below all thresholds). All four emotion flags (\texttt{emotional\_dysregulation}, \texttt{frustration\_detected}, \texttt{anxiety\_detected}, \texttt{disengaged\_detected}) were verified to be \texttt{False}, and the JITAI engine confirmed that no emotion-based intervention was triggered. This validates that low-confidence SetFit predictions do not produce spurious interruptions.
+
+% -----------------------------------------------------------------------------
 \section{Memory System Evaluation}
 \label{sec:memory-evaluation}
 
@@ -496,7 +531,7 @@ Idle power was 0.70~W (CPU~0.507~W, GPU~0.037~W, DRAM~0.157~W). \Cref{tab:batter
 
 \Cref{tab:traceability-matrix} presents the traceability matrix mapping each project objective to its evaluation criterion, measured result, and achievement status. All five objectives were met or exceeded.
 
-Objective~1 (on-device LLM coaching) was achieved with 37.1 tok/s and 1.4--2.7~s warm latency, exceeding the 30 tok/s target by 23.7\% and aligning with edge deployment benchmarks for 3--7B parameter models on Apple Silicon \cite{lin2025, xu2024}. Objective~2 (emotion classification $\geq$80\%) was exceeded at 86\% accuracy with only 210 training sentences, demonstrating that contrastive learning extracts sufficient signal from fewer than 35 sentences per category \cite{reimers2019, cambria2016}. Objective~3 (SenticNet integration) achieved 100\% API reliability with deterministic Hourglass values, consistent with neurosymbolic AI design principles \cite{cambria2024}. Objective~4 (screen classification and JITAI) achieved 549 titles/s with 78\% rule-based coverage, exemplifying the hybrid architecture recommended by Yuan et al.\ \cite{yuan2025}. Objective~5 (resource efficiency) achieved 21,314~mJ per execution ($\sim$1.4\%/hr drain) and $<$3~GB RSS---a 2$\times$ margin on the 6~GB target---validating on-device deployment viability \cite{hannun2023}.
+Objective~1 (on-device LLM coaching) was achieved with 37.1 tok/s and 1.4--2.7~s warm latency, exceeding the 30 tok/s target by 23.7\% and aligning with edge deployment benchmarks for 3--7B parameter models on Apple Silicon \cite{lin2025, xu2024}. Objective~2 (emotion classification $\geq$80\%) was exceeded at 86\% accuracy with only 210 training sentences, demonstrating that contrastive learning extracts sufficient signal from fewer than 35 sentences per category \cite{reimers2019, cambria2016}. Objective~3 (SenticNet integration) achieved 100\% API reliability with deterministic Hourglass values, consistent with neurosymbolic AI design principles \cite{cambria2024}. Objective~4 (screen classification and JITAI) achieved 549 titles/s with 78\% rule-based coverage and seven intervention rules (including four emotion-aware rules driven by confidence-gated SetFit predictions), all verified by 20~dedicated wiring tests. Objective~5 (resource efficiency) achieved 21,314~mJ per execution ($\sim$1.4\%/hr drain) and $<$3~GB RSS---a 2$\times$ margin on the 6~GB target---validating on-device deployment viability \cite{hannun2023}.
 
 \begin{table}[htbp]
   \centering
@@ -509,7 +544,7 @@ Objective~1 (on-device LLM coaching) was achieved with 37.1 tok/s and 1.4--2.7~s
     Obj 1: On-device LLM & Interactive speed & 37.1 tok/s, 1.4--2.7\,s latency & Achieved \\[4pt]
     Obj 2: Emotion classification & $\geq$80\% accuracy & 86\%, 0.862 macro-F1 & Exceeded (1.08$\times$) \\[4pt]
     Obj 3: SenticNet + CBM & Reliable, meaningful & 100\% reliability, stdev 48--67 & Achieved \\[4pt]
-    Obj 4: Screen + JITAI & Real-time classification & 549 titles/s, 78\% rule coverage & Exceeded \\[4pt]
+    Obj 4: Screen + JITAI & Real-time classification & 549 titles/s, 7 rules (4 emotion), 20 wiring tests & Exceeded \\[4pt]
     Obj 5: Resource efficiency & Minimal battery, $<$6\,GB & 21,314\,mJ, $<$3\,GB, $\sim$1.4\%/hr & Exceeded (2$\times$ margin) \\
     \bottomrule
   \end{tabular}

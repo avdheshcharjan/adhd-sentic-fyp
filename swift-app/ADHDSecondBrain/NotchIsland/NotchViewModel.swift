@@ -10,6 +10,7 @@ class NotchViewModel {
     var dailyProgress = DailyProgress(
         tasksCompleted: 0, focusSessions: 0, totalFocusMinutes: 0
     )
+    var isOffTask: Bool = false
     var displayMode: NotchDisplayMode = .focus
 
     var hasActiveTask: Bool { currentTask?.isActive == true }
@@ -18,9 +19,9 @@ class NotchViewModel {
         currentTask?.name ?? "No active task"
     }
 
-    var focusTimeRemaining: TimeInterval {
+    func focusTimeRemaining(at now: Date = Date()) -> TimeInterval {
         guard let session = focusSession else { return 0 }
-        return max(session.total - session.elapsed, 0)
+        return max(session.total - session.liveElapsed(at: now), 0)
     }
 
     var nextEventCountdown: String? {

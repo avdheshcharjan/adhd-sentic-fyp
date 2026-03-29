@@ -8,6 +8,7 @@ are thin clients that call this backend via REST on port 8420.
 import asyncio
 import logging
 from contextlib import asynccontextmanager
+from datetime import date, datetime, timedelta
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -65,6 +66,39 @@ async def _model_cleanup_loop():
         await asyncio.sleep(30)
 
 
+async def _daily_snapshot_loop():
+    """Save daily snapshot at 23:55 local time, and backfill yesterday on startup."""
+    from services.snapshot_service import SnapshotService
+    snapshots = SnapshotService()
+
+    # Backfill yesterday if missing (covers cases where backend was down at midnight)
+    yesterday = (date.today() - timedelta(days=1)).isoformat()
+    try:
+        if not await snapshots.has_snapshot(yesterday):
+            logger.info(f"Backfilling missing snapshot for {yesterday}")
+            await snapshots.save_daily_snapshot(yesterday)
+    except Exception as e:
+        logger.warning(f"Failed to backfill yesterday's snapshot: {e}")
+
+    snapshot_saved_today = False
+    while True:
+        try:
+            now = datetime.now()
+            # Save at 23:55 or later if not already saved today
+            if now.hour == 23 and now.minute >= 55 and not snapshot_saved_today:
+                await snapshots.save_daily_snapshot()
+                snapshot_saved_today = True
+                logger.info("End-of-day snapshot saved")
+
+            # Reset flag at midnight
+            if now.hour == 0 and now.minute < 5:
+                snapshot_saved_today = False
+        except Exception as e:
+            logger.warning(f"Snapshot loop error: {e}")
+
+        await asyncio.sleep(60)
+
+
 # ── Lifespan ────────────────────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -86,8 +120,13 @@ async def lifespan(app: FastAPI):
     cleanup_task = asyncio.create_task(_model_cleanup_loop())
     logger.info("Background model cleanup task started (30s interval)")
 
+    # Start daily snapshot background task
+    snapshot_task = asyncio.create_task(_daily_snapshot_loop())
+    logger.info("Daily snapshot task started (checks every 60s, saves at 23:55)")
+
     yield
 
+    snapshot_task.cancel()
     cleanup_task.cancel()
     if mlx_inference:
         mlx_inference._unload()

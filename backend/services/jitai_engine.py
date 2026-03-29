@@ -9,11 +9,14 @@ Implements Barkley's 5 Executive Function deficit domains with
   Gate 2: Per-block cap — max 3 per 90 min (anti-pattern #9)
   Gate 3: Adaptive bandit — Thompson Sampling decides IF to deliver
 
-4 intervention rules:
-  1. Distraction spiral       → self_restraint
-  2. Sustained disengagement  → self_motivation
-  3. Hyperfocus check         → self_management_time
-  4. Emotional escalation     → self_regulation_emotion
+7 intervention rules:
+  1.  Distraction spiral       → self_restraint
+  2.  Sustained disengagement  → self_motivation
+  3.  Hyperfocus check         → self_management_time
+  4a. Emotional escalation     → self_regulation_emotion (overwhelmed)
+  4b. Frustration spiral       → self_regulation_emotion (frustrated + switching)
+  4c. Anxiety distraction      → self_regulation_emotion (anxious + distracted)
+  4d. Emotion disengagement    → self_motivation (disengaged + persistent)
 
 Anti-patterns enforced:
   #4: Never interrupt productive hyperfocus
@@ -272,7 +275,7 @@ class JITAIEngine:
                 requires_senticnet=False,
             )
 
-        # Rule 4: Emotional escalation (Self-regulation of emotion)
+        # Rule 4a: Emotional escalation — overwhelmed (Self-regulation of emotion)
         if emotion_context and emotion_context.get("emotional_dysregulation"):
             return Intervention(
                 type="emotional_escalation",
@@ -283,6 +286,63 @@ class JITAIEngine:
                     InterventionAction(id="vent", emoji="💬", label="Vent to me"),
                     InterventionAction(id="ground", emoji="🌿", label="Grounding exercise"),
                     InterventionAction(id="walk", emoji="🚶", label="Take a walk"),
+                ],
+                requires_senticnet=True,
+            )
+
+        # Rule 4b: Frustration + context switching (Self-regulation of emotion)
+        if (
+            emotion_context
+            and emotion_context.get("frustration_detected")
+            and metrics.context_switch_rate_5min > 8
+        ):
+            return Intervention(
+                type="frustration_spiral",
+                ef_domain="self_regulation_emotion",
+                acknowledgment="Frustration is creeping in — that's understandable.",
+                suggestion="Narrowing your focus to one thing can break the cycle.",
+                actions=[
+                    InterventionAction(id="one_task", emoji="🎯", label="Pick one task"),
+                    InterventionAction(id="break_5", emoji="☕", label="5-min break"),
+                    InterventionAction(id="vent", emoji="💬", label="Vent to me"),
+                ],
+                requires_senticnet=True,
+            )
+
+        # Rule 4c: Anxiety + distraction (Self-regulation of emotion)
+        if (
+            emotion_context
+            and emotion_context.get("anxiety_detected")
+            and metrics.distraction_ratio > 0.4
+        ):
+            return Intervention(
+                type="anxiety_distraction",
+                ef_domain="self_regulation_emotion",
+                acknowledgment="Your mind seems busy — that's okay.",
+                suggestion="Getting thoughts out of your head can help settle things.",
+                actions=[
+                    InterventionAction(id="breathe", emoji="🫁", label="Breathing exercise"),
+                    InterventionAction(id="brain_dump", emoji="🧠", label="Brain dump"),
+                    InterventionAction(id="prioritize", emoji="📋", label="Pick top priority"),
+                ],
+                requires_senticnet=True,
+            )
+
+        # Rule 4d: Sustained disengagement detected by emotion (Self-motivation)
+        if (
+            emotion_context
+            and emotion_context.get("disengaged_detected")
+            and metrics.current_streak_minutes > 10
+        ):
+            return Intervention(
+                type="emotion_disengagement",
+                ef_domain="self_motivation",
+                acknowledgment="Energy seems low — that happens.",
+                suggestion="Sometimes the smallest start is all it takes.",
+                actions=[
+                    InterventionAction(id="tiny_task", emoji="🪜", label="2-min micro-task"),
+                    InterventionAction(id="body_double", emoji="👥", label="Find a body double"),
+                    InterventionAction(id="reward_first", emoji="🎁", label="Set a reward"),
                 ],
                 requires_senticnet=True,
             )

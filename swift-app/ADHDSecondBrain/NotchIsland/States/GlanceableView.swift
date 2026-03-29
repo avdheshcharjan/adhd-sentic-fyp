@@ -2,27 +2,37 @@ import SwiftUI
 
 /// Glanceable: wider bar with task name + time remaining.
 /// Appears on hover with spring animation.
+/// Uses TimelineView to tick the countdown every second.
 struct GlanceableView: View {
     let task: TaskItem?
-    let timeRemaining: TimeInterval
+    let session: FocusSession?
     let emotion: EmotionState
 
     var body: some View {
-        HStack(spacing: ADHDSpacing.md) {
-            TaskNameLabel(name: task?.name ?? "No task")
-            Spacer()
-            TimeRemainingLabel(seconds: timeRemaining)
+        TimelineView(.periodic(from: .now, by: 1)) { context in
+            let remaining: TimeInterval = {
+                guard let session else { return 0 }
+                return max(session.total - session.liveElapsed(at: context.date), 0)
+            }()
+
+            HStack(spacing: ADHDSpacing.md) {
+                TaskNameLabel(name: task?.name ?? "No task")
+                Spacer()
+                TimeRemainingLabel(seconds: remaining)
+            }
+            .padding(.horizontal, ADHDSpacing.lg)
+            .padding(.vertical, ADHDSpacing.notchPaddingV)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .padding(.horizontal, ADHDSpacing.lg)
-        .padding(.vertical, ADHDSpacing.notchPaddingV)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilityText)
     }
 
     private var accessibilityText: String {
         let taskText = task?.name ?? "No task"
-        let minutes = Int(timeRemaining) / 60
+        guard let session else { return taskText }
+        let remaining = max(session.total - session.liveElapsed(), 0)
+        let minutes = Int(remaining) / 60
         return "\(taskText), \(minutes) minutes remaining"
     }
 }

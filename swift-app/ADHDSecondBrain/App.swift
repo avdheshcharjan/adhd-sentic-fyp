@@ -18,6 +18,12 @@ struct ADHDSecondBrainApp: App {
         .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 960, height: 800)
 
+        Window("History", id: "history") {
+            HistoryView()
+        }
+        .windowStyle(.hiddenTitleBar)
+        .defaultSize(width: 960, height: 700)
+
         Settings {
             SettingsView()
         }

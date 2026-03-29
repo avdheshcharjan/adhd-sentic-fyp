@@ -9,6 +9,8 @@ struct ScreenActivityRequest: Codable {
     let url: String?
     let isIdle: Bool
     let timestamp: String
+    let offTaskAlertsEnabled: Bool
+    let offTaskAlertsAlways: Bool
 
     enum CodingKeys: String, CodingKey {
         case appName = "app_name"
@@ -16,6 +18,8 @@ struct ScreenActivityRequest: Codable {
         case url
         case isIdle = "is_idle"
         case timestamp
+        case offTaskAlertsEnabled = "off_task_alerts_enabled"
+        case offTaskAlertsAlways = "off_task_alerts_always"
     }
 }
 
@@ -26,6 +30,14 @@ struct ScreenActivityResponse: Codable {
     let category: String
     let metrics: ADHDMetrics
     let intervention: Intervention?
+    let offTask: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case category
+        case metrics
+        case intervention
+        case offTask = "off_task"
+    }
 }
 
 /// Matches Python's ADHDMetrics
@@ -198,5 +210,123 @@ struct DayReport: Codable, Identifiable {
         case focusRatio = "focus_ratio"
         case distractionRatio = "distraction_ratio"
         case isToday = "is_today"
+    }
+}
+
+// MARK: - History / Snapshot Models
+
+struct SnapshotSummary: Codable, Identifiable {
+    var id: String { date }
+    let date: String
+    let focusPercentage: Double
+    let distractionPercentage: Double
+    let totalActiveMinutes: Double
+    let totalFocusMinutes: Double
+
+    enum CodingKeys: String, CodingKey {
+        case date
+        case focusPercentage = "focus_percentage"
+        case distractionPercentage = "distraction_percentage"
+        case totalActiveMinutes = "total_active_minutes"
+        case totalFocusMinutes = "total_focus_minutes"
+    }
+}
+
+struct AppUsageItem: Codable {
+    let appName: String
+    let category: String
+    let minutes: Double
+    let percentage: Double
+
+    enum CodingKeys: String, CodingKey {
+        case appName = "app_name"
+        case category
+        case minutes
+        case percentage
+    }
+}
+
+struct HistorySnapshot: Codable {
+    let date: String
+    let totalActiveMinutes: Double
+    let totalFocusMinutes: Double
+    let totalDistractionMinutes: Double
+    let focusPercentage: Double
+    let distractionPercentage: Double
+    let contextSwitches: Int
+    let interventionsTriggered: Int
+    let interventionsAccepted: Int
+    let topApps: [AppUsageItem]
+    let behavioralStates: [String: Double]
+    let focusTimeline: [TimelineSegment]
+    let emotionScores: EmotionScores?
+    let whoopRecovery: SnapshotWhoopData?
+
+    enum CodingKeys: String, CodingKey {
+        case date
+        case totalActiveMinutes = "total_active_minutes"
+        case totalFocusMinutes = "total_focus_minutes"
+        case totalDistractionMinutes = "total_distraction_minutes"
+        case focusPercentage = "focus_percentage"
+        case distractionPercentage = "distraction_percentage"
+        case contextSwitches = "context_switches"
+        case interventionsTriggered = "interventions_triggered"
+        case interventionsAccepted = "interventions_accepted"
+        case topApps = "top_apps"
+        case behavioralStates = "behavioral_states"
+        case focusTimeline = "focus_timeline"
+        case emotionScores = "emotion_scores"
+        case whoopRecovery = "whoop_recovery"
+    }
+}
+
+struct SnapshotWhoopData: Codable {
+    let recoveryScore: Double
+    let sleepScore: Double
+    let strainScore: Double
+    let metrics: [String: AnyCodable]?
+
+    enum CodingKeys: String, CodingKey {
+        case recoveryScore = "recovery_score"
+        case sleepScore = "sleep_score"
+        case strainScore = "strain_score"
+        case metrics
+    }
+}
+
+/// Type-erased Codable wrapper for heterogeneous JSON values.
+struct AnyCodable: Codable {
+    let value: Any
+
+    init(_ value: Any) {
+        self.value = value
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let double = try? container.decode(Double.self) {
+            value = double
+        } else if let int = try? container.decode(Int.self) {
+            value = int
+        } else if let string = try? container.decode(String.self) {
+            value = string
+        } else if let bool = try? container.decode(Bool.self) {
+            value = bool
+        } else {
+            value = ""
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        if let double = value as? Double {
+            try container.encode(double)
+        } else if let int = value as? Int {
+            try container.encode(int)
+        } else if let string = value as? String {
+            try container.encode(string)
+        } else if let bool = value as? Bool {
+            try container.encode(bool)
+        }
     }
 }

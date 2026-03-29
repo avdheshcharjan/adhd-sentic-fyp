@@ -49,15 +49,20 @@ The LLM's behaviour is shaped by a carefully engineered system prompt that encod
 
 ### 4.2.4 Context Injection from Affective Analysis
 
-A critical integration point is the injection of SenticNet analysis results into the LLM prompt. When the emotion classification pipeline (Section 4.3) and the SenticNet pipeline (Section 4.4) produce their respective outputs, these are serialised into a structured context block that is prepended to the user's message in the LLM prompt. This context block includes the predicted emotion category, the confidence score, the SenticNet hourglass dimensions (introspection, temper, attitude, sensitivity), and any detected safety signals. The LLM is thus conditioned on both the semantic content of the user's message and its affective properties, enabling responses that are emotionally attuned rather than purely informational.
+A critical integration point is the injection of affective analysis results into the LLM prompt. The SetFit emotion classifier (Section 4.3) provides the primary emotion label and confidence score, while the SenticNet pipeline (Section 4.4) enriches the context with dimensional scores (engagement, wellbeing, intensity), safety signals (depression, toxicity), and semantic concepts. These are serialised into a structured context block prepended to the user's message in the LLM prompt. The LLM is thus conditioned on both the semantic content of the user's message and its affective properties, enabling responses that are emotionally attuned rather than purely informational.
 
 ```python
-# [Code Snippet 4.3: Context injection — SenticNet results formatted into LLM prompt]
+# Context injection — affective analysis results formatted into LLM prompt
 # Source: services/mlx_inference.py
-```
-
-```
-[Screenshot 4.1: Example interaction showing /think mode response with injected emotion context]
+context_block = (
+    f"ADHD state: {ctx.get('primary_adhd_state')}\n"
+    f"Emotion: {ctx.get('primary_emotion')}\n"
+    f"Polarity: {ctx.get('polarity_score', 0):.0f}\n"
+    f"Intensity: {ctx.get('intensity_score', 0):.0f}\n"
+    f"Engagement: {ctx.get('engagement_score', 0):.0f}\n"
+    f"Well-being: {ctx.get('wellbeing_score', 0):.0f}\n"
+    f"Concepts: {ctx.get('concepts', [])[:5]}\n"
+)
 ```
 
 ---
@@ -171,7 +176,7 @@ The Safety tier invokes SenticNet's polarity and concept-level APIs to detect ex
 
 ### 4.4.3 Emotion and Hourglass Tier
 
-The Emotion tier extracts the four hourglass dimensions — *introspection*, *temper*, *attitude*, and *sensitivity* — through a combination of concept decomposition and sentic pattern matching. Each dimension produces a continuous value, which is subsequently discretised into qualitative labels for the LLM context injection described in Section 4.2.4.
+The Emotion tier extracts the four Hourglass dimensions — *introspection*, *temper*, *attitude*, and *sensitivity* — through a combination of concept decomposition and sentic pattern matching. Each dimension produces a continuous value used for LLM context injection (Section 4.2.4). Note that the dashboard's Emotion Radar does not use these Hourglass dimensions; it uses the SetFit-derived PASE mapping described in Section 4.4.6, which proved more reliable on short, informal text.
 
 ### 4.4.4 ADHD Signal Extraction and Personality Profiling
 
@@ -185,6 +190,32 @@ The 13 SenticNet API calls are orchestrated using an asynchronous HTTP client wi
 # [Code Snippet 4.7: SenticNet 4-tier cascade with timeout management]
 # Source: services/senticnet_pipeline.py
 ```
+
+### 4.4.6 SetFit-to-PASE Mapping for Emotion Radar
+
+The dashboard's Emotion Radar requires four-axis PASE scores (pleasantness, attention, sensitivity, aptitude), but the SenticNet Hourglass dimensions proved unreliable on short window-title text—the lightweight pipeline never populated Hourglass dimensions, and key names between storage and retrieval were mismatched. Each SetFit label is therefore mapped to a canonical PASE profile:
+
+```python
+SETFIT_TO_PASE = {
+    "joyful":      {"pleasantness": 0.85, "attention": 0.70, "sensitivity": 0.30, "aptitude": 0.75},
+    "focused":     {"pleasantness": 0.60, "attention": 0.90, "sensitivity": 0.20, "aptitude": 0.80},
+    "frustrated":  {"pleasantness": 0.15, "attention": 0.40, "sensitivity": 0.80, "aptitude": 0.30},
+    "anxious":     {"pleasantness": 0.20, "attention": 0.55, "sensitivity": 0.90, "aptitude": 0.25},
+    "disengaged":  {"pleasantness": 0.35, "attention": 0.15, "sensitivity": 0.25, "aptitude": 0.20},
+    "overwhelmed": {"pleasantness": 0.10, "attention": 0.30, "sensitivity": 0.85, "aptitude": 0.15},
+}
+```
+
+A confidence-weighted blending function interpolates between the canonical profile and a neutral centre (all 0.5), ensuring that low-confidence predictions produce muted, centred radar shapes rather than misleading extremes:
+
+```python
+def blend_pase(label: str, confidence: float) -> dict[str, float]:
+    canonical = SETFIT_TO_PASE.get(label, SETFIT_TO_PASE["disengaged"])
+    neutral = 0.5
+    return {k: round(neutral + (v - neutral) * confidence, 3) for k, v in canonical.items()}
+```
+
+The dashboard endpoint aggregates blended PASE profiles from recent `SenticAnalysis` database rows, averaging across the last 24 hours to produce the radar visualisation. Unknown labels fall back to the *disengaged* profile.
 
 ---
 
@@ -228,13 +259,48 @@ Each screen observation is classified into a productivity category (*productive*
 // Source: swift-app/ADHDSecondBrain/ScreenMonitor.swift
 ```
 
+### 4.6.4 SetFit Emotion Prediction in the Hot Path
+
+After activity classification and metrics computation, the screen monitoring endpoint runs a synchronous SetFit prediction on the window title (<50 ms), constructing a confidence-gated emotion context dictionary that is passed to the JITAI engine:
+
+```python
+# Source: api/screen.py
+setfit_label, setfit_confidence = setfit_classifier.predict(window_title)
+emotion_context = {
+    "setfit_label": setfit_label,
+    "setfit_confidence": setfit_confidence,
+    "primary_adhd_state": SETFIT_TO_ADHD_STATE[setfit_label],
+    "emotional_dysregulation": setfit_label == "overwhelmed" and setfit_confidence > 0.7,
+    "frustration_detected": setfit_label == "frustrated" and setfit_confidence > 0.7,
+    "anxiety_detected": setfit_label == "anxious" and setfit_confidence > 0.7,
+    "disengaged_detected": setfit_label == "disengaged" and setfit_confidence > 0.6,
+}
+intervention = jitai_engine.evaluate(metrics, emotion_context=emotion_context)
+```
+
+The confidence thresholds (0.7 for negative emotions, 0.6 for disengagement) were calibrated to prevent false-positive interruptions: unnecessary interventions are particularly harmful for ADHD users as they destroy flow states. The SetFit confidence and ADHD state label are also persisted to the `SenticAnalysis` database row. The dashboard reconstructs PASE radar scores exclusively from these SetFit-derived fields (label and confidence) via the `blend_pase` function, not from SenticNet dimensions.
+
 ---
 
 ## 4.7 Intervention Engine
 
 ### 4.7.1 JITAI Framework and Executive Function Mapping
 
-The intervention engine implements the Just-in-Time Adaptive Intervention (JITAI) paradigm, which delivers support precisely when an individual is most receptive and in need. The engine maps each detected state — comprising the emotion classification, SenticNet hourglass values, transition frequency, and productivity classification — to one or more of Barkley's five executive function (EF) domains \cite{barkley2010}: time management, self-organisation, self-restraint, self-motivation, and self-regulation of emotion.
+The intervention engine implements the Just-in-Time Adaptive Intervention (JITAI) paradigm with seven ordered rules spanning four of Barkley's five EF domains \cite{barkley2010}. The engine maps each detected state — comprising real-time behavioural metrics and confidence-gated SetFit emotion context — to intervention rules across self-restraint, self-motivation, self-management of time, and self-regulation of emotion.
+
+**Seven Intervention Rules.** The rules are evaluated in priority order:
+
+| Rule | Trigger Condition | EF Domain | Intervention Type |
+|------|------------------|-----------|-------------------|
+| 1 | Context switches > 12, distraction > 0.5 | Self-restraint | Distraction spiral |
+| 2 | Distracted > 20 min, distraction > 0.7 | Self-motivation | Sustained disengagement |
+| 3 | Hyperfocus detected | Self-management (time) | Hyperfocus check |
+| 4a | *overwhelmed*, confidence > 0.7 | Self-regulation (emotion) | Emotional escalation |
+| 4b | *frustrated*, conf. > 0.7, switches > 8 | Self-regulation (emotion) | Frustration spiral |
+| 4c | *anxious*, conf. > 0.7, distraction > 0.4 | Self-regulation (emotion) | Anxiety distraction |
+| 4d | *disengaged*, conf. > 0.6, streak > 10 min | Self-motivation | Emotion disengagement |
+
+Each rule produces a maximum of three action choices (anti-pattern #8 from the ADHD intervention literature). Rules 4a–4d are enabled by SetFit predictions wired through the screen activity hot path (Section 4.6.4), with confidence gating to prevent false-positive interruptions.
 
 ### 4.7.2 Thompson Sampling for Intervention Timing
 
@@ -297,7 +363,11 @@ The 13 SenticNet API calls introduced significant latency when executed sequenti
 
 Running the Qwen3-4B model (2.3 GB), the sentence transformer (420 MB), and PostgreSQL simultaneously on 16 GB of unified memory required careful resource management. The load-on-demand strategy described in Section 4.2.1 was the primary mitigation: the LLM is loaded only when generation is required and released after an idle timeout. Peak GPU memory usage was measured at less than 2.5 GB, leaving sufficient headroom for the operating system and other applications.
 
-### 4.9.5 Python Version Incompatibility
+### 4.9.5 SetFit–JITAI Wiring Disconnect
+
+Integration testing revealed that the SetFit emotion classifier was generating predictions but they were not being consumed downstream. Four wiring bugs were identified and fixed: (1) the screen activity endpoint called `jitai_engine.evaluate(metrics)` without passing emotion context, so Rules 4a–4d could never fire; (2) the dashboard's Emotion Radar read PASE keys (`pleasantness`, `attention`, `aptitude`) but the SenticNet pipeline stored Hourglass keys (`introspection`, `temper`, `attitude`), producing three zero-valued axes; (3) the lightweight SenticNet pipeline never populated Hourglass dimensions at all for screen activity data; and (4) `setfit_confidence` was captured but immediately discarded in both the full and lightweight pipeline call sites. The resolution involved wiring SetFit predictions synchronously into the screen activity hot path, constructing a confidence-gated `emotion_context` dictionary, replacing the Hourglass averaging with a SetFit→PASE mapping function (`blend_pase`), and persisting both `setfit_confidence` and `primary_adhd_state` to the database for downstream consumption.
+
+### 4.9.6 Python Version Incompatibility
 
 Python 3.14, which was the default `python3` on the development machine, introduced breaking changes in several dependencies, including modifications to the `importlib` module that caused `scikit-learn` 1.7.2 to fail during model serialisation. The solution was to pin all project execution to Python 3.11, enforced through the Makefile and a `.python-version` file.
 
@@ -315,6 +385,7 @@ Python 3.14, which was the default `python3` on the development machine, introdu
     SenticNet latency & 13 sequential API calls & 4-tier cascade + async + caching \\
     Memory constraints & 16 GB shared across all components & Load-on-demand LLM, $<$2.5 GB peak \\
     Python 3.14 breakage & importlib changes in 3.14 & Pin to Python 3.11 \\
+    SetFit--JITAI wiring & SetFit predictions never passed to JITAI; dashboard read mismatched Hourglass keys; confidence discarded & Wired SetFit into screen hot path; confidence-gated emotion\_context; PASE mapping for radar; persisted confidence to DB \\
     \bottomrule
   \end{tabular}
 \end{table}

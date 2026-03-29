@@ -123,6 +123,7 @@ class SenticNetPipeline:
         setfit_label, setfit_confidence = setfit_classifier.predict(text)
         result.emotion.primary_emotion = setfit_label
         result.primary_adhd_state = SETFIT_TO_ADHD_STATE[setfit_label]
+        result.setfit_confidence = setfit_confidence
 
         return result
 
@@ -191,6 +192,7 @@ class SenticNetPipeline:
         setfit_label, setfit_confidence = setfit_classifier.predict(text)
         result.emotion.primary_emotion = setfit_label
         result.primary_adhd_state = SETFIT_TO_ADHD_STATE[setfit_label]
+        result.setfit_confidence = setfit_confidence
 
         return result
 

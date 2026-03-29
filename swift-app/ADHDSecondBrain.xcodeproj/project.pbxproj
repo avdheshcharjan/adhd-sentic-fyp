@@ -19,9 +19,11 @@
 		1D0B3F24A6A95212AB54A528 /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CBBF9697A85835FE6A9D21 /* NotchShape.swift */; };
 		21D8212A62E371E9585EC0A7 /* Lexend-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82EAA6030D73F66D1D28629A /* Lexend-Medium.ttf */; };
 		2210A2A2E69C7219DF311477 /* AmbientMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC84EC67AEC1B697FCA11CBA /* AmbientMenuBar.swift */; };
+		2BB9BFE19A79D429E618B1ED /* TaskCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C0427D8F5B4026978A0F7E /* TaskCreationViewModel.swift */; };
 		319AC0CB48A8A92CB63AD00B /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374E7BBF52ADB307AB636D9E /* MenuBarView.swift */; };
 		3318CE475E90B526C4B2E98E /* VentMessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A4298B6E54001FCD776255 /* VentMessageBubble.swift */; };
 		34F1AA123BE048402A6AEFFA /* Lexend-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32902AE4D0C77BD4E13E5ACD /* Lexend-Light.ttf */; };
+		35F0E8AF8DE35DA79844D28C /* TaskCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ED4EBAE4CD3904E05F8C2C /* TaskCreationView.swift */; };
 		3AF8AAC507F4A957A92D5D7D /* HoverTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01E7BA0F0F48D7C989B8D4E /* HoverTracker.swift */; };
 		3D5D4E5D694675089FF316D0 /* ExpandedPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E3388D128C8EDA5D5031F /* ExpandedPanelView.swift */; };
 		40904A7D42BBEA8FB3A222BB /* TaskCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6700F0FA9B455D0F3FE3FAC /* TaskCardView.swift */; };
@@ -62,6 +64,7 @@
 		A85D84968313CB4C22671F41 /* FloatingPanelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A565A6A1BD0C707898BD5D /* FloatingPanelManager.swift */; };
 		AA5F3F3A898F20CAC0D43C2E /* MonitorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2C004795A17A8BE1333C5E /* MonitorCoordinator.swift */; };
 		AA766AA278D7DF5C52151521 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2AA3C012DFF1AFEF4D329A /* DashboardView.swift */; };
+		AB12CD34EF56789012345601 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB12CD34EF56789012345602 /* HistoryView.swift */; };
 		ADE15F7AE0F6058E771EB7A2 /* VisualEffectBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E124D2F833EF85679BF117 /* VisualEffectBackground.swift */; };
 		B041D70FE9CA7A767B7CFD5C /* TransitionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B448CFDBDA242FA9B58EA2DD /* TransitionDetector.swift */; };
 		C44C75064A762779F6E0A1DF /* Lexend-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EC4DAB5A90B873F508F761A /* Lexend-SemiBold.ttf */; };
@@ -89,6 +92,7 @@
 		298A361DE4DBB2A7DE264D61 /* FloatingPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanel.swift; sourceTree = "<group>"; };
 		2DB8934BB14BC412749F75C5 /* TimerRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerRingView.swift; sourceTree = "<group>"; };
 		2F49B58FCE8726179F2D2C60 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		30ED4EBAE4CD3904E05F8C2C /* TaskCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCreationView.swift; sourceTree = "<group>"; };
 		32902AE4D0C77BD4E13E5ACD /* Lexend-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lexend-Light.ttf"; sourceTree = "<group>"; };
 		374E7BBF52ADB307AB636D9E /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		3A5E4AC94CD1E94FD61971A4 /* EmotionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionState.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 		8EC4DAB5A90B873F508F761A /* Lexend-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lexend-SemiBold.ttf"; sourceTree = "<group>"; };
 		9444D3D57E73643AA586BAD5 /* BrowserMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserMonitor.swift; sourceTree = "<group>"; };
 		95B0B8A18878719D34BC83D1 /* IdleMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdleMonitor.swift; sourceTree = "<group>"; };
+		96C0427D8F5B4026978A0F7E /* TaskCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCreationViewModel.swift; sourceTree = "<group>"; };
 		976F0E490E24736830744DE8 /* CalmOverlayPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalmOverlayPanel.swift; sourceTree = "<group>"; };
 		9C4CE71BC9502D1413F5EE1C /* Lexend-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lexend-Bold.ttf"; sourceTree = "<group>"; };
 		A79DF6B07EE8122271DF0656 /* ADHDSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADHDSpacing.swift; sourceTree = "<group>"; };
@@ -142,6 +147,7 @@
 		E6700F0FA9B455D0F3FE3FAC /* TaskCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCardView.swift; sourceTree = "<group>"; };
 		E797AB1F9E3AE35E9BC252DC /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		F4A4298B6E54001FCD776255 /* VentMessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VentMessageBubble.swift; sourceTree = "<group>"; };
+		AB12CD34EF56789012345602 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		FC2AA3C012DFF1AFEF4D329A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		FC84EC67AEC1B697FCA11CBA /* AmbientMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientMenuBar.swift; sourceTree = "<group>"; };
 		FD94D615720CA02819935853 /* ModeSwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSwitcherView.swift; sourceTree = "<group>"; };
@@ -271,6 +277,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		6654491EF90799E433A03D97 /* TaskCreation */ = {
+			isa = PBXGroup;
+			children = (
+				30ED4EBAE4CD3904E05F8C2C /* TaskCreationView.swift */,
+				96C0427D8F5B4026978A0F7E /* TaskCreationViewModel.swift */,
+			);
+			path = TaskCreation;
+			sourceTree = "<group>";
+		};
 		6D22F9AE283E7D0EB11651CC /* Modals */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +293,7 @@
 				47A565A6A1BD0C707898BD5D /* FloatingPanelManager.swift */,
 				CD36ED65B38EDEBEF7814394 /* BrainDump */,
 				616AD525FC9B963BE5827D2F /* Shared */,
+				6654491EF90799E433A03D97 /* TaskCreation */,
 				B09312E2F7ED7B8D93CD6D2F /* Vent */,
 			);
 			path = Modals;
@@ -290,6 +306,7 @@
 				976F0E490E24736830744DE8 /* CalmOverlayPanel.swift */,
 				FC2AA3C012DFF1AFEF4D329A /* DashboardView.swift */,
 				2F49B58FCE8726179F2D2C60 /* DashboardViewModel.swift */,
+				AB12CD34EF56789012345602 /* HistoryView.swift */,
 				7B37A8EDD8D28EF26BD0BA8B /* InterventionPopup.swift */,
 				374E7BBF52ADB307AB636D9E /* MenuBarView.swift */,
 				42DDBFC61099A1F167E805D5 /* OnboardingView.swift */,
@@ -481,6 +498,7 @@
 				4A14830C70B8812494C868ED /* CalmOverlayPanel.swift in Sources */,
 				AA766AA278D7DF5C52151521 /* DashboardView.swift in Sources */,
 				1608307EA973A73B55FC2FBE /* DashboardViewModel.swift in Sources */,
+				AB12CD34EF56789012345601 /* HistoryView.swift in Sources */,
 				83E1E8769719F97A9BBBB807 /* DormantView.swift in Sources */,
 				79C11B19089942A270FB1806 /* EmotionGlowBorder.swift in Sources */,
 				E1F4809A2794F58E47D33081 /* EmotionState.swift in Sources */,
@@ -517,6 +535,8 @@
 				967AAFDA2CCC763C28538FFD /* ScreenMonitor.swift in Sources */,
 				975A936DE48B7AD093B029FB /* SettingsView.swift in Sources */,
 				40904A7D42BBEA8FB3A222BB /* TaskCardView.swift in Sources */,
+				35F0E8AF8DE35DA79844D28C /* TaskCreationView.swift in Sources */,
+				2BB9BFE19A79D429E618B1ED /* TaskCreationViewModel.swift in Sources */,
 				17E45B0BC867147993C35D6D /* TierManager.swift in Sources */,
 				00FD0BF89B668728C93131CC /* TimerRingView.swift in Sources */,
 				B041D70FE9CA7A767B7CFD5C /* TransitionDetector.swift in Sources */,

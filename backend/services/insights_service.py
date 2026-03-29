@@ -130,13 +130,20 @@ class InsightsService:
             timeline=timeline,
         )
 
-    async def _get_recent_emotions(self) -> list[dict]:
-        """Fetch last 24h of SenticNet emotion analyses."""
-        cutoff = datetime.now(timezone.utc) - timedelta(hours=24)
+    async def _get_recent_emotions(self, date_str: str | None = None) -> list[dict]:
+        """Fetch emotion analyses for a specific date, or last 24h if no date given."""
+        if date_str:
+            target = date.fromisoformat(date_str)
+            start = datetime.combine(target, datetime.min.time(), tzinfo=timezone.utc)
+            end = start + timedelta(days=1)
+            filter_clause = and_(SenticAnalysis.timestamp >= start, SenticAnalysis.timestamp < end)
+        else:
+            cutoff = datetime.now(timezone.utc) - timedelta(hours=24)
+            filter_clause = SenticAnalysis.timestamp >= cutoff
         async with AsyncSessionLocal() as session:
             result = await session.execute(
                 select(SenticAnalysis)
-                .where(SenticAnalysis.timestamp >= cutoff)
+                .where(filter_clause)
                 .order_by(SenticAnalysis.timestamp.desc())
                 .limit(50)
             )
@@ -150,10 +157,10 @@ class InsightsService:
             for r in rows
         ]
 
-    async def _get_timeline(self) -> list[dict]:
-        """Build today's activity timeline for the FocusTimeline component."""
-        today = date.today()
-        start = datetime.combine(today, datetime.min.time(), tzinfo=timezone.utc)
+    async def _get_timeline(self, date_str: str | None = None) -> list[dict]:
+        """Build activity timeline for the FocusTimeline component."""
+        target = date.fromisoformat(date_str) if date_str else date.today()
+        start = datetime.combine(target, datetime.min.time(), tzinfo=timezone.utc)
         end = start + timedelta(days=1)
 
         async with AsyncSessionLocal() as session:

@@ -107,3 +107,4 @@ class SenticNetResult(BaseModel):
     personality: PersonalityProfile | None = None
     ensemble_raw: str | None = None  # Raw ensemble response for debugging
     primary_adhd_state: str = "neutral"  # Mapped from Hourglass dimensions
+    setfit_confidence: float = 0.0  # Confidence score from SetFit classifier (0-1)

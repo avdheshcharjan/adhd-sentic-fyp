@@ -22,6 +22,17 @@ class NotchWindow: NSPanel {
         height: ADHDSpacing.notchExpandedHeight + 60
     )
 
+    /// Visible content dimensions per state — mirrors NotchContainerView's currentWidth/Height.
+    static func contentSize(for state: NotchState) -> CGSize {
+        switch state {
+        case .dormant:    CGSize(width: ADHDSpacing.hardwareNotchWidth, height: ADHDSpacing.hardwareNotchHeight)
+        case .ambient:    CGSize(width: ADHDSpacing.hardwareNotchWidth + 20, height: ADHDSpacing.hardwareNotchHeight)
+        case .glanceable: CGSize(width: ADHDSpacing.notchGlanceWidth, height: ADHDSpacing.notchGlanceHeight)
+        case .expanded:   CGSize(width: ADHDSpacing.notchExpandedWidth, height: ADHDSpacing.notchExpandedHeight)
+        case .alert:      CGSize(width: ADHDSpacing.notchGlanceWidth, height: 80)
+        }
+    }
+
     init(contentView rootView: NSView) {
         let rect = NSRect(origin: .zero, size: Self.canvasSize)
 
@@ -33,7 +44,14 @@ class NotchWindow: NSPanel {
         )
 
         configurePanel()
-        self.contentView = rootView
+
+        let canvas = NotchHitTestView(frame: rect)
+        canvas.notchWindow = self
+        rootView.frame = rect
+        rootView.autoresizingMask = [.width, .height]
+        canvas.addSubview(rootView)
+        self.contentView = canvas
+
         positionAtNotch()
 
         // Reposition when screen configuration changes (display added/removed/rearranged)
@@ -61,6 +79,10 @@ class NotchWindow: NSPanel {
     override var canBecomeKey: Bool { true }
     override var canBecomeMain: Bool { false }
 
+    /// The current visible notch size (updated by AppDelegate on state changes).
+    /// Used by `isMousePoint(_:in:)` to restrict hit-testing to the notch shape.
+    var visibleContentSize: CGSize = CGSize(width: ADHDSpacing.hardwareNotchWidth, height: ADHDSpacing.hardwareNotchHeight)
+
     /// Called when user clicks on the NotchWindow canvas area outside SwiftUI content.
     /// The global mouse monitor doesn't fire for our own panel, so this catches
     /// clicks on the transparent canvas surrounding the notch shape.
@@ -70,6 +92,11 @@ class NotchWindow: NSPanel {
         super.mouseDown(with: event)
         onClickAway?()
     }
+
+    // MARK: - Hit-test by visible shape
+    // Implemented in NotchHitTestView (the window's content view wrapper).
+    // Points outside the visible notch region return nil from hitTest(_:),
+    // so they pass through to apps below.
 
     // MARK: - Configuration
 
@@ -121,3 +148,31 @@ class NotchWindow: NSPanel {
         }
     }
 }
+// MARK: - Hit-test passthrough view
+
+/// Content-view wrapper that restricts hit-testing to the visible notch region.
+/// Points outside the region return nil, letting events fall through to apps below.
+private class NotchHitTestView: NSView {
+    weak var notchWindow: NotchWindow?
+
+    override func hitTest(_ point: NSPoint) -> NSView? {
+        guard let win = notchWindow else { return super.hitTest(point) }
+
+        let canvasW = bounds.width
+        let canvasH = bounds.height
+        let contentW = win.visibleContentSize.width
+        let contentH = win.visibleContentSize.height
+
+        // Notch is centered horizontally, pinned to top of canvas.
+        // NSView coordinates: (0,0) is bottom-left, so top = high Y values.
+        let minX = (canvasW - contentW) / 2
+        let maxX = minX + contentW
+        let minY = canvasH - contentH
+
+        guard point.x >= minX && point.x <= maxX && point.y >= minY else {
+            return nil // pass through to apps below
+        }
+        return super.hitTest(point)
+    }
+}
+

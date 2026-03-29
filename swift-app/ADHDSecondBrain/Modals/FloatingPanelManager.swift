@@ -15,19 +15,27 @@ final class FloatingPanelManager {
 
     let brainDumpViewModel = BrainDumpViewModel()
     let ventViewModel = VentViewModel()
+    let taskCreationViewModel = TaskCreationViewModel()
+
+    /// Called when the user submits a new task from the creation modal.
+    var onTaskCreated: ((String, FocusDuration) -> Void)?
 
     // MARK: - Private State
 
     private var brainDumpPanel: FloatingPanel<BrainDumpView>?
     private var ventPanel: FloatingPanel<VentView>?
+    private var taskCreationPanel: FloatingPanel<TaskCreationView>?
     private var brainDumpMoveObserver: NSObjectProtocol?
     private var ventMoveObserver: NSObjectProtocol?
+    private var taskCreationMoveObserver: NSObjectProtocol?
 
     private let brainDumpSize = CGSize(width: 520, height: 340)
     private let ventSize = CGSize(width: 440, height: 560)
+    private let taskCreationSize = CGSize(width: 480, height: 320)
 
     private let brainDumpPositionKey = "brainDumpPanelPosition"
     private let ventPositionKey = "ventPanelPosition"
+    private let taskCreationPositionKey = "taskCreationPanelPosition"
 
     // MARK: - Toggle
 
@@ -70,6 +78,36 @@ final class FloatingPanelManager {
         )
         ventPanel = panel
         showPanel(panel, sizeKey: ventPositionKey, size: ventSize)
+    }
+
+    func toggleTaskCreation() {
+        if let panel = taskCreationPanel {
+            if panel.isVisible {
+                panel.close()
+            } else {
+                taskCreationViewModel.reset()
+                showPanel(panel, sizeKey: taskCreationPositionKey, size: taskCreationSize)
+            }
+            return
+        }
+
+        taskCreationViewModel.reset()
+        let panel = FloatingPanel(
+            contentRect: NSRect(origin: .zero, size: taskCreationSize),
+            content: TaskCreationView(
+                viewModel: taskCreationViewModel,
+                onSubmit: { [weak self] name, duration in
+                    self?.onTaskCreated?(name, duration)
+                    self?.taskCreationPanel?.close()
+                    self?.taskCreationViewModel.reset()
+                },
+                onDismiss: { [weak self] in
+                    self?.taskCreationPanel?.close()
+                }
+            )
+        )
+        taskCreationPanel = panel
+        showPanel(panel, sizeKey: taskCreationPositionKey, size: taskCreationSize)
     }
 
     // MARK: - Positioning

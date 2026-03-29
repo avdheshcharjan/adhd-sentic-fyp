@@ -338,29 +338,26 @@
 \newlabel{fig:system_architecture@cref}{{[figure][1][3]3.1}{[1][23][]24}{}{}{}}
 \abx@aux@cite{0}{cambria2024}
 \abx@aux@segm{0}{0}{cambria2024}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Hot Path and Warm Path data flows. The Hot Path (solid arrows) processes screen monitoring events through activity classification, ADHD metrics computation, and JITAI evaluation within a 100\,ms budget. The Warm Path (dashed arrows) processes conversational input through safety checking, emotion analysis, LLM generation, and memory storage within a 3\,s budget.}}{25}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:data_flows}{{3.2}{25}{Hot Path and Warm Path data flows. The Hot Path (solid arrows) processes screen monitoring events through activity classification, ADHD metrics computation, and JITAI evaluation within a 100\,ms budget. The Warm Path (dashed arrows) processes conversational input through safety checking, emotion analysis, LLM generation, and memory storage within a 3\,s budget}{figure.caption.13}{}}
-\newlabel{fig:data_flows@cref}{{[figure][2][3]3.2}{[1][25][]25}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Design Methodology}{25}{section.3.2}\protected@file@percent }
+\newlabel{sec:design_methodology}{{3.2}{25}{Design Methodology}{section.3.2}{}}
+\newlabel{sec:design_methodology@cref}{{[section][2][3]3.2}{[1][25][]25}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Hot Path and Warm Path data flows. The Hot Path (solid arrows) processes screen monitoring events through activity classification, ADHD metrics computation, SetFit emotion prediction, and JITAI evaluation with confidence-gated emotion context within a 100\,ms budget. The Warm Path (dashed arrows) processes conversational input through safety checking, emotion analysis, LLM generation, and memory storage within a 3\,s budget.}}{26}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:data_flows}{{3.2}{26}{Hot Path and Warm Path data flows. The Hot Path (solid arrows) processes screen monitoring events through activity classification, ADHD metrics computation, SetFit emotion prediction, and JITAI evaluation with confidence-gated emotion context within a 100\,ms budget. The Warm Path (dashed arrows) processes conversational input through safety checking, emotion analysis, LLM generation, and memory storage within a 3\,s budget}{figure.caption.13}{}}
+\newlabel{fig:data_flows@cref}{{[figure][2][3]3.2}{[1][25][]26}{}{}{}}
 \abx@aux@cite{0}{yang2025}
 \abx@aux@segm{0}{0}{yang2025}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Design Methodology}{26}{section.3.2}\protected@file@percent }
-\newlabel{sec:design_methodology}{{3.2}{26}{Design Methodology}{section.3.2}{}}
-\newlabel{sec:design_methodology@cref}{{[section][2][3]3.2}{[1][25][]26}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}On-Device LLM Module}{26}{section.3.3}\protected@file@percent }
-\newlabel{sec:llm_module}{{3.3}{26}{On-Device LLM Module}{section.3.3}{}}
-\newlabel{sec:llm_module@cref}{{[section][3][3]3.3}{[1][26][]26}{}{}{}}
 \abx@aux@cite{0}{hannun2023}
 \abx@aux@segm{0}{0}{hannun2023}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}On-Device LLM Module}{27}{section.3.3}\protected@file@percent }
+\newlabel{sec:llm_module}{{3.3}{27}{On-Device LLM Module}{section.3.3}{}}
+\newlabel{sec:llm_module@cref}{{[section][3][3]3.3}{[1][27][]27}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces On-device LLM performance characteristics for Qwen3-4B (4-bit quantised) on Apple Silicon via MLX.}}{27}{table.caption.14}\protected@file@percent }
+\newlabel{tab:llm_performance}{{3.1}{27}{On-device LLM performance characteristics for Qwen3-4B (4-bit quantised) on Apple Silicon via MLX}{table.caption.14}{}}
+\newlabel{tab:llm_performance@cref}{{[table][1][3]3.1}{[1][27][]27}{}{}{}}
 \abx@aux@cite{0}{cambria2024}
 \abx@aux@segm{0}{0}{cambria2024}
 \abx@aux@cite{0}{cambria2016}
 \abx@aux@segm{0}{0}{cambria2016}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces On-device LLM performance characteristics for Qwen3-4B (4-bit quantised) on Apple Silicon via MLX.}}{27}{table.caption.14}\protected@file@percent }
-\newlabel{tab:llm_performance}{{3.1}{27}{On-device LLM performance characteristics for Qwen3-4B (4-bit quantised) on Apple Silicon via MLX}{table.caption.14}{}}
-\newlabel{tab:llm_performance@cref}{{[table][1][3]3.1}{[1][27][]27}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Affective Computing Module}{27}{section.3.4}\protected@file@percent }
-\newlabel{sec:affective_computing}{{3.4}{27}{Affective Computing Module}{section.3.4}{}}
-\newlabel{sec:affective_computing@cref}{{[section][4][3]3.4}{[1][27][]27}{}{}{}}
 \abx@aux@cite{0}{barkley2010}
 \abx@aux@segm{0}{0}{barkley2010}
 \abx@aux@cite{0}{diamond2013}
@@ -369,42 +366,48 @@
 \abx@aux@segm{0}{0}{reimers2019}
 \abx@aux@cite{0}{wang2020}
 \abx@aux@segm{0}{0}{wang2020}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Four-tier SenticNet orchestration pipeline. Each tier is evaluated sequentially; Tier~1 may short-circuit to an emergency pathway if safety thresholds are exceeded. Tier~4 is invoked conditionally based on signal ambiguity in Tiers~2 and~3.}}{28}{figure.caption.15}\protected@file@percent }
-\newlabel{fig:senticnet_pipeline}{{3.3}{28}{Four-tier SenticNet orchestration pipeline. Each tier is evaluated sequentially; Tier~1 may short-circuit to an emergency pathway if safety thresholds are exceeded. Tier~4 is invoked conditionally based on signal ambiguity in Tiers~2 and~3}{figure.caption.15}{}}
-\newlabel{fig:senticnet_pipeline@cref}{{[figure][3][3]3.3}{[1][28][]28}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Affective Computing Module}{28}{section.3.4}\protected@file@percent }
+\newlabel{sec:affective_computing}{{3.4}{28}{Affective Computing Module}{section.3.4}{}}
+\newlabel{sec:affective_computing@cref}{{[section][4][3]3.4}{[1][28][]28}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Four-tier SenticNet orchestration pipeline. Each tier is evaluated sequentially; Tier~1 may short-circuit to an emergency pathway if safety thresholds are exceeded. Tier~4 is invoked conditionally based on signal ambiguity in Tiers~2 and~3.}}{29}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:senticnet_pipeline}{{3.3}{29}{Four-tier SenticNet orchestration pipeline. Each tier is evaluated sequentially; Tier~1 may short-circuit to an emergency pathway if safety thresholds are exceeded. Tier~4 is invoked conditionally based on signal ambiguity in Tiers~2 and~3}{figure.caption.15}{}}
+\newlabel{fig:senticnet_pipeline@cref}{{[figure][3][3]3.3}{[1][28][]29}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Emotion classifier accuracy comparison across approaches. Weighted F1 scores are reported on a held-out test set of 50 manually labelled sentences.}}{29}{table.caption.16}\protected@file@percent }
+\newlabel{tab:emotion_classifiers}{{3.2}{29}{Emotion classifier accuracy comparison across approaches. Weighted F1 scores are reported on a held-out test set of 50 manually labelled sentences}{table.caption.16}{}}
+\newlabel{tab:emotion_classifiers@cref}{{[table][2][3]3.2}{[1][29][]29}{}{}{}}
 \abx@aux@cite{0}{koh2020}
 \abx@aux@segm{0}{0}{koh2020}
 \abx@aux@cite{0}{diamond2013}
 \abx@aux@segm{0}{0}{diamond2013}
 \abx@aux@cite{0}{chhikara2025}
 \abx@aux@segm{0}{0}{chhikara2025}
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Emotion classifier accuracy comparison across approaches. Weighted F1 scores are reported on a held-out test set of 50 manually labelled sentences.}}{29}{table.caption.16}\protected@file@percent }
-\newlabel{tab:emotion_classifiers}{{3.2}{29}{Emotion classifier accuracy comparison across approaches. Weighted F1 scores are reported on a held-out test set of 50 manually labelled sentences}{table.caption.16}{}}
-\newlabel{tab:emotion_classifiers@cref}{{[table][2][3]3.2}{[1][29][]29}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Memory and Context Module}{29}{section.3.5}\protected@file@percent }
-\newlabel{sec:memory_module}{{3.5}{29}{Memory and Context Module}{section.3.5}{}}
-\newlabel{sec:memory_module@cref}{{[section][5][3]3.5}{[1][29][]29}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Memory and Context Module}{30}{section.3.5}\protected@file@percent }
+\newlabel{sec:memory_module}{{3.5}{30}{Memory and Context Module}{section.3.5}{}}
+\newlabel{sec:memory_module@cref}{{[section][5][3]3.5}{[1][30][]30}{}{}{}}
 \abx@aux@cite{0}{barkley2010}
 \abx@aux@segm{0}{0}{barkley2010}
 \abx@aux@cite{0}{diamond2013}
 \abx@aux@segm{0}{0}{diamond2013}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Semantic memory retrieval pipeline. User input is encoded via the shared sentence transformer, matched against the pgvector index by cosine similarity, and re-ranked by temporal recency and activity context before injection into the LLM prompt.}}{30}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:memory_pipeline}{{3.4}{30}{Semantic memory retrieval pipeline. User input is encoded via the shared sentence transformer, matched against the pgvector index by cosine similarity, and re-ranked by temporal recency and activity context before injection into the LLM prompt}{figure.caption.17}{}}
-\newlabel{fig:memory_pipeline@cref}{{[figure][4][3]3.4}{[1][30][]30}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Screen Monitoring Module}{30}{section.3.6}\protected@file@percent }
-\newlabel{sec:screen_monitoring}{{3.6}{30}{Screen Monitoring Module}{section.3.6}{}}
-\newlabel{sec:screen_monitoring@cref}{{[section][6][3]3.6}{[1][30][]30}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Four-level hierarchical activity classifier. Each level is attempted in sequence; classification terminates at the first level that produces a confident result. Levels~1--3 are rule-based and resolve 78\% of events in under 5\,ms. Level~4 (embedding fallback) is invoked for the remaining 22\%.}}{31}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:activity_classifier}{{3.5}{31}{Four-level hierarchical activity classifier. Each level is attempted in sequence; classification terminates at the first level that produces a confident result. Levels~1--3 are rule-based and resolve 78\% of events in under 5\,ms. Level~4 (embedding fallback) is invoked for the remaining 22\%}{figure.caption.18}{}}
-\newlabel{fig:activity_classifier@cref}{{[figure][5][3]3.5}{[1][30][]31}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Semantic memory retrieval pipeline. User input is encoded via the shared sentence transformer, matched against the pgvector index by cosine similarity, and re-ranked by temporal recency and activity context before injection into the LLM prompt.}}{31}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:memory_pipeline}{{3.4}{31}{Semantic memory retrieval pipeline. User input is encoded via the shared sentence transformer, matched against the pgvector index by cosine similarity, and re-ranked by temporal recency and activity context before injection into the LLM prompt}{figure.caption.17}{}}
+\newlabel{fig:memory_pipeline@cref}{{[figure][4][3]3.4}{[1][30][]31}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Screen Monitoring Module}{31}{section.3.6}\protected@file@percent }
+\newlabel{sec:screen_monitoring}{{3.6}{31}{Screen Monitoring Module}{section.3.6}{}}
+\newlabel{sec:screen_monitoring@cref}{{[section][6][3]3.6}{[1][30][]31}{}{}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.7}Intervention System Design}{31}{section.3.7}\protected@file@percent }
 \newlabel{sec:intervention_system}{{3.7}{31}{Intervention System Design}{section.3.7}{}}
-\newlabel{sec:intervention_system@cref}{{[section][7][3]3.7}{[1][30][]31}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces JITAI evaluation and personalisation loop. Real-time metrics and emotional state feed into the five-domain executive function evaluation. When intervention is warranted, Thompson Sampling selects the intervention type, and user responses update the Beta distribution parameters for subsequent decisions.}}{32}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:jitai_loop}{{3.6}{32}{JITAI evaluation and personalisation loop. Real-time metrics and emotional state feed into the five-domain executive function evaluation. When intervention is warranted, Thompson Sampling selects the intervention type, and user responses update the Beta distribution parameters for subsequent decisions}{figure.caption.19}{}}
-\newlabel{fig:jitai_loop@cref}{{[figure][6][3]3.6}{[1][31][]32}{}{}{}}
+\newlabel{sec:intervention_system@cref}{{[section][7][3]3.7}{[1][31][]31}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces Four-level hierarchical activity classifier. Each level is attempted in sequence; classification terminates at the first level that produces a confident result. Levels~1--3 are rule-based and resolve 78\% of events in under 5\,ms. Level~4 (embedding fallback) is invoked for the remaining 22\%.}}{32}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:activity_classifier}{{3.5}{32}{Four-level hierarchical activity classifier. Each level is attempted in sequence; classification terminates at the first level that produces a confident result. Levels~1--3 are rule-based and resolve 78\% of events in under 5\,ms. Level~4 (embedding fallback) is invoked for the remaining 22\%}{figure.caption.18}{}}
+\newlabel{fig:activity_classifier@cref}{{[figure][5][3]3.5}{[1][31][]32}{}{}{}}
 \abx@aux@cite{0}{beattie2025}
 \abx@aux@segm{0}{0}{beattie2025}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces JITAI evaluation and personalisation loop. Real-time metrics and confidence-gated SetFit emotion context feed into the seven-rule executive function evaluation across four Barkley domains. When intervention is warranted, Thompson Sampling selects the intervention type, and user responses update the Beta distribution parameters for subsequent decisions.}}{33}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:jitai_loop}{{3.6}{33}{JITAI evaluation and personalisation loop. Real-time metrics and confidence-gated SetFit emotion context feed into the seven-rule executive function evaluation across four Barkley domains. When intervention is warranted, Thompson Sampling selects the intervention type, and user responses update the Beta distribution parameters for subsequent decisions}{figure.caption.19}{}}
+\newlabel{fig:jitai_loop@cref}{{[figure][6][3]3.6}{[1][33][]33}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.8}UI/UX Design}{33}{section.3.8}\protected@file@percent }
+\newlabel{sec:uiux_design}{{3.8}{33}{UI/UX Design}{section.3.8}{}}
+\newlabel{sec:uiux_design@cref}{{[section][8][3]3.8}{[1][33][]33}{}{}{}}
 \abx@aux@cite{0}{cambria2016}
 \abx@aux@segm{0}{0}{cambria2016}
 \abx@aux@cite{0}{reimers2019}
@@ -419,18 +422,15 @@
 \abx@aux@segm{0}{0}{lin2025}
 \abx@aux@cite{0}{xu2024}
 \abx@aux@segm{0}{0}{xu2024}
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Multi-tier intervention escalation ladder with triggering conditions and delivery mechanisms.}}{33}{table.caption.20}\protected@file@percent }
-\newlabel{tab:intervention_tiers}{{3.3}{33}{Multi-tier intervention escalation ladder with triggering conditions and delivery mechanisms}{table.caption.20}{}}
-\newlabel{tab:intervention_tiers@cref}{{[table][3][3]3.3}{[1][31][]33}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.8}UI/UX Design}{33}{section.3.8}\protected@file@percent }
-\newlabel{sec:uiux_design}{{3.8}{33}{UI/UX Design}{section.3.8}{}}
-\newlabel{sec:uiux_design@cref}{{[section][8][3]3.8}{[1][33][]33}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.9}Technology Stack Selection}{33}{section.3.9}\protected@file@percent }
-\newlabel{sec:tech_stack}{{3.9}{33}{Technology Stack Selection}{section.3.9}{}}
-\newlabel{sec:tech_stack@cref}{{[section][9][3]3.9}{[1][33][]33}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Technology stack selection with justifications.}}{34}{table.caption.21}\protected@file@percent }
-\newlabel{tab:tech_stack}{{3.4}{34}{Technology stack selection with justifications}{table.caption.21}{}}
-\newlabel{tab:tech_stack@cref}{{[table][4][3]3.4}{[1][33][]34}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Multi-tier intervention escalation ladder with triggering conditions and delivery mechanisms.}}{34}{table.caption.20}\protected@file@percent }
+\newlabel{tab:intervention_tiers}{{3.3}{34}{Multi-tier intervention escalation ladder with triggering conditions and delivery mechanisms}{table.caption.20}{}}
+\newlabel{tab:intervention_tiers@cref}{{[table][3][3]3.3}{[1][33][]34}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.9}Technology Stack Selection}{34}{section.3.9}\protected@file@percent }
+\newlabel{sec:tech_stack}{{3.9}{34}{Technology Stack Selection}{section.3.9}{}}
+\newlabel{sec:tech_stack@cref}{{[section][9][3]3.9}{[1][34][]34}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Technology stack selection with justifications.}}{35}{table.caption.21}\protected@file@percent }
+\newlabel{tab:tech_stack}{{3.4}{35}{Technology stack selection with justifications}{table.caption.21}{}}
+\newlabel{tab:tech_stack@cref}{{[table][4][3]3.4}{[1][34][]35}{}{}{}}
 \abx@aux@cite{0}{hannun2023}
 \abx@aux@segm{0}{0}{hannun2023}
 \abx@aux@cite{0}{yang2025}
@@ -550,148 +550,181 @@
 \newlabel{lst:senticnet-cascade}{{4.3}{44}{SenticNet four-tier cascade with async dispatch and early termination (abbreviated)}{lstlisting.4.3}{}}
 \newlabel{lst:senticnet-cascade@cref}{{[listing][3][4]4.3}{[1][44][]44}{}{}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {4.3}{\ignorespaces SenticNet four-tier cascade with async dispatch and early termination (abbreviated).}}{44}{lstlisting.4.3}\protected@file@percent }
+\newlabel{lst:setfit-pase}{{4.4}{45}{SetFit label to canonical PASE profile mapping}{lstlisting.4.4}{}}
+\newlabel{lst:setfit-pase@cref}{{[listing][4][4]4.4}{[1][45][]45}{}{}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.4}{\ignorespaces SetFit label to canonical PASE profile mapping.}}{45}{lstlisting.4.4}\protected@file@percent }
+\newlabel{lst:blend-pase}{{4.5}{45}{Confidence-weighted PASE blending function}{lstlisting.4.5}{}}
+\newlabel{lst:blend-pase@cref}{{[listing][5][4]4.5}{[1][45][]45}{}{}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.5}{\ignorespaces Confidence-weighted PASE blending function.}}{45}{lstlisting.4.5}\protected@file@percent }
 \abx@aux@cite{0}{chhikara2025}
 \abx@aux@segm{0}{0}{chhikara2025}
 \abx@aux@cite{0}{reimers2019}
 \abx@aux@segm{0}{0}{reimers2019}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Memory System Implementation}{45}{section.4.5}\protected@file@percent }
-\newlabel{sec:memory-system}{{4.5}{45}{Memory System Implementation}{section.4.5}{}}
-\newlabel{sec:memory-system@cref}{{[section][5][4]4.5}{[1][45][]45}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.6}Screen Monitoring and Activity Classification}{45}{section.4.6}\protected@file@percent }
-\newlabel{sec:screen-monitoring}{{4.6}{45}{Screen Monitoring and Activity Classification}{section.4.6}{}}
-\newlabel{sec:screen-monitoring@cref}{{[section][6][4]4.6}{[1][45][]45}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Memory System Implementation}{46}{section.4.5}\protected@file@percent }
+\newlabel{sec:memory-system}{{4.5}{46}{Memory System Implementation}{section.4.5}{}}
+\newlabel{sec:memory-system@cref}{{[section][5][4]4.5}{[1][46][]46}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Screen Monitoring and Activity Classification}{46}{section.4.6}\protected@file@percent }
+\newlabel{sec:screen-monitoring}{{4.6}{46}{Screen Monitoring and Activity Classification}{section.4.6}{}}
+\newlabel{sec:screen-monitoring@cref}{{[section][6][4]4.6}{[1][46][]46}{}{}{}}
+\newlabel{lst:emotion-context}{{4.6}{47}{SetFit emotion prediction and confidence-gated context construction in the screen activity hot path}{lstlisting.4.6}{}}
+\newlabel{lst:emotion-context@cref}{{[listing][6][4]4.6}{[1][47][]47}{}{}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.6}{\ignorespaces SetFit emotion prediction and confidence-gated context construction in the screen activity hot path.}}{47}{lstlisting.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.7}Intervention Engine}{48}{section.4.7}\protected@file@percent }
+\newlabel{sec:intervention-engine}{{4.7}{48}{Intervention Engine}{section.4.7}{}}
+\newlabel{sec:intervention-engine@cref}{{[section][7][4]4.7}{[1][48][]48}{}{}{}}
 \abx@aux@cite{0}{koh2020}
 \abx@aux@segm{0}{0}{koh2020}
 \abx@aux@cite{0}{diamond2013}
 \abx@aux@segm{0}{0}{diamond2013}
-\@writefile{toc}{\contentsline {section}{\numberline {4.7}Intervention Engine}{46}{section.4.7}\protected@file@percent }
-\newlabel{sec:intervention-engine}{{4.7}{46}{Intervention Engine}{section.4.7}{}}
-\newlabel{sec:intervention-engine@cref}{{[section][7][4]4.7}{[1][46][]46}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.8}macOS Application and Web Dashboard}{46}{section.4.8}\protected@file@percent }
-\newlabel{sec:client-applications}{{4.8}{46}{macOS Application and Web Dashboard}{section.4.8}{}}
-\newlabel{sec:client-applications@cref}{{[section][8][4]4.8}{[1][46][]46}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.9}Implementation Challenges and Solutions}{47}{section.4.9}\protected@file@percent }
-\newlabel{sec:implementation-challenges}{{4.9}{47}{Implementation Challenges and Solutions}{section.4.9}{}}
-\newlabel{sec:implementation-challenges@cref}{{[section][9][4]4.9}{[1][47][]47}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Summary of implementation challenges and their resolutions.}}{47}{table.caption.25}\protected@file@percent }
-\newlabel{tab:challenges}{{4.3}{47}{Summary of implementation challenges and their resolutions}{table.caption.25}{}}
-\newlabel{tab:challenges@cref}{{[table][3][4]4.3}{[1][47][]47}{}{}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Testing and Evaluation}{48}{chapter.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces Seven JITAI intervention rules with triggering conditions and EF domain mappings.}}{49}{table.caption.25}\protected@file@percent }
+\newlabel{tab:jitai-rules}{{4.3}{49}{Seven JITAI intervention rules with triggering conditions and EF domain mappings}{table.caption.25}{}}
+\newlabel{tab:jitai-rules@cref}{{[table][3][4]4.3}{[1][48][]49}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.8}macOS Application and Web Dashboard}{49}{section.4.8}\protected@file@percent }
+\newlabel{sec:client-applications}{{4.8}{49}{macOS Application and Web Dashboard}{section.4.8}{}}
+\newlabel{sec:client-applications@cref}{{[section][8][4]4.8}{[1][49][]49}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.9}Implementation Challenges and Solutions}{50}{section.4.9}\protected@file@percent }
+\newlabel{sec:implementation-challenges}{{4.9}{50}{Implementation Challenges and Solutions}{section.4.9}{}}
+\newlabel{sec:implementation-challenges@cref}{{[section][9][4]4.9}{[1][49][]50}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces Summary of implementation challenges and their resolutions.}}{50}{table.caption.26}\protected@file@percent }
+\newlabel{tab:challenges}{{4.4}{50}{Summary of implementation challenges and their resolutions}{table.caption.26}{}}
+\newlabel{tab:challenges@cref}{{[table][4][4]4.4}{[1][49][]50}{}{}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Testing and Evaluation}{51}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:testing-evaluation}{{5}{48}{Testing and Evaluation}{chapter.5}{}}
-\newlabel{ch:testing-evaluation@cref}{{[chapter][5][]5}{[1][48][]48}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Testing Strategy and Methodology}{48}{section.5.1}\protected@file@percent }
-\newlabel{sec:testing-strategy}{{5.1}{48}{Testing Strategy and Methodology}{section.5.1}{}}
-\newlabel{sec:testing-strategy@cref}{{[section][1][5]5.1}{[1][48][]48}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Emotion Classification Evaluation}{48}{section.5.2}\protected@file@percent }
-\newlabel{sec:emotion-evaluation}{{5.2}{48}{Emotion Classification Evaluation}{section.5.2}{}}
-\newlabel{sec:emotion-evaluation@cref}{{[section][2][5]5.2}{[1][48][]48}{}{}{}}
+\newlabel{ch:testing-evaluation}{{5}{51}{Testing and Evaluation}{chapter.5}{}}
+\newlabel{ch:testing-evaluation@cref}{{[chapter][5][]5}{[1][51][]51}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Testing Strategy and Methodology}{51}{section.5.1}\protected@file@percent }
+\newlabel{sec:testing-strategy}{{5.1}{51}{Testing Strategy and Methodology}{section.5.1}{}}
+\newlabel{sec:testing-strategy@cref}{{[section][1][5]5.1}{[1][51][]51}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Emotion Classification Evaluation}{51}{section.5.2}\protected@file@percent }
+\newlabel{sec:emotion-evaluation}{{5.2}{51}{Emotion Classification Evaluation}{section.5.2}{}}
+\newlabel{sec:emotion-evaluation@cref}{{[section][2][5]5.2}{[1][51][]51}{}{}{}}
 \abx@aux@cite{0}{reimers2019}
 \abx@aux@segm{0}{0}{reimers2019}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Baseline and Approach Comparison}{49}{subsection.5.2.1}\protected@file@percent }
-\newlabel{subsec:baseline-comparison}{{5.2.1}{49}{Baseline and Approach Comparison}{subsection.5.2.1}{}}
-\newlabel{subsec:baseline-comparison@cref}{{[subsection][1][5,2]5.2.1}{[1][48][]49}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Emotion classification results across all approaches and configurations.}}{49}{table.caption.26}\protected@file@percent }
-\newlabel{tab:classification-results}{{5.1}{49}{Emotion classification results across all approaches and configurations}{table.caption.26}{}}
-\newlabel{tab:classification-results@cref}{{[table][1][5]5.1}{[1][49][]49}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}SetFit Optimisation Analysis}{50}{subsection.5.2.2}\protected@file@percent }
-\newlabel{subsec:setfit-optimisation}{{5.2.2}{50}{SetFit Optimisation Analysis}{subsection.5.2.2}{}}
-\newlabel{subsec:setfit-optimisation@cref}{{[subsection][2][5,2]5.2.2}{[1][49][]50}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Per-Class Performance}{50}{subsection.5.2.3}\protected@file@percent }
-\newlabel{subsec:per-class-performance}{{5.2.3}{50}{Per-Class Performance}{subsection.5.2.3}{}}
-\newlabel{subsec:per-class-performance@cref}{{[subsection][3][5,2]5.2.3}{[1][50][]50}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Per-class F1 scores for the production SetFit model.}}{50}{table.caption.27}\protected@file@percent }
-\newlabel{tab:per-class-f1}{{5.2}{50}{Per-class F1 scores for the production SetFit model}{table.caption.27}{}}
-\newlabel{tab:per-class-f1@cref}{{[table][2][5]5.2}{[1][50][]50}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.4}Confusion Matrix Analysis}{50}{subsection.5.2.4}\protected@file@percent }
-\newlabel{subsec:confusion-matrix}{{5.2.4}{50}{Confusion Matrix Analysis}{subsection.5.2.4}{}}
-\newlabel{subsec:confusion-matrix@cref}{{[subsection][4][5,2]5.2.4}{[1][50][]50}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Confusion matrix for the production SetFit emotion classifier evaluated on 50 held-out test sentences. Diagonal entries indicate correct classifications; off-diagonal entries indicate misclassifications. The primary confusion axes lie between frustrated/overwhelmed and focused/anxious.}}{51}{figure.caption.28}\protected@file@percent }
-\newlabel{fig:confusion-matrix}{{5.1}{51}{Confusion matrix for the production SetFit emotion classifier evaluated on 50 held-out test sentences. Diagonal entries indicate correct classifications; off-diagonal entries indicate misclassifications. The primary confusion axes lie between frustrated/overwhelmed and focused/anxious}{figure.caption.28}{}}
-\newlabel{fig:confusion-matrix@cref}{{[figure][1][5]5.1}{[1][50][]51}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Baseline and Approach Comparison}{52}{subsection.5.2.1}\protected@file@percent }
+\newlabel{subsec:baseline-comparison}{{5.2.1}{52}{Baseline and Approach Comparison}{subsection.5.2.1}{}}
+\newlabel{subsec:baseline-comparison@cref}{{[subsection][1][5,2]5.2.1}{[1][52][]52}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}SetFit Optimisation Analysis}{52}{subsection.5.2.2}\protected@file@percent }
+\newlabel{subsec:setfit-optimisation}{{5.2.2}{52}{SetFit Optimisation Analysis}{subsection.5.2.2}{}}
+\newlabel{subsec:setfit-optimisation@cref}{{[subsection][2][5,2]5.2.2}{[1][52][]52}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Emotion classification results across all approaches and configurations.}}{53}{table.caption.27}\protected@file@percent }
+\newlabel{tab:classification-results}{{5.1}{53}{Emotion classification results across all approaches and configurations}{table.caption.27}{}}
+\newlabel{tab:classification-results@cref}{{[table][1][5]5.1}{[1][52][]53}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Per-Class Performance}{53}{subsection.5.2.3}\protected@file@percent }
+\newlabel{subsec:per-class-performance}{{5.2.3}{53}{Per-Class Performance}{subsection.5.2.3}{}}
+\newlabel{subsec:per-class-performance@cref}{{[subsection][3][5,2]5.2.3}{[1][53][]53}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Per-class F1 scores for the production SetFit model.}}{53}{table.caption.28}\protected@file@percent }
+\newlabel{tab:per-class-f1}{{5.2}{53}{Per-class F1 scores for the production SetFit model}{table.caption.28}{}}
+\newlabel{tab:per-class-f1@cref}{{[table][2][5]5.2}{[1][53][]53}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.4}Confusion Matrix Analysis}{53}{subsection.5.2.4}\protected@file@percent }
+\newlabel{subsec:confusion-matrix}{{5.2.4}{53}{Confusion Matrix Analysis}{subsection.5.2.4}{}}
+\newlabel{subsec:confusion-matrix@cref}{{[subsection][4][5,2]5.2.4}{[1][53][]53}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Confusion matrix for the production SetFit emotion classifier evaluated on 50 held-out test sentences. Diagonal entries indicate correct classifications; off-diagonal entries indicate misclassifications. The primary confusion axes lie between frustrated/overwhelmed and focused/anxious.}}{54}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:confusion-matrix}{{5.1}{54}{Confusion matrix for the production SetFit emotion classifier evaluated on 50 held-out test sentences. Diagonal entries indicate correct classifications; off-diagonal entries indicate misclassifications. The primary confusion axes lie between frustrated/overwhelmed and focused/anxious}{figure.caption.29}{}}
+\newlabel{fig:confusion-matrix@cref}{{[figure][1][5]5.1}{[1][54][]54}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}LLM Performance Evaluation}{54}{section.5.3}\protected@file@percent }
+\newlabel{sec:llm-evaluation}{{5.3}{54}{LLM Performance Evaluation}{section.5.3}{}}
+\newlabel{sec:llm-evaluation@cref}{{[section][3][5]5.3}{[1][54][]54}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Throughput and Latency}{54}{subsection.5.3.1}\protected@file@percent }
+\newlabel{subsec:llm-throughput}{{5.3.1}{54}{Throughput and Latency}{subsection.5.3.1}{}}
+\newlabel{subsec:llm-throughput@cref}{{[subsection][1][5,3]5.3.1}{[1][54][]54}{}{}{}}
 \abx@aux@cite{0}{hannun2023}
 \abx@aux@segm{0}{0}{hannun2023}
 \abx@aux@cite{0}{lin2025}
 \abx@aux@segm{0}{0}{lin2025}
 \abx@aux@cite{0}{xu2024}
 \abx@aux@segm{0}{0}{xu2024}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}LLM Performance Evaluation}{52}{section.5.3}\protected@file@percent }
-\newlabel{sec:llm-evaluation}{{5.3}{52}{LLM Performance Evaluation}{section.5.3}{}}
-\newlabel{sec:llm-evaluation@cref}{{[section][3][5]5.3}{[1][50][]52}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Throughput and Latency}{52}{subsection.5.3.1}\protected@file@percent }
-\newlabel{subsec:llm-throughput}{{5.3.1}{52}{Throughput and Latency}{subsection.5.3.1}{}}
-\newlabel{subsec:llm-throughput@cref}{{[subsection][1][5,3]5.3.1}{[1][50][]52}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces LLM inference performance metrics (consolidated across two runs, seed 42).}}{52}{table.caption.29}\protected@file@percent }
-\newlabel{tab:llm-performance}{{5.3}{52}{LLM inference performance metrics (consolidated across two runs, seed 42)}{table.caption.29}{}}
-\newlabel{tab:llm-performance@cref}{{[table][3][5]5.3}{[1][52][]52}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Memory Footprint}{52}{subsection.5.3.2}\protected@file@percent }
-\newlabel{subsec:llm-memory}{{5.3.2}{52}{Memory Footprint}{subsection.5.3.2}{}}
-\newlabel{subsec:llm-memory@cref}{{[subsection][2][5,3]5.3.2}{[1][52][]52}{}{}{}}
 \abx@aux@cite{0}{cambria2024}
 \abx@aux@segm{0}{0}{cambria2024}
 \abx@aux@cite{0}{cambria2016}
 \abx@aux@segm{0}{0}{cambria2016}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces LLM inference performance metrics (consolidated across two runs, seed 42).}}{55}{table.caption.30}\protected@file@percent }
+\newlabel{tab:llm-performance}{{5.3}{55}{LLM inference performance metrics (consolidated across two runs, seed 42)}{table.caption.30}{}}
+\newlabel{tab:llm-performance@cref}{{[table][3][5]5.3}{[1][55][]55}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Memory Footprint}{55}{subsection.5.3.2}\protected@file@percent }
+\newlabel{subsec:llm-memory}{{5.3.2}{55}{Memory Footprint}{subsection.5.3.2}{}}
+\newlabel{subsec:llm-memory@cref}{{[subsection][2][5,3]5.3.2}{[1][55][]55}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}SenticNet Pipeline Evaluation}{55}{section.5.4}\protected@file@percent }
+\newlabel{sec:senticnet-evaluation}{{5.4}{55}{SenticNet Pipeline Evaluation}{section.5.4}{}}
+\newlabel{sec:senticnet-evaluation@cref}{{[section][4][5]5.4}{[1][55][]55}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Latency Scaling}{55}{subsection.5.4.1}\protected@file@percent }
+\newlabel{subsec:senticnet-latency}{{5.4.1}{55}{Latency Scaling}{subsection.5.4.1}{}}
+\newlabel{subsec:senticnet-latency@cref}{{[subsection][1][5,4]5.4.1}{[1][55][]55}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Reliability and Determinism}{55}{subsection.5.4.2}\protected@file@percent }
+\newlabel{subsec:senticnet-reliability}{{5.4.2}{55}{Reliability and Determinism}{subsection.5.4.2}{}}
+\newlabel{subsec:senticnet-reliability@cref}{{[subsection][2][5,4]5.4.2}{[1][55][]55}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces SenticNet pipeline latency by input length.}}{56}{table.caption.31}\protected@file@percent }
+\newlabel{tab:senticnet-latency}{{5.4}{56}{SenticNet pipeline latency by input length}{table.caption.31}{}}
+\newlabel{tab:senticnet-latency@cref}{{[table][4][5]5.4}{[1][55][]56}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}SetFit Wiring Verification}{56}{section.5.5}\protected@file@percent }
+\newlabel{sec:setfit-wiring-evaluation}{{5.5}{56}{SetFit Wiring Verification}{section.5.5}{}}
+\newlabel{sec:setfit-wiring-evaluation@cref}{{[section][5][5]5.5}{[1][55][]56}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}Emotion Radar PASE Mapping}{56}{subsection.5.5.1}\protected@file@percent }
+\newlabel{subsec:pase-tests}{{5.5.1}{56}{Emotion Radar PASE Mapping}{subsection.5.5.1}{}}
+\newlabel{subsec:pase-tests@cref}{{[subsection][1][5,5]5.5.1}{[1][56][]56}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}SetFit Classifier Output}{56}{subsection.5.5.2}\protected@file@percent }
+\newlabel{subsec:setfit-output-tests}{{5.5.2}{56}{SetFit Classifier Output}{subsection.5.5.2}{}}
+\newlabel{subsec:setfit-output-tests@cref}{{[subsection][2][5,5]5.5.2}{[1][56][]56}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.3}JITAI Emotion Rule Verification}{56}{subsection.5.5.3}\protected@file@percent }
+\newlabel{subsec:jitai-emotion-tests}{{5.5.3}{56}{JITAI Emotion Rule Verification}{subsection.5.5.3}{}}
+\newlabel{subsec:jitai-emotion-tests@cref}{{[subsection][3][5,5]5.5.3}{[1][56][]56}{}{}{}}
 \abx@aux@cite{0}{chhikara2025}
 \abx@aux@segm{0}{0}{chhikara2025}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}SenticNet Pipeline Evaluation}{53}{section.5.4}\protected@file@percent }
-\newlabel{sec:senticnet-evaluation}{{5.4}{53}{SenticNet Pipeline Evaluation}{section.5.4}{}}
-\newlabel{sec:senticnet-evaluation@cref}{{[section][4][5]5.4}{[1][52][]53}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Latency Scaling}{53}{subsection.5.4.1}\protected@file@percent }
-\newlabel{subsec:senticnet-latency}{{5.4.1}{53}{Latency Scaling}{subsection.5.4.1}{}}
-\newlabel{subsec:senticnet-latency@cref}{{[subsection][1][5,4]5.4.1}{[1][52][]53}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces SenticNet pipeline latency by input length.}}{53}{table.caption.30}\protected@file@percent }
-\newlabel{tab:senticnet-latency}{{5.4}{53}{SenticNet pipeline latency by input length}{table.caption.30}{}}
-\newlabel{tab:senticnet-latency@cref}{{[table][4][5]5.4}{[1][53][]53}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Reliability and Determinism}{53}{subsection.5.4.2}\protected@file@percent }
-\newlabel{subsec:senticnet-reliability}{{5.4.2}{53}{Reliability and Determinism}{subsection.5.4.2}{}}
-\newlabel{subsec:senticnet-reliability@cref}{{[subsection][2][5,4]5.4.2}{[1][53][]53}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.5}Memory System Evaluation}{53}{section.5.5}\protected@file@percent }
-\newlabel{sec:memory-evaluation}{{5.5}{53}{Memory System Evaluation}{section.5.5}{}}
-\newlabel{sec:memory-evaluation@cref}{{[section][5][5]5.5}{[1][53][]53}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.4}Confidence Gating}{57}{subsection.5.5.4}\protected@file@percent }
+\newlabel{subsec:confidence-gating-tests}{{5.5.4}{57}{Confidence Gating}{subsection.5.5.4}{}}
+\newlabel{subsec:confidence-gating-tests@cref}{{[subsection][4][5,5]5.5.4}{[1][57][]57}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.6}Memory System Evaluation}{57}{section.5.6}\protected@file@percent }
+\newlabel{sec:memory-evaluation}{{5.6}{57}{Memory System Evaluation}{section.5.6}{}}
+\newlabel{sec:memory-evaluation@cref}{{[section][6][5]5.6}{[1][57][]57}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.7}System Integration and Performance}{57}{section.5.7}\protected@file@percent }
+\newlabel{sec:integration-evaluation}{{5.7}{57}{System Integration and Performance}{section.5.7}{}}
+\newlabel{sec:integration-evaluation@cref}{{[section][7][5]5.7}{[1][57][]57}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.1}End-to-End Pipeline}{57}{subsection.5.7.1}\protected@file@percent }
+\newlabel{subsec:e2e-pipeline}{{5.7.1}{57}{End-to-End Pipeline}{subsection.5.7.1}{}}
+\newlabel{subsec:e2e-pipeline@cref}{{[subsection][1][5,7]5.7.1}{[1][57][]57}{}{}{}}
 \abx@aux@cite{0}{hannun2023}
 \abx@aux@segm{0}{0}{hannun2023}
-\@writefile{toc}{\contentsline {section}{\numberline {5.6}System Integration and Performance}{54}{section.5.6}\protected@file@percent }
-\newlabel{sec:integration-evaluation}{{5.6}{54}{System Integration and Performance}{section.5.6}{}}
-\newlabel{sec:integration-evaluation@cref}{{[section][6][5]5.6}{[1][53][]54}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.1}End-to-End Pipeline}{54}{subsection.5.6.1}\protected@file@percent }
-\newlabel{subsec:e2e-pipeline}{{5.6.1}{54}{End-to-End Pipeline}{subsection.5.6.1}{}}
-\newlabel{subsec:e2e-pipeline@cref}{{[subsection][1][5,6]5.6.1}{[1][53][]54}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces System integration performance summary.}}{54}{table.caption.31}\protected@file@percent }
-\newlabel{tab:integration-summary}{{5.5}{54}{System integration performance summary}{table.caption.31}{}}
-\newlabel{tab:integration-summary@cref}{{[table][5][5]5.5}{[1][54][]54}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.2}Stress Testing}{54}{subsection.5.6.2}\protected@file@percent }
-\newlabel{subsec:stress-testing}{{5.6.2}{54}{Stress Testing}{subsection.5.6.2}{}}
-\newlabel{subsec:stress-testing@cref}{{[subsection][2][5,6]5.6.2}{[1][54][]54}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6.3}Pipeline Latency Decomposition}{54}{subsection.5.6.3}\protected@file@percent }
-\newlabel{subsec:waterfall}{{5.6.3}{54}{Pipeline Latency Decomposition}{subsection.5.6.3}{}}
-\newlabel{subsec:waterfall@cref}{{[subsection][3][5,6]5.6.3}{[1][54][]54}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.7}Energy Consumption}{54}{section.5.7}\protected@file@percent }
-\newlabel{sec:energy-evaluation}{{5.7}{54}{Energy Consumption}{section.5.7}{}}
-\newlabel{sec:energy-evaluation@cref}{{[section][7][5]5.7}{[1][54][]54}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.1}Per-Component Energy Breakdown}{54}{subsection.5.7.1}\protected@file@percent }
-\newlabel{subsec:energy-breakdown}{{5.7.1}{54}{Per-Component Energy Breakdown}{subsection.5.7.1}{}}
-\newlabel{subsec:energy-breakdown@cref}{{[subsection][1][5,7]5.7.1}{[1][54][]54}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces System integration performance summary.}}{58}{table.caption.32}\protected@file@percent }
+\newlabel{tab:integration-summary}{{5.5}{58}{System integration performance summary}{table.caption.32}{}}
+\newlabel{tab:integration-summary@cref}{{[table][5][5]5.5}{[1][58][]58}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.2}Stress Testing}{58}{subsection.5.7.2}\protected@file@percent }
+\newlabel{subsec:stress-testing}{{5.7.2}{58}{Stress Testing}{subsection.5.7.2}{}}
+\newlabel{subsec:stress-testing@cref}{{[subsection][2][5,7]5.7.2}{[1][58][]58}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.3}Pipeline Latency Decomposition}{58}{subsection.5.7.3}\protected@file@percent }
+\newlabel{subsec:waterfall}{{5.7.3}{58}{Pipeline Latency Decomposition}{subsection.5.7.3}{}}
+\newlabel{subsec:waterfall@cref}{{[subsection][3][5,7]5.7.3}{[1][58][]58}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Pipeline latency waterfall showing the percentage contribution of each component to the total end-to-end latency of 13,961~ms. Mem0 store dominates at 38.8\% and is amenable to asynchronous execution.}}{58}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:waterfall}{{5.2}{58}{Pipeline latency waterfall showing the percentage contribution of each component to the total end-to-end latency of 13,961~ms. Mem0 store dominates at 38.8\% and is amenable to asynchronous execution}{figure.caption.33}{}}
+\newlabel{fig:waterfall@cref}{{[figure][2][5]5.2}{[1][58][]58}{}{}{}}
 \abx@aux@cite{0}{xu2024}
 \abx@aux@segm{0}{0}{xu2024}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Pipeline latency waterfall showing the percentage contribution of each component to the total end-to-end latency of 13,961~ms. Mem0 store dominates at 38.8\% and is amenable to asynchronous execution.}}{55}{figure.caption.32}\protected@file@percent }
-\newlabel{fig:waterfall}{{5.2}{55}{Pipeline latency waterfall showing the percentage contribution of each component to the total end-to-end latency of 13,961~ms. Mem0 store dominates at 38.8\% and is amenable to asynchronous execution}{figure.caption.32}{}}
-\newlabel{fig:waterfall@cref}{{[figure][2][5]5.2}{[1][54][]55}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces Energy consumption per pipeline execution by hardware component.}}{55}{table.caption.33}\protected@file@percent }
-\newlabel{tab:energy-breakdown}{{5.6}{55}{Energy consumption per pipeline execution by hardware component}{table.caption.33}{}}
-\newlabel{tab:energy-breakdown@cref}{{[table][6][5]5.6}{[1][55][]55}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.2}Energy Distribution}{55}{subsection.5.7.2}\protected@file@percent }
-\newlabel{subsec:energy-distribution}{{5.7.2}{55}{Energy Distribution}{subsection.5.7.2}{}}
-\newlabel{subsec:energy-distribution@cref}{{[subsection][2][5,7]5.7.2}{[1][55][]55}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7.3}Battery Life Projections}{55}{subsection.5.7.3}\protected@file@percent }
-\newlabel{subsec:battery-projections}{{5.7.3}{55}{Battery Life Projections}{subsection.5.7.3}{}}
-\newlabel{subsec:battery-projections@cref}{{[subsection][3][5,7]5.7.3}{[1][55][]55}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Energy breakdown per pipeline execution by hardware component. GPU computation dominates at 71.8\%, reflecting the matrix multiplication-intensive nature of LLM inference on Apple Silicon.}}{56}{figure.caption.34}\protected@file@percent }
-\newlabel{fig:energy-pie}{{5.3}{56}{Energy breakdown per pipeline execution by hardware component. GPU computation dominates at 71.8\%, reflecting the matrix multiplication-intensive nature of LLM inference on Apple Silicon}{figure.caption.34}{}}
-\newlabel{fig:energy-pie@cref}{{[figure][3][5]5.3}{[1][55][]56}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces Battery life projections under representative usage scenarios.}}{56}{table.caption.35}\protected@file@percent }
-\newlabel{tab:battery-projections}{{5.7}{56}{Battery life projections under representative usage scenarios}{table.caption.35}{}}
-\newlabel{tab:battery-projections@cref}{{[table][7][5]5.7}{[1][55][]56}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.8}Energy Consumption}{59}{section.5.8}\protected@file@percent }
+\newlabel{sec:energy-evaluation}{{5.8}{59}{Energy Consumption}{section.5.8}{}}
+\newlabel{sec:energy-evaluation@cref}{{[section][8][5]5.8}{[1][58][]59}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.1}Per-Component Energy Breakdown}{59}{subsection.5.8.1}\protected@file@percent }
+\newlabel{subsec:energy-breakdown}{{5.8.1}{59}{Per-Component Energy Breakdown}{subsection.5.8.1}{}}
+\newlabel{subsec:energy-breakdown@cref}{{[subsection][1][5,8]5.8.1}{[1][58][]59}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces Energy consumption per pipeline execution by hardware component.}}{59}{table.caption.34}\protected@file@percent }
+\newlabel{tab:energy-breakdown}{{5.6}{59}{Energy consumption per pipeline execution by hardware component}{table.caption.34}{}}
+\newlabel{tab:energy-breakdown@cref}{{[table][6][5]5.6}{[1][59][]59}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.2}Energy Distribution}{59}{subsection.5.8.2}\protected@file@percent }
+\newlabel{subsec:energy-distribution}{{5.8.2}{59}{Energy Distribution}{subsection.5.8.2}{}}
+\newlabel{subsec:energy-distribution@cref}{{[subsection][2][5,8]5.8.2}{[1][59][]59}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8.3}Battery Life Projections}{59}{subsection.5.8.3}\protected@file@percent }
+\newlabel{subsec:battery-projections}{{5.8.3}{59}{Battery Life Projections}{subsection.5.8.3}{}}
+\newlabel{subsec:battery-projections@cref}{{[subsection][3][5,8]5.8.3}{[1][59][]59}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces Battery life projections under representative usage scenarios.}}{59}{table.caption.36}\protected@file@percent }
+\newlabel{tab:battery-projections}{{5.7}{59}{Battery life projections under representative usage scenarios}{table.caption.36}{}}
+\newlabel{tab:battery-projections@cref}{{[table][7][5]5.7}{[1][59][]59}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Energy breakdown per pipeline execution by hardware component. GPU computation dominates at 71.8\%, reflecting the matrix multiplication-intensive nature of LLM inference on Apple Silicon.}}{60}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:energy-pie}{{5.3}{60}{Energy breakdown per pipeline execution by hardware component. GPU computation dominates at 71.8\%, reflecting the matrix multiplication-intensive nature of LLM inference on Apple Silicon}{figure.caption.35}{}}
+\newlabel{fig:energy-pie@cref}{{[figure][3][5]5.3}{[1][59][]60}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.9}Reproducibility Assessment}{60}{section.5.9}\protected@file@percent }
+\newlabel{sec:reproducibility}{{5.9}{60}{Reproducibility Assessment}{section.5.9}{}}
+\newlabel{sec:reproducibility@cref}{{[section][9][5]5.9}{[1][59][]60}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.8}{\ignorespaces Reproducibility tier classification of evaluation metrics.}}{60}{table.caption.37}\protected@file@percent }
+\newlabel{tab:reproducibility-tiers}{{5.8}{60}{Reproducibility tier classification of evaluation metrics}{table.caption.37}{}}
+\newlabel{tab:reproducibility-tiers@cref}{{[table][8][5]5.8}{[1][60][]60}{}{}{}}
 \abx@aux@cite{0}{lin2025}
 \abx@aux@segm{0}{0}{lin2025}
 \abx@aux@cite{0}{xu2024}
@@ -702,134 +735,126 @@
 \abx@aux@segm{0}{0}{cambria2016}
 \abx@aux@cite{0}{cambria2024}
 \abx@aux@segm{0}{0}{cambria2024}
-\abx@aux@cite{0}{yuan2025}
-\abx@aux@segm{0}{0}{yuan2025}
 \abx@aux@cite{0}{hannun2023}
 \abx@aux@segm{0}{0}{hannun2023}
 \abx@aux@cite{0}{beattie2025}
 \abx@aux@segm{0}{0}{beattie2025}
 \abx@aux@cite{0}{faraone2021}
 \abx@aux@segm{0}{0}{faraone2021}
-\@writefile{toc}{\contentsline {section}{\numberline {5.8}Reproducibility Assessment}{57}{section.5.8}\protected@file@percent }
-\newlabel{sec:reproducibility}{{5.8}{57}{Reproducibility Assessment}{section.5.8}{}}
-\newlabel{sec:reproducibility@cref}{{[section][8][5]5.8}{[1][55][]57}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.8}{\ignorespaces Reproducibility tier classification of evaluation metrics.}}{57}{table.caption.36}\protected@file@percent }
-\newlabel{tab:reproducibility-tiers}{{5.8}{57}{Reproducibility tier classification of evaluation metrics}{table.caption.36}{}}
-\newlabel{tab:reproducibility-tiers@cref}{{[table][8][5]5.8}{[1][57][]57}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.9}Evaluation Against Objectives}{57}{section.5.9}\protected@file@percent }
-\newlabel{sec:objectives-evaluation}{{5.9}{57}{Evaluation Against Objectives}{section.5.9}{}}
-\newlabel{sec:objectives-evaluation@cref}{{[section][9][5]5.9}{[1][57][]57}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.9}{\ignorespaces Objective-to-result traceability matrix.}}{58}{table.caption.37}\protected@file@percent }
-\newlabel{tab:traceability-matrix}{{5.9}{58}{Objective-to-result traceability matrix}{table.caption.37}{}}
-\newlabel{tab:traceability-matrix@cref}{{[table][9][5]5.9}{[1][57][]58}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.9.1}Summary of Findings}{58}{subsection.5.9.1}\protected@file@percent }
-\newlabel{subsec:evaluation-summary}{{5.9.1}{58}{Summary of Findings}{subsection.5.9.1}{}}
-\newlabel{subsec:evaluation-summary@cref}{{[subsection][1][5,9]5.9.1}{[1][57][]58}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.10}Evaluation Against Objectives}{61}{section.5.10}\protected@file@percent }
+\newlabel{sec:objectives-evaluation}{{5.10}{61}{Evaluation Against Objectives}{section.5.10}{}}
+\newlabel{sec:objectives-evaluation@cref}{{[section][10][5]5.10}{[1][60][]61}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.9}{\ignorespaces Objective-to-result traceability matrix.}}{61}{table.caption.38}\protected@file@percent }
+\newlabel{tab:traceability-matrix}{{5.9}{61}{Objective-to-result traceability matrix}{table.caption.38}{}}
+\newlabel{tab:traceability-matrix@cref}{{[table][9][5]5.9}{[1][61][]61}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10.1}Summary of Findings}{61}{subsection.5.10.1}\protected@file@percent }
+\newlabel{subsec:evaluation-summary}{{5.10.1}{61}{Summary of Findings}{subsection.5.10.1}{}}
+\newlabel{subsec:evaluation-summary@cref}{{[subsection][1][5,10]5.10.1}{[1][61][]61}{}{}{}}
 \abx@aux@cite{0}{reimers2019}
 \abx@aux@segm{0}{0}{reimers2019}
 \abx@aux@cite{0}{hannun2023}
 \abx@aux@segm{0}{0}{hannun2023}
 \abx@aux@cite{0}{yang2025}
 \abx@aux@segm{0}{0}{yang2025}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{59}{chapter.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{63}{chapter.6}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:conclusion}{{6}{59}{Conclusion and Future Work}{chapter.6}{}}
-\newlabel{ch:conclusion@cref}{{[chapter][6][]6}{[1][59][]59}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Summary of Achievements}{59}{section.6.1}\protected@file@percent }
-\newlabel{sec:summary-achievements}{{6.1}{59}{Summary of Achievements}{section.6.1}{}}
-\newlabel{sec:summary-achievements@cref}{{[section][1][6]6.1}{[1][59][]59}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Limitations}{60}{section.6.2}\protected@file@percent }
-\newlabel{sec:limitations}{{6.2}{60}{Limitations}{section.6.2}{}}
-\newlabel{sec:limitations@cref}{{[section][2][6]6.2}{[1][59][]60}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Future Work}{60}{section.6.3}\protected@file@percent }
-\newlabel{sec:future-work}{{6.3}{60}{Future Work}{section.6.3}{}}
-\newlabel{sec:future-work@cref}{{[section][3][6]6.3}{[1][60][]60}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.4}Lessons Learned}{61}{section.6.4}\protected@file@percent }
-\newlabel{sec:lessons-learned}{{6.4}{61}{Lessons Learned}{section.6.4}{}}
-\newlabel{sec:lessons-learned@cref}{{[section][4][6]6.4}{[1][61][]61}{}{}{}}
-\@writefile{toc}{\contentsline {chapter}{References}{63}{chapter*.38}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}User Guide and Screenshots}{69}{appendix.A}\protected@file@percent }
+\newlabel{ch:conclusion}{{6}{63}{Conclusion and Future Work}{chapter.6}{}}
+\newlabel{ch:conclusion@cref}{{[chapter][6][]6}{[1][63][]63}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Summary of Achievements}{63}{section.6.1}\protected@file@percent }
+\newlabel{sec:summary-achievements}{{6.1}{63}{Summary of Achievements}{section.6.1}{}}
+\newlabel{sec:summary-achievements@cref}{{[section][1][6]6.1}{[1][63][]63}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Limitations}{64}{section.6.2}\protected@file@percent }
+\newlabel{sec:limitations}{{6.2}{64}{Limitations}{section.6.2}{}}
+\newlabel{sec:limitations@cref}{{[section][2][6]6.2}{[1][63][]64}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Future Work}{64}{section.6.3}\protected@file@percent }
+\newlabel{sec:future-work}{{6.3}{64}{Future Work}{section.6.3}{}}
+\newlabel{sec:future-work@cref}{{[section][3][6]6.3}{[1][64][]64}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Lessons Learned}{65}{section.6.4}\protected@file@percent }
+\newlabel{sec:lessons-learned}{{6.4}{65}{Lessons Learned}{section.6.4}{}}
+\newlabel{sec:lessons-learned@cref}{{[section][4][6]6.4}{[1][65][]65}{}{}{}}
+\@writefile{toc}{\contentsline {chapter}{References}{67}{chapter*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}User Guide and Screenshots}{73}{appendix.A}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{app:user-guide}{{A}{69}{User Guide and Screenshots}{appendix.A}{}}
-\newlabel{app:user-guide@cref}{{[chapter][1][]A}{[1][69][]69}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {A.1}Prerequisites}{69}{section.A.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A.2}Installation}{69}{section.A.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A.3}Application Walkthrough}{70}{section.A.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.3.1}Menu Bar Application}{70}{subsection.A.3.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {A.1}{\ignorespaces Notch-based UX flow showing the five interaction states: dormant, ambient, glanceable, expanded, and alert.}}{71}{figure.caption.39}\protected@file@percent }
-\newlabel{fig:app-notch-flow}{{A.1}{71}{Notch-based UX flow showing the five interaction states: dormant, ambient, glanceable, expanded, and alert}{figure.caption.39}{}}
-\newlabel{fig:app-notch-flow@cref}{{[figure][1][1]A.1}{[1][70][]71}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.3.2}Chat Interface and Brain Dump}{72}{subsection.A.3.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {A.2}{\ignorespaces Brain dump and vent chat modals for rapid thought capture and conversational coaching.}}{72}{figure.caption.40}\protected@file@percent }
-\newlabel{fig:app-braindump}{{A.2}{72}{Brain dump and vent chat modals for rapid thought capture and conversational coaching}{figure.caption.40}{}}
-\newlabel{fig:app-braindump@cref}{{[figure][2][1]A.2}{[1][72][]72}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.3.3}Intervention Popup}{72}{subsection.A.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.3.4}React Dashboard}{72}{subsection.A.3.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {A.3}{\ignorespaces Notch expanded state showing a JITAI intervention with action buttons.}}{73}{figure.caption.41}\protected@file@percent }
-\newlabel{fig:app-intervention}{{A.3}{73}{Notch expanded state showing a JITAI intervention with action buttons}{figure.caption.41}{}}
-\newlabel{fig:app-intervention@cref}{{[figure][3][1]A.3}{[1][72][]73}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.3.5}Settings Panel}{73}{subsection.A.3.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {A.4}{\ignorespaces React dashboard displaying emotion timeline, productivity metrics, and session insights.}}{74}{figure.caption.42}\protected@file@percent }
-\newlabel{fig:app-dashboard}{{A.4}{74}{React dashboard displaying emotion timeline, productivity metrics, and session insights}{figure.caption.42}{}}
-\newlabel{fig:app-dashboard@cref}{{[figure][4][1]A.4}{[1][72][]74}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {A.5}{\ignorespaces Settings panel showing permission configuration options.}}{75}{figure.caption.43}\protected@file@percent }
-\newlabel{fig:app-settings}{{A.5}{75}{Settings panel showing permission configuration options}{figure.caption.43}{}}
-\newlabel{fig:app-settings@cref}{{[figure][5][1]A.5}{[1][73][]75}{}{}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}Additional Test Results}{76}{appendix.B}\protected@file@percent }
+\newlabel{app:user-guide}{{A}{73}{User Guide and Screenshots}{appendix.A}{}}
+\newlabel{app:user-guide@cref}{{[chapter][1][]A}{[1][73][]73}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.1}Prerequisites}{73}{section.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A.2}Installation}{73}{section.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A.3}Application Walkthrough}{74}{section.A.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3.1}Menu Bar Application}{74}{subsection.A.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {A.1}{\ignorespaces Notch-based UX flow showing the five interaction states: dormant, ambient, glanceable, expanded, and alert.}}{75}{figure.caption.40}\protected@file@percent }
+\newlabel{fig:app-notch-flow}{{A.1}{75}{Notch-based UX flow showing the five interaction states: dormant, ambient, glanceable, expanded, and alert}{figure.caption.40}{}}
+\newlabel{fig:app-notch-flow@cref}{{[figure][1][1]A.1}{[1][74][]75}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3.2}Chat Interface and Brain Dump}{76}{subsection.A.3.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {A.2}{\ignorespaces Brain dump and vent chat modals for rapid thought capture and conversational coaching.}}{76}{figure.caption.41}\protected@file@percent }
+\newlabel{fig:app-braindump}{{A.2}{76}{Brain dump and vent chat modals for rapid thought capture and conversational coaching}{figure.caption.41}{}}
+\newlabel{fig:app-braindump@cref}{{[figure][2][1]A.2}{[1][76][]76}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3.3}Intervention Popup}{76}{subsection.A.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3.4}React Dashboard}{76}{subsection.A.3.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {A.3}{\ignorespaces Notch expanded state showing a JITAI intervention with action buttons.}}{77}{figure.caption.42}\protected@file@percent }
+\newlabel{fig:app-intervention}{{A.3}{77}{Notch expanded state showing a JITAI intervention with action buttons}{figure.caption.42}{}}
+\newlabel{fig:app-intervention@cref}{{[figure][3][1]A.3}{[1][76][]77}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3.5}Settings Panel}{77}{subsection.A.3.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {A.4}{\ignorespaces React dashboard displaying emotion timeline, productivity metrics, and session insights.}}{78}{figure.caption.43}\protected@file@percent }
+\newlabel{fig:app-dashboard}{{A.4}{78}{React dashboard displaying emotion timeline, productivity metrics, and session insights}{figure.caption.43}{}}
+\newlabel{fig:app-dashboard@cref}{{[figure][4][1]A.4}{[1][76][]78}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {A.5}{\ignorespaces Settings panel showing permission configuration options.}}{79}{figure.caption.44}\protected@file@percent }
+\newlabel{fig:app-settings}{{A.5}{79}{Settings panel showing permission configuration options}{figure.caption.44}{}}
+\newlabel{fig:app-settings@cref}{{[figure][5][1]A.5}{[1][77][]79}{}{}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}Additional Test Results}{80}{appendix.B}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{app:test-results}{{B}{76}{Additional Test Results}{appendix.B}{}}
-\newlabel{app:test-results@cref}{{[chapter][2][]B}{[1][76][]76}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.1}LLM Inference Benchmark}{76}{section.B.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.1}{\ignorespaces Detailed LLM inference benchmark results (Qwen3-4B, 4-bit, MLX).}}{76}{table.caption.44}\protected@file@percent }
-\newlabel{tab:llm-benchmark-detail}{{B.1}{76}{Detailed LLM inference benchmark results (Qwen3-4B, 4-bit, MLX)}{table.caption.44}{}}
-\newlabel{tab:llm-benchmark-detail@cref}{{[table][1][2]B.1}{[1][76][]76}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.2}SenticNet Pipeline Latency}{76}{section.B.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {B.3}Confusion Matrices}{76}{section.B.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.2}{\ignorespaces SenticNet pipeline latency by input length (13 API calls per execution).}}{77}{table.caption.45}\protected@file@percent }
-\newlabel{tab:senticnet-latency-detail}{{B.2}{77}{SenticNet pipeline latency by input length (13 API calls per execution)}{table.caption.45}{}}
-\newlabel{tab:senticnet-latency-detail@cref}{{[table][2][2]B.2}{[1][76][]77}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.3.1}SetFit Production Model (86\% Accuracy)}{77}{subsection.B.3.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.3}{\ignorespaces Confusion matrix for the SetFit production model (rows: true labels, columns: predicted labels).}}{77}{table.caption.46}\protected@file@percent }
-\newlabel{tab:cm-setfit}{{B.3}{77}{Confusion matrix for the SetFit production model (rows: true labels, columns: predicted labels)}{table.caption.46}{}}
-\newlabel{tab:cm-setfit@cref}{{[table][3][2]B.3}{[1][76][]77}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.3.2}Hybrid Approach (74\% Accuracy, Embedding Only)}{77}{subsection.B.3.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.4}{\ignorespaces Confusion matrix for the hybrid embedding-only model.}}{77}{table.caption.47}\protected@file@percent }
-\newlabel{tab:cm-hybrid}{{B.4}{77}{Confusion matrix for the hybrid embedding-only model}{table.caption.47}{}}
-\newlabel{tab:cm-hybrid@cref}{{[table][4][2]B.4}{[1][77][]77}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.4}Energy Consumption Detail}{77}{section.B.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.5}{\ignorespaces Raw energy measurements across two benchmark runs (seed 42).}}{78}{table.caption.48}\protected@file@percent }
-\newlabel{tab:energy-detail}{{B.5}{78}{Raw energy measurements across two benchmark runs (seed 42)}{table.caption.48}{}}
-\newlabel{tab:energy-detail@cref}{{[table][5][2]B.5}{[1][77][]78}{}{}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {B.6}{\ignorespaces Idle power consumption with the application loaded but no inference running.}}{78}{table.caption.49}\protected@file@percent }
-\newlabel{tab:idle-power}{{B.6}{78}{Idle power consumption with the application loaded but no inference running}{table.caption.49}{}}
-\newlabel{tab:idle-power@cref}{{[table][6][2]B.6}{[1][77][]78}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.5}Idle Power Baseline}{78}{section.B.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {B.6}Persona Simulation Summary}{78}{section.B.6}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {B.7}{\ignorespaces Synthetic ADHD persona definitions used in system evaluation.}}{78}{table.caption.50}\protected@file@percent }
-\newlabel{tab:personas}{{B.7}{78}{Synthetic ADHD persona definitions used in system evaluation}{table.caption.50}{}}
-\newlabel{tab:personas@cref}{{[table][7][2]B.7}{[1][78][]78}{}{}{}}
+\newlabel{app:test-results}{{B}{80}{Additional Test Results}{appendix.B}{}}
+\newlabel{app:test-results@cref}{{[chapter][2][]B}{[1][80][]80}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.1}LLM Inference Benchmark}{80}{section.B.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.1}{\ignorespaces Detailed LLM inference benchmark results (Qwen3-4B, 4-bit, MLX).}}{80}{table.caption.45}\protected@file@percent }
+\newlabel{tab:llm-benchmark-detail}{{B.1}{80}{Detailed LLM inference benchmark results (Qwen3-4B, 4-bit, MLX)}{table.caption.45}{}}
+\newlabel{tab:llm-benchmark-detail@cref}{{[table][1][2]B.1}{[1][80][]80}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.2}SenticNet Pipeline Latency}{80}{section.B.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B.3}Confusion Matrices}{80}{section.B.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.2}{\ignorespaces SenticNet pipeline latency by input length (13 API calls per execution).}}{81}{table.caption.46}\protected@file@percent }
+\newlabel{tab:senticnet-latency-detail}{{B.2}{81}{SenticNet pipeline latency by input length (13 API calls per execution)}{table.caption.46}{}}
+\newlabel{tab:senticnet-latency-detail@cref}{{[table][2][2]B.2}{[1][80][]81}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.3.1}SetFit Production Model (86\% Accuracy)}{81}{subsection.B.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.3}{\ignorespaces Confusion matrix for the SetFit production model (rows: true labels, columns: predicted labels).}}{81}{table.caption.47}\protected@file@percent }
+\newlabel{tab:cm-setfit}{{B.3}{81}{Confusion matrix for the SetFit production model (rows: true labels, columns: predicted labels)}{table.caption.47}{}}
+\newlabel{tab:cm-setfit@cref}{{[table][3][2]B.3}{[1][80][]81}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.3.2}Hybrid Approach (74\% Accuracy, Embedding Only)}{81}{subsection.B.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.4}{\ignorespaces Confusion matrix for the hybrid embedding-only model.}}{81}{table.caption.48}\protected@file@percent }
+\newlabel{tab:cm-hybrid}{{B.4}{81}{Confusion matrix for the hybrid embedding-only model}{table.caption.48}{}}
+\newlabel{tab:cm-hybrid@cref}{{[table][4][2]B.4}{[1][81][]81}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.4}Energy Consumption Detail}{81}{section.B.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.5}{\ignorespaces Raw energy measurements across two benchmark runs (seed 42).}}{82}{table.caption.49}\protected@file@percent }
+\newlabel{tab:energy-detail}{{B.5}{82}{Raw energy measurements across two benchmark runs (seed 42)}{table.caption.49}{}}
+\newlabel{tab:energy-detail@cref}{{[table][5][2]B.5}{[1][81][]82}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {B.6}{\ignorespaces Idle power consumption with the application loaded but no inference running.}}{82}{table.caption.50}\protected@file@percent }
+\newlabel{tab:idle-power}{{B.6}{82}{Idle power consumption with the application loaded but no inference running}{table.caption.50}{}}
+\newlabel{tab:idle-power@cref}{{[table][6][2]B.6}{[1][81][]82}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.5}Idle Power Baseline}{82}{section.B.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B.6}Persona Simulation Summary}{82}{section.B.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {B.7}{\ignorespaces Synthetic ADHD persona definitions used in system evaluation.}}{82}{table.caption.51}\protected@file@percent }
+\newlabel{tab:personas}{{B.7}{82}{Synthetic ADHD persona definitions used in system evaluation}{table.caption.51}{}}
+\newlabel{tab:personas@cref}{{[table][7][2]B.7}{[1][82][]82}{}{}{}}
 \gdef \LT@ii {\LT@entry 
     {1}{45.99567pt}\LT@entry 
     {4}{209.55177pt}\LT@entry 
     {1}{190.9429pt}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {C}API Documentation}{79}{appendix.C}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {C}API Documentation}{83}{appendix.C}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{app:api-docs}{{C}{79}{API Documentation}{appendix.C}{}}
-\newlabel{app:api-docs@cref}{{[chapter][3][]C}{[1][79][]79}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {C.1}Endpoint Summary}{79}{section.C.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {C.2}Core Endpoints}{80}{section.C.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.2.1}POST /chat/message}{80}{subsection.C.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.2.2}POST /screen/activity}{80}{subsection.C.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.2.3}POST /api/v1/vent/chat/stream}{81}{subsection.C.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.2.4}POST /interventions/\{id\}/respond}{82}{subsection.C.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {C.3}Data Model Schemas}{82}{section.C.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.3.1}EmotionDetail}{82}{subsection.C.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.3.2}Intervention}{83}{subsection.C.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.3.3}ScreenActivityInput}{83}{subsection.C.3.3}\protected@file@percent }
+\newlabel{app:api-docs}{{C}{83}{API Documentation}{appendix.C}{}}
+\newlabel{app:api-docs@cref}{{[chapter][3][]C}{[1][83][]83}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C.1}Endpoint Summary}{83}{section.C.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {C.2}Core Endpoints}{84}{section.C.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.2.1}POST /chat/message}{84}{subsection.C.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.2.2}POST /screen/activity}{84}{subsection.C.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.2.3}POST /api/v1/vent/chat/stream}{85}{subsection.C.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.2.4}POST /interventions/\{id\}/respond}{86}{subsection.C.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {C.3}Data Model Schemas}{86}{section.C.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.3.1}EmotionDetail}{86}{subsection.C.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.3.2}Intervention}{87}{subsection.C.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.3.3}ScreenActivityInput}{87}{subsection.C.3.3}\protected@file@percent }
 \abx@aux@read@bbl@mdfivesum{8F7F87290E1F41F5802CE37C351A1B6A}
 \abx@aux@defaultrefcontext{0}{diamond2013}{none/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{faraone2021}{none/global//global/global/global}
@@ -879,4 +904,4 @@
 \abx@aux@defaultrefcontext{0}{mongeroffarello2023}{none/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{parry2022}{none/global//global/global/global}
 \abx@aux@defaultrefcontext{0}{almansoori2023}{none/global//global/global/global}
-\gdef \@abspage@last{101}
+\gdef \@abspage@last{105}

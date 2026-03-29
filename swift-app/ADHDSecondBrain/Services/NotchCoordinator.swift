@@ -43,6 +43,7 @@ class NotchCoordinator {
         viewModel.currentEmotion = bridge.currentEmotion
         viewModel.currentIntervention = bridge.pendingIntervention
         viewModel.dailyProgress = bridge.dailyProgress
+        viewModel.isOffTask = bridge.isOffTask
 
         stateMachine.currentEmotion = bridge.currentEmotion
 
@@ -63,7 +64,7 @@ class NotchCoordinator {
     }
 
     private func tierFromIntervention(_ msg: InterventionMessage) -> InterventionTier {
-        .gentle
+        msg.interventionTier
     }
 
     func openGoogleCalendarAuth() {
@@ -80,5 +81,28 @@ class NotchCoordinator {
 
     func acknowledgeIntervention(_ id: String) {
         Task { await bridge.acknowledgeIntervention(id) }
+    }
+
+    func toggleFocus() {
+        Task { await bridge.toggleFocusSession() }
+    }
+
+    /// Create a new task and start focus — transitions notch to glanceable.
+    func createTaskAndStartFocus(name: String, duration: FocusDuration) {
+        Task {
+            let _ = await bridge.createTaskAndStartFocus(
+                name: name,
+                durationSeconds: Int(duration.seconds)
+            )
+            // Force an immediate sync so the notch picks up the new task
+            sync()
+            // Always transition to glanceable so the user sees the timer immediately
+            switch stateMachine.currentState {
+            case .dormant, .ambient, .expanded:
+                stateMachine.transition(to: .glanceable)
+            case .glanceable, .alert:
+                break // Already showing task info
+            }
+        }
     }
 }

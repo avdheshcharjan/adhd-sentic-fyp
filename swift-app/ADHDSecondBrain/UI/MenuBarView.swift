@@ -98,6 +98,10 @@ struct MenuBarView: View {
                 openWindow(id: "dashboard")
             }
 
+            actionButton(label: "View History", color: ADHDColors.Text.secondary) {
+                openWindow(id: "history")
+            }
+
             SettingsLink {
                 actionRow(label: "Settings", color: ADHDColors.Text.secondary)
             }

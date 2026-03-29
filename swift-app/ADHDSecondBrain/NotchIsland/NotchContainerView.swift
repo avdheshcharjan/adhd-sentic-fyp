@@ -15,6 +15,10 @@ struct NotchContainerView: View {
     var stateMachine: NotchStateMachine
     var viewModel: NotchViewModel
     var onConnectCalendar: (() -> Void)?
+    var onCapture: ((String) -> Void)?
+    var onCompleteTask: ((String) -> Void)?
+    var onAcknowledgeIntervention: ((String) -> Void)?
+    var onToggleFocus: (() -> Void)?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     // Hover state (boring.notch pattern)
@@ -46,12 +50,13 @@ struct NotchContainerView: View {
                 .padding(-50)
 
             // Emotion glow border (behind content, inside mask)
-            // Visible on all states except dormant and ambient.
+            // Visible on all states except dormant (and ambient unless off-task).
             if stateMachine.currentState != .dormant
-                && stateMachine.currentState != .ambient {
+                && (stateMachine.currentState != .ambient || viewModel.isOffTask) {
                 EmotionGlowBorder(
                     emotion: viewModel.currentEmotion,
-                    notchState: stateMachine.currentState
+                    notchState: stateMachine.currentState,
+                    isOffTask: viewModel.isOffTask
                 )
             }
 
@@ -111,14 +116,14 @@ struct NotchContainerView: View {
         case .ambient:
             AmbientView(
                 taskName: viewModel.currentTaskName,
-                nextEventCountdown: viewModel.nextEventCountdown
+                session: viewModel.focusSession
             )
             .transition(reduceMotion ? .opacity : .notchAmbient)
             .zIndex(1)
         case .glanceable:
             GlanceableView(
                 task: viewModel.currentTask,
-                timeRemaining: viewModel.focusTimeRemaining,
+                session: viewModel.focusSession,
                 emotion: viewModel.currentEmotion
             )
             .transition(reduceMotion ? .opacity : .notchCompact)
@@ -126,7 +131,10 @@ struct NotchContainerView: View {
         case .expanded:
             ExpandedPanelView(
                 viewModel: viewModel,
-                onConnectCalendar: onConnectCalendar
+                onConnectCalendar: onConnectCalendar,
+                onCapture: onCapture,
+                onCompleteTask: onCompleteTask,
+                onToggleFocus: onToggleFocus
             )
             .transition(reduceMotion ? .opacity : .notchExpand)
             .zIndex(1)
@@ -135,6 +143,9 @@ struct NotchContainerView: View {
                 tier: tier,
                 message: viewModel.currentIntervention,
                 onAcknowledge: {
+                    if let id = viewModel.currentIntervention?.id {
+                        onAcknowledgeIntervention?(id)
+                    }
                     stateMachine.transition(to: .glanceable)
                 }
             )
@@ -160,8 +171,8 @@ struct NotchContainerView: View {
 
     private var currentWidth: CGFloat {
         switch stateMachine.currentState {
-        case .dormant: 180
-        case .ambient: 200
+        case .dormant: ADHDSpacing.hardwareNotchWidth
+        case .ambient: ADHDSpacing.hardwareNotchWidth + 20
         case .glanceable: ADHDSpacing.notchGlanceWidth
         case .expanded: ADHDSpacing.notchExpandedWidth
         case .alert: ADHDSpacing.notchGlanceWidth
@@ -170,8 +181,8 @@ struct NotchContainerView: View {
 
     private var currentHeight: CGFloat {
         switch stateMachine.currentState {
-        case .dormant: 28
-        case .ambient: 28
+        case .dormant: ADHDSpacing.hardwareNotchHeight
+        case .ambient: ADHDSpacing.hardwareNotchHeight
         case .glanceable: ADHDSpacing.notchGlanceHeight
         case .expanded: ADHDSpacing.notchExpandedHeight
         case .alert: 80
@@ -213,9 +224,9 @@ struct NotchContainerView: View {
         }
     }
 
-    /// Accent glow shadow color — steel blue for normal states, red for alert
+    /// Accent glow shadow color — steel blue for normal states, red for alert or off-task
     private var currentGlowColor: Color {
-        isAlertState ? ADHDColors.Accent.alert : ADHDColors.Accent.focus
+        (isAlertState || viewModel.isOffTask) ? ADHDColors.Accent.alert : ADHDColors.Accent.focus
     }
 
     private var currentGlowOpacity: Double {
@@ -284,6 +295,7 @@ struct NotchContainerView: View {
         switch stateMachine.currentState {
         case .expanded:
             break // Click-away handled externally
+//            stateMachine.transition(to: .glanceable)
         default:
             stateMachine.transition(to: .expanded)
         }

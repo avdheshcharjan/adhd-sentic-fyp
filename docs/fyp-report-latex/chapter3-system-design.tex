@@ -129,7 +129,7 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
 
 \textbf{External Services.} Four external services are used selectively: SenticNet Cloud (thirteen affective computing APIs)~\cite{cambria2024}, Whoop API~v2 (physiological metrics), Claude Sonnet (complex reasoning), and GPT-4o-mini (high-frequency classification and summarisation). A routing heuristic governs external LLM selection based on query complexity and latency requirements.
 
-\textbf{Data Flows.} The architecture supports two data flows with distinct latency targets. The \emph{Hot Path} handles screen monitoring events within 100\,ms (activity classification, metric computation, intervention evaluation). The \emph{Warm Path} handles conversational interactions within 3\,s (affective analysis, LLM generation, memory persistence). These are detailed in \Cref{sec:screen_monitoring} and \Cref{sec:affective_computing}; \Cref{fig:data_flows} illustrates both flows.
+\textbf{Data Flows.} The architecture supports two data flows with distinct latency targets. The \emph{Hot Path} handles screen monitoring events within 100\,ms (activity classification, metric computation, SetFit emotion prediction, and intervention evaluation with emotion context). The \emph{Warm Path} handles conversational interactions within 3\,s (affective analysis, LLM generation, memory persistence). These are detailed in \Cref{sec:screen_monitoring} and \Cref{sec:affective_computing}; \Cref{fig:data_flows} illustrates both flows.
 
 % --- MERMAID BACKUP ---
 % flowchart LR
@@ -137,7 +137,8 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
 %     direction TB
 %     H1[Swift App] --> H2[Activity Classifier]
 %     H2 --> H3[ADHD Metrics Engine]
-%     H3 --> H4[JITAI Engine]
+%     H3 --> H3b[SetFit Emotion]
+%     H3b --> H4[JITAI Engine]
 %     H4 --> H5[Persist to PG]
 %   end
 %   subgraph WarmPath["Warm Path (<3s)"]
@@ -153,7 +154,7 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
 \begin{figure}[htbp]
   \centering
   \begin{tikzpicture}[
-    node distance=0.85cm,
+    node distance=0.75cm,
     every node/.style={font=\small\sffamily},
     hotbox/.style={
       rectangle, rounded corners=3pt, draw=blue!60!black, thick,
@@ -170,12 +171,14 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
     \node[hotbox] (h1) {Swift App};
     \node[hotbox, below=of h1] (h2) {Activity Classifier};
     \node[hotbox, below=of h2] (h3) {ADHD Metrics Engine};
-    \node[hotbox, below=of h3] (h4) {JITAI Engine};
+    \node[hotbox, below=of h3] (h3b) {SetFit Emotion\\[-2pt]{\scriptsize $<$50\,ms, confidence-gated}};
+    \node[hotbox, below=of h3b] (h4) {JITAI Engine\\[-2pt]{\scriptsize 7 rules + emotion context}};
     \node[hotbox, below=of h4] (h5) {Persist to PG};
 
     \draw[hotarr] (h1) -- (h2);
     \draw[hotarr] (h2) -- (h3);
-    \draw[hotarr] (h3) -- (h4);
+    \draw[hotarr] (h3) -- (h3b);
+    \draw[hotarr] (h3b) -- (h4);
     \draw[hotarr] (h4) -- (h5);
 
     % ── Warm Path (right column) ──
@@ -199,7 +202,7 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
       {Warm Path ($<$3\,s)};
 
   \end{tikzpicture}
-  \caption{Hot Path and Warm Path data flows. The Hot Path (solid arrows) processes screen monitoring events through activity classification, ADHD metrics computation, and JITAI evaluation within a 100\,ms budget. The Warm Path (dashed arrows) processes conversational input through safety checking, emotion analysis, LLM generation, and memory storage within a 3\,s budget.}
+  \caption{Hot Path and Warm Path data flows. The Hot Path (solid arrows) processes screen monitoring events through activity classification, ADHD metrics computation, SetFit emotion prediction, and JITAI evaluation with confidence-gated emotion context within a 100\,ms budget. The Warm Path (dashed arrows) processes conversational input through safety checking, emotion analysis, LLM generation, and memory storage within a 3\,s budget.}
   \label{fig:data_flows}
 \end{figure}
 
@@ -355,6 +358,8 @@ The Affective Computing Module combines lexicon-based sentiment analysis with co
   \end{tabular}
 \end{table}
 
+\textbf{SetFit-to-PASE Mapping for Emotion Radar.} To bridge the gap between SetFit's categorical labels and the dashboard's four-axis Emotion Radar, each SetFit label is mapped to a canonical PASE (Pleasantness, Attention, Sensitivity, Aptitude) profile. These profiles encode the typical emotional geometry of each ADHD state---for example, \emph{frustrated} maps to low pleasantness (0.15), moderate attention (0.40), high sensitivity (0.80), and low aptitude (0.30). A confidence-weighted blending function interpolates between the canonical profile and a neutral centre (all~0.5) proportional to SetFit's confidence score, ensuring that low-confidence predictions do not produce misleading radar shapes. This approach was selected over direct SenticNet Hourglass scoring because SenticNet's concept-level analysis produces unreliable values on short, informal text such as window titles.
+
 \textbf{Concept Bottleneck Model for Explainability.} The emotion classifier is wrapped in a Concept Bottleneck Model (CBM)~\cite{koh2020} to satisfy the interpretability principle. The CBM first predicts intermediate human-interpretable concepts---such as ``frustration with task switching'' or ``anxiety about deadlines''---then derives the emotion label from these concepts. This enables explanations of the form: ``You appear \emph{overwhelmed} because the system detected high task-switching frequency and negative polarity toward the current assignment.'' Such explanations support metacognitive awareness, a known protective factor in ADHD self-regulation~\cite{diamond2013}.
 
 
@@ -492,7 +497,7 @@ The Screen Monitoring Module implements the Hot Path, continuously observing des
 
 The Intervention System implements a Just-In-Time Adaptive Intervention (JITAI) framework grounded in Barkley's five executive function domains: inhibition, working memory, emotional self-regulation, self-motivation, and planning/problem-solving~\cite{barkley2010}. Informed by Diamond's EF development framework~\cite{diamond2013}, the system delivers targeted micro-interventions at moments of detected executive dysfunction.
 
-\textbf{JITAI Engine.} The engine consumes real-time metrics from the ADHD Metrics Engine (\Cref{sec:screen_monitoring}) and emotional state from the Affective Computing Module (\Cref{sec:affective_computing}), evaluating intervention rules associated with each EF domain in under 2\,ms.
+\textbf{JITAI Engine.} The engine consumes real-time metrics from the ADHD Metrics Engine (\Cref{sec:screen_monitoring}) and a confidence-gated emotion context from the SetFit classifier (\Cref{sec:affective_computing}), evaluating seven intervention rules associated with each EF domain in under 2\,ms. The seven rules span four EF domains: Rule~1 targets distraction spirals (self-restraint); Rule~2 targets sustained disengagement (self-motivation); Rule~3 targets hyperfocus on the wrong task (self-management of time); and Rules~4a--4d target emotion-driven states (self-regulation of emotion and self-motivation). Rules~4a--4d are enabled by SetFit predictions wired through the screen activity hot path: Rule~4a fires on \emph{overwhelmed} states (emotional escalation), Rule~4b on \emph{frustrated} combined with high context-switching (frustration spiral), Rule~4c on \emph{anxious} combined with high distraction (anxiety distraction), and Rule~4d on persistent \emph{disengaged} states exceeding 10~minutes (emotion disengagement). Each emotion-based rule is gated by SetFit confidence---thresholds of 0.7 for overwhelmed, frustrated, and anxious, and 0.6 for disengaged---to prevent false-positive interruptions that would be particularly disruptive for ADHD users.
 
 \textbf{Thompson Sampling for Personalisation.} Because ADHD symptom profiles are heterogeneous, the engine employs Thompson Sampling---a Bayesian bandit algorithm---to learn which intervention types are most effective per user. Each type maintains a Beta distribution updated by observed successes and failures, converging over time to preferentially select high-efficacy interventions. \Cref{fig:jitai_loop} illustrates the complete evaluation and personalisation loop.
 
@@ -532,10 +537,10 @@ The Intervention System implements a Just-In-Time Adaptive Intervention (JITAI) 
   ]
     % Inputs
     \node[inputbox] (metrics) {Real-Time Metrics\\[-2pt]{\scriptsize Focus, Switches, Distraction}};
-    \node[inputbox, right=1.6cm of metrics] (emotion) {Emotional State\\[-2pt]{\scriptsize SenticNet Pipeline}};
+    \node[inputbox, right=1.6cm of metrics] (emotion) {Emotional State\\[-2pt]{\scriptsize SetFit Classifier}};
 
     % EF Evaluation
-    \node[procbox, below=0.9cm of $(metrics)!0.5!(emotion)$] (eval) {EF Domain Evaluation\\[-2pt]{\scriptsize 5 Barkley domains, $<$2\,ms}};
+    \node[procbox, below=0.9cm of $(metrics)!0.5!(emotion)$] (eval) {EF Domain Evaluation\\[-2pt]{\scriptsize 7 rules, 4 Barkley domains, $<$2\,ms}};
 
     % Decision
     \node[decbox, below=0.9cm of eval] (decide) {Intervene?};
@@ -563,7 +568,7 @@ The Intervention System implements a Just-In-Time Adaptive Intervention (JITAI) 
     \draw[arr] (update.west) -- ++(-1.8,0) |- (thompson.west);
 
   \end{tikzpicture}
-  \caption{JITAI evaluation and personalisation loop. Real-time metrics and emotional state feed into the five-domain executive function evaluation. When intervention is warranted, Thompson Sampling selects the intervention type, and user responses update the Beta distribution parameters for subsequent decisions.}
+  \caption{JITAI evaluation and personalisation loop. Real-time metrics and confidence-gated SetFit emotion context feed into the seven-rule executive function evaluation across four Barkley domains. When intervention is warranted, Thompson Sampling selects the intervention type, and user responses update the Beta distribution parameters for subsequent decisions.}
   \label{fig:jitai_loop}
 \end{figure}
 

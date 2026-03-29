@@ -369,6 +369,8 @@ private struct FocusSessionsSettingsPage: View {
     @AppStorage("autoDetectSessions")      private var autoDetectSessions: Bool      = true
     @AppStorage("hyperfocusProtection")    private var hyperfocusProtection: Bool    = false
     @AppStorage("maxInterventionsPerBlock") private var maxInterventionsPerBlock: Int = 3
+    @AppStorage("offTaskAlerts")            private var offTaskAlerts: Bool            = true
+    @AppStorage("offTaskAlertsAlways")      private var offTaskAlertsAlways: Bool      = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -411,6 +413,20 @@ private struct FocusSessionsSettingsPage: View {
                     description: "Limit nudges within a 90-minute window",
                     valueText: "\(maxInterventionsPerBlock)"
                 )
+
+                SettingsToggleRow(
+                    label: "Off-task alerts",
+                    description: "Blink the notch red when you drift to irrelevant apps during focus",
+                    isOn: $offTaskAlerts
+                )
+
+                SettingsToggleRow(
+                    label: "Alert even without active task",
+                    description: "Flag high-suspicion categories even when no focus task is running",
+                    isOn: $offTaskAlertsAlways
+                )
+                .disabled(!offTaskAlerts)
+                .opacity(offTaskAlerts ? 1.0 : 0.5)
             }
         }
         .padding(.vertical, 24)
@@ -501,6 +517,7 @@ private struct WhoopSettingsPage: View {
     @State private var isConnected: Bool = false
     @State private var lastSyncTime: Date? = nil
     @State private var isCheckingStatus: Bool = false
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -550,6 +567,9 @@ private struct WhoopSettingsPage: View {
         .frame(maxWidth: .infinity, alignment: .topLeading)
         .task {
             await checkWhoopStatus()
+        }
+        .onReceive(timer) { _ in
+            Task { await checkWhoopStatus() }
         }
     }
 
@@ -1073,6 +1093,7 @@ private struct SettingsGoogleCalendarRow: View {
     @AppStorage("backendURL") private var backendURL: String = "localhost:8420"
     @State private var isConnected = false
     @State private var isChecking = false
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
 
     var body: some View {
         HStack(alignment: .center) {
@@ -1115,6 +1136,9 @@ private struct SettingsGoogleCalendarRow: View {
         }
         .task {
             await checkStatus()
+        }
+        .onReceive(timer) { _ in
+            Task { await checkStatus() }
         }
     }
 

@@ -2516,13 +2516,12 @@
     <bcf:citekey order="115" intorder="1">reimers2019</bcf:citekey>
     <bcf:citekey order="115" intorder="2">cambria2016</bcf:citekey>
     <bcf:citekey order="116" intorder="1">cambria2024</bcf:citekey>
-    <bcf:citekey order="117" intorder="1">yuan2025</bcf:citekey>
-    <bcf:citekey order="118" intorder="1">hannun2023</bcf:citekey>
-    <bcf:citekey order="119" intorder="1">beattie2025</bcf:citekey>
-    <bcf:citekey order="119" intorder="2">faraone2021</bcf:citekey>
-    <bcf:citekey order="120" intorder="1">reimers2019</bcf:citekey>
-    <bcf:citekey order="121" intorder="1">hannun2023</bcf:citekey>
-    <bcf:citekey order="121" intorder="2">yang2025</bcf:citekey>
+    <bcf:citekey order="117" intorder="1">hannun2023</bcf:citekey>
+    <bcf:citekey order="118" intorder="1">beattie2025</bcf:citekey>
+    <bcf:citekey order="118" intorder="2">faraone2021</bcf:citekey>
+    <bcf:citekey order="119" intorder="1">reimers2019</bcf:citekey>
+    <bcf:citekey order="120" intorder="1">hannun2023</bcf:citekey>
+    <bcf:citekey order="120" intorder="2">yang2025</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

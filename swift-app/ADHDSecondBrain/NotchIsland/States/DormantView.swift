@@ -2,8 +2,7 @@ import SwiftUI
 
 /// Dormant: near-invisible. Tiny colored dot at the right edge.
 ///
-/// Paper spec:
-/// - 180×28, pure black background, bottom corners 14px radius
+/// Sized to match hardware notch (180×~37pt on notch Macs).
 /// - Dot: 6px, #457B9D at 50% opacity when no task, 100% when task active
 /// - Padding right: 8px
 struct DormantView: View {

@@ -6,6 +6,7 @@ import Combine
 extension Notification.Name {
     static let openBrainDump = Notification.Name("openBrainDump")
     static let openVentModal = Notification.Name("openVentModal")
+    static let openTaskCreation = Notification.Name("openTaskCreation")
 }
 
 /// Combines ScreenMonitor, BrowserMonitor, IdleMonitor, and TransitionDetector
@@ -21,6 +22,7 @@ class MonitorCoordinator: ObservableObject {
     @Published var latestMetrics: ADHDMetrics = ADHDMetrics()
     @Published var latestIntervention: Intervention? = nil
     @Published var isMonitoring: Bool = false
+    @Published var isOffTask: Bool = false
 
     // MARK: - Private Properties
 
@@ -119,7 +121,9 @@ class MonitorCoordinator: ObservableObject {
             windowTitle: state.windowTitle,
             url: url,
             isIdle: currentlyIdle,
-            timestamp: Self.iso8601Formatter.string(from: Date())
+            timestamp: Self.iso8601Formatter.string(from: Date()),
+            offTaskAlertsEnabled: UserDefaults.standard.bool(forKey: "offTaskAlerts"),
+            offTaskAlertsAlways: UserDefaults.standard.bool(forKey: "offTaskAlertsAlways")
         )
 
         Task {
@@ -130,6 +134,7 @@ class MonitorCoordinator: ObservableObject {
                     self.latestCategory = response.category
                     self.latestMetrics = response.metrics
                     self.latestIntervention = response.intervention
+                    self.isOffTask = response.offTask
                 }
 
                 // Handle intervention via TierManager + TransitionDetector

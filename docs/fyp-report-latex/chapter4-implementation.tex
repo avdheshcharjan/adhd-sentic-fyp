@@ -96,24 +96,18 @@ The system prompt encodes Barkley's five domains of executive function \cite{bar
 \subsection{Context Injection from Affective Analysis}
 \label{subsec:context-injection}
 
-Each coaching prompt is augmented with the emotion classification, SenticNet affective dimensions, relevant memories from Mem0, and the current screen activity classification. This context is injected as structured key-value pairs so the LLM need not infer information the system already knows.
+Each coaching prompt is augmented with the SetFit emotion label and ADHD state, SenticNet dimensional scores (intensity, engagement, wellbeing), relevant memories from Mem0, and the current screen activity classification. This context is injected as structured key-value pairs so the LLM need not infer information the system already knows.
 
 \begin{lstlisting}[language=Python, caption={Context injection into the LLM prompt (abbreviated).}, label={lst:context-injection}]
-def build_prompt(
-    user_message: str,
-    emotion: EmotionResult,
-    senticnet: SenticNetResult,
-    memories: list[Memory],
-    screen: ScreenContext,
-) -> str:
-    context_block = (
-        f"[Emotion: {emotion.label} ({emotion.confidence:.2f})]\n"
-        f"[Sentic: P={senticnet.pleasantness:.2f} "
-        f"A={senticnet.attention:.2f}]\n"
-        f"[Screen: {screen.app} - {screen.category}]\n"
-        f"[Memories: {format_memories(memories)}]\n"
-    )
-    return SYSTEM_PROMPT + context_block + user_message
+context_block = (
+    f"ADHD state: {ctx.get('primary_adhd_state')}\n"
+    f"Emotion: {ctx.get('primary_emotion')}\n"
+    f"Polarity: {ctx.get('polarity_score', 0):.0f}\n"
+    f"Intensity: {ctx.get('intensity_score', 0):.0f}\n"
+    f"Engagement: {ctx.get('engagement_score', 0):.0f}\n"
+    f"Well-being: {ctx.get('wellbeing_score', 0):.0f}\n"
+    f"Concepts: {ctx.get('concepts', [])[:5]}\n"
+)
 \end{lstlisting}
 
 Memory injection is bounded to the three most relevant memories to prevent context window overflow. Screen context enables situationally appropriate coaching---e.g., suggesting a break from coding specifically when the user has been in Xcode for 90 minutes.
@@ -292,7 +286,7 @@ An attempt to expand Approach B's training set with 288 LLM-generated sentences 
 \section{SenticNet Affective Computing Pipeline}
 \label{sec:senticnet-pipeline}
 
-The SenticNet pipeline \cite{cambria2024, cambria2016} provides a complementary affective analysis channel, enriching coaching responses with continuous-valued dimensions (pleasantness, attention, sensitivity, aptitude) and semantic associations from commonsense knowledge. The implementation interfaces with 13 API endpoints organised into a four-tier cascade:
+The SenticNet pipeline \cite{cambria2024, cambria2016} provides a complementary affective analysis channel, enriching coaching responses with continuous-valued Hourglass dimensions (introspection, temper, attitude, sensitivity), safety detection, engagement and wellbeing scores, and semantic associations from commonsense knowledge. The dashboard's Emotion Radar uses a separate SetFit-derived PASE mapping (see below) rather than SenticNet's Hourglass dimensions, which proved unreliable on short window-title text. The implementation interfaces with 13 API endpoints organised into a four-tier cascade:
 
 \begin{enumerate}[nosep]
   \item \textbf{Safety tier}: Polarity and semantics (always executed; early termination if safety threshold triggered).
@@ -335,6 +329,42 @@ async def analyse(self, text: str) -> SenticNetResult:
 
 All API calls within a tier are dispatched concurrently using \texttt{httpx.AsyncClient} with a 3-second per-call timeout, reducing worst-case latency from 39 seconds (sequential) to approximately 2.1 seconds (median). An LRU cache with one-hour TTL eliminates redundant calls for recurring concepts, reducing API calls per message by approximately 40\% after the first few interactions. If individual calls fail, the corresponding dimension is marked unavailable rather than blocking the entire analysis.
 
+\textbf{SetFit-to-PASE Mapping.} The dashboard's Emotion Radar requires four-axis PASE scores (pleasantness, attention, sensitivity, aptitude), but the SenticNet Hourglass dimensions proved unreliable on short window-title text. Each SetFit label is therefore mapped to a canonical PASE profile:
+
+\begin{lstlisting}[language=Python, caption={SetFit label to canonical PASE profile mapping.}, label={lst:setfit-pase}]
+SETFIT_TO_PASE = {
+    "joyful":      {"pleasantness": 0.85, "attention": 0.70,
+                    "sensitivity": 0.30, "aptitude": 0.75},
+    "focused":     {"pleasantness": 0.60, "attention": 0.90,
+                    "sensitivity": 0.20, "aptitude": 0.80},
+    "frustrated":  {"pleasantness": 0.15, "attention": 0.40,
+                    "sensitivity": 0.80, "aptitude": 0.30},
+    "anxious":     {"pleasantness": 0.20, "attention": 0.55,
+                    "sensitivity": 0.90, "aptitude": 0.25},
+    "disengaged":  {"pleasantness": 0.35, "attention": 0.15,
+                    "sensitivity": 0.25, "aptitude": 0.20},
+    "overwhelmed": {"pleasantness": 0.10, "attention": 0.30,
+                    "sensitivity": 0.85, "aptitude": 0.15},
+}
+\end{lstlisting}
+
+A confidence-weighted blending function interpolates between the canonical profile and a neutral centre (all 0.5), ensuring that low-confidence predictions produce muted, centred radar shapes rather than misleading extremes:
+
+\begin{lstlisting}[language=Python, caption={Confidence-weighted PASE blending function.}, label={lst:blend-pase}]
+def blend_pase(label: str, confidence: float
+) -> dict[str, float]:
+    canonical = SETFIT_TO_PASE.get(
+        label, SETFIT_TO_PASE["disengaged"]
+    )
+    neutral = 0.5
+    return {
+        k: round(neutral + (v - neutral) * confidence, 3)
+        for k, v in canonical.items()
+    }
+\end{lstlisting}
+
+The dashboard endpoint aggregates blended PASE profiles from recent \texttt{SenticAnalysis} database rows, averaging across the last 24~hours to produce the radar visualisation. Unknown labels fall back to the \emph{disengaged} profile.
+
 % -----------------------------------------------------------------------------
 \section{Memory System Implementation}
 \label{sec:memory-system}
@@ -358,13 +388,68 @@ Activity classification uses a four-layer cascade:
 
 Layers 2 and 3 resolve an additional 21.5\%. The cascade achieves 549 titles/second in batch mode. If the ML model fails to load, Layers 1--3 continue to resolve 78\% of classifications deterministically.
 
+\textbf{SetFit Emotion Prediction in the Hot Path.} After activity classification and metrics computation, the screen monitoring endpoint runs a synchronous SetFit prediction on the window title ($<$50\,ms), constructing a confidence-gated emotion context dictionary that is passed to the JITAI engine:
+
+\begin{lstlisting}[language=Python, caption={SetFit emotion prediction and confidence-gated context construction in the screen activity hot path.}, label={lst:emotion-context}]
+setfit_label, setfit_confidence = (
+    setfit_classifier.predict(window_title)
+)
+emotion_context = {
+    "setfit_label": setfit_label,
+    "setfit_confidence": setfit_confidence,
+    "primary_adhd_state": SETFIT_TO_ADHD_STATE[
+        setfit_label
+    ],
+    "emotional_dysregulation":
+        setfit_label == "overwhelmed"
+        and setfit_confidence > 0.7,
+    "frustration_detected":
+        setfit_label == "frustrated"
+        and setfit_confidence > 0.7,
+    "anxiety_detected":
+        setfit_label == "anxious"
+        and setfit_confidence > 0.7,
+    "disengaged_detected":
+        setfit_label == "disengaged"
+        and setfit_confidence > 0.6,
+}
+intervention = jitai_engine.evaluate(
+    metrics, emotion_context=emotion_context
+)
+\end{lstlisting}
+
+The confidence thresholds (0.7 for negative emotions, 0.6 for disengagement) were calibrated to prevent false-positive interruptions: unnecessary interventions are particularly harmful for ADHD users as they destroy flow states. The SetFit confidence and ADHD state label are also persisted to the \texttt{SenticAnalysis} database row. The dashboard reconstructs PASE radar scores exclusively from these SetFit-derived fields (label and confidence) via the \texttt{blend\_pase} function, not from SenticNet dimensions.
+
 % -----------------------------------------------------------------------------
 \section{Intervention Engine}
 \label{sec:intervention-engine}
 
-The intervention engine implements a Just-In-Time Adaptive Intervention (JITAI) framework. Decision points are triggered by the screen monitor detecting distraction; tailoring variables are the user's emotional state, distraction duration, and historical success rate; intervention options follow a four-tier escalation: \emph{nudge} (subtle menu bar animation), \emph{popup} (non-blocking notification with coaching message), \emph{overlay} (semi-transparent screen overlay with current task), and \emph{block} (opt-in temporary application restriction).
+The intervention engine implements a Just-In-Time Adaptive Intervention (JITAI) framework with seven ordered rules spanning four of Barkley's five EF domains. Decision points are triggered by real-time behavioural metrics combined with confidence-gated SetFit emotion context; tailoring variables include the user's emotional state, distraction duration, context-switching rate, and historical success rate.
 
-Intervention selection uses Thompson Sampling with Beta-distributed priors ($\alpha_0 = \beta_0 = 1$) to balance exploitation of effective interventions with exploration of underused strategies. Each intervention type is modelled as a Bernoulli bandit arm, where success is defined as the user returning to productive activity within five minutes. Emotional context modulates tone: frustrated users receive empathetic nudges, disengaged users receive energetic prompts. The Thompson Sampling state is persisted to PostgreSQL between sessions, reaching consistent selections after approximately 20 interventions.
+\textbf{Seven Intervention Rules.} The rules are evaluated in priority order: Rule~1 targets distraction spirals (context switch rate $>$ 12 \emph{and} distraction ratio $>$ 0.5); Rule~2 targets sustained disengagement ($>$ 20~min distracted); Rule~3 targets hyperfocus on the wrong task; Rule~4a targets emotional escalation (\emph{overwhelmed} with confidence $>$ 0.7); Rule~4b targets frustration spirals (\emph{frustrated} with confidence $>$ 0.7 \emph{and} context switches $>$ 8); Rule~4c targets anxiety distraction (\emph{anxious} with confidence $>$ 0.7 \emph{and} distraction ratio $>$ 0.4); and Rule~4d targets persistent emotion-based disengagement (\emph{disengaged} with confidence $>$ 0.6 \emph{and} streak $>$ 10~min). Each rule produces a maximum of three action choices (anti-pattern \#8 from the ADHD intervention literature). \Cref{tab:jitai-rules} summarises the seven rules.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Seven JITAI intervention rules with triggering conditions and EF domain mappings.}
+  \label{tab:jitai-rules}
+  \begin{tabular}{@{}lp{5.2cm}ll@{}}
+    \toprule
+    \textbf{Rule} & \textbf{Trigger Condition} & \textbf{EF Domain} & \textbf{Type} \\
+    \midrule
+    1  & Context switches $>$ 12, distraction $>$ 0.5 & Self-restraint & Distraction spiral \\
+    2  & Distracted $>$ 20~min, distraction $>$ 0.7 & Self-motivation & Sustained disengagement \\
+    3  & Hyperfocus detected & Self-management (time) & Hyperfocus check \\
+    4a & \emph{overwhelmed}, confidence $>$ 0.7 & Self-regulation (emotion) & Emotional escalation \\
+    4b & \emph{frustrated}, conf. $>$ 0.7, switches $>$ 8 & Self-regulation (emotion) & Frustration spiral \\
+    4c & \emph{anxious}, conf. $>$ 0.7, distraction $>$ 0.4 & Self-regulation (emotion) & Anxiety distraction \\
+    4d & \emph{disengaged}, conf. $>$ 0.6, streak $>$ 10~min & Self-motivation & Emotion disengagement \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Intervention options follow a four-tier delivery escalation: \emph{nudge} (subtle menu bar animation), \emph{popup} (non-blocking notification with coaching message), \emph{overlay} (semi-transparent screen overlay with current task), and \emph{block} (opt-in temporary application restriction).
+
+Intervention selection uses Thompson Sampling with Beta-distributed priors ($\alpha_0 = \beta_0 = 1$) to balance exploitation of effective interventions with exploration of underused strategies. Each intervention type is modelled as a Bernoulli bandit arm, where success is defined as the user returning to productive activity within five minutes. The Thompson Sampling state is persisted to PostgreSQL between sessions, reaching consistent selections after approximately 20 interventions.
 
 For explainability, the engine uses a Concept Bottleneck Model (CBM) architecture \cite{koh2020} routing decisions through interpretable concepts (\emph{time on distraction}, \emph{emotional valence}, \emph{task urgency}, \emph{historical success rate}), enabling counterfactual explanations such as ``This nudge was triggered because you have spent 8 minutes on social media while your scheduled task is due in 45 minutes.''
 
@@ -409,6 +494,10 @@ The React web dashboard provides a complementary analytical interface: emotion t
     Python 3.14 breakage &
       \texttt{importlib} module restructuring broke transitive dependencies in ML stack &
       Pinned runtime to Python 3.11; documented version requirement in project setup \\
+    \addlinespace
+    SetFit--JITAI wiring &
+      SetFit predictions were generated but never passed to the JITAI engine; dashboard read SenticNet Hourglass keys that differed from stored keys; confidence was discarded &
+      Wired SetFit into the screen hot path; constructed confidence-gated \texttt{emotion\_context} dict; replaced Hourglass averaging with SetFit$\rightarrow$PASE mapping; persisted confidence to DB \\
     \bottomrule
   \end{tabularx}
 \end{table}

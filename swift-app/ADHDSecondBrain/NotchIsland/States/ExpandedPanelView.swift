@@ -6,10 +6,12 @@ struct ExpandedPanelView: View {
     let viewModel: NotchViewModel
     var onConnectCalendar: (() -> Void)?
     var onCapture: ((String) -> Void)?
+    var onCompleteTask: ((String) -> Void)?
+    var onToggleFocus: (() -> Void)?
 
     var body: some View {
         VStack(spacing: ADHDSpacing.cardSpacing) {
-            TopRow(viewModel: viewModel)
+            TopRow(viewModel: viewModel, onCompleteTask: onCompleteTask, onToggleFocus: onToggleFocus)
 
             QuickCaptureField { text in
                 onCapture?(text)
@@ -34,20 +36,24 @@ struct ExpandedPanelView: View {
 
 private struct TopRow: View {
     let viewModel: NotchViewModel
+    var onCompleteTask: ((String) -> Void)?
+    var onToggleFocus: (() -> Void)?
 
     var body: some View {
         HStack(spacing: ADHDSpacing.md) {
             if let session = viewModel.focusSession {
                 TimerRingView(
-                    elapsed: session.elapsed,
-                    total: session.total,
-                    label: session.label
+                    session: session,
+                    label: session.label,
+                    onToggle: onToggleFocus
                 )
                 .fixedSize()
             }
 
             if let task = viewModel.currentTask {
-                TaskCardView(task: task) {}
+                TaskCardView(task: task) {
+                    onCompleteTask?(task.id)
+                }
             } else {
                 NoTaskPlaceholder()
             }
@@ -57,14 +63,31 @@ private struct TopRow: View {
 
 private struct NoTaskPlaceholder: View {
     var body: some View {
-        Text("No active task")
-            .font(ADHDTypography.Notch.expandedBody)
-            .foregroundStyle(ADHDColors.Text.inverse.opacity(0.5))
+        Button {
+            NotificationCenter.default.post(name: .openTaskCreation, object: nil)
+        } label: {
+            HStack(spacing: ADHDSpacing.sm) {
+                Image(systemName: "plus.circle")
+                    .font(.system(size: 14))
+                    .foregroundStyle(ADHDColors.Accent.focusLight.opacity(0.6))
+
+                Text("Create a task")
+                    .font(ADHDTypography.Notch.expandedBody)
+                    .foregroundStyle(ADHDColors.Text.inverse.opacity(0.5))
+
+                Spacer()
+
+                Text("\u{2318}\u{21E7}T")
+                    .font(ADHDTypography.Notch.ambientLabel)
+                    .foregroundStyle(ADHDColors.Text.tertiary)
+            }
             .frame(maxWidth: .infinity)
             .padding(ADHDSpacing.cardPadding)
             .background(ADHDColors.Background.notchInner.opacity(0.3))
             .clipShape(RoundedRectangle(cornerRadius: ADHDSpacing.cardCornerRadius))
-            .accessibilityLabel("No active task")
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("Create a task. Press Command Shift T.")
     }
 }
 

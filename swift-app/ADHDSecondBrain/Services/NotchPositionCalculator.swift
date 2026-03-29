@@ -16,8 +16,8 @@ enum NotchPositionCalculator {
         let safeArea = screen.safeAreaInsets
 
         let hasNotch = safeArea.top > 0
-        let notchWidth: CGFloat = hasNotch ? 180 : 180
-        let notchHeight: CGFloat = hasNotch ? safeArea.top : 38
+        let notchWidth: CGFloat = ADHDSpacing.hardwareNotchWidth
+        let notchHeight: CGFloat = hasNotch ? safeArea.top : ADHDSpacing.hardwareNotchHeight
 
         let x = frame.midX - (notchWidth / 2)
         let y = frame.maxY - notchHeight

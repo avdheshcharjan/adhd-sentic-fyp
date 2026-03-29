@@ -16,7 +16,10 @@ from db.models import ActivityLog, SenticAnalysis
 from services.senticnet_pipeline import SenticNetPipeline
 
 from models.screen_activity import ScreenActivityInput, ScreenActivityResponse
-from services.shared_state import classifier, metrics_engine, jitai_engine, xai_explainer
+import services.shared_state as shared_state
+from services.shared_state import classifier, metrics_engine, jitai_engine, xai_explainer, focus_service, focus_relevance
+from services.focus_relevance import HIGH_SUSPICION_CATEGORIES
+from services.setfit_service import setfit_classifier, SETFIT_TO_ADHD_STATE
 
 logger = logging.getLogger("adhd-brain.screen")
 
@@ -31,9 +34,10 @@ async def report_activity(activity: ScreenActivityInput, background_tasks: Backg
     Pipeline:
       1. Classify activity (rule-based, <5ms)
       2. Update rolling metrics (in-memory, <1ms)
-      3. Evaluate JITAI intervention need (<2ms)
-      4. Generate XAI explanation if intervention triggered
-      5. Return category + metrics + intervention (if any)
+      3. SetFit emotion prediction (<50ms)
+      4. Evaluate JITAI intervention need with emotion context (<2ms)
+      5. Generate XAI explanation if intervention triggered
+      6. Return category + metrics + intervention (if any)
     """
     # Step 1: Classify
     category, layer = classifier.classify(
@@ -54,10 +58,23 @@ async def report_activity(activity: ScreenActivityInput, background_tasks: Backg
     metrics.current_app = activity.app_name
     metrics.current_category = category
 
-    # Step 3: Evaluate JITAI intervention need
-    intervention = jitai_engine.evaluate(metrics)
+    # Step 3: SetFit emotion prediction (synchronous, <50ms)
+    text_for_emotion = activity.window_title or activity.app_name
+    setfit_label, setfit_confidence = setfit_classifier.predict(text_for_emotion)
+    emotion_context = {
+        "setfit_label": setfit_label,
+        "setfit_confidence": setfit_confidence,
+        "primary_adhd_state": SETFIT_TO_ADHD_STATE[setfit_label],
+        "emotional_dysregulation": setfit_label == "overwhelmed" and setfit_confidence > 0.7,
+        "frustration_detected": setfit_label == "frustrated" and setfit_confidence > 0.7,
+        "anxiety_detected": setfit_label == "anxious" and setfit_confidence > 0.7,
+        "disengaged_detected": setfit_label == "disengaged" and setfit_confidence > 0.6,
+    }
 
-    # Step 4: Attach XAI explanation if intervention triggered
+    # Step 4: Evaluate JITAI intervention need with emotion context
+    intervention = jitai_engine.evaluate(metrics, emotion_context=emotion_context)
+
+    # Step 5: Attach XAI explanation if intervention triggered
     if intervention:
         explanation = xai_explainer.explain_intervention(
             intervention_type=intervention.type,
@@ -65,7 +82,30 @@ async def report_activity(activity: ScreenActivityInput, background_tasks: Backg
         )
         intervention.explanation = explanation.model_dump()
 
-    # Step 5: Schedule background persistence + optional SenticNet enrichment
+    # Store latest intervention in shared state for /api/v1/interventions/pending
+    shared_state.pending_intervention = intervention
+
+    # Step 4.5: Off-task relevance check
+    off_task = False
+    if activity.off_task_alerts_enabled:
+        current_task = focus_service.get_current_task()
+        if current_task and focus_service._is_running:
+            # Active focus session — use embedding similarity
+            result = focus_relevance.check_relevance(
+                task_name=current_task["name"],
+                app_name=activity.app_name,
+                window_title=activity.window_title,
+                url=activity.url,
+                category=category,
+                is_idle=activity.is_idle,
+            )
+            off_task = result["off_task"]
+        elif activity.off_task_alerts_always and current_task is None:
+            # No active task but "always alert" enabled — heuristic fallback
+            off_task = category in HIGH_SUSPICION_CATEGORIES and not activity.is_idle
+    shared_state.is_off_task = off_task
+
+    # Step 6: Schedule background persistence + optional SenticNet enrichment
     background_tasks.add_task(persist_activity, db, activity, category, metrics.model_dump())
 
     # Schedule lightweight SenticNet (non-blocking); may be a no-op if disabled
@@ -76,6 +116,7 @@ async def report_activity(activity: ScreenActivityInput, background_tasks: Backg
         category=category,
         metrics=metrics.model_dump(),
         intervention=intervention,
+        off_task=off_task,
     )
 
 
@@ -106,10 +147,14 @@ async def enrich_activity_with_senticnet(text: str, db: AsyncSession):
         pipeline = SenticNetPipeline()
         result = await pipeline._run_lightweight(text)
         if result and getattr(result, "adhd_signals", None):
+            emotion_data = result.emotion.model_dump() if getattr(result, "emotion", None) else {}
+            # Persist SetFit confidence and ADHD state alongside emotion profile
+            emotion_data["setfit_confidence"] = result.setfit_confidence
+            emotion_data["primary_adhd_state"] = result.primary_adhd_state
             sa = SenticAnalysis(
                 text=text,
                 source="screen_title",
-                emotion_profile=(result.emotion.model_dump() if getattr(result, "emotion", None) else {}),
+                emotion_profile=emotion_data,
                 safety_flags=(result.safety.model_dump() if getattr(result, "safety", None) else {}),
                 adhd_signals=(result.adhd_signals.model_dump() if getattr(result, "adhd_signals", None) else {}),
             )

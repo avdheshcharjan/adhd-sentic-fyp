@@ -4,50 +4,54 @@ import SwiftUI
 ///
 /// Normal states use the user's detected emotion color (defaulting to steel-blue #457B9D).
 /// Alert state overrides with red-coral #FF6F61 regardless of emotion.
+/// Off-task state pulses the border red with a 1.2s breathing animation.
 ///
-/// The "top-only excluded" effect is achieved by masking the stroke to the bottom 60%
-/// of the notch shape using a gradient mask, which matches the Paper design spec exactly.
+/// Uses an inner-shadow technique for uniform glow on all edges:
+/// 1. Inverted shape (full rect minus notch shape) as an overlay
+/// 2. `.shadow()` on the inverted shape projects inward uniformly
+/// 3. Clipped to the notch shape so only the inner border glow is visible
+/// 4. Gradient mask hides the top edge
 struct EmotionGlowBorder: View {
     let emotion: EmotionState
     let notchState: NotchState
+    var isOffTask: Bool = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var pulsePhase: Bool = false
 
     var body: some View {
         ZStack {
-            // Primary border stroke on the notch shape for the current state
-            borderShape
-                .stroke(borderColor.opacity(borderOpacity), lineWidth: 2)
-                // Mask away the top edge: gradient fades to clear at top,
-                // full opacity at roughly 20% down — matching left/bottom/right only spec.
-                .mask(
-                    LinearGradient(
-                        stops: [
-                            .init(color: .clear, location: 0.0),
-                            .init(color: .clear, location: 0.08),
-                            .init(color: .black, location: 0.20),
-                            .init(color: .black, location: 1.0),
-                        ],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
-
-            // Outer glow shadow layer
-            borderShape
-                .stroke(borderColor.opacity(glowOpacity), lineWidth: 2)
-                .blur(radius: glowRadius)
-                .mask(
-                    LinearGradient(
-                        stops: [
-                            .init(color: .clear, location: 0.0),
-                            .init(color: .clear, location: 0.08),
-                            .init(color: .black, location: 0.20),
-                            .init(color: .black, location: 1.0),
-                        ],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
+            // Uniform inner glow: an inverted shape projects shadow inward
+            Rectangle()
+                .fill(.clear)
+                .overlay {
+                    // Inverted shape: a large rect with the notch shape cut out.
+                    // The shadow of this cutout projects inward uniformly.
+                    Rectangle()
+                        .fill(.black)
+                        .padding(-20) // Extend beyond bounds
+                        .mask(
+                            // Subtract the notch shape from a full rect
+                            Canvas { context, size in
+                                // Fill everything
+                                context.fill(
+                                    Path(CGRect(origin: .zero, size: size)),
+                                    with: .color(.white)
+                                )
+                                // Cut out the notch shape (EvenOdd rule)
+                                let insetRect = CGRect(origin: .zero, size: size)
+                                context.blendMode = .destinationOut
+                                context.fill(
+                                    borderShape.path(in: insetRect),
+                                    with: .color(.white)
+                                )
+                            }
+                            .compositingGroup()
+                        )
+                        .shadow(color: borderColor.opacity(borderOpacity), radius: borderBlur, x: 0, y: 0)
+                        .shadow(color: borderColor.opacity(glowOpacity), radius: glowRadius, x: 0, y: 0)
+                }
+                .clipShape(borderShape)
+                .mask(edgeMask)
         }
         .animation(
             reduceMotion ? nil : .easeInOut(duration: 2.0),
@@ -57,7 +61,33 @@ struct EmotionGlowBorder: View {
             reduceMotion ? nil : .easeInOut(duration: 0.3),
             value: isAlertState
         )
+        .onChange(of: isOffTask) { _, offTask in
+            if offTask && !reduceMotion {
+                withAnimation(.easeInOut(duration: 1.2).repeatForever(autoreverses: true)) {
+                    pulsePhase = true
+                }
+            } else {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    pulsePhase = false
+                }
+            }
+        }
         .accessibilityHidden(true)
+    }
+
+    // MARK: - Edge Mask
+
+    private var edgeMask: some View {
+        LinearGradient(
+            stops: [
+                .init(color: .clear, location: 0.0),
+                .init(color: .clear, location: 0.08),
+                .init(color: .black, location: 0.20),
+                .init(color: .black, location: 1.0),
+            ],
+            startPoint: .top,
+            endPoint: .bottom
+        )
     }
 
     // MARK: - Shape per State
@@ -80,31 +110,46 @@ struct EmotionGlowBorder: View {
         return false
     }
 
-    /// Border stroke color:
-    /// - Alert: rgba(255,111,97,0.35) — red coral
-    /// - Normal: rgba(69,123,157,0.35) — steel blue, or emotion color if set
+    /// Border color:
+    /// - Off-task: red coral #FF6F61
+    /// - Alert: red coral #FF6F61
+    /// - Normal: steel blue or emotion color
     private var borderColor: Color {
-        if isAlertState {
+        if isOffTask || isAlertState {
             return ADHDColors.Accent.alert
         }
-        // Use emotion color when available; fall back to steel-blue focus accent
-        let emotionColor = emotion.color
-        // EmotionState.neutral returns .clear — fall back to focus accent
         if emotion == .neutral {
             return ADHDColors.Accent.focus
         }
-        return emotionColor
+        return emotion.color
     }
 
     private var borderOpacity: Double {
-        isAlertState ? 0.35 : 0.35
+        if isOffTask {
+            return pulsePhase ? 0.60 : 0.20
+        }
+        return isAlertState ? 0.45 : 0.40
+    }
+
+    private var borderBlur: CGFloat {
+        // Tight blur for the crisp border line
+        if isOffTask {
+            return pulsePhase ? 3 : 1.5
+        }
+        return 2
     }
 
     private var glowOpacity: Double {
-        isAlertState ? 0.20 : 0.20
+        if isOffTask {
+            return pulsePhase ? 0.35 : 0.08
+        }
+        return isAlertState ? 0.25 : 0.20
     }
 
     private var glowRadius: CGFloat {
-        isAlertState ? 10 : 6
+        if isOffTask {
+            return pulsePhase ? 12 : 4
+        }
+        return isAlertState ? 10 : 6
     }
 }

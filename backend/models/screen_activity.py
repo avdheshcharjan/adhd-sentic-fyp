@@ -13,6 +13,8 @@ class ScreenActivityInput(BaseModel):
     url: str | None = None
     is_idle: bool = False
     timestamp: datetime = Field(default_factory=datetime.now)
+    off_task_alerts_enabled: bool = False
+    off_task_alerts_always: bool = False
 
 
 class ScreenActivityResponse(BaseModel):
@@ -21,3 +23,4 @@ class ScreenActivityResponse(BaseModel):
     category: str
     metrics: dict
     intervention: Intervention | None = None
+    off_task: bool = False

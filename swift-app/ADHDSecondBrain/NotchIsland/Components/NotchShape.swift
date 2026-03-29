@@ -80,7 +80,7 @@ extension NotchShape {
     static let closed = NotchShape(topCornerRadius: 6, bottomCornerRadius: 14)
 
     /// Open/expanded notch — larger, more rounded.
-    static let open = NotchShape(topCornerRadius: 19, bottomCornerRadius: 24)
+    static let open = NotchShape(topCornerRadius: 12, bottomCornerRadius: 24)
 
     /// Glanceable/ambient — between closed and open.
     static let glance = NotchShape(topCornerRadius: 10, bottomCornerRadius: 18)

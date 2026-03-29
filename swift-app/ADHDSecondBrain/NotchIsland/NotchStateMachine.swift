@@ -9,6 +9,10 @@ class NotchStateMachine {
     var isHyperfocused: Bool = false
     var currentEmotion: EmotionState = .neutral
 
+    /// Called after every successful state transition with the new state.
+    /// Used by NotchWindow to update hit-test region.
+    var onStateChange: ((NotchState) -> Void)?
+
     /// Transition with direction-aware animation (DynamicNotchKit pattern).
     /// withAnimation wraps the state mutation so SwiftUI's .transition() modifiers
     /// receive the animation transaction — without this, removal transitions are instant.
@@ -20,6 +24,7 @@ class NotchStateMachine {
             previousState = currentState
             currentState = newState
         }
+        onStateChange?(newState)
     }
 
     /// Pick spring based on direction: opening gets bouncy, closing gets damped.

@@ -190,7 +190,12 @@ class WhoopService:
                 process.communicate(), timeout=10.0
             )
             output = stdout.decode("utf-8").strip()
-            is_auth = process.returncode == 0 and "expired" not in output.lower()
+            
+            try:
+                parsed = json.loads(output)
+                is_auth = parsed.get("authenticated", False)
+            except json.JSONDecodeError:
+                is_auth = process.returncode == 0 and "expired" not in output.lower()
 
             return {
                 "installed": True,

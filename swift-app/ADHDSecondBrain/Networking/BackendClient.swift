@@ -124,6 +124,36 @@ class BackendClient {
         return try decoder.decode(WhoopRecovery.self, from: data)
     }
 
+    /// Fetch list of daily snapshot summaries for a date range.
+    func fetchHistoryList(start: String, end: String) async throws -> [SnapshotSummary] {
+        var components = URLComponents(url: baseURL.appendingPathComponent("api/v1/dashboard/history"), resolvingAgainstBaseURL: false)!
+        components.queryItems = [
+            URLQueryItem(name: "start", value: start),
+            URLQueryItem(name: "end", value: end),
+        ]
+        let (data, response) = try await session.data(from: components.url!)
+
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200...299).contains(httpResponse.statusCode) else {
+            throw BackendError.invalidResponse
+        }
+
+        return try decoder.decode([SnapshotSummary].self, from: data)
+    }
+
+    /// Fetch full snapshot detail for a specific date.
+    func fetchHistoryDetail(date: String) async throws -> HistorySnapshot {
+        let url = baseURL.appendingPathComponent("api/v1/dashboard/history/\(date)")
+        let (data, response) = try await session.data(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200...299).contains(httpResponse.statusCode) else {
+            throw BackendError.invalidResponse
+        }
+
+        return try decoder.decode(HistorySnapshot.self, from: data)
+    }
+
     /// Check backend health.
     func healthCheck() async -> Bool {
         let url = baseURL.appendingPathComponent("health")

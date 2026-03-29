@@ -7,6 +7,7 @@ Phase 4: fully implemented — feeds back to JITAI engine and adaptive bandit.
 from fastapi import APIRouter
 from pydantic import BaseModel
 
+import services.shared_state as shared_state
 from services.shared_state import jitai_engine, xai_explainer
 
 router = APIRouter(prefix="/interventions", tags=["interventions"])
@@ -52,6 +53,9 @@ async def respond_to_intervention(
         action_taken=response.action_taken,
         dismissed=response.dismissed,
     )
+    # Clear the pending intervention so the notch stops showing it
+    if shared_state.pending_intervention and shared_state.pending_intervention.id == intervention_id:
+        shared_state.pending_intervention = None
     return {
         "status": "recorded",
         "intervention_id": intervention_id,

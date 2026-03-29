@@ -17,10 +17,20 @@ struct FocusSession: Codable, Equatable {
     let total: TimeInterval
     let isRunning: Bool
     let label: String
+    /// Timestamp when this snapshot was fetched from the backend.
+    /// Not decoded from JSON — set by BackendBridge after fetch.
+    var fetchedAt: Date = Date()
 
     enum CodingKeys: String, CodingKey {
         case elapsed, total, label
         case isRunning = "is_running"
+    }
+
+    /// Live elapsed time interpolated from the server snapshot.
+    func liveElapsed(at now: Date = Date()) -> TimeInterval {
+        guard isRunning else { return elapsed }
+        let delta = now.timeIntervalSince(fetchedAt)
+        return min(elapsed + delta, total)
     }
 }
 
@@ -42,10 +52,16 @@ struct InterventionMessage: Codable, Identifiable, Equatable {
     let body: String
     let emoji: String
     let actionLabel: String
+    let notificationTier: Int
 
     enum CodingKeys: String, CodingKey {
         case id, title, body, emoji
         case actionLabel = "action_label"
+        case notificationTier = "notification_tier"
+    }
+
+    var interventionTier: InterventionTier {
+        InterventionTier(rawValue: notificationTier) ?? .gentle
     }
 }
 
