@@ -1,7 +1,7 @@
 """
 ADHD Second Brain — FastAPI Backend Entry Point
 
-Central brain of the system. All interfaces (Swift app, OpenClaw, Dashboard)
+Central brain of the system. All interfaces (Swift app, Telegram bot, Dashboard)
 are thin clients that call this backend via REST on port 8420.
 """
 
@@ -124,7 +124,27 @@ async def lifespan(app: FastAPI):
     snapshot_task = asyncio.create_task(_daily_snapshot_loop())
     logger.info("Daily snapshot task started (checks every 60s, saves at 23:55)")
 
+    # Start Telegram bot (if token is configured)
+    telegram_app = None
+    if settings.TELEGRAM_BOT_TOKEN:
+        from telegram_bot.bot import create_bot_application
+
+        telegram_app = create_bot_application(settings.TELEGRAM_BOT_TOKEN)
+        await telegram_app.initialize()
+        await telegram_app.start()
+        await telegram_app.updater.start_polling(drop_pending_updates=True)
+        logger.info("Telegram bot started (polling mode)")
+    else:
+        logger.info("TELEGRAM_BOT_TOKEN not set — Telegram bot disabled")
+
     yield
+
+    # Shutdown Telegram bot
+    if telegram_app is not None:
+        await telegram_app.updater.stop()
+        await telegram_app.stop()
+        await telegram_app.shutdown()
+        logger.info("Telegram bot stopped")
 
     snapshot_task.cancel()
     cleanup_task.cancel()

@@ -58,6 +58,10 @@ class Settings(BaseSettings):
     # the backend will skip calling SenticNet and use local fallbacks.
     SENTICNET_ENABLED: bool = True
 
+    # ── Telegram Bot ─────────────────────────────────────
+    TELEGRAM_BOT_TOKEN: str = ""
+    TELEGRAM_CHAT_ID: str = ""
+
     # ── Evaluation / Ablation Settings ─────────────────
     ABLATION_MODE: bool = False               # When True, disables SenticNet in chat pipeline
     EVALUATION_LOGGING: bool = False          # When True, logs all interactions for analysis
