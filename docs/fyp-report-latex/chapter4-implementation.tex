@@ -26,7 +26,7 @@ The Python runtime was pinned to version 3.11 after Python 3.14 introduced break
 \subsection{Data Infrastructure and Build Automation}
 \label{subsec:data-infrastructure}
 
-The data layer runs PostgreSQL 16 with the \texttt{pgvector} extension via Docker Compose, providing vector similarity search with cosine distance for the Mem0 memory framework \cite{chhikara2025}. Build automation uses a Makefile: \texttt{make test} runs the full suite of over 200 tests, \texttt{make bench} executes performance benchmarks, and \texttt{make all-eval} runs all evaluation pipelines including the comparative analysis reported in \cref{ch:testing-evaluation}.
+The data layer runs PostgreSQL 16 with the \texttt{pgvector} extension via Docker Compose, providing vector similarity search with cosine distance for the Mem0 memory framework \cite{chhikara2025}. Build automation uses a Makefile: \texttt{make test} runs the full suite of over 330 tests, \texttt{make bench} executes performance benchmarks, and \texttt{make all-eval} runs all evaluation pipelines including the comparative analysis reported in \cref{ch:testing-evaluation}.
 
 % .............................................................................
 \subsection{Version Control and Dependency Management}
@@ -159,27 +159,27 @@ After fine-tuning, the 210 training sentences are re-encoded and a logistic regr
 
 \subsubsection{Performance}
 
-The production classifier achieves 86\% accuracy with mean confidence 0.76 (vs 0.33 in Approach A). Per-class F1 scores are reported in \cref{tab:per-class-f1}.
+The production classifier achieves 86\% accuracy with mean confidence 0.76 (vs 0.33 in Approach A). Per-class F1 scores are reported in \cref{tab:per-class-f1-impl}.
 
 \begin{table}[htbp]
   \centering
   \caption{Per-class F1 scores for the production emotion classifier (Approach B).}
-  \label{tab:per-class-f1}
+  \label{tab:per-class-f1-impl}
   \begin{tabular}{@{}lc@{}}
     \toprule
     \textbf{Category} & \textbf{F1 Score} \\
     \midrule
-    Joyful       & 0.89 \\
-    Focused      & 0.80 \\
-    Frustrated   & 0.74 \\
+    Joyful       & 1.00 \\
+    Focused      & 1.00 \\
+    Frustrated   & 0.80 \\
     Anxious      & 0.80 \\
-    Disengaged   & 0.86 \\
-    Overwhelmed  & 0.74 \\
+    Disengaged   & 0.75 \\
+    Overwhelmed  & 0.82 \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-The lowest-performing categories (\emph{frustrated} and \emph{overwhelmed}, both F1 = 0.74) share semantic overlap in expressions of negative valence and high task difficulty. The 0.76 mean confidence enables threshold-based decision-making in the intervention engine.
+The lowest-performing category is \emph{disengaged} (F1 = 0.75), which shares semantic overlap with \emph{overwhelmed} in expressions of low motivation and task avoidance. \emph{Anxious} achieves high precision (1.00) but lower recall (0.67), as some anxious sentences are misclassified across adjacent negative categories. The 0.76 mean confidence enables threshold-based decision-making in the intervention engine.
 
 % ── Figure 4.1: SetFit Pipeline ──────────────────────────────────────────────
 
@@ -369,7 +369,7 @@ The dashboard endpoint aggregates blended PASE profiles from recent \texttt{Sent
 \section{Memory System Implementation}
 \label{sec:memory-system}
 
-The persistent memory system uses Mem0 \cite{chhikara2025} backed by PostgreSQL with \texttt{pgvector}. It stores episodic memories from coaching interactions and emotion-state transitions, and maintains an evolving user profile via exponential moving averages ($\alpha = 0.1$). Each memory is encoded into a 768-dimensional embedding using \texttt{all-mpnet-base-v2} \cite{reimers2019}---the same model used by the emotion classifier---and stored with metadata including timestamp, emotion classification, and a relevance decay factor (30-day half-life). Retrieval uses cosine similarity via \texttt{pgvector}'s \texttt{<=>} operator, returning the top-3 most relevant memories for context injection (\cref{subsec:context-injection}). Evaluation on a benchmark of 100 query-memory pairs shows 95\% top-1 relevance.
+The persistent memory system uses Mem0 \cite{chhikara2025} backed by PostgreSQL with \texttt{pgvector}. It stores episodic memories from coaching interactions and emotion-state transitions, and maintains an evolving user profile via exponential moving averages ($\alpha = 0.1$). Each memory is encoded via OpenAI's \texttt{text-embedding-3-small} model and stored with metadata including timestamp, emotion classification, and a relevance decay factor (30-day half-life). Mem0 internally uses GPT-4o-mini for memory extraction and summarisation. Retrieval uses cosine similarity via \texttt{pgvector}'s \texttt{<=>} operator, returning the top-3 most relevant memories for context injection (\cref{subsec:context-injection}). Evaluation on a benchmark of 100 query-memory pairs shows 89\% top-1 relevance.
 
 % -----------------------------------------------------------------------------
 \section{Screen Monitoring and Activity Classification}
@@ -489,7 +489,7 @@ The React web dashboard provides a complementary analytical interface: emotion t
     \addlinespace
     Memory constraints &
       16\,GB unified memory shared across LLM, embeddings, database, and OS &
-      Load-on-demand LLM with weak reference cache; peak AI memory below 2.5\,GB \\
+      Load-on-demand LLM with weak reference cache; peak AI memory below 3\,GB \\
     \addlinespace
     Python 3.14 breakage &
       \texttt{importlib} module restructuring broke transitive dependencies in ML stack &

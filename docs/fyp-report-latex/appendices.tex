@@ -72,58 +72,23 @@ The ADHD Second Brain comprises three user-facing interfaces.
 
 The SwiftUI menu bar application is the primary entry point. Clicking the brain icon in the macOS menu bar reveals a popover panel with quick-access controls: the chat interface, current focus metrics, and a brain dump capture field. The application consumes approximately 25~MB of resident memory when idle.
 
-\Cref{fig:app-notch-flow} presents the complete notch-based UX flow, showing the five interaction states from dormant monitoring through alert-level intervention delivery.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.95\textwidth]{screenshot-notch-flow.jpg}
-  \caption{Notch-based UX flow showing the five interaction states: dormant, ambient, glanceable, expanded, and alert.}
-  \label{fig:app-notch-flow}
-\end{figure}
+The notch-based UX flow comprises five interaction states: dormant, ambient, glanceable, expanded, and alert.
 
 \subsection{Chat Interface and Brain Dump}
 
-The chat interface provides conversational ADHD coaching powered by the on-device Qwen3-4B model. Users can toggle between standard mode and extended reasoning (\texttt{/think}) mode, which generates longer, more thoughtful responses at the cost of higher latency. The brain dump modal allows rapid capture of unstructured thoughts, which are automatically tagged with emotion labels and stored in semantic memory. \Cref{fig:app-braindump} shows both modals.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.85\textwidth]{screenshot-braindump-vent.jpg}
-  \caption{Brain dump and vent chat modals for rapid thought capture and conversational coaching.}
-  \label{fig:app-braindump}
-\end{figure}
+The chat interface provides conversational ADHD coaching powered by the on-device Qwen3-4B model. Users can toggle between standard mode and extended reasoning (\texttt{/think}) mode, which generates longer, more thoughtful responses at the cost of higher latency. The brain dump modal allows rapid capture of unstructured thoughts, which are automatically tagged with emotion labels and stored in semantic memory.
 
 \subsection{Intervention Popup}
 
-When the JITAI engine determines that an intervention is warranted, a notification popup appears with ADHD-friendly visual tokens (\cref{fig:app-intervention}). Each intervention includes an acknowledgement of the user's current state, a concrete suggestion, and action buttons. User responses feed back into the Thompson Sampling bandit to personalise future intervention timing and type.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.5\textwidth]{screenshot-intervention.jpg}
-  \caption{Notch expanded state showing a JITAI intervention with action buttons.}
-  \label{fig:app-intervention}
-\end{figure}
+When the JITAI engine determines that an intervention is warranted, a notification popup appears with ADHD-friendly visual tokens. Each intervention includes an acknowledgement of the user's current state, a concrete suggestion, and action buttons. User responses feed back into the Thompson Sampling bandit to personalise future intervention timing and type.
 
 \subsection{React Dashboard}
 
-The React dashboard (served via Vite) provides a comprehensive view of productivity metrics, emotion timelines, and session insights (\cref{fig:app-dashboard}). The dashboard is accessible at \texttt{http://localhost:5173} and communicates with the backend via the REST API documented in \cref{app:api-docs}.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.95\textwidth]{screenshot-dashboard.jpg}
-  \caption{React dashboard displaying emotion timeline, productivity metrics, and session insights.}
-  \label{fig:app-dashboard}
-\end{figure}
+The React dashboard (served via Vite) provides a comprehensive view of productivity metrics, emotion timelines, and session insights. The dashboard is accessible at \texttt{http://localhost:5173} and communicates with the backend via the REST API documented in \cref{app:api-docs}.
 
 \subsection{Settings Panel}
 
-The settings panel allows configuration of monitoring intervals, intervention thresholds, model parameters, and Google Calendar OAuth integration (\cref{fig:app-settings}). Changes are persisted to the backend configuration and take effect immediately.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.5\textwidth]{screenshot-settings.jpg}
-  \caption{Settings panel showing permission configuration options.}
-  \label{fig:app-settings}
-\end{figure}
+The settings panel allows configuration of monitoring intervals, intervention thresholds, model parameters, and Google Calendar OAuth integration. Changes are persisted to the backend configuration and take effect immediately.
 
 % ── Appendix B: Additional Test Results ──────────────────────────────────────
 \chapter{Additional Test Results}
@@ -144,14 +109,13 @@ This appendix contains detailed benchmark outputs and extended evaluation data t
     \textbf{Metric} & \textbf{Value} & \textbf{CV} \\
     \midrule
     Throughput                  & 37.1 tok/s   & 0.8\% \\
-    Time to first token        & 83 ms        & 4.2\% \\
     \texttt{/think} latency    & 4,738 ms     & 1.5\% \\
     \texttt{/no\_think} latency & 2,046 ms    & 2.1\% \\
     Tokens (\texttt{/think})   & $\sim$212    & --- \\
     Tokens (\texttt{/no\_think}) & $\sim$77   & --- \\
     RSS (with model loaded)    & $\sim$2,854 MB & --- \\
     GPU memory                 & $\sim$2.3 GB & --- \\
-    Cold start time            & 3.2 s        & 33.8\% \\
+    Cold start time            & 0.94 s       & 33.8\% \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -189,12 +153,12 @@ The production SetFit confusion matrix is presented in \cref{fig:confusion-matri
     \toprule
     & \textbf{Joy.} & \textbf{Foc.} & \textbf{Fru.} & \textbf{Anx.} & \textbf{Dis.} & \textbf{Ovw.} \\
     \midrule
-    Joyful      & \textbf{7} & 0 & 0 & 0 & 1 & 0 \\
-    Focused     & 0 & \textbf{7} & 0 & 1 & 0 & 0 \\
-    Frustrated  & 0 & 0 & \textbf{6} & 0 & 1 & 1 \\
-    Anxious     & 0 & 1 & 0 & \textbf{6} & 0 & 1 \\
-    Disengaged  & 0 & 0 & 1 & 0 & \textbf{7} & 0 \\
-    Overwhelmed & 0 & 0 & 1 & 1 & 0 & \textbf{6} \\
+    Joyful      & \textbf{8} & 0 & 0 & 0 & 0 & 0 \\
+    Focused     & 0 & \textbf{8} & 0 & 0 & 0 & 0 \\
+    Frustrated  & 0 & 0 & \textbf{8} & 0 & 1 & 0 \\
+    Anxious     & 0 & 0 & 1 & \textbf{6} & 1 & 1 \\
+    Disengaged  & 0 & 0 & 1 & 0 & \textbf{6} & 1 \\
+    Overwhelmed & 0 & 0 & 1 & 0 & 0 & \textbf{7} \\
     \bottomrule
   \end{tabular}
 \end{table}

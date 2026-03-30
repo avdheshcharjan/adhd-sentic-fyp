@@ -18,7 +18,7 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
 %   subgraph User["User Layer"]
 %     A[SwiftUI Menu Bar<br>~25MB RAM]
 %     B[React Dashboard<br>Vite]
-%     C[OpenClaw<br>Telegram/WhatsApp]
+%     C[Telegram Bot]
 %   end
 %   subgraph Backend["Backend Layer - FastAPI :8420"]
 %     D[SenticNet Pipeline]
@@ -30,13 +30,11 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
 %   end
 %   subgraph Data["Data Layer"]
 %     J[PostgreSQL + pgvector]
-%     K[SQLite Cache]
 %   end
 %   subgraph External["External Services"]
 %     L[SenticNet Cloud]
 %     M[Whoop API v2]
-%     N[Claude Sonnet]
-%     O[GPT-4o-mini]
+%     N[OpenAI GPT-4o-mini + Embeddings]
 %   end
 %   A --> Backend
 %   B --> Backend
@@ -65,7 +63,7 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
     % ── User Layer ──
     \node[usercomp] (swift) {SwiftUI Menu Bar\\[-1pt]{\tiny$\sim$25\,MB RAM}};
     \node[usercomp, right=0.6cm of swift] (react) {React Dashboard\\[-1pt]{\tiny Vite}};
-    \node[usercomp, right=0.6cm of react] (openclaw) {OpenClaw\\[-1pt]{\tiny Telegram / WhatsApp}};
+    \node[usercomp, right=0.6cm of react] (openclaw) {Telegram Bot\\[-1pt]{\tiny Native Python}};
 
     % ── Backend Layer ──
     \node[backcomp, below=1.4cm of swift] (senticpipe) {SenticNet\\Pipeline};
@@ -76,14 +74,12 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
     \node[backcomp, right=0.5cm of xai] (whoop) {Whoop\\Service};
 
     % ── Data Layer ──
-    \node[datacomp, below=1.4cm of memory, xshift=0.5cm] (pg) {PostgreSQL\\+ pgvector};
-    \node[datacomp, right=1.2cm of pg] (sqlite) {SQLite\\Cache};
+    \node[datacomp, below=1.4cm of memory, xshift=1.0cm] (pg) {PostgreSQL\\+ pgvector};
 
     % ── External Services ──
     \node[extcomp, right=1.4cm of mlx, yshift=-0.6cm] (senticcloud) {SenticNet\\Cloud};
     \node[extcomp, below=0.5cm of senticcloud] (whoopapi) {Whoop API v2};
-    \node[extcomp, below=0.5cm of whoopapi] (claude) {Claude Sonnet};
-    \node[extcomp, below=0.5cm of claude] (gpt) {GPT-4o-mini};
+    \node[extcomp, below=0.5cm of whoopapi] (gpt) {OpenAI\\[-1pt]{\tiny GPT-4o-mini + Embeddings}};
 
     % ── Fit nodes for layer backgrounds ──
     \begin{scope}[on background layer]
@@ -93,41 +89,40 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
       \node[fit=(senticpipe)(jitai)(mlx)(memory)(xai)(whoop),
             fill=green!4, draw=green!30, rounded corners=6pt,
             inner sep=10pt, label={[layerlabel, green!50!black]left:Backend Layer}] (backlayer) {};
-      \node[fit=(pg)(sqlite),
+      \node[fit=(pg),
             fill=orange!5, draw=orange!30, rounded corners=6pt,
             inner sep=10pt, label={[layerlabel, orange!60!black]left:Data Layer}] (datalayer) {};
-      \node[fit=(senticcloud)(whoopapi)(claude)(gpt),
+      \node[fit=(senticcloud)(whoopapi)(gpt),
             fill=gray!5, draw=gray!30, rounded corners=6pt, dashed,
             inner sep=10pt, label={[font=\small\sffamily\bfseries, gray!60!black]above:External Services}] (extlayer) {};
     \end{scope}
 
     % ── Arrows: User -> Backend ──
-    \draw[arr] (swift.south) -- ++(0,-0.35) -| (senticpipe.north);
-    \draw[arr] (react.south) -- ++(0,-0.35) -| (jitai.north);
-    \draw[arr] (openclaw.south) -- ++(0,-0.35) -| (mlx.north);
+    \draw[arr] (swift.south) -- ++(0,-0.35) -| (backlayer.north);
+    \draw[arr] (react.south) -- ++(0,-0.35) -| (backlayer.north);
+    \draw[arr] (openclaw.south) -- ++(0,-0.35) -| (backlayer.north);
 
     % ── Arrows: Backend -> Data ──
-    \draw[arr] (memory.south) -- (pg.north);
-    \draw[arr] (whoop.south) -- ++(0,-0.45) -| (sqlite.north);
+    \draw[arr] (memory.south) -- ++(0,-0.45) -| (pg.north);
+    \draw[arr] (whoop.south) -- ++(0,-0.45) -| (pg.north);
 
     % ── Arrows: Backend -> External ──
     \draw[arr, dashed] (senticpipe.east) -- ++(0.3,0) |- (senticcloud.west);
     \draw[arr, dashed] (whoop.east) -- ++(0.3,0) |- (whoopapi.west);
-    \draw[arr, dashed] (mlx.east) -- ++(0.3,0) |- (claude.west);
-    \draw[arr, dashed] (mlx.east) -- ++(0.3,0) |- (gpt.west);
+    \draw[arr, dashed] (memory.east) -- ++(1.8,0) |- (gpt.west);
 
   \end{tikzpicture}
-  \caption{Three-layer system architecture of the ADHD Second Brain. The User Layer comprises a SwiftUI menu bar application, a React dashboard, and the OpenClaw interface. The Backend Layer hosts the FastAPI server (\texttt{localhost:8420}) with its constituent modules (${\sim}500$\,MB RAM $+$ ${\sim}2.3$\,GB GPU). The Data Layer combines PostgreSQL with pgvector and SQLite for persistent and vector-indexed storage. Dashed arrows indicate external service calls.}
+  \caption{Three-layer system architecture of the ADHD Second Brain. The User Layer comprises a SwiftUI menu bar application, a React dashboard, and a Telegram bot interface. The Backend Layer hosts the FastAPI server (\texttt{localhost:8420}) with its constituent modules (${\sim}500$\,MB RAM $+$ ${\sim}2.3$\,GB GPU). The Data Layer uses PostgreSQL with pgvector for persistent and vector-indexed storage. Dashed arrows indicate external service calls.}
   \label{fig:system_architecture}
 \end{figure}
 
-\textbf{User Layer.} The primary interface is a native macOS menu bar application built in SwiftUI ($\sim$25\,MB RAM), which polls screen metadata via the Accessibility API every two to three seconds and forwards it to the Backend Layer over local HTTP. A React dashboard (Vite) provides historical analytics and emotional trend visualisations, while OpenClaw offers a conversational interface for venting, task planning, and reflective journaling.
+\textbf{User Layer.} The primary interface is a native macOS menu bar application built in SwiftUI ($\sim$25\,MB RAM), which polls screen metadata via the Accessibility API every two to three seconds and forwards it to the Backend Layer over local HTTP. A React dashboard (Vite) provides historical analytics and emotional trend visualisations, while a Telegram bot provides a conversational interface for venting, task planning, and reflective journaling.
 
 \textbf{Backend Layer.} Implemented as a FastAPI application on \texttt{localhost:8420}, the backend comprises six modules: (1)~the SenticNet Pipeline for affective analysis across thirteen APIs~\cite{cambria2024}; (2)~the JITAI Engine, evaluating behavioural metrics against Barkley's five executive function domains~\cite{barkley2010}; (3)~the Whoop Service for physiological data via OAuth~2.0; (4)~the MLX Inference module hosting Qwen3-4B at 4-bit precision on Apple Silicon; (5)~the Memory module coordinating Mem0 and PostgreSQL for semantic retrieval; and (6)~the XAI Explainer using a Concept Bottleneck Model for interpretable explanations. At steady state, the backend consumes $\sim$500\,MB RAM plus $\sim$2.3\,GB GPU memory.
 
-\textbf{Data Layer.} PostgreSQL with pgvector provides combined relational and vector storage. Activity logs, emotional analyses, and conversation histories are stored relationally, while Mem0-generated embeddings are indexed via pgvector for sub-second semantic search. A lightweight SQLite database caches configuration state and transient metadata.
+\textbf{Data Layer.} PostgreSQL with pgvector provides combined relational and vector storage. Activity logs, emotional analyses, and conversation histories are stored relationally, while Mem0-generated embeddings are indexed via pgvector for sub-second semantic search.
 
-\textbf{External Services.} Four external services are used selectively: SenticNet Cloud (thirteen affective computing APIs)~\cite{cambria2024}, Whoop API~v2 (physiological metrics), Claude Sonnet (complex reasoning), and GPT-4o-mini (high-frequency classification and summarisation). A routing heuristic governs external LLM selection based on query complexity and latency requirements.
+\textbf{External Services.} Three external services are used selectively: SenticNet Cloud (thirteen affective computing APIs)~\cite{cambria2024}, Whoop API~v2 (physiological metrics), and the OpenAI API (GPT-4o-mini for Mem0 memory extraction, \texttt{text-embedding-3-small} for memory embeddings).
 
 \textbf{Data Flows.} The architecture supports two data flows with distinct latency targets. The \emph{Hot Path} handles screen monitoring events within 100\,ms (activity classification, metric computation, SetFit emotion prediction, and intervention evaluation with emotion context). The \emph{Warm Path} handles conversational interactions within 3\,s (affective analysis, LLM generation, memory persistence). These are detailed in \Cref{sec:screen_monitoring} and \Cref{sec:affective_computing}; \Cref{fig:data_flows} illustrates both flows.
 
@@ -143,11 +138,11 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
 %   end
 %   subgraph WarmPath["Warm Path (<3s)"]
 %     direction TB
-%     W1[User Message] --> W2[Safety Check]
-%     W2 --> W3[Emotion Analysis]
-%     W3 --> W4[ADHD Signals]
-%     W4 --> W5[LLM Generation]
-%     W5 --> W6[Memory Store]
+%     W1[User Message] --> W2[SenticNet Analysis<br>Safety + Emotion + ADHD]
+%     W2 --> W3{Safety Gate}
+%     W3 -->|Pass| W4[LLM Generation]
+%     W3 -->|Critical| W3b[Crisis Response]
+%     W4 --> W5[Memory Store]
 %   end
 % --- END MERMAID ---
 
@@ -183,9 +178,9 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
 
     % ── Warm Path (right column) ──
     \node[warmbox, right=2.8cm of h1] (w1) {User Message};
-    \node[warmbox, below=of w1] (w2) {Safety Check};
-    \node[warmbox, below=of w2] (w3) {Emotion Analysis};
-    \node[warmbox, below=of w3] (w4) {ADHD Signal Extraction};
+    \node[warmbox, below=of w1] (w2) {SenticNet Analysis\\[-2pt]{\scriptsize Safety + Emotion + ADHD}};
+    \node[warmbox, below=of w2] (w3) {Safety Gate\\[-2pt]{\scriptsize Critical? $\to$ crisis path}};
+    \node[warmbox, below=of w3] (w4) {Build LLM Context\\[-2pt]{\scriptsize Emotion + memory retrieval}};
     \node[warmbox, below=of w4] (w5) {LLM Generation};
     \node[warmbox, below=of w5] (w6) {Memory Store};
 
@@ -202,7 +197,7 @@ The system adopts a three-layer architecture comprising a User Layer, a Backend 
       {Warm Path ($<$3\,s)};
 
   \end{tikzpicture}
-  \caption{Hot Path and Warm Path data flows. The Hot Path (solid arrows) processes screen monitoring events through activity classification, ADHD metrics computation, SetFit emotion prediction, and JITAI evaluation with confidence-gated emotion context within a 100\,ms budget. The Warm Path (dashed arrows) processes conversational input through safety checking, emotion analysis, LLM generation, and memory storage within a 3\,s budget.}
+  \caption{Hot Path and Warm Path data flows. The Hot Path (solid arrows) processes screen monitoring events through activity classification, ADHD metrics computation, SetFit emotion prediction, and JITAI evaluation with confidence-gated emotion context within a 100\,ms budget. The Warm Path (dashed arrows) processes conversational input through a unified SenticNet analysis (safety, emotion, and ADHD signals concurrently), a safety gate, LLM context construction with memory retrieval, LLM generation, and memory storage within a 3\,s budget.}
   \label{fig:data_flows}
 \end{figure}
 
@@ -220,7 +215,7 @@ Four design principles governed all architectural decisions:
   \item \emph{Privacy by architecture}: raw screen captures and transcripts never leave the local machine; only anonymised metadata is sent externally when enrichment is required.
   \item \emph{Fail-fast over fail-safe}: components throw errors immediately rather than degrading silently---a deliberate choice for a pre-production system.
   \item \emph{Interpretability}: every decision is traceable to named concepts and explainable via the XAI module.
-  \item \emph{Resource consciousness}: peak AI memory is constrained to 2.5\,GB with load-on-demand model instantiation for consumer Apple Silicon hardware.
+  \item \emph{Resource consciousness}: peak AI memory is constrained to below 3\,GB with load-on-demand model instantiation for consumer Apple Silicon hardware.
 \end{enumerate}
 
 Each phase concluded with evaluation against predefined acceptance criteria: minimum accuracy thresholds for ML modules (e.g., 80\% weighted F1 for emotion classification) and latency percentile targets for real-time modules (e.g., p99~$<$~100\,ms for the Hot Path).
@@ -249,7 +244,7 @@ The On-Device LLM Module provides natural language understanding and generation 
     Quantisation           & 4-bit (GPTQ) \\
     GPU memory footprint   & $\sim$2.3\,GB \\
     Inference throughput   & 37.1 tokens/s \\
-    Time to first token    & $\sim$180\,ms \\
+    Cold start latency     & $\sim$0.94\,s \\
     Framework              & Apple MLX \\
     \bottomrule
   \end{tabular}
@@ -265,7 +260,7 @@ The On-Device LLM Module provides natural language understanding and generation 
 
 The Affective Computing Module combines lexicon-based sentiment analysis with contrastive learning to understand the user's emotional state from text, operating along two axes: a multi-tier SenticNet orchestration pipeline and a custom SetFit-based emotion classifier.
 
-\textbf{SenticNet Pipeline.} SenticNet~\cite{cambria2024} provides semantics-aware sentiment analysis grounded in the Hourglass of Emotions model~\cite{cambria2016}. The system orchestrates thirteen Cloud APIs in a four-tier cascade. Tier~1 (Safety) invokes depression detection, toxicity classification, and intensity estimation---if thresholds are exceeded, an emergency pathway is triggered immediately. Tier~2 (Core Emotional) performs emotion recognition, polarity detection, subjectivity analysis, and sarcasm detection. Tier~3 (ADHD Signals) extracts engagement, wellbeing, conceptual associations, and aspect-level sentiment. Tier~4 (Deep Analysis) performs personality profiling and ensemble aggregation, invoked only when preceding tiers yield conflicting signals. \Cref{fig:senticnet_pipeline} illustrates this cascade.
+\textbf{SenticNet Pipeline.} SenticNet~\cite{cambria2024} provides semantics-aware sentiment analysis grounded in the Hourglass of Emotions model~\cite{cambria2016}. The system orchestrates thirteen Cloud APIs in a four-tier cascade. Tier~1 (Safety) invokes depression detection, toxicity classification, and intensity estimation---if thresholds are exceeded, an emergency pathway is triggered immediately. Tier~2 (Core Emotional) performs emotion recognition, polarity detection, subjectivity analysis, and sarcasm detection. Tier~3 (ADHD Signals) extracts engagement, wellbeing, conceptual associations, and aspect-level sentiment. Tier~4 (Deep Analysis) performs personality profiling and ensemble aggregation; it is executed in full analysis mode and skipped only in lightweight mode. \Cref{fig:senticnet_pipeline} illustrates this cascade.
 
 % --- MERMAID BACKUP ---
 % flowchart TB
@@ -312,7 +307,7 @@ The Affective Computing Module combines lexicon-based sentiment analysis with co
       {\footnotesize Engagement $\cdot$ Wellbeing $\cdot$ Concepts $\cdot$ Aspects}};
     \node[tier4, below=of t3] (t4) {%
       \textbf{Tier 4: Deep Analysis}\\[-2pt]
-      {\footnotesize Personality $\cdot$ Ensemble} {\scriptsize (conditional)}};
+      {\footnotesize Personality $\cdot$ Ensemble}};
 
     % Emergency branch
     \node[emergency, right=2.8cm of t1] (emerg) {\textbf{Emergency}\\[-2pt]Response};
@@ -320,19 +315,19 @@ The Affective Computing Module combines lexicon-based sentiment analysis with co
     % Vertical arrows
     \draw[downarr] (t1.south) -- node[left, font=\scriptsize\sffamily, text=gray!70!black]{Pass} (t2.north);
     \draw[downarr] (t2.south) -- (t3.north);
-    \draw[downarr] (t3.south) -- node[left, font=\scriptsize\sffamily, text=gray!70!black]{Ambiguous?} (t4.north);
+    \draw[downarr] (t3.south) -- (t4.north);
 
     % Emergency arrow
     \draw[emergarr] (t1.east) -- node[above, font=\scriptsize\sffamily, text=red!60!black]{Threshold exceeded} (emerg.west);
 
-    % Conditional annotation for Tier 4
-    \draw[decorate, decoration={brace, amplitude=5pt, mirror}, thick, blue!40!black]
-      ([xshift=-3.8cm]t4.south west) -- ([xshift=-3.8cm]t3.south west)
-      node[midway, left=6pt, font=\scriptsize\sffamily, text=blue!50!black, align=right]
-      {Invoked only if\\signals conflict};
+    % Annotation for Tier 4 — skipped in lightweight mode
+    \draw[decorate, decoration={brace, amplitude=4pt, mirror}, thick, blue!40!black]
+      ([xshift=-0.4cm]t4.south west) -- ([xshift=-0.4cm]t4.north west)
+      node[midway, left=5pt, font=\scriptsize\sffamily, text=blue!50!black, align=right]
+      {Skipped in\\lightweight mode};
 
   \end{tikzpicture}
-  \caption{Four-tier SenticNet orchestration pipeline. Each tier is evaluated sequentially; Tier~1 may short-circuit to an emergency pathway if safety thresholds are exceeded. Tier~4 is invoked conditionally based on signal ambiguity in Tiers~2 and~3.}
+  \caption{Four-tier SenticNet orchestration pipeline. Each tier is evaluated sequentially; Tier~1 may short-circuit to an emergency pathway if safety thresholds are exceeded. All four tiers execute in full analysis mode; Tier~4 is skipped only in lightweight mode.}
   \label{fig:senticnet_pipeline}
 \end{figure}
 
@@ -372,16 +367,15 @@ The Memory and Context Module provides longitudinal awareness of the user's beha
 
 \textbf{Mem0 Integration.} Mem0~\cite{chhikara2025} serves as the primary memory abstraction, automatically extracting salient facts from conversations and storing them as structured entries with metadata. In evaluation, Mem0 demonstrated a 26\% improvement in retrieval relevance over the OpenAI memory baseline, as measured by Mean Reciprocal Rank on ADHD-specific recall queries. This advantage stems from Mem0's graph-based memory organisation capturing relational structure.
 
-\textbf{PostgreSQL + pgvector.} Memory embeddings are persisted via the pgvector extension for approximate nearest-neighbour search. The embedding model is \texttt{all-mpnet-base-v2}---shared with the emotion classifier for representational consistency. At query time, cosine similarity search retrieves the top-$k$ relevant memories for injection into the LLM prompt (\Cref{sec:llm_module}).
+\textbf{PostgreSQL + pgvector.} Memory embeddings are persisted via the pgvector extension for approximate nearest-neighbour search. The embedding model is OpenAI's \texttt{text-embedding-3-small}, selected for its compact dimensions and low latency. At query time, cosine similarity search retrieves the top-$k$ relevant memories for injection into the LLM prompt (\Cref{sec:llm_module}).
 
 \textbf{Semantic Retrieval Pipeline.} The retrieval pipeline comprises three stages: (1)~encoding the user input via the shared sentence transformer, (2)~pgvector cosine similarity search over the memory index, and (3)~re-ranking by temporal recency and contextual relevance. \Cref{fig:memory_pipeline} illustrates this pipeline.
 
 % --- MERMAID BACKUP ---
 % flowchart LR
-%   A[User Input] --> B[Encode<br>all-mpnet-base-v2]
+%   A[User Input] --> B[Encode<br>text-embedding-3-small]
 %   B --> C[pgvector Search<br>Cosine Similarity]
-%   C --> D[Re-rank<br>Temporal + Context]
-%   D --> E[Inject into<br>LLM Prompt]
+%   C --> D[Inject into<br>LLM Prompt]
 % --- END MERMAID ---
 
 \begin{figure}[htbp]
@@ -397,17 +391,15 @@ The Memory and Context Module provides longitudinal awareness of the user's beha
     arr/.style={-{Stealth[length=5pt]}, thick, violet!50!black}
   ]
     \node[pipebox] (input) {User\\Input};
-    \node[pipebox, right=of input] (encode) {Encode\\[-2pt]{\scriptsize all-mpnet-\\base-v2}};
+    \node[pipebox, right=of input] (encode) {Encode\\[-2pt]{\scriptsize text-embedding-\\3-small (OpenAI)}};
     \node[pipebox, right=of encode] (search) {pgvector\\Search\\[-2pt]{\scriptsize Cosine Sim.}};
-    \node[pipebox, right=of search] (rerank) {Re-rank\\[-2pt]{\scriptsize Temporal +\\Context}};
-    \node[pipebox, right=of rerank] (inject) {Inject into\\LLM Prompt};
+    \node[pipebox, right=of search] (inject) {Inject into\\LLM Prompt};
 
     \draw[arr] (input) -- (encode);
     \draw[arr] (encode) -- (search);
-    \draw[arr] (search) -- (rerank);
-    \draw[arr] (rerank) -- (inject);
+    \draw[arr] (search) -- (inject);
   \end{tikzpicture}
-  \caption{Semantic memory retrieval pipeline. User input is encoded via the shared sentence transformer, matched against the pgvector index by cosine similarity, and re-ranked by temporal recency and activity context before injection into the LLM prompt.}
+  \caption{Semantic memory retrieval pipeline. User input is encoded via OpenAI's \texttt{text-embedding-3-small} model, matched against the pgvector index by cosine similarity, and injected into the LLM prompt.}
   \label{fig:memory_pipeline}
 \end{figure}
 
@@ -596,7 +588,7 @@ The Intervention System implements a Just-In-Time Adaptive Intervention (JITAI) 
 \label{sec:uiux_design}
 % =============================================================================
 
-The user interface comprises two complementary surfaces. The SwiftUI menu bar application provides an always-available, minimal-footprint entry point displaying current focus score, emotional state, and streak duration, with access to the OpenClaw conversational interface. It follows macOS Human Interface Guidelines to minimise cognitive overhead---critical for users with ADHD, who are disproportionately affected by interface complexity~\cite{beattie2025}.
+The user interface comprises two complementary surfaces. The SwiftUI menu bar application provides an always-available, minimal-footprint entry point displaying current focus score, emotional state, and streak duration, with access to the Telegram bot conversational interface. It follows macOS Human Interface Guidelines to minimise cognitive overhead---critical for users with ADHD, who are disproportionately affected by interface complexity~\cite{beattie2025}.
 
 The React dashboard provides a richer analytical interface for historical trends, emotional trajectories, and intervention efficacy over configurable time windows. Both interfaces employ ADHD-informed design: minimal visual clutter, high-contrast colour coding (green/amber/red for focus states), and progressive disclosure. Intervention notifications are non-punitive and action-oriented, framed positively to avoid triggering rejection-sensitive dysphoria.
 
@@ -612,7 +604,7 @@ The React dashboard provides a richer analytical interface for historical trends
   \centering
   \caption{Technology stack selection with justifications.}
   \label{tab:tech_stack}
-  \begin{tabular}{p{2.8cm}p{3.8cm}p{7cm}}
+  \begin{tabular}{p{2.8cm}|p{3.8cm}p{7cm}}
     \toprule
     \textbf{Component} & \textbf{Technology} & \textbf{Justification} \\
     \midrule
@@ -620,11 +612,11 @@ The React dashboard provides a richer analytical interface for historical trends
     \addlinespace
     Database & PostgreSQL + pgvector & Combined relational and vector storage eliminates the need for a separate vector database; mature ACID guarantees for activity logs; pgvector supports IVFFlat and HNSW indexing for sub-millisecond ANN search \\
     \addlinespace
-    On-device LLM & Qwen3-4B via MLX & 4-bit quantisation fits within 2.5\,GB GPU budget; MLX exploits Apple Silicon unified memory for zero-copy inference; 37.1\,tok/s throughput enables interactive conversation \\
+    On-device LLM & Qwen3-4B via MLX & 4-bit quantisation fits within 2.3\,GB GPU budget; MLX exploits Apple Silicon unified memory for zero-copy inference; 37.1\,tok/s throughput enables interactive conversation \\
     \addlinespace
     Affective computing & SenticNet + SetFit & SenticNet provides interpretable, multi-dimensional affective features grounded in the Hourglass of Emotions~\cite{cambria2016}; SetFit achieves 86\% F1 with only 210 training sentences via contrastive learning \\
     \addlinespace
-    Sentence encoder & all-mpnet-base-v2 & State-of-the-art sentence embeddings on STS benchmarks~\cite{reimers2019}; shared across emotion classification and memory retrieval for representational consistency \\
+    Sentence encoder & all-mpnet-base-v2 & State-of-the-art sentence embeddings on STS benchmarks~\cite{reimers2019}; used for emotion classification and activity classification. Memory retrieval uses OpenAI \texttt{text-embedding-3-small} via Mem0 \\
     \addlinespace
     Memory & Mem0 & 26\% retrieval relevance improvement over OpenAI memory baseline~\cite{chhikara2025}; graph-based memory organisation captures relational structure \\
     \addlinespace

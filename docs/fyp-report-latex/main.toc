@@ -18,138 +18,138 @@
 \contentsline {section}{\numberline {1.4}Project Scope and Limitations}{6}{section.1.4}%
 \contentsline {section}{\numberline {1.5}Contributions and Significance}{6}{section.1.5}%
 \contentsline {section}{\numberline {1.6}Report Organisation}{7}{section.1.6}%
-\contentsline {chapter}{\numberline {2}Literature Review}{9}{chapter.2}%
-\contentsline {section}{\numberline {2.1}ADHD and Executive Function in Digital Environments}{9}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Prevalence and Clinical Significance of Adult ADHD}{9}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Executive Function Deficits as the Core Mechanism}{10}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Digital Environments as Amplifiers of ADHD Symptoms}{10}{subsection.2.1.3}%
-\contentsline {section}{\numberline {2.2}Technology-Based ADHD Interventions}{11}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Evidence Base for Digital ADHD Interventions}{11}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Population-Specific Evidence and Gaps}{11}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Design Principles for Digital Mental Health Interventions}{12}{subsection.2.2.3}%
-\contentsline {section}{\numberline {2.3}AI and LLM-Powered Mental Health Applications}{12}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Conversational AI: Foundational Evidence}{12}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}The LLM Revolution in Mental Health Chatbots}{12}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Prompt Engineering and Safety Frameworks}{13}{subsection.2.3.3}%
-\contentsline {section}{\numberline {2.4}Affective Computing and SenticNet}{13}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}The Evolution of SenticNet}{13}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}SenticNet in the Context of ADHD Emotion Classification}{14}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Beyond SenticNet: Contrastive and Interpretable Approaches}{15}{subsection.2.4.3}%
-\contentsline {section}{\numberline {2.5}Second Brain and Personal Knowledge Management}{15}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}The Second Brain Paradigm}{15}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}PKM in Practice and the Role of AI}{16}{subsection.2.5.2}%
-\contentsline {section}{\numberline {2.6}On-Device AI and Privacy-Preserving Inference}{16}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}The Case for Edge Deployment}{16}{subsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.6.2}Apple Silicon as an Inference Platform}{17}{subsection.2.6.2}%
-\contentsline {subsection}{\numberline {2.6.3}Model Selection for On-Device ADHD Support}{17}{subsection.2.6.3}%
-\contentsline {section}{\numberline {2.7}Review of Existing ADHD Applications}{18}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}The Current Application Landscape}{18}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Comparative Analysis}{19}{subsection.2.7.2}%
-\contentsline {subsection}{\numberline {2.7.3}Critical Analysis of Gaps}{19}{subsection.2.7.3}%
-\contentsline {subsection}{\numberline {2.7.4}Digital Wellbeing Tool Effectiveness}{20}{subsection.2.7.4}%
-\contentsline {section}{\numberline {2.8}Research Gap and Positioning}{21}{section.2.8}%
-\contentsline {subsection}{\numberline {2.8.1}Synthesis and Identified Gap}{21}{subsection.2.8.1}%
-\contentsline {subsection}{\numberline {2.8.2}Positioning of ADHD Brain}{21}{subsection.2.8.2}%
-\contentsline {chapter}{\numberline {3}System Design and Architecture}{23}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Overall System Architecture}{23}{section.3.1}%
+\contentsline {chapter}{\numberline {2}Literature Review}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1}ADHD and Executive Function in Digital Environments}{8}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Prevalence and Clinical Significance of Adult ADHD}{8}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Executive Function Deficits as the Core Mechanism}{9}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Digital Environments as Amplifiers of ADHD Symptoms}{9}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Technology-Based ADHD Interventions}{10}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Evidence Base for Digital ADHD Interventions}{10}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Population-Specific Evidence and Gaps}{10}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Design Principles for Digital Mental Health Interventions}{11}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}AI and LLM-Powered Mental Health Applications}{11}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Conversational AI: Foundational Evidence}{11}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}The LLM Revolution in Mental Health Chatbots}{11}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Prompt Engineering and Safety Frameworks}{12}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Affective Computing and SenticNet}{12}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}The Evolution of SenticNet}{12}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}SenticNet in the Context of ADHD Emotion Classification}{13}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Beyond SenticNet: Contrastive and Interpretable Approaches}{14}{subsection.2.4.3}%
+\contentsline {section}{\numberline {2.5}Second Brain and Personal Knowledge Management}{14}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}The Second Brain Paradigm}{14}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}PKM in Practice and the Role of AI}{15}{subsection.2.5.2}%
+\contentsline {section}{\numberline {2.6}On-Device AI and Privacy-Preserving Inference}{15}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}The Case for Edge Deployment}{15}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Apple Silicon as an Inference Platform}{16}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Model Selection for On-Device ADHD Support}{16}{subsection.2.6.3}%
+\contentsline {section}{\numberline {2.7}Review of Existing ADHD Applications}{17}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}The Current Application Landscape}{17}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Comparative Analysis}{18}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}Critical Analysis of Gaps}{18}{subsection.2.7.3}%
+\contentsline {subsection}{\numberline {2.7.4}Digital Wellbeing Tool Effectiveness}{19}{subsection.2.7.4}%
+\contentsline {section}{\numberline {2.8}Research Gap and Positioning}{20}{section.2.8}%
+\contentsline {subsection}{\numberline {2.8.1}Synthesis and Identified Gap}{20}{subsection.2.8.1}%
+\contentsline {subsection}{\numberline {2.8.2}Positioning of ADHD Brain}{20}{subsection.2.8.2}%
+\contentsline {chapter}{\numberline {3}System Design and Architecture}{22}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Overall System Architecture}{22}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Design Methodology}{25}{section.3.2}%
-\contentsline {section}{\numberline {3.3}On-Device LLM Module}{27}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Affective Computing Module}{28}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Memory and Context Module}{30}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Screen Monitoring Module}{31}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Intervention System Design}{31}{section.3.7}%
-\contentsline {section}{\numberline {3.8}UI/UX Design}{33}{section.3.8}%
-\contentsline {section}{\numberline {3.9}Technology Stack Selection}{34}{section.3.9}%
-\contentsline {chapter}{\numberline {4}Implementation}{36}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Development Environment and Tools}{36}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Hardware and Runtime Environment}{36}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Core Libraries and Frameworks}{36}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}Data Infrastructure and Build Automation}{37}{subsection.4.1.3}%
-\contentsline {subsection}{\numberline {4.1.4}Version Control and Dependency Management}{37}{subsection.4.1.4}%
-\contentsline {section}{\numberline {4.2}LLM Inference Pipeline}{37}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}On-Device Model Selection and Quantisation}{37}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Dual-Mode Generation}{38}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}System Prompt Engineering for ADHD Coaching}{38}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Context Injection from Affective Analysis}{39}{subsection.4.2.4}%
-\contentsline {section}{\numberline {4.3}Emotion Classification Pipeline}{40}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Problem Formulation}{40}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Approach A: Hybrid Embedding Classifier}{40}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Approach B: Contrastive Learning (Production)}{40}{subsection.4.3.3}%
-\contentsline {subsubsection}{Base Model and Pair Generation}{40}{subsection.4.3.3}%
-\contentsline {subsubsection}{Loss Function: CoSENTLoss}{41}{subsection.4.3.3}%
-\contentsline {subsubsection}{Training Configuration and Overfitting Analysis}{41}{equation.4.1}%
-\contentsline {subsubsection}{Classification Head}{41}{equation.4.1}%
-\contentsline {subsubsection}{Performance}{41}{equation.4.1}%
-\contentsline {subsection}{\numberline {4.3.4}Approach C: DistilBERT Fine-Tuning}{43}{subsection.4.3.4}%
-\contentsline {subsection}{\numberline {4.3.5}Data Quality Lessons}{43}{subsection.4.3.5}%
-\contentsline {section}{\numberline {4.4}SenticNet Affective Computing Pipeline}{43}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Memory System Implementation}{46}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Screen Monitoring and Activity Classification}{46}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Intervention Engine}{48}{section.4.7}%
-\contentsline {section}{\numberline {4.8}macOS Application and Web Dashboard}{49}{section.4.8}%
-\contentsline {section}{\numberline {4.9}Implementation Challenges and Solutions}{50}{section.4.9}%
-\contentsline {chapter}{\numberline {5}Testing and Evaluation}{51}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Testing Strategy and Methodology}{51}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Emotion Classification Evaluation}{51}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Baseline and Approach Comparison}{52}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}SetFit Optimisation Analysis}{52}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Per-Class Performance}{53}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}Confusion Matrix Analysis}{53}{subsection.5.2.4}%
-\contentsline {section}{\numberline {5.3}LLM Performance Evaluation}{54}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Throughput and Latency}{54}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Memory Footprint}{55}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}SenticNet Pipeline Evaluation}{55}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Latency Scaling}{55}{subsection.5.4.1}%
+\contentsline {section}{\numberline {3.3}On-Device LLM Module}{25}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Affective Computing Module}{26}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Memory and Context Module}{28}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Screen Monitoring Module}{29}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Intervention System Design}{30}{section.3.7}%
+\contentsline {section}{\numberline {3.8}UI/UX Design}{31}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Technology Stack Selection}{33}{section.3.9}%
+\contentsline {chapter}{\numberline {4}Implementation}{35}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Development Environment and Tools}{35}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Hardware and Runtime Environment}{35}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Core Libraries and Frameworks}{35}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Data Infrastructure and Build Automation}{36}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Version Control and Dependency Management}{36}{subsection.4.1.4}%
+\contentsline {section}{\numberline {4.2}LLM Inference Pipeline}{36}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}On-Device Model Selection and Quantisation}{36}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Dual-Mode Generation}{37}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}System Prompt Engineering for ADHD Coaching}{37}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Context Injection from Affective Analysis}{38}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}Emotion Classification Pipeline}{39}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Problem Formulation}{39}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Approach A: Hybrid Embedding Classifier}{39}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Approach B: Contrastive Learning (Production)}{39}{subsection.4.3.3}%
+\contentsline {subsubsection}{Base Model and Pair Generation}{39}{subsection.4.3.3}%
+\contentsline {subsubsection}{Loss Function: CoSENTLoss}{40}{subsection.4.3.3}%
+\contentsline {subsubsection}{Training Configuration and Overfitting Analysis}{40}{equation.4.1}%
+\contentsline {subsubsection}{Classification Head}{40}{equation.4.1}%
+\contentsline {subsubsection}{Performance}{40}{equation.4.1}%
+\contentsline {subsection}{\numberline {4.3.4}Approach C: DistilBERT Fine-Tuning}{41}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}Data Quality Lessons}{42}{subsection.4.3.5}%
+\contentsline {section}{\numberline {4.4}SenticNet Affective Computing Pipeline}{42}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Memory System Implementation}{45}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Screen Monitoring and Activity Classification}{45}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Intervention Engine}{47}{section.4.7}%
+\contentsline {section}{\numberline {4.8}macOS Application and Web Dashboard}{48}{section.4.8}%
+\contentsline {section}{\numberline {4.9}Implementation Challenges and Solutions}{48}{section.4.9}%
+\contentsline {chapter}{\numberline {5}Testing and Evaluation}{50}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Testing Strategy and Methodology}{50}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Emotion Classification Evaluation}{50}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Baseline and Approach Comparison}{51}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}SetFit Optimisation Analysis}{51}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Per-Class Performance}{52}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Confusion Matrix Analysis}{52}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5.3}LLM Performance Evaluation}{53}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Throughput and Latency}{53}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Memory Footprint}{54}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}SenticNet Pipeline Evaluation}{54}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Latency Scaling}{54}{subsection.5.4.1}%
 \contentsline {subsection}{\numberline {5.4.2}Reliability and Determinism}{55}{subsection.5.4.2}%
-\contentsline {section}{\numberline {5.5}SetFit Wiring Verification}{56}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}Emotion Radar PASE Mapping}{56}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}SetFit Classifier Output}{56}{subsection.5.5.2}%
+\contentsline {section}{\numberline {5.5}SetFit Wiring Verification}{55}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Emotion Radar PASE Mapping}{55}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}SetFit Classifier Output}{55}{subsection.5.5.2}%
 \contentsline {subsection}{\numberline {5.5.3}JITAI Emotion Rule Verification}{56}{subsection.5.5.3}%
-\contentsline {subsection}{\numberline {5.5.4}Confidence Gating}{57}{subsection.5.5.4}%
-\contentsline {section}{\numberline {5.6}Memory System Evaluation}{57}{section.5.6}%
+\contentsline {subsection}{\numberline {5.5.4}Confidence Gating}{56}{subsection.5.5.4}%
+\contentsline {section}{\numberline {5.6}Memory System Evaluation}{56}{section.5.6}%
 \contentsline {section}{\numberline {5.7}System Integration and Performance}{57}{section.5.7}%
 \contentsline {subsection}{\numberline {5.7.1}End-to-End Pipeline}{57}{subsection.5.7.1}%
-\contentsline {subsection}{\numberline {5.7.2}Stress Testing}{58}{subsection.5.7.2}%
+\contentsline {subsection}{\numberline {5.7.2}Stress Testing}{57}{subsection.5.7.2}%
 \contentsline {subsection}{\numberline {5.7.3}Pipeline Latency Decomposition}{58}{subsection.5.7.3}%
-\contentsline {section}{\numberline {5.8}Energy Consumption}{59}{section.5.8}%
-\contentsline {subsection}{\numberline {5.8.1}Per-Component Energy Breakdown}{59}{subsection.5.8.1}%
-\contentsline {subsection}{\numberline {5.8.2}Energy Distribution}{59}{subsection.5.8.2}%
+\contentsline {section}{\numberline {5.8}Energy Consumption}{58}{section.5.8}%
+\contentsline {subsection}{\numberline {5.8.1}Per-Component Energy Breakdown}{58}{subsection.5.8.1}%
+\contentsline {subsection}{\numberline {5.8.2}Energy Distribution}{58}{subsection.5.8.2}%
 \contentsline {subsection}{\numberline {5.8.3}Battery Life Projections}{59}{subsection.5.8.3}%
-\contentsline {section}{\numberline {5.9}Reproducibility Assessment}{60}{section.5.9}%
-\contentsline {section}{\numberline {5.10}Evaluation Against Objectives}{61}{section.5.10}%
-\contentsline {subsection}{\numberline {5.10.1}Summary of Findings}{61}{subsection.5.10.1}%
-\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{63}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Summary of Achievements}{63}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Limitations}{64}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Future Work}{64}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Lessons Learned}{65}{section.6.4}%
-\contentsline {chapter}{References}{67}{chapter*.39}%
-\contentsline {chapter}{\numberline {A}User Guide and Screenshots}{73}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Prerequisites}{73}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Installation}{73}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Application Walkthrough}{74}{section.A.3}%
-\contentsline {subsection}{\numberline {A.3.1}Menu Bar Application}{74}{subsection.A.3.1}%
-\contentsline {subsection}{\numberline {A.3.2}Chat Interface and Brain Dump}{76}{subsection.A.3.2}%
-\contentsline {subsection}{\numberline {A.3.3}Intervention Popup}{76}{subsection.A.3.3}%
-\contentsline {subsection}{\numberline {A.3.4}React Dashboard}{76}{subsection.A.3.4}%
-\contentsline {subsection}{\numberline {A.3.5}Settings Panel}{77}{subsection.A.3.5}%
-\contentsline {chapter}{\numberline {B}Additional Test Results}{80}{appendix.B}%
-\contentsline {section}{\numberline {B.1}LLM Inference Benchmark}{80}{section.B.1}%
-\contentsline {section}{\numberline {B.2}SenticNet Pipeline Latency}{80}{section.B.2}%
-\contentsline {section}{\numberline {B.3}Confusion Matrices}{80}{section.B.3}%
-\contentsline {subsection}{\numberline {B.3.1}SetFit Production Model (86\% Accuracy)}{81}{subsection.B.3.1}%
-\contentsline {subsection}{\numberline {B.3.2}Hybrid Approach (74\% Accuracy, Embedding Only)}{81}{subsection.B.3.2}%
-\contentsline {section}{\numberline {B.4}Energy Consumption Detail}{81}{section.B.4}%
-\contentsline {section}{\numberline {B.5}Idle Power Baseline}{82}{section.B.5}%
-\contentsline {section}{\numberline {B.6}Persona Simulation Summary}{82}{section.B.6}%
-\contentsline {chapter}{\numberline {C}API Documentation}{83}{appendix.C}%
-\contentsline {section}{\numberline {C.1}Endpoint Summary}{83}{section.C.1}%
-\contentsline {section}{\numberline {C.2}Core Endpoints}{84}{section.C.2}%
-\contentsline {subsection}{\numberline {C.2.1}POST /chat/message}{84}{subsection.C.2.1}%
-\contentsline {subsection}{\numberline {C.2.2}POST /screen/activity}{84}{subsection.C.2.2}%
-\contentsline {subsection}{\numberline {C.2.3}POST /api/v1/vent/chat/stream}{85}{subsection.C.2.3}%
-\contentsline {subsection}{\numberline {C.2.4}POST /interventions/\{id\}/respond}{86}{subsection.C.2.4}%
-\contentsline {section}{\numberline {C.3}Data Model Schemas}{86}{section.C.3}%
-\contentsline {subsection}{\numberline {C.3.1}EmotionDetail}{86}{subsection.C.3.1}%
-\contentsline {subsection}{\numberline {C.3.2}Intervention}{87}{subsection.C.3.2}%
-\contentsline {subsection}{\numberline {C.3.3}ScreenActivityInput}{87}{subsection.C.3.3}%
+\contentsline {section}{\numberline {5.9}Reproducibility Assessment}{59}{section.5.9}%
+\contentsline {section}{\numberline {5.10}Evaluation Against Objectives}{60}{section.5.10}%
+\contentsline {subsection}{\numberline {5.10.1}Summary of Findings}{60}{subsection.5.10.1}%
+\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{62}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Summary of Achievements}{62}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Limitations}{63}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Future Work}{63}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Lessons Learned}{64}{section.6.4}%
+\contentsline {chapter}{References}{66}{chapter*.39}%
+\contentsline {chapter}{\numberline {A}User Guide and Screenshots}{72}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Prerequisites}{72}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Installation}{72}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Application Walkthrough}{73}{section.A.3}%
+\contentsline {subsection}{\numberline {A.3.1}Menu Bar Application}{73}{subsection.A.3.1}%
+\contentsline {subsection}{\numberline {A.3.2}Chat Interface and Brain Dump}{74}{subsection.A.3.2}%
+\contentsline {subsection}{\numberline {A.3.3}Intervention Popup}{74}{subsection.A.3.3}%
+\contentsline {subsection}{\numberline {A.3.4}React Dashboard}{74}{subsection.A.3.4}%
+\contentsline {subsection}{\numberline {A.3.5}Settings Panel}{74}{subsection.A.3.5}%
+\contentsline {chapter}{\numberline {B}Additional Test Results}{75}{appendix.B}%
+\contentsline {section}{\numberline {B.1}LLM Inference Benchmark}{75}{section.B.1}%
+\contentsline {section}{\numberline {B.2}SenticNet Pipeline Latency}{75}{section.B.2}%
+\contentsline {section}{\numberline {B.3}Confusion Matrices}{76}{section.B.3}%
+\contentsline {subsection}{\numberline {B.3.1}SetFit Production Model (86\% Accuracy)}{76}{subsection.B.3.1}%
+\contentsline {subsection}{\numberline {B.3.2}Hybrid Approach (74\% Accuracy, Embedding Only)}{76}{subsection.B.3.2}%
+\contentsline {section}{\numberline {B.4}Energy Consumption Detail}{76}{section.B.4}%
+\contentsline {section}{\numberline {B.5}Idle Power Baseline}{77}{section.B.5}%
+\contentsline {section}{\numberline {B.6}Persona Simulation Summary}{77}{section.B.6}%
+\contentsline {chapter}{\numberline {C}API Documentation}{78}{appendix.C}%
+\contentsline {section}{\numberline {C.1}Endpoint Summary}{78}{section.C.1}%
+\contentsline {section}{\numberline {C.2}Core Endpoints}{79}{section.C.2}%
+\contentsline {subsection}{\numberline {C.2.1}POST /chat/message}{79}{subsection.C.2.1}%
+\contentsline {subsection}{\numberline {C.2.2}POST /screen/activity}{79}{subsection.C.2.2}%
+\contentsline {subsection}{\numberline {C.2.3}POST /api/v1/vent/chat/stream}{80}{subsection.C.2.3}%
+\contentsline {subsection}{\numberline {C.2.4}POST /interventions/\{id\}/respond}{81}{subsection.C.2.4}%
+\contentsline {section}{\numberline {C.3}Data Model Schemas}{81}{section.C.3}%
+\contentsline {subsection}{\numberline {C.3.1}EmotionDetail}{81}{subsection.C.3.1}%
+\contentsline {subsection}{\numberline {C.3.2}Intervention}{82}{subsection.C.3.2}%
+\contentsline {subsection}{\numberline {C.3.3}ScreenActivityInput}{82}{subsection.C.3.3}%
