@@ -1,6 +1,6 @@
 # ADHD Second Brain — Dynamic Island Notch Widget Implementation Guide
 
-## Claude Code Prompt: Build the Notch UI Module
+## Build the Notch UI Module
 
 **Repository:** `https://github.com/avdheshcharjan/adhd-sentic-fyp`
 **Target directory:** `swift-app/ADHDSecondBrain/`
@@ -957,7 +957,7 @@ struct BackendBridge {
 
 ---
 
-## 10. Implementation Order for Claude Code
+## 10. Implementation Order
 
 Execute these tasks sequentially. Each depends on the previous.
 

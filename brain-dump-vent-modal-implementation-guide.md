@@ -1,8 +1,8 @@
-# Brain Dump & Vent Modal — Claude Code Implementation Guide
+# Brain Dump & Vent Modal — Implementation Guide
 
 ## Context
 
-This document instructs Claude Code to implement two new floating modal features for the ADHD Second Brain macOS application. Both modals are triggered by user-configurable global hotkeys and appear as floating panels above all apps without stealing focus.
+This document specifies two new floating modal features for the ADHD Second Brain macOS application. Both modals are triggered by user-configurable global hotkeys and appear as floating panels above all apps without stealing focus.
 
 **Repository:** `https://github.com/avdheshcharjan/adhd-sentic-fyp`
 **Swift app directory:** `swift-app/ADHDSecondBrain/`
@@ -868,7 +868,7 @@ Both modals must implement:
 
 ---
 
-## Notes for Claude Code
+## Implementation Notes
 
 - Read `models.md` for all AI-related architecture decisions — it takes priority over `blueprint.md`
 - Read `sentic.txt` for SenticNet API details and the Hourglass of Emotions model

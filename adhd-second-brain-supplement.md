@@ -1730,7 +1730,7 @@ struct EMAPromptView: View {
 
 ## 15. PRIVACY ARCHITECTURE (SINGAPORE PDPA)
 
-### Data Minimization Rules for Claude Code:
+### Data Minimization Rules:
 ```
 1. NEVER store raw window titles longer than 24 hours
    → Store only: app_name + category + duration
@@ -1967,7 +1967,7 @@ AFTER blueprint step 29 (memory), ADD:
 
 ## 20. ANTI-PATTERNS: THINGS THAT MUST NEVER BE BUILT
 
-These are evidence-based design prohibitions. If Claude Code starts building any of these, stop.
+These are evidence-based design prohibitions. None of the following should ever be built.
 
 ```
 1. NEVER use variable-ratio notification schedules
@@ -2012,10 +2012,10 @@ These are evidence-based design prohibitions. If Claude Code starts building any
 
 ## HOW TO USE THESE THREE FILES TOGETHER
 
-When passing to Claude Code:
+Reading order:
 
 1. **`adhd-second-brain-blueprint.md`** = the core architecture, repo structure, all base service implementations, database schema, API contracts, config, setup scripts
 2. **`architecture-diagram.mermaid`** = visual component diagram of the system
 3. **`adhd-second-brain-supplement.md`** (this file) = research-driven design improvements that UPDATE and EXTEND the blueprint
 
-**Rule for Claude Code**: Read all three files. Where the supplement modifies a blueprint section, the supplement takes priority. Where the supplement adds new systems, add them to the repo structure and build order as specified. The anti-patterns in Section 20 are absolute constraints — never violate them.
+**Rule**: Read all three files. Where the supplement modifies a blueprint section, the supplement takes priority. Where the supplement adds new systems, add them to the repo structure and build order as specified. The anti-patterns in Section 20 are absolute constraints — never violate them.

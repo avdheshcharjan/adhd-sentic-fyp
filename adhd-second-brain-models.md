@@ -1,5 +1,5 @@
 # ADHD Second Brain — AI Model & Inference Specification
-## Consolidated LLM, Classification, and Fine-Tuning Plan for Claude Code
+## Consolidated LLM, Classification, and Fine-Tuning Plan
 
 > **Companion to**: `adhd-second-brain-blueprint.md` + `adhd-second-brain-supplement.md` + `architecture-diagram.mermaid`
 > **Purpose**: This document REPLACES all model-related decisions in the blueprint (Section 7: mlx_inference.py, config.py MLX settings, and the activity classifier's Layer 4).
@@ -760,4 +760,4 @@ PRIORITY ORDER (if conflicts exist):
 3. Blueprint is the base for everything else
 ```
 
-**For Claude Code**: Read all four files. Use `blueprint.md` for overall architecture, `supplement.md` for HCI/ADHD design, and `models.md` (this file) for all AI model decisions, inference implementations, and classification code.
+**Reading order**: Read all four files. Use `blueprint.md` for overall architecture, `supplement.md` for HCI/ADHD design, and `models.md` (this file) for all AI model decisions, inference implementations, and classification code.

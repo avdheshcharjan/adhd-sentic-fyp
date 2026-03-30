@@ -818,7 +818,7 @@ def score_sus(responses: list[int]) -> dict:
 
 ---
 
-## Notes for Claude Code
+## Implementation Notes
 
 - Read `models.md` for all AI-related architecture decisions — it takes priority over `blueprint.md`
 - Read `sentic.txt` for SenticNet API details and the Hourglass of Emotions model

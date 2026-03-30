@@ -1,5 +1,5 @@
 # ADHD Second Brain — Hybrid Architecture Technical Blueprint
-## Code-Ready Implementation Plan for Claude Code
+## Code-Ready Implementation Plan
 
 > **Project**: ADHD-focused "Second Brain" personal AI assistant using SenticNet + Explainable AI
 > **Architecture**: Native Swift menu bar app + Python FastAPI backend + OpenClaw (optional chat interface)
@@ -419,7 +419,7 @@ The Swift app is a lightweight, event-driven menu bar agent. It does NOT do any 
 
 **File: `swift-app/ADHDSecondBrain/Monitors/ScreenMonitor.swift`**
 
-Key implementation details for Claude Code:
+Key implementation details:
 
 ```swift
 import Cocoa
