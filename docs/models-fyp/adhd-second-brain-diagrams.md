@@ -2,7 +2,6 @@
 title: ADHD Second Brain — Complete UML Diagrams (FINAL)
 ---
 %% This file contains 5 diagrams. Render each ```mermaid block separately.
-%% Replaces architecture-diagram.mermaid (which is now outdated).
 %%
 %% DIAGRAM INDEX:
 %% 1. Master Component Diagram — every subsystem and connection
@@ -14,46 +13,49 @@ title: ADHD Second Brain — Complete UML Diagrams (FINAL)
 
 %% ═══════════════════════════════════════════════════════════════
 %% DIAGRAM 1: MASTER COMPONENT DIAGRAM
-%% Shows every subsystem from all 4 documents with correct models
+%% Shows every subsystem from all documents with correct models
 %% ═══════════════════════════════════════════════════════════════
 
 graph TB
     subgraph UserLayer["🖥️ USER INTERFACE LAYER"]
         direction LR
-        SwiftApp["🍎 Swift Menu Bar App<br/><i>~25MB RAM, Accessibility API only</i><br/>─────────────<br/>• ScreenMonitor (AXUIElement)<br/>• BrowserMonitor (AppleScript)<br/>• IdleMonitor (IOHIDSystem)<br/>• TransitionDetector<br/>• PhenotypeCollector<br/>─────────────<br/>• AmbientMenuBar (Tier 1-2)<br/>• CalmOverlayPanel (Tier 3)<br/>• EMAPromptView<br/>• OnboardingFlow<br/>• PrivacyDashboard"]
-        OpenClaw["🦞 OpenClaw Gateway<br/><i>Optional Interface</i><br/>─────────────<br/>• Telegram / WhatsApp<br/>• adhd-vent skill<br/>• morning-briefing skill<br/>• weekly-review skill"]
-        Dashboard["📊 React Dashboard<br/><i>Optional Web UI</i><br/>─────────────<br/>• FocusTimeline<br/>• EmotionRadar (Hourglass)<br/>• WhoopCard<br/>• InterventionLog<br/>• ProgressView (XP)"]
+        SwiftApp["🍎 Swift macOS App<br/><i>macOS 14+, ~25MB RAM</i><br/>─────────────<br/>• NotchIsland (5-state widget)<br/>• BrainDump Modal (Cmd+Shift+B)<br/>• Vent Modal (Cmd+Shift+V)<br/>• TaskCreation Modal (Cmd+Shift+T)<br/>─────────────<br/>• ScreenMonitor (AXUIElement)<br/>• BrowserMonitor (AppleScript)<br/>• IdleMonitor (IOHIDSystem)<br/>• TransitionDetector<br/>─────────────<br/>• TierManager (5-tier notif)<br/>• DashboardView / HistoryView<br/>• SettingsView / OnboardingView<br/>• KeyboardShortcutManager"]
+        TelegramBot["📱 Telegram Bot<br/><i>python-telegram-bot v21</i><br/>─────────────<br/>• /start command<br/>• Default text → vent<br/>• Morning Briefing (7:30 AM)<br/>• Focus Check (every 30min)<br/>• Weekly Review (Sun 8 PM)"]
+        Dashboard["📊 React Dashboard<br/><i>Vite 5 + React 18 + Recharts</i><br/>─────────────<br/>• FocusTimeline<br/>• EmotionRadar (Hourglass)<br/>• WhoopCard<br/>• MetricsCard<br/>• InterventionLog<br/>• WeeklyReport"]
     end
 
     subgraph BackendLayer["⚙️ PYTHON FASTAPI BACKEND (localhost:8420)"]
         direction TB
 
-        subgraph APIRoutes["REST API Routes"]
-            ScreenAPI["POST /screen/activity<br/><i>&lt;100ms</i>"]
-            ChatAPI["POST /chat/message<br/><i>&lt;3s</i>"]
-            WhoopAPI["GET /whoop/morning-briefing"]
+        subgraph APIRoutes["REST API Routes (12 routers)"]
+            ScreenAPI["POST /screen/activity<br/><i>Target: &lt;100ms</i>"]
+            ChatAPI["POST /chat/message<br/><i>Target: &lt;3s</i>"]
+            VentAPI["POST /api/v1/vent/chat/stream<br/>POST /api/v1/vent/chat"]
+            BrainDumpAPI["POST /api/v1/brain-dump/<br/>POST /api/v1/brain-dump/stream"]
+            FocusAPI["POST /api/v1/tasks/create<br/>GET /api/v1/focus/*"]
+            NotchAPI["GET /api/v1/dashboard/*<br/>GET /api/v1/emotion/current<br/>GET /api/v1/calendar/upcoming"]
             InsightsAPI["GET /insights/*"]
-            OnboardingAPI["POST /onboarding/asrs<br/>POST /onboarding/profile"]
-            EMAAPI["GET /ema/prompt<br/>POST /ema/response"]
-            GamificationAPI["GET /gamification/daily"]
+            EvalAPI["POST /eval/ablation<br/>POST /eval/logging"]
+            AuthAPI["GET /api/auth/whoop<br/>GET /api/auth/google"]
             CorrectAPI["POST /screen/correct-category"]
-            PrivacyAPI["GET /privacy/export<br/>DELETE /privacy/all-data"]
         end
 
         subgraph MonitoringPipeline["📡 MONITORING PIPELINE (always-on, <100ms)"]
-            ActivityClassifier["🏷️ Activity Classifier<br/>─────────────<br/>L1: App name rules (0.01ms)<br/>L2: URL domain lookup (0.01ms)<br/>L3: Title keywords (0.1ms)<br/>L4: all-MiniLM-L6-v2 (25ms)<br/>L0: User corrections (instant)"]
+            ActivityClassifier["🏷️ Activity Classifier<br/>─────────────<br/>L0: User corrections (instant)<br/>L1: App name rules (0.01ms)<br/>L2: URL domain lookup (0.01ms)<br/>L3: Title keywords (0.1ms)<br/>L4: all-MiniLM-L6-v2 (25ms)"]
+
+            SetFitClassifier["🎯 SetFit Emotion Classifier<br/>─────────────<br/>all-mpnet-base-v2 (contrastive)<br/>6 ADHD states, 86% accuracy<br/>→ PASE radar profile"]
 
             MetricsEngine["📈 ADHD Metrics Engine<br/>─────────────<br/>• Context switch rate/5min<br/>• Focus score (0-100)<br/>• Distraction ratio (0-1)<br/>• Current streak minutes<br/>• Behavioral state"]
 
-            TransitionDetector["🚦 Transition Detector<br/>─────────────<br/>• App switch events<br/>• Tab burst detection<br/>• Idle resume detection<br/>• Breakpoint freshness (10s)<br/>• Focus suppression gate"]
+            TransitionDetector["🚦 Transition Detector<br/>─────────────<br/>• App switch events<br/>• Tab burst detection<br/>• Idle resume detection<br/>• Breakpoint freshness"]
 
-            HyperfocusClassifier["🔬 Hyperfocus Classifier<br/>─────────────<br/>• Productive (PROTECT)<br/>• Unproductive (gentle redirect)<br/>• Ambiguous (check-in at 60min)<br/>• 4hr wellbeing check"]
+            HyperfocusClassifier["🔬 Hyperfocus Classifier<br/>─────────────<br/>• Productive (PROTECT)<br/>• Unproductive (gentle redirect)<br/>• Ambiguous (check-in)"]
         end
 
         subgraph DecisionPipeline["🎯 DECISION PIPELINE"]
-            JITAIEngine["🎯 JITAI Engine<br/>─────────────<br/>Gate 0: Transition required<br/>Gate 1: Hyperfocus protection<br/>Gate 2: Per-block cap (3/90min)<br/>Gate 3: Adaptive bandit<br/>─────────────<br/>Rules: distraction spiral,<br/>sustained disengagement,<br/>hyperfocus check,<br/>emotional escalation"]
+            JITAIEngine["🎯 JITAI Engine<br/>─────────────<br/>Gate 0: Transition required<br/>Gate 1: Hyperfocus protection<br/>Gate 2: Per-block cap (3/90min)<br/>Gate 3: Adaptive bandit"]
 
-            AdaptiveBandit["🎰 Thompson Sampling<br/>─────────────<br/>Context: hour, recovery,<br/>  recency, app category<br/>Learns WHEN to intervene<br/>~50-100 decisions to personalize"]
+            AdaptiveBandit["🎰 Thompson Sampling<br/>─────────────<br/>Context: hour, recovery,<br/>  recency, app category<br/>Learns WHEN to intervene"]
 
             NotificationTier["📢 Tier Selector<br/>─────────────<br/>T1: Ambient color shift<br/>T2: Gentle pulse<br/>T3: Non-activating overlay<br/>T4: Toast notification<br/>T5: Full (safety only)"]
 
@@ -61,7 +63,7 @@ graph TB
         end
 
         subgraph SenticPipeline["🧠 SenticNet Pipeline (emotion engine)"]
-            SenticClient["SenticNet Client<br/><i>sentic.net/api/ + pip senticnet</i>"]
+            SenticClient["SenticNet Client<br/><i>13 REST APIs + pip senticnet</i>"]
 
             subgraph SafetyTier["Tier 1: Safety FIRST"]
                 Depression["Depression"]
@@ -83,60 +85,73 @@ graph TB
                 Aspects["Aspects"]
             end
 
-            HourglassMapper["🔄 Hourglass → ADHD State<br/>─────────────<br/>• boredom_disengagement<br/>• frustration_spiral<br/>• shame_rsd<br/>• productive_flow<br/>• emotional_dysregulation<br/>• anxiety_comorbid"]
+            HourglassMapper["🔄 Hourglass → ADHD State<br/>─────────────<br/>• boredom_disengagement<br/>• frustration_spiral<br/>• productive_flow<br/>• emotional_dysregulation<br/>• anxiety_comorbid"]
         end
 
         subgraph CoachingPipeline["💬 COACHING PIPELINE (on-demand)"]
             ChatProcessor["💬 Chat Processor<br/>─────────────<br/>1. SenticNet analysis<br/>2. Safety check<br/>3. Build context<br/>4. /think or /no_think<br/>5. Generate response<br/>6. Store in memory"]
 
-            MLXInference["🤖 MLX Inference<br/>─────────────<br/>Qwen3-4B 4-bit (~2.3GB)<br/>Load on demand (~2s)<br/>Unload after 2min idle<br/>30-40 tok/s on M4<br/>+ LoRA adapter (optional)"]
+            MLXInference["🤖 MLX Inference<br/>─────────────<br/>Qwen3-4B 4-bit (~2.3GB)<br/>Load on demand (~2-5s)<br/>Unload after 2min idle<br/>~37 tok/s on M4"]
+
+            VentService["🗣️ Vent Service<br/>─────────────<br/>Layer 1: Crisis keywords<br/>Layer 2: SenticNet semantic<br/>Layer 3: Output safety<br/>Layer 4: Session escalation"]
+
+            BrainDumpService["🧠 Brain Dump Service<br/>─────────────<br/>• Capture + Mem0 store<br/>• AI summary via MLX<br/>• Emotion tagging"]
         end
 
         subgraph SupportSystems["🔧 SUPPORT SYSTEMS"]
-            OnboardingService["📋 Onboarding<br/>─────────────<br/>• ASRS-v1.1 screener<br/>• ADHD profile creation<br/>• Subtype calibration<br/>• BRIEF-A upload (optional)<br/>• Medication tracking"]
+            FocusService["🎯 Focus Service<br/>─────────────<br/>• Task creation<br/>• Focus timer<br/>• Off-task detection<br/>  (embedding similarity)"]
 
-            EMAService["📊 EMA Service<br/>─────────────<br/>• 2x daily check-ins<br/>• 3-5 slider items<br/>• Calibrates passive models<br/>• Ground truth for CBM"]
+            SnapshotService["📸 Snapshot Service<br/>─────────────<br/>• Daily save at 23:55<br/>• Backfill on startup<br/>• History browsing"]
 
-            GamificationService["🏆 Gamification<br/>─────────────<br/>• XP for focus/breaks<br/>• Variable rewards (PINCH)<br/>• Forgiveness streaks<br/>• NEVER punishment<br/>• 2-week reward rotation"]
+            InsightsService["📊 Insights Service<br/>─────────────<br/>• Daily/weekly aggregation<br/>• Dashboard stats<br/>• PASE score computation"]
 
-            PhenotypeCollector["📱 Digital Phenotyping<br/>─────────────<br/>• 15-min behavior summaries<br/>• Switch variability (CV)<br/>• Typing speed/errors<br/>• Session bimodality<br/>• Medicated vs unmedicated"]
+            GoogleCalendar["📅 Google Calendar<br/>─────────────<br/>• OAuth 2.0 tokens<br/>• Upcoming events<br/>• Calendar strip data"]
 
-            WhoopService["💚 Whoop Service<br/>─────────────<br/>• OAuth 2.0 flow<br/>• Recovery / HRV / Sleep<br/>• Morning briefing gen<br/>• Separate med baselines"]
+            WhoopService["💚 Whoop Service<br/>─────────────<br/>• whoopskill CLI wrapper<br/>• Recovery / HRV / Sleep<br/>• Morning briefing gen"]
 
-            MemoryService["🧩 Memory (Mem0)<br/>─────────────<br/>• Conversation history<br/>• Pattern storage<br/>• Intervention effectiveness<br/>• Context retrieval"]
+            MemoryService["🧩 Memory (Mem0)<br/>─────────────<br/>• Conversation history<br/>• Brain dump storage<br/>• Pattern storage<br/>• Semantic retrieval"]
+        end
 
-            PrivacyService["🔒 Privacy (PDPA)<br/>─────────────<br/>• Zero-cloud default<br/>• 30-day auto-delete<br/>• Granular consent<br/>• Export / full delete"]
+        subgraph TelegramServices["📱 TELEGRAM BOT"]
+            TGScheduler["Scheduler<br/>─────────────<br/>• Morning briefing 7:30<br/>• Focus check 30min<br/>• Weekly review Sun 8PM"]
+            TGHandlers["Handlers<br/>─────────────<br/>• /start<br/>• vent (default text)<br/>• morning_briefing<br/>• focus_check<br/>• weekly_review"]
         end
     end
 
     subgraph DataLayer["💾 DATA LAYER"]
         direction LR
-        PostgreSQL[("PostgreSQL + pgvector<br/>─────────────<br/>• activities<br/>• senticnet_analyses<br/>• interventions<br/>• whoop_data<br/>• messages<br/>• adhd_profiles<br/>• ema_responses<br/>• phenotype_summaries<br/>• gamification_events<br/>• concept_corrections<br/>• bandit_state<br/>• vector embeddings")]
-        SQLite[("SQLite Cache<br/>─────────────<br/>• Offline activity buffer<br/>• User corrections<br/>• App category cache<br/>• Recent metrics")]
-    end
-
-    subgraph ExternalAPIs["☁️ EXTERNAL APIs"]
-        SenticNetCloud["SenticNet Cloud<br/>sentic.net/api/"]
-        WhoopCloud["Whoop API v2"]
-        ClaudeAPI["Claude API<br/><i>Cloud fallback only</i>"]
+        PostgreSQL[("PostgreSQL 16 + pgvector<br/>─────────────<br/>• activities<br/>• senticnet_analyses<br/>• interventions<br/>• whoop_data<br/>• focus_tasks<br/>• behavioral_patterns<br/>• daily_snapshots<br/>• Mem0 vector embeddings")]
     end
 
     subgraph OnDeviceModels["🧠 ON-DEVICE MODELS (Apple MLX)"]
         SentenceTransformer["all-MiniLM-L6-v2<br/>22M params, ~80MB<br/><i>Always resident</i>"]
+        SetFitModel["all-mpnet-base-v2 (SetFit)<br/>109M params, ~420MB<br/><i>Singleton at startup</i>"]
         Qwen3["Qwen3-4B 4-bit<br/>4B params, ~2.3GB<br/><i>Load on demand</i>"]
         SenticNetLocal["SenticNet Python<br/>400K concepts, ~50MB<br/><i>Always resident</i>"]
     end
 
+    subgraph ExternalAPIs["☁️ EXTERNAL SERVICES"]
+        SenticNetCloud["SenticNet Cloud<br/>sentic.net/api/ (13 endpoints)"]
+        WhoopCLI["Whoop (whoopskill CLI)"]
+        GoogleAPI["Google Calendar API"]
+        TelegramAPI["Telegram Bot API"]
+    end
+
     %% === USER → BACKEND connections ===
-    SwiftApp -->|"POST /screen/activity<br/>event-driven"| ScreenAPI
+    SwiftApp -->|"POST /screen/activity<br/>every 2-3s"| ScreenAPI
     SwiftApp -->|"POST /screen/correct-category"| CorrectAPI
-    OpenClaw -->|"POST /chat/message"| ChatAPI
-    OpenClaw -->|"GET /whoop/morning-briefing"| WhoopAPI
+    SwiftApp -->|"POST /api/v1/brain-dump/"| BrainDumpAPI
+    SwiftApp -->|"POST /api/v1/vent/chat/stream"| VentAPI
+    SwiftApp -->|"POST /api/v1/tasks/create"| FocusAPI
+    SwiftApp -->|"GET /api/v1/dashboard/*"| NotchAPI
+    TelegramBot -->|"POST /chat/message"| ChatAPI
+    TelegramBot -->|"POST /api/v1/vent/chat"| VentAPI
     Dashboard -->|"GET /insights/*"| InsightsAPI
 
     %% === MONITORING FLOW ===
     ScreenAPI --> ActivityClassifier
-    ActivityClassifier --> MetricsEngine
+    ActivityClassifier --> SetFitClassifier
+    SetFitClassifier --> MetricsEngine
     MetricsEngine --> TransitionDetector
     MetricsEngine --> HyperfocusClassifier
     TransitionDetector --> JITAIEngine
@@ -158,41 +173,49 @@ graph TB
     ChatProcessor --> MLXInference
     ChatProcessor --> MemoryService
 
+    VentAPI --> VentService
+    VentService --> MLXInference
+    VentService --> SenticClient
+
+    BrainDumpAPI --> BrainDumpService
+    BrainDumpService --> MLXInference
+    BrainDumpService --> MemoryService
+
+    FocusAPI --> FocusService
+
     %% === MODEL connections ===
     ActivityClassifier -->|"Layer 4 fallback"| SentenceTransformer
+    SetFitClassifier --> SetFitModel
+    FocusService -->|"Off-task similarity"| SentenceTransformer
     MLXInference --> Qwen3
     SenticClient --> SenticNetLocal
-    SenticClient -->|"REST API (12 endpoints)"| SenticNetCloud
+    SenticClient -->|"REST API (13 endpoints)"| SenticNetCloud
 
-    %% === SUPPORT SYSTEM connections ===
-    OnboardingAPI --> OnboardingService
-    EMAAPI --> EMAService
-    GamificationAPI --> GamificationService
-    WhoopAPI --> WhoopService
-    PrivacyAPI --> PrivacyService
-
-    JITAIEngine -->|"Profile thresholds"| OnboardingService
-    EMAService -->|"Calibration signals"| MetricsEngine
-    GamificationService -->|"XP on focus/breaks"| MetricsEngine
+    %% === SUPPORT connections ===
+    NotchAPI --> InsightsService
+    NotchAPI --> SnapshotService
+    NotchAPI --> GoogleCalendar
+    AuthAPI --> WhoopService
+    AuthAPI --> GoogleCalendar
+    TGScheduler --> TGHandlers
 
     %% === DATA connections ===
     MetricsEngine --> PostgreSQL
     JITAIEngine --> PostgreSQL
     WhoopService --> PostgreSQL
     MemoryService --> PostgreSQL
-    EMAService --> PostgreSQL
-    GamificationService --> PostgreSQL
-    PhenotypeCollector --> PostgreSQL
-    OnboardingService --> PostgreSQL
-    ActivityClassifier --> SQLite
+    FocusService --> PostgreSQL
+    SnapshotService --> PostgreSQL
+    InsightsService --> PostgreSQL
 
-    %% === EXTERNAL API connections ===
-    WhoopService -->|"REST + OAuth"| WhoopCloud
-    MLXInference -.->|"Fallback only"| ClaudeAPI
+    %% === EXTERNAL connections ===
+    WhoopService --> WhoopCLI
+    GoogleCalendar --> GoogleAPI
+    TGHandlers --> TelegramAPI
 
     %% === STYLING ===
     classDef swift fill:#007AFF,stroke:#005EC4,color:white,stroke-width:2px
-    classDef openclaw fill:#E85D3A,stroke:#C44A2E,color:white,stroke-width:2px
+    classDef telegram fill:#0088CC,stroke:#006699,color:white,stroke-width:2px
     classDef dashboard fill:#34C759,stroke:#28A745,color:white,stroke-width:2px
     classDef api fill:#5856D6,stroke:#4240B0,color:white,stroke-width:1px
     classDef monitor fill:#FF9500,stroke:#CC7600,color:white,stroke-width:1px
@@ -206,18 +229,18 @@ graph TB
     classDef model fill:#30D158,stroke:#28A745,color:white,stroke-width:2px
 
     class SwiftApp swift
-    class OpenClaw openclaw
+    class TelegramBot telegram
     class Dashboard dashboard
-    class ScreenAPI,ChatAPI,WhoopAPI,InsightsAPI,OnboardingAPI,EMAAPI,GamificationAPI,CorrectAPI,PrivacyAPI api
-    class ActivityClassifier,MetricsEngine,TransitionDetector,HyperfocusClassifier monitor
+    class ScreenAPI,ChatAPI,VentAPI,BrainDumpAPI,FocusAPI,NotchAPI,InsightsAPI,EvalAPI,AuthAPI,CorrectAPI api
+    class ActivityClassifier,SetFitClassifier,MetricsEngine,TransitionDetector,HyperfocusClassifier monitor
     class JITAIEngine,AdaptiveBandit,NotificationTier,XAIExplainer decision
     class SenticClient,Emotion,Polarity,Subjectivity,Sarcasm,Engagement,Wellbeing,ConceptParsing,Aspects,HourglassMapper sentic
     class Depression,Toxicity,Intensity safety
-    class ChatProcessor,MLXInference coaching
-    class OnboardingService,EMAService,GamificationService,PhenotypeCollector,WhoopService,MemoryService,PrivacyService support
-    class PostgreSQL,SQLite db
-    class SenticNetCloud,WhoopCloud,ClaudeAPI external
-    class SentenceTransformer,Qwen3,SenticNetLocal model
+    class ChatProcessor,MLXInference,VentService,BrainDumpService coaching
+    class FocusService,SnapshotService,InsightsService,GoogleCalendar,WhoopService,MemoryService,TGScheduler,TGHandlers support
+    class PostgreSQL db
+    class SenticNetCloud,WhoopCLI,GoogleAPI,TelegramAPI external
+    class SentenceTransformer,SetFitModel,Qwen3,SenticNetLocal model
 
 
 ---
@@ -234,6 +257,7 @@ sequenceDiagram
     participant Swift as 🍎 Swift Menu Bar App
     participant API as ⚙️ FastAPI Backend
     participant Classify as 🏷️ Activity Classifier
+    participant SetFit as 🎯 SetFit Classifier
     participant Metrics as 📈 Metrics Engine
     participant Transition as 🚦 Transition Detector
     participant Hyperfocus as 🔬 Hyperfocus Classifier
@@ -254,7 +278,7 @@ sequenceDiagram
 
     Swift->>API: POST /screen/activity<br/>{app: "Safari", title: "Twitter / X", url: "x.com"}
 
-    Note over API,Classify: Layer 1-4 classification (<25ms total)
+    Note over API,Classify: Layer 0-4 classification (<25ms total)
 
     API->>Classify: classify("Safari", "Twitter / X", "x.com")
     Classify-->>Classify: L0: Check user corrections → miss
@@ -262,7 +286,12 @@ sequenceDiagram
     Classify-->>Classify: L2: URL "x.com" → "social_media" ✓
     Classify-->>API: ("social_media", 0.95)
 
-    API->>Metrics: update(app="Safari", category="social_media")
+    Note over API,SetFit: SetFit emotion classification (<50ms)
+
+    API->>SetFit: predict("Twitter / X - social_media")
+    SetFit-->>API: (label: "disengaged", confidence: 0.72, PASE: {P:0.35, A:0.15, S:0.25, Ap:0.20})
+
+    API->>Metrics: update(app="Safari", category="social_media", emotion="disengaged")
     Metrics-->>Metrics: Record app switch event
     Metrics-->>Metrics: Increment context_switch_rate_5min
     Metrics-->>Metrics: Update distraction_ratio
@@ -275,7 +304,7 @@ sequenceDiagram
     API->>Hyperfocus: classify(session_minutes=2, ...)
     Hyperfocus-->>API: None (not in hyperfocus, session too short)
 
-    API->>JITAI: evaluate(metrics, emotion_context=None)
+    API->>JITAI: evaluate(metrics, emotion_context={label: "disengaged"})
 
     Note over JITAI: Gate 0: Transition available? ✅ (app switch)
     Note over JITAI: Gate 1: Hyperfocus protection? ✅ (not hyperfocusing)
@@ -288,12 +317,13 @@ sequenceDiagram
     Note over JITAI: Rule match: context_switch_rate=8, distraction_ratio=0.3<br/>Below threshold — NO intervention yet
 
     JITAI-->>API: None (thresholds not met)
-    API-->>Swift: {category: "social_media", metrics: {...}, intervention: null}
+    API-->>Swift: {category: "social_media", metrics: {...}, emotion: {...}, intervention: null}
 
     Note over User,TierMgr: === 5 MINUTES LATER: USER STILL ON SOCIAL MEDIA ===
 
     Swift->>API: POST /screen/activity (periodic title change detected)
     API->>Classify: classify(...)
+    API->>SetFit: predict(...)
     API->>Metrics: update(...)
     Metrics-->>Metrics: distraction_ratio = 0.65, switch_rate = 14
     Metrics-->>Metrics: behavioral_state = "distracted"
@@ -310,7 +340,7 @@ sequenceDiagram
 
     JITAI-->>API: Intervention object with tier=3 + explanation
 
-    API-->>Swift: {category: "social_media", metrics: {...}, intervention: {...}}
+    API-->>Swift: {category: "social_media", metrics: {...}, emotion: {...}, intervention: {...}}
 
     Swift->>TierMgr: deliver(intervention)
     Note over TierMgr: Transition detector confirms breakpoint is fresh
@@ -338,12 +368,12 @@ sequenceDiagram
 title: "ADHD Second Brain — Venting Chat → Coaching Response Sequence"
 ---
 %% Shows the full pipeline when a user sends a message through the venting chat
-%% (via OpenClaw on Telegram/WhatsApp or direct Swift UI)
+%% (via Telegram Bot or Swift Vent Modal)
 
 sequenceDiagram
     autonumber
     participant User as 👤 User (Telegram)
-    participant OC as 🦞 OpenClaw
+    participant TG as 📱 Telegram Bot
     participant API as ⚙️ POST /chat/message
     participant Sentic as 🧠 SenticNet Pipeline
     participant Safety as 🚨 Safety Check
@@ -352,8 +382,8 @@ sequenceDiagram
     participant MLX as 🤖 Qwen3-4B (MLX)
     participant DB as 💾 PostgreSQL
 
-    User->>OC: "I can't focus on anything today<br/>and I feel like a complete failure"
-    OC->>API: POST /chat/message<br/>{text: "...", source: "openclaw", conversation_id: "..."}
+    User->>TG: "I can't focus on anything today<br/>and I feel like a complete failure"
+    TG->>API: POST /chat/message<br/>{text: "...", source: "telegram", conversation_id: "..."}
 
     Note over API,Sentic: Step 1: SenticNet does the HARD part (emotion detection)
 
@@ -399,7 +429,7 @@ sequenceDiagram
     Note over API: intensity = 72 (> 60 threshold)<br/>→ use /think mode for deeper reasoning
 
     API->>MLX: generate_coaching_response()
-    Note over MLX: Model loads if not already resident (~2s first time)
+    Note over MLX: Model loads if not already resident (~2-5s first time)
 
     Note over MLX: System prompt: ADHD coaching persona<br/>+ SenticNet context injected:<br/>"Emotion: frustration_spiral<br/>Intensity: -72/100<br/>Engagement: -45/100<br/>Concepts: failure, focus, inability<br/>ADHD state: frustration_spiral<br/>Safety: yellow"<br/>+ Memory context:<br/>"Breathing exercises helped 3/4 times"<br/>+ User message: "I can't focus on anything..."<br/>+ Mode: /think
 
@@ -413,8 +443,8 @@ sequenceDiagram
     API->>DB: INSERT INTO senticnet_analyses (emotion_profile, safety_flags, ...)
     API->>DB: INSERT INTO messages (role, content, senticnet_analysis, ...)
 
-    API-->>OC: {response: "That sounds really tough...",<br/>senticnet: {emotion: "frustration_spiral", ...},<br/>thinking_mode: "think"}
-    OC-->>User: "That sounds really tough — not being able<br/>to focus when you want to is one of the most<br/>frustrating parts of ADHD. ..."
+    API-->>TG: {response: "That sounds really tough...",<br/>senticnet: {emotion: "frustration_spiral", ...},<br/>thinking_mode: "think",<br/>used_llm: "Qwen/Qwen3-4B-4bit",<br/>latency_ms: 4200}
+    TG-->>User: "That sounds really tough — not being able<br/>to focus when you want to is one of the most<br/>frustrating parts of ADHD. ..."
 
     Note over MLX: After 2 minutes idle → auto-unload to free 2.3 GB RAM
 
@@ -540,84 +570,42 @@ stateDiagram-v2
 ---
 title: "ADHD Second Brain — Onboarding & Calibration Flow"
 ---
-%% Shows the first-time user experience: ASRS screener → profile setup →
-%% permissions → calibration period. Each screen is designed for ADHD
-%% attention spans (under 60 seconds per screen).
+%% Shows the first-time user experience: permissions → optional integrations →
+%% calibration period. Each screen is designed for ADHD attention spans
+%% (under 60 seconds per screen).
 
 flowchart TD
     Start([🚀 User installs app]) --> Welcome
 
-    subgraph Screen1["Screen 1: Welcome + ASRS Screener (~2 min)"]
+    subgraph Screen1["Screen 1: Welcome + Permissions (~1 min)"]
         Welcome["Welcome! Let's set up your<br/>ADHD Second Brain 🧠"]
-        Welcome --> ASRS["ASRS-v1.1 Screener<br/>6 questions, 5-point scale<br/><i>Freely available WHO instrument</i>"]
-        ASRS --> Score["Compute scores:<br/>• Total (0-24)<br/>• Dark-zone count (0-6)<br/>• Inattention sub (0-12)<br/>• Hyperactivity sub (0-12)"]
-        Score --> Severity{Severity band?}
-        Severity -->|0-9| LowNeg["Low negative<br/>sensitivity: 0.5<br/>fewer interventions"]
-        Severity -->|10-13| HighNeg["High negative<br/>sensitivity: 0.75"]
-        Severity -->|14-17| LowPos["Low positive<br/>sensitivity: 1.0<br/>standard"]
-        Severity -->|18-24| HighPos["High positive<br/>sensitivity: 1.5<br/>more check-ins"]
+        Welcome --> Perm1["1️⃣ Accessibility Permission<br/><i>Needed for window titles (AXUIElement)</i><br/><i>One-time grant, NO monthly re-auth</i>"]
+        Perm1 --> Perm2["2️⃣ Automation Permission<br/><i>Needed for browser URLs (AppleScript)</i><br/><i>Granted per-app on first use</i>"]
+        Perm2 --> PermNote["ℹ️ No Screen Recording needed!<br/>Unlike Rize and other trackers,<br/>we use the Accessibility API only."]
     end
 
-    LowNeg --> Screen2
-    HighNeg --> Screen2
-    LowPos --> Screen2
-    HighPos --> Screen2
+    PermNote --> Screen2
 
-    subgraph Screen2["Screen 2: ADHD Profile (~1 min)"]
+    subgraph Screen2["Screen 2: Optional Integrations (~30 sec)"]
         direction TB
-        ProfileQ1["What's your ADHD subtype?<br/>[Inattentive] [Hyperactive] [Combined] [Not sure]"]
-        ProfileQ2["Are you currently on medication?<br/>[No] [Methylphenidate] [Amphetamine] [Other]"]
-        ProfileQ3["What time do you take it? ___:___<br/><i>Used for separate HRV baselines</i>"]
-        ProfileQ4["Optional: Upload BRIEF-A T-scores?<br/>[Skip] [Enter scores]<br/><i>BRI, MI, GEC scores from clinician</i>"]
-        ProfileQ1 --> ProfileQ2 --> ProfileQ3 --> ProfileQ4
+        Whoop["Connect Whoop? (optional)<br/>[Connect via whoopskill CLI] [Skip]<br/><i>Enables morning briefings,<br/>recovery-aware interventions</i>"]
+        TelegramSetup["Connect Telegram? (optional)<br/>[Setup Telegram Bot] [Skip]<br/><i>Enables venting chat +<br/>morning briefings via messaging</i>"]
+        GoogleCal["Connect Google Calendar? (optional)<br/>[Connect via OAuth] [Skip]<br/><i>Enables calendar strip<br/>in Notch expanded panel</i>"]
+        Whoop --> TelegramSetup --> GoogleCal
     end
 
-    ProfileQ4 --> ComputeProfile["Compute derived parameters:<br/>• intervention_sensitivity<br/>• max_interventions_per_90min<br/>• focus_block_default_minutes<br/>• Subtype-specific intervention profile"]
-
-    ComputeProfile --> Screen3
-
-    subgraph Screen3["Screen 3: macOS Permissions (~30 sec)"]
-        direction TB
-        Perm1["1️⃣ Accessibility Permission<br/><i>Needed for window titles (AXUIElement)</i><br/><i>One-time grant, NO monthly re-auth</i>"]
-        Perm2["2️⃣ Automation Permission<br/><i>Needed for browser URLs (AppleScript)</i><br/><i>Granted per-app on first use</i>"]
-        PermNote["ℹ️ No Screen Recording needed!<br/>Unlike Rize and other trackers,<br/>we use the Accessibility API only."]
-        Perm1 --> Perm2 --> PermNote
-    end
-
-    PermNote --> Screen4
-
-    subgraph Screen4["Screen 4: Optional Integrations (~30 sec)"]
-        direction TB
-        Whoop["Connect Whoop? (optional)<br/>[Connect via OAuth] [Skip]<br/><i>Enables morning briefings,<br/>recovery-aware interventions</i>"]
-        OpenClawSetup["Connect Telegram/WhatsApp? (optional)<br/>[Setup OpenClaw] [Skip]<br/><i>Enables venting chat +<br/>morning briefings via messaging</i>"]
-        Whoop --> OpenClawSetup
-    end
-
-    OpenClawSetup --> CalibrationStart
+    GoogleCal --> CalibrationStart
 
     subgraph CalibrationPeriod["14-Day Silent Calibration Period"]
         direction TB
         CalibrationStart["✅ Setup complete!<br/>'I'll learn your patterns over the next 2 weeks.<br/>You'll see me in your menu bar — that's it for now.'"]
         CalibrationStart --> Day1["Days 1-3: Collect baseline data<br/>• App usage patterns<br/>• Context switch frequency<br/>• Session duration distribution<br/>• Time-of-day patterns"]
-        Day1 --> Day4["Days 4-7: Compute personal baselines<br/>• EWMA for each metric<br/>• Separate medicated/unmedicated<br/>• Separate weekday/weekend"]
-        Day4 --> Day8["Days 8-14: Test intervention thresholds<br/>• Set thresholds at 1.5 SD from personal mean<br/>• First EMA prompts begin (2x daily)<br/>• Ambient indicators start (Tier 1-2 only)"]
-        Day8 --> CalibrationComplete["Calibration complete ✅<br/>Full system activated:<br/>• All notification tiers enabled<br/>• Adaptive bandit starts learning<br/>• Gamification XP begins"]
+        Day1 --> Day4["Days 4-7: Compute personal baselines<br/>• EWMA for each metric<br/>• Separate weekday/weekend"]
+        Day4 --> Day8["Days 8-14: Test intervention thresholds<br/>• Set thresholds at 1.5 SD from personal mean<br/>• Ambient indicators start (Tier 1-2 only)"]
+        Day8 --> CalibrationComplete["Calibration complete ✅<br/>Full system activated:<br/>• All notification tiers enabled<br/>• Adaptive bandit starts learning<br/>• Daily snapshots begin"]
     end
-
-    subgraph SubtypeProfiles["ADHD Subtype → System Behavior"]
-        direction TB
-        PI["ADHD-PI (Inattentive)<br/>─────────────<br/>• 20-min focus blocks<br/>• Max 3 interventions/90min<br/>• Task initiation scaffolding<br/>• Time management prompts<br/>• Written list suggestions<br/>• Gentler notification cadence"]
-        HI["ADHD-HI (Hyperactive)<br/>─────────────<br/>• 15-min focus blocks<br/>• Max 4 interventions/90min<br/>• Movement break prompts<br/>• Impulse-control nudges<br/>• Fidget suggestions<br/>• More frequent check-ins"]
-        Combined["ADHD-C (Combined)<br/>─────────────<br/>• 15-min focus blocks<br/>• Max 4 interventions/90min<br/>• Both initiation + impulse support<br/>• Emotional regulation priority<br/>• Shortest text in interventions"]
-    end
-
-    ComputeProfile -.->|"Subtype determines"| SubtypeProfiles
 
     %% Styling
     style Screen1 fill:#E8F5E9,stroke:#4CAF50,stroke-width:2px
-    style Screen2 fill:#E3F2FD,stroke:#2196F3,stroke-width:2px
-    style Screen3 fill:#FFF3E0,stroke:#FF9800,stroke-width:2px
-    style Screen4 fill:#F3E5F5,stroke:#9C27B0,stroke-width:2px
+    style Screen2 fill:#F3E5F5,stroke:#9C27B0,stroke-width:2px
     style CalibrationPeriod fill:#ECEFF1,stroke:#607D8B,stroke-width:2px
-    style SubtypeProfiles fill:#FFF8E1,stroke:#FFC107,stroke-width:2px
-

@@ -1,54 +1,67 @@
 # ADHD Second Brain — System Architecture
 
-> **Version**: 0.1.0 | **Last Updated**: 2026-03-08  
+> **Version**: 1.0.0 | **Last Updated**: 2026-03-30
 > **Target**: macOS (Apple Silicon M1+), single-user, local-first
 
 ---
 
 ## Overview
 
-The ADHD Second Brain is an always-on macOS personal AI assistant that monitors screen activity, detects ADHD behavioral patterns, processes data through SenticNet's 13 affective computing APIs, and delivers explainable, evidence-based interventions via a Concept Bottleneck XAI architecture.
+The ADHD Second Brain is an always-on macOS personal AI assistant that monitors screen activity, detects ADHD behavioral patterns, processes data through SenticNet's 13 affective computing APIs, classifies emotions via a contrastive fine-tuned SetFit model, generates coaching responses with an on-device Qwen3-4B LLM, and delivers explainable, evidence-based interventions via a Concept Bottleneck XAI architecture. A native Telegram bot provides proactive outreach (morning briefings, focus checks, weekly reviews) alongside on-demand venting.
 
 ### Key Capabilities
-- **Screen monitoring** — active app, window title, browser URL, idle state (every 2–3s)
+- **Screen monitoring** — active app, window title, browser URL, idle state (every 2-3s)
 - **ADHD pattern detection** — context switching, distraction spirals, hyperfocus, procrastination
 - **Affective computing** — SenticNet 13-API pipeline for emotion, safety, engagement analysis
+- **SetFit emotion classification** — contrastive fine-tuned all-mpnet-base-v2 mapping to 6 ADHD states (86% accuracy)
+- **On-device LLM coaching** — Qwen3-4B-4bit via Apple MLX (~2.3GB, loaded on demand, unloaded after 2min idle)
 - **Explainable interventions** — Concept Bottleneck Model with counterfactual explanations
-- **Physiological data** — Whoop integration for HRV, sleep, recovery-driven recommendations
-- **Emotional regulation** — venting/chat via OpenClaw (Telegram/WhatsApp)
-- **Long-term memory** — pattern tracking, intervention effectiveness, user preferences
+- **Physiological data** — Whoop integration via `whoopskill` CLI for HRV, sleep, recovery
+- **Telegram bot** — native `python-telegram-bot` v21 for venting, morning briefings, focus checks, weekly reviews
+- **Notch Island** — 5-state macOS notch widget (Dormant, Ambient, Glanceable, Expanded, Alert)
+- **Brain Dump** — floating modal for thought capture with AI summarization via MLX, stored in Mem0
+- **Vent modal** — floating panel with 4-layer safety system and SSE streaming
+- **Focus sessions** — task creation (Cmd+Shift+T), focus timer, off-task detection via embedding similarity
+- **Google Calendar** — OAuth 2.0 integration, upcoming events in Notch calendar strip
+- **Daily snapshots** — auto-saved at 23:55, backfilled on startup, browsable in History view
+- **Long-term memory** — Mem0 (backed by pgvector) + PostgreSQL pattern tracking
 
 ---
 
 ## Architecture Diagram
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                     USER'S MACBOOK                              │
-│                                                                 │
-│  ┌──────────────────────┐     ┌──────────────────────────────┐  │
-│  │  Swift Menu Bar App  │────▶│  Python FastAPI Backend       │  │
-│  │  (Screen Monitor +   │◀────│  (localhost:8420)             │  │
-│  │   Notification UI)   │     │                              │  │
-│  │  ~25MB RAM           │     │  ├── SenticNet Pipeline      │  │
-│  └──────────────────────┘     │  ├── JITAI Decision Engine   │  │
-│                               │  ├── Whoop Service           │  │
-│  ┌──────────────────────┐     │  ├── MLX Model Inference     │  │
-│  │  OpenClaw Gateway    │────▶│  ├── Memory (Mem0 + PG)      │  │
-│  │  (Telegram/WhatsApp) │◀────│  └── XAI Explanation Engine  │  │
-│  │  Optional interface  │     │  ~500MB RAM (with models)    │  │
-│  └──────────────────────┘     └──────────────────────────────┘  │
-│                                         │                       │
-│                               ┌─────────▼──────────┐           │
-│                               │  PostgreSQL + pgvec │           │
-│                               │  SQLite (cache)     │           │
-│                               └────────────────────┘            │
-│                                         │                       │
-│                               ┌─────────▼──────────┐           │
-│                               │  Whoop Cloud API    │           │
-│                               │  SenticNet Cloud    │           │
-│                               └────────────────────┘            │
-└─────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│                        USER'S MACBOOK                               │
+│                                                                     │
+│  ┌──────────────────────────┐     ┌──────────────────────────────┐  │
+│  │  Swift macOS App         │────▶│  Python FastAPI Backend       │  │
+│  │  (Notch Island +         │◀────│  (localhost:8420)             │  │
+│  │   Modals + Monitors)     │     │                              │  │
+│  │  ~25MB RAM               │     │  ├── SenticNet Pipeline      │  │
+│  └──────────────────────────┘     │  ├── SetFit Emotion Classifier│  │
+│                                   │  ├── JITAI Decision Engine   │  │
+│  ┌──────────────────────────┐     │  ├── Whoop Service (CLI)     │  │
+│  │  Telegram Bot            │────▶│  ├── MLX Qwen3-4B Inference  │  │
+│  │  (python-telegram-bot)   │◀────│  ├── Memory (Mem0 + PG)      │  │
+│  │  Embedded in backend     │     │  ├── XAI Explanation Engine  │  │
+│  │  lifespan                │     │  ├── Google Calendar Service  │  │
+│  └──────────────────────────┘     │  └── Snapshot Service        │  │
+│                                   │  ~500MB RAM (+ ~2.3GB when   │  │
+│                                   │   LLM loaded on demand)      │  │
+│                                   └──────────────────────────────┘  │
+│                                            │                        │
+│                                  ┌─────────▼──────────┐            │
+│                                  │  PostgreSQL + pgvec │            │
+│                                  │  (Docker, port 5433)│            │
+│                                  └────────────────────┘             │
+│                                            │                        │
+│                                  ┌─────────▼──────────┐            │
+│                                  │  SenticNet Cloud    │            │
+│                                  │  Google Calendar API│            │
+│                                  │  Telegram Bot API   │            │
+│                                  └────────────────────┘             │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -59,9 +72,9 @@ The ADHD Second Brain is an always-on macOS personal AI assistant that monitors 
 
 | Component | Technology | Role | Resource Usage |
 |-----------|-----------|------|----------------|
-| **Swift Menu Bar App** | Native Swift / SwiftUI | Screen capture, intervention popups, focus sessions | ~25MB RAM |
-| **OpenClaw Gateway** | Node.js (Telegram/WhatsApp) | Venting chat, morning briefings, weekly reviews | Optional |
-| **React Dashboard** | Vite + React + Recharts | Focus timeline, emotion radar, Whoop card, logs | Optional |
+| **Swift macOS App** | Native Swift / SwiftUI, macOS 14+ | Notch Island, floating modals (BrainDump, Vent, TaskCreation), screen monitoring, intervention delivery | ~25MB RAM |
+| **Telegram Bot** | `python-telegram-bot` v21, embedded in backend lifespan | Venting (default text handler), morning briefing, focus check, weekly review, scheduled push messages | Part of backend process |
+| **React Dashboard** | Vite 5 + React 18 + Recharts | Focus timeline, emotion radar, Whoop card, metrics, intervention log, weekly report | Optional |
 
 ### 2. Python FastAPI Backend (`localhost:8420`)
 
@@ -69,52 +82,86 @@ The backend is the **central brain** — all interfaces are thin clients that ca
 
 | Subsystem | Key Files | Purpose |
 |-----------|-----------|---------|
-| **API Routes** | `api/screen.py`, `api/chat.py`, `api/whoop.py`, `api/insights.py` | REST endpoints |
-| **Activity Classifier** | `services/activity_classifier.py` | 4-layer app/URL/title classification |
+| **API Routes** | `api/health.py`, `screen.py`, `chat.py`, `whoop.py`, `insights.py`, `interventions.py`, `evaluation.py`, `notch.py`, `google_auth.py`, `brain_dump.py`, `vent.py` | REST endpoints (12 routers) |
+| **Activity Classifier** | `services/activity_classifier.py` | 5-layer app/URL/title/embedding classification |
+| **SetFit Emotion Classifier** | `services/emotion_classifier_setfit.py`, `services/setfit_service.py` | Contrastive fine-tuned all-mpnet-base-v2 → 6 ADHD emotion states (86%), singleton at startup |
 | **ADHD Metrics Engine** | `services/adhd_metrics.py` | Rolling window behavioral metrics |
-| **JITAI Engine** | `services/jitai_engine.py` | Barkley's 5 EF-domain intervention rules |
+| **JITAI Engine** | `services/jitai_engine.py` | Barkley's 5 EF-domain intervention rules with 4-gate system |
 | **XAI Explainer** | `services/xai_explainer.py` | Concept Bottleneck + counterfactual explanations |
-| **SenticNet Pipeline** | `services/senticnet_pipeline.py` | 4-tier 13-API orchestration |
-| **Whoop Service** | `services/whoop_service.py` | OAuth + recovery/sleep data processing |
-| **MLX Inference** | `services/mlx_inference.py` | Llama 3.2 3B on Apple Silicon |
-| **Chat Processor** | `services/chat_processor.py` | Full pipeline for venting messages |
-| **Memory Service** | `services/memory_service.py` | Mem0 + PostgreSQL pattern storage |
+| **SenticNet Pipeline** | `services/senticnet_pipeline.py`, `services/senticnet_client.py` | 4-tier 13-API orchestration |
+| **MLX Inference** | `services/mlx_inference.py` | Qwen3-4B-4bit on Apple Silicon, load-on-demand, 2min idle unload |
+| **Chat Processor** | `services/chat_processor.py` | Full pipeline: SenticNet → Safety → LLM → Memory |
+| **Vent Service** | `services/vent_service.py` | 4-layer safety vent pipeline, SSE streaming |
+| **Brain Dump Service** | `services/brain_dump_service.py` | Thought capture + AI summarization via MLX + Mem0 storage |
+| **Focus Service** | `services/focus_service.py`, `services/focus_relevance.py` | Task creation, focus timer, off-task detection via embedding similarity |
+| **Snapshot Service** | `services/snapshot_service.py` | Daily metric aggregation, auto-save at 23:55 |
+| **Insights Service** | `services/insights_service.py` | Dashboard analytics |
+| **Google Calendar** | `services/google_calendar.py` | OAuth 2.0 + event fetching |
+| **Whoop Service** | `services/whoop_service.py` | Wraps `whoopskill` CLI |
+| **Memory Service** | `services/memory_service.py` | Mem0 (pgvector) + PostgreSQL |
+| **Behavioral Analysis** | `services/hyperfocus_classifier.py`, `transition_detector.py`, `adaptive_frequency.py` | Hyperfocus detection, transitions, adaptive polling |
+| **Notification** | `services/notification_tier.py`, `action_suggestions.py` | 5-tier notification logic, action suggestions |
+| **Telegram Bot** | `telegram_bot/bot.py`, `scheduler.py`, `handlers/` | Bot factory, cron jobs, 5 command handlers |
+| **Evaluation** | `services/evaluation_logger.py` | Ablation + interaction logging (36-field JSONL) |
 
 ### 3. Data Layer
 
 | Store | Technology | Contents |
 |-------|-----------|----------|
-| **PostgreSQL + pgvector** | Docker (`pgvector/pgvector:pg16`) | Activities, SenticNet analyses, interventions, Whoop data, conversations, vector embeddings |
-| **SQLite** | Local file | Offline activity buffer, app category cache, recent metrics |
+| **PostgreSQL + pgvector** | Docker (`pgvector/pgvector:pg16`, port 5433) | Activities, SenticNet analyses, interventions, Whoop data, focus tasks, behavioral patterns, daily snapshots, Mem0 vector embeddings |
 
-### 4. External APIs
+**Database Tables** (from `db/models.py`):
 
-| API | Purpose | Auth |
-|-----|---------|------|
-| SenticNet Cloud | 13 affective computing endpoints | API keys (IP-locked) |
-| Whoop API v2 | Recovery, sleep, cycles | OAuth 2.0 |
-| Claude Sonnet | Complex coaching queries | API key |
-| GPT-4o-mini | Frequent tasks, embeddings | API key |
+| Model | Table | Key Fields |
+|-------|-------|------------|
+| `ActivityLog` | `activities` | app_name, window_title, url, category, is_idle, timestamp, metrics JSONB |
+| `SenticAnalysis` | `senticnet_analyses` | text, source, emotion_profile, safety_flags, adhd_signals |
+| `InterventionHistory` | `interventions` | intervention_type, trigger_reason, user_response, effectiveness_score |
+| `WhoopLog` | `whoop_data` | date, recovery_score, sleep_score, strain_score, metrics JSONB |
+| `FocusTask` | `focus_tasks` | name, duration_seconds, progress, is_active, created_at, completed_at |
+| `BehavioralPattern` | `behavioral_patterns` | pattern_type, description, confidence, embedding Vector(1536) |
+| `DailySnapshot` | `daily_snapshots` | date, focus/distraction minutes, context_switches, top_apps, emotion_scores, whoop_recovery |
+
+### 4. External Services
+
+| Service | Purpose | Auth |
+|---------|---------|------|
+| **SenticNet Cloud** | 13 affective computing endpoints | API keys (IP-locked) |
+| **Whoop** | Recovery, sleep, strain data | `whoopskill` CLI (OAuth 2.0) |
+| **Google Calendar** | Upcoming events for Notch calendar strip | OAuth 2.0 |
+| **Telegram Bot API** | Push messages and command handling | Bot token |
+
+All LLM inference is **on-device** via Apple MLX. No cloud LLM APIs are used.
 
 ---
 
 ## Data Flow — Screen Monitoring (Hot Path)
 
 ```
-Swift App (2s polling)
+Swift App (2-3s polling)
     │
     ▼ POST /screen/activity (<100ms target)
     │
-    ├── 1. Activity Classifier (rule-based, <5ms)
-    │       L1: App name → L2: URL domain → L3: Title keywords → L4: MLX fallback
+    ├── 1. Activity Classifier (5-layer, <25ms worst case)
+    │       L0: User corrections (highest priority)
+    │       L1: App name lookup (~70%, <1ms)
+    │       L2: URL domain lookup (~20%, <1ms)
+    │       L3: Title keywords (~8%, <2ms)
+    │       L4: Embedding similarity (~2%, <25ms, all-MiniLM-L6-v2)
     │
-    ├── 2. ADHD Metrics Engine (in-memory, <1ms)
+    ├── 2. SetFit Emotion Classification
+    │       Maps activity context → 6 ADHD states → PASE radar profile
+    │
+    ├── 3. Focus Relevance Check (if focus session active)
+    │       Embedding similarity between task name and current activity
+    │
+    ├── 4. ADHD Metrics Engine (in-memory, <1ms)
     │       Context switch rate, focus score, distraction ratio, streak
     │
-    ├── 3. JITAI Engine (rule engine, <2ms)
+    ├── 5. JITAI Engine (rule engine, <2ms)
     │       Check Barkley's 5 EF domains → generate intervention or null
     │
-    └── 4. Background Tasks (async, non-blocking)
+    └── 6. Background Tasks (async, non-blocking)
             ├── Persist to PostgreSQL
             └── Enrich with SenticNet (if intervention needs it)
 ```
@@ -122,23 +169,78 @@ Swift App (2s polling)
 ## Data Flow — Chat/Venting (Warm Path)
 
 ```
-OpenClaw / Dashboard
+Telegram Bot / Vent Modal / Dashboard
     │
-    ▼ POST /chat/message (<3s target)
+    ▼ POST /api/v1/vent/chat/stream (SSE) or POST /chat/message
     │
-    ├── Tier 1: Safety check (depression + toxicity + intensity)
-    │       ↳ If CRITICAL → emergency response + crisis resources
+    ├── Layer 1: Crisis keyword detection (exact substring match)
+    │       ↳ If triggered → immediate crisis resources response
     │
-    ├── Tier 2: Core emotional (emotion + polarity + subjectivity + sarcasm)
+    ├── Layer 2: SenticNet semantic analysis (4-tier)
+    │       Safety → Emotion → ADHD Signals → Deep (if needed)
     │
-    ├── Tier 3: ADHD signals (engagement + wellbeing + concepts + aspects)
+    ├── Layer 3: LLM Generation (Qwen3-4B via MLX)
+    │       SenticNet context injected into system prompt
+    │       SSE stream tokens to client
     │
-    ├── Tier 4: Deep analysis (personality + ensemble) — if needed
-    │
-    ├── LLM Generation (MLX Llama 3B with SenticNet context injection)
+    ├── Layer 4: Output safety check (post-generation)
+    │       Filter unsafe patterns
     │
     └── Memory Storage (Mem0 + PostgreSQL)
 ```
+
+## Data Flow — Brain Dump
+
+```
+Brain Dump Modal (Cmd+Shift+B)
+    │
+    ▼ POST /api/v1/brain-dump/stream
+    │
+    ├── Store in Mem0 (type=brain_dump, session_id, emotional_state)
+    └── AI summary via MLX Qwen3-4B → SSE stream response
+```
+
+## Data Flow — Focus Session
+
+```
+Task Creation Modal (Cmd+Shift+T)
+    │
+    ▼ POST /api/v1/tasks/create
+    │
+    ├── Create FocusTask in PostgreSQL
+    ├── Focus timer starts
+    ├── Screen activity checks embedding similarity against task name
+    └── Off-task detection feeds into JITAI intervention decisions
+```
+
+---
+
+## Background Tasks
+
+| Task | Interval | Purpose |
+|------|----------|---------|
+| **Model cleanup loop** | Every 30s | Unloads MLX LLM after 2min idle to free ~2.3GB |
+| **Daily snapshot loop** | Every 60s | Saves end-of-day snapshot at 23:55, backfills yesterday on startup |
+| **Telegram bot** | Continuous polling | Handles commands/messages + scheduled jobs |
+
+### Telegram Scheduled Jobs
+
+| Job | Schedule | Handler |
+|-----|----------|---------|
+| Morning briefing | Daily 07:30 | Whoop recovery + agenda |
+| Focus check | Every 30 min | Current focus state + nudge |
+| Weekly review | Sunday 20:00 | Week summary + patterns |
+
+---
+
+## On-Device Models
+
+| Model | Size | Usage | Loading |
+|-------|------|-------|---------|
+| **all-MiniLM-L6-v2** | ~80MB | Activity classifier L4, focus relevance | Always resident |
+| **all-mpnet-base-v2 (SetFit)** | ~420MB | Emotion classification → 6 ADHD states | Singleton at startup |
+| **Qwen3-4B-4bit** | ~2.3GB | Coaching, vent responses, brain dump summaries | Load on demand, unload after 2min idle |
+| **SenticNet Python** | ~50MB | 400K concepts for local emotion lookup | Always resident |
 
 ---
 
@@ -149,33 +251,43 @@ OpenClaw / Dashboard
 | **macOS** | 14+ (Sonoma) | 15+ (Sequoia) |
 | **Chip** | Apple M1 | Apple M3/M4 |
 | **RAM** | 8GB | 16GB (for MLX models) |
-| **Python** | 3.11+ | 3.12+ |
-| **Node.js** | 22+ (OpenClaw only) | — |
-| **PostgreSQL** | 16 + pgvector | via Docker |
+| **Python** | 3.11 | 3.11 |
+| **PostgreSQL** | 16 + pgvector | via Docker (port 5433) |
 | **Xcode** | 15+ | 16+ |
 
 ---
 
-## Repository Structure
+## Swift App Structure
 
 ```
-adhd-second-brain/
-├── backend/                    # Python FastAPI backend
-│   ├── api/                    # REST API routes
-│   ├── services/               # Business logic (SenticNet, JITAI, XAI, etc.)
-│   ├── models/                 # Pydantic data models
-│   ├── db/                     # Database layer (PostgreSQL + Alembic)
-│   ├── knowledge/              # Static knowledge bases (JSON)
-│   └── tests/                  # pytest unit tests
-├── swift-app/                  # Native macOS menu bar app
-│   └── ADHDSecondBrain/        # Swift source
-├── openclaw-skills/            # OpenClaw custom skills (Telegram/WhatsApp)
-├── dashboard/                  # Optional React web dashboard
-├── scripts/                    # Setup, start, seed, validate scripts
-├── docs/                       # This documentation folder
-├── docker-compose.yml          # PostgreSQL + pgvector
-└── .env.example                # Environment variable template
+swift-app/ADHDSecondBrain/
+├── NotchIsland/               # 5-state macOS notch widget
+│   ├── States/                # Dormant, Ambient, Glanceable, Expanded, Alert
+│   ├── Components/            # CalendarStrip, EmotionGlow, TaskCard, TimerRing, ...
+│   └── Animations/            # Blur, Pulse, ReducedMotion
+├── Modals/                    # Floating panels
+│   ├── BrainDump/             # Cmd+Shift+B
+│   ├── Vent/                  # Cmd+Shift+V
+│   ├── TaskCreation/          # Cmd+Shift+T
+│   └── Shared/                # HotkeyDefinitions, VisualEffectBackground
+├── Monitors/                  # Screen, Browser, Idle, Transition
+├── UI/                        # Dashboard, History, Settings, Onboarding, MenuBar
+├── Networking/                # BackendClient (port 8420)
+├── Services/                  # NotchCoordinator, HoverTracker, KeyboardShortcuts
+├── Notifications/             # TierManager (5-tier calm notification)
+├── DesignSystem/              # Tokens, animations, spacing
+└── Models/                    # EmotionState, NotchModels
 ```
+
+### Notch Island States
+
+| State | Trigger | Visual |
+|-------|---------|--------|
+| **Dormant** | Default | Invisible, matches system notch |
+| **Ambient** | Background awareness | Subtle emotion glow border |
+| **Glanceable** | Hover | Compact: timer ring, emotion, task card |
+| **Expanded** | Click | Full panel: calendar strip, mode switcher, quick capture |
+| **Alert** | Intervention | Overlay with intervention banner |
 
 ---
 
@@ -183,16 +295,10 @@ adhd-second-brain/
 
 | Document | Description |
 |----------|-------------|
-| [Phase 1: Python Backend](PHASE_1_PYTHON_BACKEND.md) | Foundation — FastAPI, routes, config |
-| [Phase 2: Swift Menu Bar](PHASE_2_SWIFT_MENU_BAR.md) | Native macOS screen monitor + UI |
-| [Phase 3: SenticNet Pipeline](PHASE_3_SENTICNET_PIPELINE.md) | 13-API affective computing |
-| [Phase 4: XAI & JITAI Engine](PHASE_4_XAI_JITAI_ENGINE.md) | Explainable interventions |
-| [Phase 5: Whoop Integration](PHASE_5_WHOOP_INTEGRATION.md) | Physiological data |
-| [Phase 6: Memory System](PHASE_6_MEMORY_SYSTEM.md) | Mem0 + pattern storage |
-| [Phase 7: On-Device LLM](PHASE_7_ON_DEVICE_LLM.md) | Apple MLX inference |
-| [Phase 8: OpenClaw](PHASE_8_OPENCLAW.md) | Telegram/WhatsApp chat interface |
-| [Phase 9: Frontend Dashboard](PHASE_9_FRONTEND_DASHBOARD.md) | React web dashboard |
 | [Data Models](DATA_MODELS.md) | Database schemas + Pydantic models |
-| [API Contracts](API_CONTRACTS.md) | Full endpoint reference |
-| [Testing Strategy](TESTING_STRATEGY.md) | Unit + integration testing |
-| [Project Timeline](PROJECT_TIMELINE.md) | Build order + critical path |
+| [API Contracts](API_CONTRACTS.md) | Full endpoint reference (~40 endpoints) |
+| [Testing Strategy](TESTING_STRATEGY.md) | Unit tests + evaluation suite |
+| [SenticNet Mapping](SENTICNET_MAPPING.md) | SenticNet API → ADHD mapping |
+| [XAI Framework](XAI_FRAMEWORK.md) | Explainability architecture |
+| [UML Diagrams](models-fyp/adhd-second-brain-diagrams.md) | Master component + sequence diagrams |
+| [Phase Plans](plans/) | Phase 1-9 build plans |

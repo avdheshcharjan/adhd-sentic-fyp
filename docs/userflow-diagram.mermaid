@@ -2,7 +2,7 @@ flowchart TD
     %% ── Entry Points ────────────────────────────────────────────
     START([User]) --> LAUNCH[Launch macOS Menu Bar App]
     START --> DASH[Open Web Dashboard]
-    START --> TELE[Send Message via Telegram/WhatsApp]
+    START --> TELE[Send Message via Telegram]
 
     %% ── Swift App Launch ────────────────────────────────────────
     LAUNCH --> PERM{Accessibility\nPermission?}
@@ -12,11 +12,21 @@ flowchart TD
     GRANT --> MONITOR
 
     %% ── Continuous Monitoring ───────────────────────────────────
-    MONITOR --> CAPTURE[Capture Active App +\nWindow Title + URL\nevery 2 seconds]
+    MONITOR --> CAPTURE[Capture Active App +\nWindow Title + URL\nevery 2-3 seconds]
     CAPTURE --> POST[POST /screen/activity]
     POST --> CLASSIFY[Classify Activity\ndevelopment · social_media · etc.]
-    CLASSIFY --> METRICS[Update ADHD Metrics\nfocus score · switches · streak]
-    METRICS --> JITAI{JITAI\nIntervention\nNeeded?}
+    CLASSIFY --> SETFIT[SetFit Emotion Classification\n→ 6 ADHD states · PASE radar]
+    SETFIT --> METRICS[Update ADHD Metrics\nfocus score · switches · streak]
+    METRICS --> OFFTASK{Focus Session\nActive?}
+
+    %% ── Off-Task Detection ────────────────────────────────────
+    OFFTASK -->|Yes| RELEVANCE[Check Embedding Similarity\nTask name vs Current activity]
+    RELEVANCE --> OFFTASK_RESULT{Off-Task?}
+    OFFTASK_RESULT -->|Yes| OFFTASK_ALERT[Set off_task = true\nSwift shows alert in Notch]
+    OFFTASK_RESULT -->|No| JITAI
+    OFFTASK_ALERT --> JITAI
+
+    OFFTASK -->|No| JITAI{JITAI\nIntervention\nNeeded?}
 
     %% ── JITAI Gating ───────────────────────────────────────────
     JITAI -->|No| PERSIST[Persist to DB]
@@ -82,22 +92,97 @@ flowchart TD
         E1 -->|Tap| E2 -->|Tap| E3
     end
 
-    %% ── Chat / Venting Flow ─────────────────────────────────────
-    TELE --> VENT[POST /chat/message]
+    %% ── Notch Island States ────────────────────────────────────
+    subgraph NOTCH ["Notch Island (5-State Widget)"]
+        direction TB
+        N_DORMANT["Dormant\nInvisible, matches system notch"]
+        N_AMBIENT["Ambient\nSubtle emotion glow border"]
+        N_GLANCE["Glanceable\nTimer ring · Emotion · Task card"]
+        N_EXPAND["Expanded Panel\nCalendar strip · Mode switcher\nQuick capture · Dashboard stats"]
+        N_ALERT["Alert Overlay\nIntervention banner\n5 severity tiers"]
+        N_DORMANT -->|"Hover detected"| N_GLANCE
+        N_DORMANT -->|"Background state change"| N_AMBIENT
+        N_GLANCE -->|"Click / expand"| N_EXPAND
+        N_GLANCE -->|"Mouse leave"| N_DORMANT
+        N_EXPAND -->|"Close / timeout"| N_DORMANT
+        N_AMBIENT -->|"Hover"| N_GLANCE
+        N_ALERT -->|"Acknowledged / timeout"| N_DORMANT
+    end
+
+    DELIVER --> N_ALERT
+    MONITOR --> N_DORMANT
+
+    %% ── Brain Dump Flow ────────────────────────────────────────
+    subgraph BRAINDUMP ["Brain Dump (Cmd+Shift+B)"]
+        direction TB
+        BD_TRIGGER["User presses Cmd+Shift+B"]
+        BD_PANEL["FloatingPanel opens\nQuickCaptureField"]
+        BD_TYPE["User types brain dump"]
+        BD_POST["POST /api/v1/brain-dump/stream"]
+        BD_CAPTURE["Store in Mem0\n(type=brain_dump, session, emotion)"]
+        BD_SUMMARY["AI Summary via\nQwen3-4B MLX (SSE stream)"]
+        BD_DONE["Show summary\nPanel auto-dismisses"]
+        BD_TRIGGER --> BD_PANEL --> BD_TYPE --> BD_POST
+        BD_POST --> BD_CAPTURE --> BD_SUMMARY --> BD_DONE
+    end
+
+    MONITOR --> BD_TRIGGER
+
+    %% ── Vent Modal Flow ────────────────────────────────────────
+    subgraph VENTMODAL ["Vent Modal (Cmd+Shift+V)"]
+        direction TB
+        VM_TRIGGER["User presses Cmd+Shift+V"]
+        VM_PANEL["FloatingPanel opens\nVent chat interface"]
+        VM_TYPE["User types message"]
+        VM_POST["POST /api/v1/vent/chat/stream"]
+        VM_SAFETY["4-Layer Safety Check"]
+        VM_L1["Layer 1: Crisis keyword scan"]
+        VM_L2["Layer 2: SenticNet semantic analysis"]
+        VM_L3["Layer 3: Output safety (post-gen)"]
+        VM_L4["Layer 4: Session escalation tracking"]
+        VM_LLM["Qwen3-4B generates response\n(SSE stream tokens)"]
+        VM_REPLY["Stream response to UI"]
+        VM_TRIGGER --> VM_PANEL --> VM_TYPE --> VM_POST --> VM_SAFETY
+        VM_SAFETY --> VM_L1
+        VM_L1 -->|"Crisis detected"| CRISIS_VM[Return crisis resources\nNo LLM]
+        VM_L1 -->|"Safe"| VM_L2 --> VM_LLM --> VM_L3 --> VM_L4 --> VM_REPLY
+    end
+
+    MONITOR --> VM_TRIGGER
+
+    %% ── Task Creation + Focus Session ──────────────────────────
+    subgraph TASKCREATE ["Task Creation (Cmd+Shift+T)"]
+        direction TB
+        TC_TRIGGER["User presses Cmd+Shift+T"]
+        TC_PANEL["TaskCreation panel opens\nName + Duration fields"]
+        TC_SUBMIT["POST /api/v1/tasks/create\n{name, duration_seconds}"]
+        TC_FOCUS["Focus session starts\nTimer ring in Notch"]
+        TC_MONITOR["Off-task detection active\nEmbedding similarity check"]
+        TC_COMPLETE["POST /api/v1/tasks/{id}/complete\nor timer expires"]
+        TC_TRIGGER --> TC_PANEL --> TC_SUBMIT --> TC_FOCUS
+        TC_FOCUS --> TC_MONITOR --> TC_COMPLETE
+    end
+
+    MONITOR --> TC_TRIGGER
+
+    %% ── Chat / Venting Flow (Telegram) ─────────────────────────
+    TELE --> TELE_HANDLER{Message Type?}
+    TELE_HANDLER -->|"/start"| TELE_WELCOME[Welcome message +\ninstructions]
+    TELE_HANDLER -->|"Text message"| VENT[POST /chat/message\n(default: vent handler)]
     VENT --> SENTIC[SenticNet Analysis\n4-Dimension Emotion Profile]
 
     SENTIC --> SAFETY{Safety\nCritical?}
     SAFETY -->|Yes — Depression/Toxicity| CRISIS[Return Crisis Resources\nNo LLM · Hardcoded Response\nSOS CareText · IMH Helpline]
     SAFETY -->|No| LLM[Local LLM Inference\nQwen3-4B via Apple MLX\nEmotion-Informed Coaching]
     LLM --> ACTIONS[Generate Suggested Actions\nMax 3 Quick-Reply Buttons]
-    ACTIONS --> MEMORY[Store in Mem0\nSemantic Memory]
-    MEMORY --> REPLY[Send Reply to User\nvia Telegram/WhatsApp]
+    ACTIONS --> MEMORY_STORE[Store in Mem0\nSemantic Memory]
+    MEMORY_STORE --> REPLY[Send Reply to User\nvia Telegram]
 
-    %% ── Scheduled Skills ────────────────────────────────────────
-    subgraph SCHEDULED ["OpenClaw Scheduled Skills"]
+    %% ── Scheduled Jobs (Telegram Bot) ──────────────────────────
+    subgraph SCHEDULED ["Telegram Bot Scheduled Jobs"]
         direction TB
         MORNING["☀️ Morning Briefing\n7:30 AM Daily"]
-        FOCUS["🎯 Focus Check\nEvery 30 min (9 AM–10 PM)\nConditional: only if distracted"]
+        FOCUS_SCHED["🎯 Focus Check\nEvery 30 min (9 AM–10 PM)\nConditional: only if distracted"]
         WEEKLY["📊 Weekly Review\nSunday 8 PM"]
     end
 
@@ -110,7 +195,7 @@ flowchart TD
     MSG_YELLOW --> SEND_MSG
     MSG_RED --> SEND_MSG
 
-    FOCUS --> FOCUS_CHECK[GET /insights/current]
+    FOCUS_SCHED --> FOCUS_CHECK[GET /insights/current]
     FOCUS_CHECK --> FOCUS_GATE{Distracted OR\nHyperfocused > 3h?}
     FOCUS_GATE -->|Yes| FOCUS_MSG[Send Contextual Nudge]
     FOCUS_GATE -->|No — All Good| SILENT[Stay Silent\nAvoid Notification Fatigue]
@@ -118,6 +203,18 @@ flowchart TD
     WEEKLY --> WEEKLY_DATA[GET /insights/weekly]
     WEEKLY_DATA --> WEEKLY_MSG[Generate 3-4 Sentence\nWeekly Summary + 1 Insight]
     WEEKLY_MSG --> SEND_MSG
+
+    %% ── Google Calendar ────────────────────────────────────────
+    subgraph GCAL ["Google Calendar Integration"]
+        direction TB
+        GCAL_AUTH["GET /api/auth/google\nBrowser OAuth redirect"]
+        GCAL_CALLBACK["GET /api/auth/google/callback\nToken stored"]
+        GCAL_EVENTS["GET /api/v1/calendar/upcoming\nFetch next 3 events"]
+        GCAL_STRIP["Calendar strip in\nNotch Expanded panel"]
+        GCAL_AUTH --> GCAL_CALLBACK --> GCAL_EVENTS --> GCAL_STRIP
+    end
+
+    START --> GCAL_AUTH
 
     %% ── Dashboard Flow ──────────────────────────────────────────
     DASH --> API_CALL[GET /insights/dashboard\nPolling Every 5s]
@@ -135,11 +232,11 @@ flowchart TD
 
     %% ── Whoop Setup ─────────────────────────────────────────────
     START --> WHOOP_SETUP[Connect Whoop]
-    WHOOP_SETUP --> CLI[Run: whoopskill auth login]
-    CLI --> OAUTH[Browser OAuth Flow]
-    OAUTH --> CALLBACK[GET /whoop/callback]
-    CALLBACK --> TOKEN[Token Saved to\n~/.whoop-cli/tokens.json]
-    TOKEN --> WHOOP_READY[Whoop Data Available\nfor Dashboard + Morning Briefing]
+    WHOOP_SETUP --> WHOOPSKILL_CLI[Run: whoopskill auth login]
+    WHOOPSKILL_CLI --> WHOOP_OAUTH[Browser OAuth Flow]
+    WHOOP_OAUTH --> WHOOP_CALLBACK[GET /api/auth/whoop]
+    WHOOP_CALLBACK --> WHOOP_TOKEN[Token Saved to\n~/.whoop-cli/tokens.json]
+    WHOOP_TOKEN --> WHOOP_READY[Whoop Data Available\nfor Dashboard + Morning Briefing]
 
     %% ── Menu Bar Interaction ────────────────────────────────────
     MONITOR --> MENUBAR[Menu Bar Display]
@@ -150,6 +247,17 @@ flowchart TD
     PAUSE -->|Settings| ONBOARD
     PAUSE -->|Quit| QUIT([App Terminates])
 
+    %% ── Daily Snapshots ─────────────────────────────────────────
+    subgraph SNAPSHOTS ["Daily Snapshots (Background)"]
+        direction TB
+        SNAP_CHECK["Check time every 60s"]
+        SNAP_SAVE["Save snapshot at 23:55\ntotal_focus · distraction · switches\ntop_apps · emotion_scores · whoop"]
+        SNAP_BACKFILL["On startup: backfill\nyesterday if missing"]
+        SNAP_HISTORY["GET /api/v1/dashboard/history\nBrowse in Swift History view"]
+        SNAP_CHECK --> SNAP_SAVE
+        SNAP_BACKFILL --> SNAP_HISTORY
+    end
+
     %% ── Styling ─────────────────────────────────────────────────
     classDef entry fill:#6366f1,stroke:#4f46e5,color:#fff,font-weight:bold
     classDef decision fill:#1e1b4b,stroke:#6366f1,color:#e4e4e7
@@ -158,11 +266,17 @@ flowchart TD
     classDef danger fill:#7f1d1d,stroke:#ef4444,color:#fff
     classDef warn fill:#713f12,stroke:#eab308,color:#fff
     classDef tier fill:#0c4a6e,stroke:#3b82f6,color:#fff
+    classDef notch fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef modal fill:#312e81,stroke:#6366f1,color:#fff
 
     class START,LAUNCH,DASH,TELE,WHOOP_SETUP entry
-    class PERM,JITAI,GATES,BREAKPOINT,RESPONSE,SAFETY,BRIEFING,FOCUS_GATE,PAUSE decision
-    class CRISIS danger
+    class PERM,JITAI,GATES,BREAKPOINT,RESPONSE,SAFETY,BRIEFING,FOCUS_GATE,PAUSE,OFFTASK,OFFTASK_RESULT,TELE_HANDLER decision
+    class CRISIS,CRISIS_VM danger
     class MSG_GREEN safe
     class MSG_YELLOW warn
     class MSG_RED danger
     class TIER1,TIER2,TIER3,TIER4,TIER5 tier
+    class N_DORMANT,N_AMBIENT,N_GLANCE,N_EXPAND,N_ALERT notch
+    class BD_TRIGGER,BD_PANEL,BD_TYPE,BD_POST,BD_CAPTURE,BD_SUMMARY,BD_DONE modal
+    class VM_TRIGGER,VM_PANEL,VM_TYPE,VM_POST,VM_SAFETY,VM_LLM,VM_REPLY modal
+    class TC_TRIGGER,TC_PANEL,TC_SUBMIT,TC_FOCUS,TC_MONITOR,TC_COMPLETE modal
